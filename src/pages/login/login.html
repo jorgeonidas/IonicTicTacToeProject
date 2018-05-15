@@ -7,6 +7,70 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="bg-page" padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-start col-1>
+        <!--spacing-->
+      </ion-col>
+      <ion-col align-self-center>
+        <div id="loginContainer" color="primary">
+          
+          <!--formulario aca-->
+          <ion-row>
+              <ion-item>
+                  <ion-label>
+                    Username:
+                  </ion-label>
+                </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item>
+              <ion-input type="text" value=""></ion-input>
+            </ion-item>
+          </ion-row>
+          
+          <!--password-->
+          <ion-row>
+              <ion-item>
+                  <ion-label>
+                    Password:
+                  </ion-label>
+                </ion-item>
+          </ion-row>
+          
+          <ion-row>
+            <ion-item>
+              <ion-input type="text" value=""></ion-input>
+            </ion-item>
+          </ion-row>
+          
+          <ion-row align-items-center>
+            <p align="center">The username can only numbers & letters</p>
+          </ion-row>
+          <!--botones-->
+          <ion-row justify-content-center>
+            <ion-col align-self-center >
+              <button ion-button color="skip">Skip</button>
+            </ion-col>
+            <ion-col align-self-center>
+                <button ion-button large>Login</button>
+            </ion-col>
+          </ion-row>
+          <!--info-->
+          <ion-row>
+            <h6 align="center" padding>
+              Don't Have a Virtual Robot Account?
+            </h6>
+          </ion-row>
+          <ion-row justify-content-center>
+            <button ion-button color="gold">Create Account</button>
+          </ion-row>
+        </div>
+      </ion-col>
+      <ion-col align-self-start col-1>
+        <!--spacing-->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
