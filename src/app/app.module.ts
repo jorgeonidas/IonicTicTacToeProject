@@ -8,13 +8,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
+import { CreateAccountPage } from '../pages/create-account/create-account';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    MainMenuPage
+    MainMenuPage,
+    CreateAccountPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { MainMenuPage } from '../pages/main-menu/main-menu';
     MyApp,
     HomePage,
     LoginPage,
-    MainMenuPage
+    MainMenuPage,
+    CreateAccountPage
   ],
   providers: [
     StatusBar,
