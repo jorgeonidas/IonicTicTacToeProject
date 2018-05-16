@@ -1,18 +1,54 @@
-<!--
-  Generated template for the MainMenuPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>main-menu</ion-title>
+    <ion-title>Tic Tac Toe Ollie</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content class="bg-main-menu-page" padding>
+  <ion-grid>
+    <ion-row></ion-row>
+    <ion-row>
+      <ion-col text-center>
+        <h1 class="menu-title">Tic Tac Toe Ollie</h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="height: 60px"></div>
+    </ion-row>
+    <!--Botones-->
+    <ion-row justify-content-center align-items-center>
+      <ion-col></ion-col>
+      <ion-col col-7>
+        <button ion-button large block color="emerald">1 Player</button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="height: 20px"></div>
+    </ion-row>
+    <ion-row justify-content-center align-items-center>
+      <ion-col></ion-col>
+      <ion-col col-7>
+        <button ion-button large block color="emerald">2 Players Local</button>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <div style="height: 80px"></div>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 icon-only>
+        <button ion-button large block color="fuxia"><ion-icon name="people"></ion-icon></button>
+      </ion-col>
+      <ion-col>
+        <button ion-button large block color="fuxia">Human</button>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button large block color="fuxia"><ion-icon name="settings"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
