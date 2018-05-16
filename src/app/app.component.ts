@@ -6,11 +6,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
+import { CreateAccountPage } from '../pages/create-account/create-account';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = MainMenuPage;
+  rootPage:any = CreateAccountPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

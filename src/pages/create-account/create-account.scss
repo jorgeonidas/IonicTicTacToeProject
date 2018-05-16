@@ -1,3 +1,18 @@
 page-create-account {
+    .bg-page{
+        background:#0de5da;
+    }
 
+    #loginContainer {
+        border-radius: 25px;
+        background: #e9ead0;
+        border: 5px solid rgb(213, 6, 231);
+        padding: 20px;  
+    }
+    .item{
+        background-color: #e9ead0;
+    }
+    ion-label{
+        font-weight: bold;
+    }
 }
