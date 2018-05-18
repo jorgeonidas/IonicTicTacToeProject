@@ -10,10 +10,10 @@
 <ion-content class="bg-page" padding>
   <ion-grid>
     <ion-row>
-      <ion-col align-self-start col-1>
+      <ion-col align-self-start>
         <!--spacing-->
       </ion-col>
-      <ion-col align-self-center>
+      <ion-col align-self-center col-11>
         <div id="loginContainer" color="primary">
 
           <!--formulario aca-->
@@ -83,17 +83,24 @@
           </ion-row>
           <!--botones***************************************************************-->
           <ion-row justify-content-center>
-            <ion-col align-self-center>
-              <button ion-button color="skip" [navPush]="mainMenuPage">Skip</button>
+            <ion-col col-5 align-self-center>
+              <button ion-button 
+                color="skip"
+                class="borderSkip"
+                round [navPush]="mainMenuPage">Skip</button>
             </ion-col>
             <ion-col align-self-center>
-              <button ion-button large color="gold">Create</button>
+              <button ion-button 
+                large 
+                round
+                class="borderCreate" 
+                color="gold">Create</button>
             </ion-col>
           </ion-row>
           <!--**********************************************************************-->
         </div>
       </ion-col>
-      <ion-col align-self-start col-1>
+      <ion-col align-self-start >
         <!--spacing-->
       </ion-col>
     </ion-row>

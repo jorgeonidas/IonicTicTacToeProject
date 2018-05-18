@@ -15,4 +15,16 @@ page-login {
     ion-label{
         font-weight: bold;
     }
+
+    .borderSkip{
+        border: 3px solid map-get($colors, skipBorder);
+    }
+
+    .borderCreate{
+        border: 3px solid map-get($colors, createBorder);;
+    }
+
+    .borderLogin{
+        border: 3px solid map-get($colors, loginBorder);;
+    }
 }
