@@ -11,7 +11,7 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = CreateAccountPage;
+  rootPage:any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
