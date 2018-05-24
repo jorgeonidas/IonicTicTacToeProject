@@ -9,6 +9,10 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { CreateAccountPage } from '../pages/create-account/create-account';
+import { SettingsMenuPage } from '../pages/settings-menu/settings-menu';
+import { ImportantInfoPage } from '../pages/settings-menu/importatn-info/important-info';
+import { AboutInfoPage } from '../pages/settings-menu/about-info/about-info';
+import { ConfigurationPage } from '../pages/settings-menu/configuration/configuration';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
     HomePage,
     LoginPage,
     MainMenuPage,
-    CreateAccountPage
+    CreateAccountPage,
+    SettingsMenuPage,
+    ImportantInfoPage,
+    AboutInfoPage,
+    ConfigurationPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,11 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
     HomePage,
     LoginPage,
     MainMenuPage,
-    CreateAccountPage
+    CreateAccountPage,
+    SettingsMenuPage,
+    ImportantInfoPage,
+    AboutInfoPage,
+    ConfigurationPage
   ],
   providers: [
     StatusBar,
