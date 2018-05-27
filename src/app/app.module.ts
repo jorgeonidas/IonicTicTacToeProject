@@ -16,6 +16,8 @@ import { ConfigurationPage } from '../pages/settings-menu/configuration/configur
 import { ConfigurationService } from '../services/configuration.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

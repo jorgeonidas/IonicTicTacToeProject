@@ -1,6 +1,3 @@
 export class ConfigurationModel{
-    language: string;
-    music: boolean;
-    sfx: boolean;
-    notifications: boolean;
+    constructor(public language: string, public music: boolean, public sfx: boolean, public notifications: boolean){}
 }
