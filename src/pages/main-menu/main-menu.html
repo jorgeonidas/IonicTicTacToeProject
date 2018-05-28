@@ -27,7 +27,7 @@
         block 
         round 
         color="emerald"
-        class="borderPlayer">1 Player</button>
+        class="borderPlayer" (click)="onGameSelectio('singleplayer')">1 Player</button>
       </ion-col>
       <ion-col></ion-col>
     </ion-row>
@@ -42,7 +42,7 @@
         large block 
         round 
         color="emerald" 
-        class="borderPlayer">2 Players Local</button>
+        class="borderPlayer" (click)="onGameSelectio('local-multiplayer')">2 Players Local</button>
       </ion-col>
       <ion-col></ion-col>
     </ion-row>

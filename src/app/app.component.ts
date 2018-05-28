@@ -7,11 +7,12 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { CreateAccountPage } from '../pages/create-account/create-account';
+import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = CreateAccountPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

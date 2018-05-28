@@ -17,6 +17,7 @@
         <div id="loginContainer" color="primary">
 
           <!--formulario aca-->
+          <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
           <ion-row>
             <!--<ion-item>-->
             <ion-label>
@@ -24,9 +25,12 @@
             </ion-label>
             <!--</ion-item>-->
           </ion-row>
+
           <ion-row>
             <ion-item>
-              <ion-input type="text" value=""></ion-input>
+              <ion-input 
+              type="text" 
+              formControlName="name"></ion-input>
             </ion-item>
           </ion-row>
 
@@ -40,7 +44,9 @@
           </ion-row>
           <ion-row>
             <ion-item>
-              <ion-input type="text" value=""></ion-input>
+              <ion-input 
+              type="text" 
+              formControlName="password"></ion-input>
             </ion-item>
           </ion-row>
 
@@ -54,7 +60,7 @@
           </ion-row>
           <ion-row>
             <ion-item>
-              <ion-input type="text" value=""></ion-input>
+              <ion-input type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
             </ion-item>
           </ion-row>
 
@@ -66,18 +72,18 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-input type="text" value="" placeholder="Day"></ion-input>
+              <ion-input type="text" value="" formControlName="day" placeholder="DD"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" value="" placeholder="Month"></ion-input>
+              <ion-input type="text" value="" formControlName="month" placeholder="MM"></ion-input>
             </ion-col>
             <ion-col>
-              <ion-input type="text" value="" placeholder="Year"></ion-input>
+              <ion-input type="text" value="" formControlName="year" placeholder="YYYY"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-item no-lines>
-              <ion-checkbox></ion-checkbox>
+              <ion-checkbox formControlName="useragre"></ion-checkbox>
               <ion-label text-wrap style="font-size: 12px">I have read and accpet the Terms of Use and Privacy Policy</ion-label>
             </ion-item>
           </ion-row>
@@ -90,13 +96,16 @@
                 round [navPush]="mainMenuPage">Skip</button>
             </ion-col>
             <ion-col align-self-center>
-              <button ion-button 
+              <button type="submit" 
+                ion-button 
                 large 
                 round
                 class="borderCreate" 
-                color="gold">Create</button>
+                color="gold"
+                [disabled]="!createUserForm.valid">Create</button>
             </ion-col>
           </ion-row>
+        </form>
           <!--**********************************************************************-->
         </div>
       </ion-col>

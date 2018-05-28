@@ -96,6 +96,7 @@ export class ConfigurationPage implements OnInit{
             console.log(val);
             this.notifications = val; 
         });
+
         /*this.cfgService.retrieveCfgFromJson()
             .subscribe(data =>{ 
                                 this.sfx = data.sfx;

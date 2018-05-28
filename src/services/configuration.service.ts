@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 export class ConfigurationService{
 
     constructor(private storage: Storage){}
-
+    //Base de datos ubicada en www/assests/data/config.json
 
     public set(settingName,value){
         return this.storage.set(`setting:${ settingName }`,value);

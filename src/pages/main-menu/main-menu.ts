@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { SettingsMenuPage } from '../settings-menu/settings-menu';
+import { CharacterSelectionPage } from '../character-selection/character-selection';
 
 @IonicPage()
 @Component({
@@ -21,5 +22,9 @@ export class MainMenuPage {
   onLoadSettingsMenu(){
     const popover= this.popoverCtrl.create(SettingsMenuPage);
     popover.present();
+  }
+
+  onGameSelectio(selected: string){
+    this.navCtrl.push(CharacterSelectionPage, {selection: selected});
   }
 }

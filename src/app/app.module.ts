@@ -17,6 +17,7 @@ import { ConfigurationService } from '../services/configuration.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { IonicStorageModule } from '@ionic/storage';
     SettingsMenuPage,
     ImportantInfoPage,
     AboutInfoPage,
+    CharacterSelectionPage,
     ConfigurationPage
+
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { IonicStorageModule } from '@ionic/storage';
     SettingsMenuPage,
     ImportantInfoPage,
     AboutInfoPage,
+    CharacterSelectionPage,
     ConfigurationPage
   ],
   providers: [
