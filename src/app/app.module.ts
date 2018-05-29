@@ -20,6 +20,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
 import { AuthService } from '../services/authService';
 import { GridSelectorComponent } from '../components/grid-selector.component';
+import { GamePage } from '../pages/game/game';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { GridSelectorComponent } from '../components/grid-selector.component';
     AboutInfoPage,
     CharacterSelectionPage,
     ConfigurationPage,
-    GridSelectorComponent
+    GridSelectorComponent,//solo es un componente
+    GamePage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { GridSelectorComponent } from '../components/grid-selector.component';
     ImportantInfoPage,
     AboutInfoPage,
     CharacterSelectionPage,
-    ConfigurationPage
+    ConfigurationPage,
+    GamePage
   ],
   providers: [
     StatusBar,

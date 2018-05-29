@@ -41,13 +41,28 @@
     <!--Botones dificultad-->
     <ion-row>
       <ion-col>
-        <button ion-button  small block color="secondary">Easy</button>
+        <button 
+        ion-button  
+        small block 
+        color="secondary"
+        [ngClass]="{easySel: difficulty=='easy'}" 
+        (click)="onDifficultySelection('easy')">Easy</button>
       </ion-col>
       <ion-col>
-          <button ion-button  small block color="gold">Medium</button>
+          <button 
+          ion-button  
+          small 
+          block color="gold"
+          [ngClass]="{mediumSel: difficulty=='medium'}" 
+          (click)="onDifficultySelection('medium')">Medium</button>
       </ion-col>
       <ion-col>
-          <button ion-button  small block color="danger">Hard</button>
+          <button 
+          ion-button  
+          small block 
+          color="danger"
+          [ngClass]="{hardSel: difficulty=='hard'}" 
+          (click)="onDifficultySelection('hard')">Hard</button>
       </ion-col>
     </ion-row>
     <!--Seleccion de rondas-->
@@ -56,13 +71,25 @@
         <h2 text-center>Rounds</h2>
       </ion-col>
       <ion-col col-2>
-        <button color="emerald" ion-button small>x1</button>
+        <button 
+        color="emerald" 
+        ion-button 
+        small
+        (click)="onRoundSelection(1)" [ngClass]="{active: rounds==1, unactive: rounds!=1}">x1</button>
       </ion-col>
       <ion-col col-2>
-          <button color="emerald" ion-button small>x3</button>
+          <button 
+          color="emerald" 
+          ion-button 
+          small
+          (click)="onRoundSelection(3)" [ngClass]="{active: rounds==3, unactive: rounds!=3}">x3</button>
       </ion-col>
       <ion-col col-2> 
-          <button color="emerald" ion-button small>x5</button>
+          <button 
+          color="emerald" 
+          ion-button 
+          small
+          (click)="onRoundSelection(5)" [ngClass]="{active: rounds==5, unactive: rounds!=5}">x5</button>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
@@ -72,7 +99,7 @@
           block
           color="danger"
           class="borderBack"
-          [navPush]="mainMenuPage">Back</button>
+          navPop>Back</button>
         </ion-col>
         <ion-col align-self-center>
             <button ion-button 
@@ -80,7 +107,8 @@
             block 
             color="gold"
             class="borderPlay"
-            round>Play</button>
+            round
+            (click)="onClickPlay()">Play</button>
         </ion-col>
       </ion-row>
   </ion-grid>

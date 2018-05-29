@@ -6,4 +6,24 @@ page-character-selection {
     .borderBack{
         border: 3px solid map-get($colors, borderDanger);
     }
+
+    .active{
+        background-color: map-get($colors , borderPlayer );
+    }
+
+    .unactive{
+        background-color: map-get($colors , emerald );
+    }
+
+    .easySel{
+        background-color: map-get($colors , easySelected );
+    }
+
+    .mediumSel{
+        background-color: map-get($colors , skipBorder );
+    }
+
+    .hardSel{
+        background-color: map-get($colors , borderDanger );
+    }
 }

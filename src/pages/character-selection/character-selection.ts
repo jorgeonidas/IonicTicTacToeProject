@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MainMenuPage } from '../main-menu/main-menu';
+import { GamePage } from '../game/game';
 
 @IonicPage()
 @Component({
@@ -8,6 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CharacterSelectionPage {
   gameType: string='singleplayer';
+  rounds: number = 1;
+  difficulty: string = 'easy';
+
+  gamePage = GamePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -18,4 +24,21 @@ export class CharacterSelectionPage {
     console.log(this.gameType); 
   }
 
+  onRoundSelection(nr: number){
+    this.rounds = nr;
+    console.log(this.rounds);
+    
+  }
+
+  onDifficultySelection(difficulty: string){
+    this.difficulty = difficulty;
+    console.log(this.difficulty);
+    
+  }
+
+  onClickPlay(){
+    this.navCtrl.push(this.gamePage,{gameType: this.gameType, 
+      rounds: this.rounds, 
+      difficulty: this.difficulty});
+  }
 }
