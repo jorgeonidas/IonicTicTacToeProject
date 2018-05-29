@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginPage } from '../login/login';
+import { AuthService } from '../../services/authService';
 
 @IonicPage()
 @Component({
@@ -14,12 +15,15 @@ export class CreateAccountPage implements OnInit  {
 
   createUserForm : FormGroup;
   mainMenuPage = MainMenuPage;
+  currentDate;
+  dateOfBirth;
 
   ngOnInit(){
     this.initializeForm();
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+    authService.testingApi();
   }
 
   ionViewDidLoad() {
@@ -28,9 +32,9 @@ export class CreateAccountPage implements OnInit  {
 
   public initializeForm(){
     this.createUserForm = new FormGroup({
-      'name': new FormControl(null, Validators.required),
-      'password': new FormControl(null, Validators.required),
-      'email': new FormControl(null, Validators.required),
+      'name': new FormControl('jorgeonidas', Validators.required),
+      'password': new FormControl('123456', Validators.required),
+      'email': new FormControl('maitest@mail.com', Validators.required),
       'day': new FormControl(null, Validators.required),
       'month': new FormControl(null, Validators.required),
       'year': new FormControl(null, Validators.required),
@@ -39,7 +43,26 @@ export class CreateAccountPage implements OnInit  {
   }
 
   onSubmit(){
+    const value = this.createUserForm.value;
     console.log(this.createUserForm.value);
-    this.navCtrl.push(LoginPage);
+    this.currentDate = new Date();
+    console.log(this.currentDate.toISOString().split('.')[0]+" " );
+    this.dateOfBirth = new Date(value.year,value.month, value.day);
+    console.log(this.dateOfBirth.toISOString().split('.')[0]+" " );
+
+    this.authService.signup(value.email, 
+      value.name, value.password, 
+      this.dateOfBirth.toISOString().split('.')[0]+" " ,
+      this.currentDate.toISOString().split('.')[0]+" " ,
+      "N")
+      .subscribe((resutl)=>{
+        console.log(resutl);
+      },
+      error=>{console.log(error);
+              console.log(error.name);
+              console.log(error.message);
+              console.log(error.status);}
+      );
+    //this.navCtrl.push(LoginPage);
   }
 }

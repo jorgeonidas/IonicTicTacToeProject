@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
+import { AuthService } from '../services/authService';
+import { GridSelectorComponent } from '../components/grid-selector.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,8 @@ import { CharacterSelectionPage } from '../pages/character-selection/character-s
     ImportantInfoPage,
     AboutInfoPage,
     CharacterSelectionPage,
-    ConfigurationPage
-
+    ConfigurationPage,
+    GridSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +58,8 @@ import { CharacterSelectionPage } from '../pages/character-selection/character-s
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConfigurationService
+    ConfigurationService,
+    AuthService
   ]
 })
 export class AppModule {}

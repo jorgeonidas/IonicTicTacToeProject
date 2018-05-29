@@ -17,30 +17,25 @@
     <!--Avatares-->
     <ion-row>
       <ion-col>
-
+          <ion-thumbnail>
+              <img src="assets/imgs/ollie_logo.png">
+          </ion-thumbnail>
+          <button ion-button small block>Random</button>
+      </ion-col>
+      <ion-col align-self-center>
+        <h2 text-center>VS</h2> 
       </ion-col>
       <ion-col>
-
+          <ion-thumbnail>
+              <img src="assets/imgs/ollie_logo.png">
+          </ion-thumbnail>
+          <button ion-button small block>Random</button>
       </ion-col>
     </ion-row>
     <!--seleccion de personaje-->
     <ion-row>
       <ion-col>
-        <!--seleccion de avatares-->
-        <ion-grid>
-          <ion-row justify-content-center>
-            <ion-col></ion-col>
-            <ion-col></ion-col>
-            <ion-col></ion-col>
-            <ion-col></ion-col>
-          </ion-row>
-          <ion-row justify-content-center>
-              <ion-col></ion-col>
-              <ion-col></ion-col>
-              <ion-col></ion-col>
-              <ion-col></ion-col>
-          </ion-row>
-        </ion-grid>
+          <grid-selector-component></grid-selector-component>
       </ion-col>
     </ion-row>
     <!--Botones dificultad-->
@@ -56,17 +51,17 @@
       </ion-col>
     </ion-row>
     <!--Seleccion de rondas-->
-    <ion-row justify-content-center>
+    <ion-row >
       <ion-col>
-        <h2 text-center>Rounds:</h2>
+        <h2 text-center>Rounds</h2>
       </ion-col>
-      <ion-col>
+      <ion-col col-2>
         <button ion-button small>x1</button>
       </ion-col>
-      <ion-col>
+      <ion-col col-2>
           <button ion-button small>x2</button>
       </ion-col>
-      <ion-col>
+      <ion-col col-2> 
           <button ion-button small>x3</button>
       </ion-col>
     </ion-row>

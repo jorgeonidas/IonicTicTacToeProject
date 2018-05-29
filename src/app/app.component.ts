@@ -12,7 +12,7 @@ import { CharacterSelectionPage } from '../pages/character-selection/character-s
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = CreateAccountPage;
+  rootPage:any = MainMenuPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
