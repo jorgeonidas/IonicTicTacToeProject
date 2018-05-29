@@ -20,7 +20,7 @@
           <ion-thumbnail>
               <img src="assets/imgs/ollie_logo.png">
           </ion-thumbnail>
-          <button ion-button small block>Random</button>
+          <button ion-button small block color="fuxia">Random</button>
       </ion-col>
       <ion-col align-self-center>
         <h2 text-center>VS</h2> 
@@ -29,7 +29,7 @@
           <ion-thumbnail>
               <img src="assets/imgs/ollie_logo.png">
           </ion-thumbnail>
-          <button ion-button small block>Random</button>
+          <button ion-button small block color="fuxia">Random</button>
       </ion-col>
     </ion-row>
     <!--seleccion de personaje-->
@@ -41,13 +41,13 @@
     <!--Botones dificultad-->
     <ion-row>
       <ion-col>
-        <button ion-button small block color="secondary">Easy</button>
+        <button ion-button  small block color="secondary">Easy</button>
       </ion-col>
       <ion-col>
-          <button ion-button small block color="gold">Medium</button>
+          <button ion-button  small block color="gold">Medium</button>
       </ion-col>
       <ion-col>
-          <button ion-button small block color="danger">Hard</button>
+          <button ion-button  small block color="danger">Hard</button>
       </ion-col>
     </ion-row>
     <!--Seleccion de rondas-->
@@ -56,13 +56,13 @@
         <h2 text-center>Rounds</h2>
       </ion-col>
       <ion-col col-2>
-        <button ion-button small>x1</button>
+        <button color="emerald" ion-button small>x1</button>
       </ion-col>
       <ion-col col-2>
-          <button ion-button small>x2</button>
+          <button color="emerald" ion-button small>x3</button>
       </ion-col>
       <ion-col col-2> 
-          <button ion-button small>x3</button>
+          <button color="emerald" ion-button small>x5</button>
       </ion-col>
     </ion-row>
     <ion-row justify-content-center>
@@ -70,12 +70,16 @@
           <button ion-button 
           round 
           block
+          color="danger"
+          class="borderBack"
           [navPush]="mainMenuPage">Back</button>
         </ion-col>
         <ion-col align-self-center>
             <button ion-button 
             large
             block 
+            color="gold"
+            class="borderPlay"
             round>Play</button>
         </ion-col>
       </ion-row>
