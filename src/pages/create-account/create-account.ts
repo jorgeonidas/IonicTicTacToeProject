@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginPage } from '../login/login';
@@ -22,7 +22,7 @@ export class CreateAccountPage implements OnInit  {
     this.initializeForm();
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService, private alertCtrl: AlertController) {
     authService.testingApi();
   }
 
@@ -57,11 +57,25 @@ export class CreateAccountPage implements OnInit  {
       "N")
       .subscribe((resutl)=>{
         console.log(resutl);
+        this.navCtrl.push(LoginPage);
       },
-      error=>{console.log(error);
-              console.log(error.name);
-              console.log(error.message);
-              console.log(error.status);}
+      error=>{
+        let alert = this.alertCtrl.create({
+          title: 'Error!',
+          message: error.name,
+          buttons: 
+          [
+            {
+              text: 'Ok',
+              role: 'cancel',
+            }
+          ]
+        });
+        alert.present();
+        /*console.log(error);
+        console.log(error.name);
+        console.log(error.message);
+        console.log(error.status);*/}
       );
     //this.navCtrl.push(LoginPage);
   }
