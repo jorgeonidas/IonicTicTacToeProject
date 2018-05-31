@@ -4,7 +4,7 @@ import { ImportantInfoPage } from "./importatn-info/important-info";
 import { AboutInfoPage } from "./about-info/about-info";
 import { ConfigurationPage } from "./configuration/configuration";
 
-@Component({
+@Component({    
     template: `<ion-grid text-center>
                     <ion-row>
                         <ion-col>
@@ -32,6 +32,7 @@ import { ConfigurationPage } from "./configuration/configuration";
                         </ion-col>
                     </ion-row>
                 </ion-grid>`,
+                selector: 'settings-menu'
 })
 
 export class SettingsMenuPage{

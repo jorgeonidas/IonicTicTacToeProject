@@ -1,84 +1,112 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="fuxia">
     <ion-title>Tic Tac Toe Ollie</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class="bg-main-menu-page" padding>
-  <ion-grid>
-    <ion-row></ion-row>
+<ion-content class="bg-main-menu-page">
+  <!--
+  <button ion-button  (click)="menuSettingsActive()" >SettingsToggleMenuTest</button>
+  <br>
+  <button ion-button  (click)="menuLoginActive()">LoginToggleMenuTest</button>-->
+  <ion-grid no-padding>
+    <!--spacing-->
     <ion-row>
-      <ion-col text-center>
-        <h1 class="menu-title">Tic Tac Toe Ollie</h1>
+
+    </ion-row>
+    <!--space,title and buttons, sidetoolbar-->
+    <ion-row>
+      <ion-col>
+
+      </ion-col>
+      <!--tittle and buttons-->
+      <ion-col col-8 align-self-center> 
+        <ion-row text-center>
+          <ion-col>
+            <div style="height: 20px"></div>
+            <h1 class="menu-title">Tic Tac Toe Ollie</h1>
+          </ion-col>
+        </ion-row>
+        <!--Buttons Gametype-->
+        <ion-row>
+            <div style="height: 20px"></div>
+        </ion-row>
+        <ion-row >
+          <ion-col text-center>
+            <button ion-button 
+            large            
+            round 
+            color="emerald"
+            (click)="onGameSelectio('singleplayer')">1 Player</button>
+          </ion-col>
+            
+        </ion-row>
+        <ion-row>
+
+          <ion-col text-center>
+            <button ion-button 
+            large             
+            round 
+            color="emerald"
+            (click)="onGameSelectio('local-multiplayer')">2 Player local</button>
+          </ion-col>
+            
+        </ion-row>
+        <ion-row>
+          <ion-col text-center>
+            <button ion-button 
+            large 
+            round 
+            color="emerald"
+            (click)="onGameSelectio('multiplayer')">Multiplayer</button>
+          </ion-col>
+           
+        </ion-row>
+      </ion-col>
+      <!--"side" toolbar-->
+      <ion-col align-self-center>
+        
+            <ion-toolbar no-padding>
+
+                <button ion-button block (click)="menuSettingsActive()" icon-only solid color="fuxia" float-right>
+                    <ion-icon name="settings" ></ion-icon>
+                </button>
+  
+            </ion-toolbar>
+            <ion-toolbar no-padding>
+  
+                  <button ion-button block (click)="menuLoginActive()" solid icon-only color="fuxia" float-right>
+                      <ion-icon name="contact"></ion-icon>
+                  </button>
+  
+              </ion-toolbar>
+
       </ion-col>
     </ion-row>
+    <!--free energy button-->
     <ion-row>
       <div style="height: 60px"></div>
     </ion-row>
-    <!--Botones-->
-    <ion-row justify-content-center align-items-center>
-      <ion-col></ion-col>
-      <ion-col col-7>
-        <button ion-button 
-        large 
-        block 
-        round 
-        color="emerald"
-        class="borderPlayer" (click)="onGameSelectio('singleplayer')">1 Player</button>
+    <ion-row>
+      <ion-col text-center>
+        <button ion-button icon-start round color="fuxia">
+          <ion-icon name="logo-bitcoin" color="gold"></ion-icon>Free Energy
+        </button>
       </ion-col>
-      <ion-col></ion-col>
     </ion-row>
     <ion-row>
-      <div style="height: 20px"></div>
+      <div style="height: 10px"></div>
     </ion-row>
-    <ion-row justify-content-center align-items-center>
-      <ion-col></ion-col>
-      <ion-col col-7>
-        <button 
-        ion-button 
-        large block 
-        round 
-        color="emerald" 
-        class="borderPlayer" (click)="onGameSelectio('local-multiplayer')">2 Players Local</button>
-      </ion-col>
-      <ion-col></ion-col>
-    </ion-row>
+    <!--lower buttons-->
     <ion-row>
-      <div style="height: 80px"></div>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3 icon-only>
-        <button ion-button 
-        icon-only 
-        large 
-        block 
-        round 
-        color="fuxia"
-        class="borderMainMenu"><ion-icon name="people"></ion-icon></button>
-      </ion-col>
-      <ion-col>
-        <button 
-        ion-button 
-        large  
-        block 
-        round 
-        color="fuxia"
-        class="borderMainMenu">Human</button>
-      </ion-col>
-      <ion-col col-3>
-        <button 
-        ion-button 
-        icon-only 
-        large 
-        block 
-        round 
-        color="fuxia"
-        class="borderMainMenu"
-        (click)="onLoadSettingsMenu()"><ion-icon name="settings"></ion-icon></button>
-      </ion-col>
+      <ion-col></ion-col>
+      <ion-col text-center col-5 padding><button block ion-button icon-start round color="fuxia"><ion-icon name="people"></ion-icon>Friends</button></ion-col>
+      <ion-col></ion-col>
+      <ion-col text-center col-5 padding><button block ion-button icon-start round color="fuxia"><ion-icon name="cash"></ion-icon>Store</button></ion-col>
+      <ion-col></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

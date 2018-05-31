@@ -1,1 +1,217 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" side="right" id="menu1">
+
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Settings</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-content>
+      <ion-list>
+        <button ion-item menuClose="menu1" detail-none>
+          Close Menu 1
+        </button>
+      </ion-list>
+      <!--probando si puedo cargar-->
+    </ion-content>
+  </ion-menu>
+
+  <ion-menu [content]="content" side="right" id="login">
+
+    <ion-header>
+      <ion-toolbar color="danger">
+        <ion-title>User Account</ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-content>
+      
+        <ion-grid>
+
+          
+            
+          <ion-row>
+
+            <ion-col align-self-start>
+              <!--spacing-->
+            </ion-col>
+            <ion-col align-self-center col-11>
+              <div id="loginContainer" color="primary">
+
+                <!--formulario aca-->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin($event)">
+                <ion-row>
+                  <!--<ion-item>-->
+                  <ion-label>
+                    Username:
+                  </ion-label>
+                  <!--</ion-item>-->
+                </ion-row>
+                <ion-row>
+                  <ion-item>
+                    <ion-input type="text" formControlName="username"></ion-input>
+                  </ion-item>
+                </ion-row>
+    
+                <!--password-->
+                <ion-row>
+                  <!--<ion-item>-->
+                  <ion-label>
+                    Password:
+                  </ion-label>
+                  <!--</ion-item>-->
+                </ion-row>
+    
+                <ion-row>
+                  <ion-item>
+                    <ion-input type="text" formControlName="password"></ion-input>
+                  </ion-item>
+                </ion-row>
+    
+                <ion-row align-items-center>
+                  <p align="center">The username can only numbers & letters</p>
+                </ion-row>
+                <!--botones-->
+                <ion-row justify-content-center>
+                  <button ion-button type="submit" round [disabled]="!loginForm.valid">Login</button>
+                </ion-row>
+              </form>
+                <!--info-->
+                <ion-row>
+                  <h6 align="center">
+                    Don't Have a Virtual Robot Account?
+                  </h6>
+                </ion-row>
+                <ion-row justify-content-center>
+                  <button ion-button round color="gold" class="borderCreate" (click)="menuCreateAccActive()">Create Account</button>
+                </ion-row>
+              <!---->
+              </div>
+            </ion-col>
+            <ion-col align-self-end>
+              <!--spacing-->
+            </ion-col>
+
+          </ion-row>
+
+        
+      </ion-grid>
+      
+    </ion-content>
+  
+  </ion-menu>
+
+  <ion-menu [content]="content" side="right" id="createAccount" padding><!--ojo codigo original create-account.html-->
+      <ion-content>
+        <h3>Create Account</h3>
+        <ion-grid>
+                <ion-row>
+                  <ion-col align-self-start>
+                    <!--spacing-->
+                  </ion-col>
+                  <ion-col align-self-center col-11>
+                    <div id="loginContainer" color="primary">
+            
+                      <!--formulario aca-->
+                      <form [formGroup]="createUserForm" (ngSubmit)="onSubmitCreateUser($event)">
+                      <ion-row>
+                        <!--<ion-item>-->
+                        <ion-label>
+                          Username:
+                        </ion-label>
+                        <!--</ion-item>-->
+                      </ion-row>
+            
+                      <ion-row>
+                          
+                        <ion-item>
+                          <ion-input 
+                          type="text" 
+                          formControlName="name"></ion-input>
+                        </ion-item>
+                      </ion-row>
+            
+                      <!--password-->
+                      <ion-row>
+                        <!--<ion-item>-->
+                        <ion-label>
+                          Password:
+                        </ion-label>
+                        <!--</ion-item>-->
+                      </ion-row>
+                      <ion-row>
+                        <ion-item>
+                          <ion-input 
+                          type="text" 
+                          formControlName="password"></ion-input>
+                        </ion-item>
+                      </ion-row>
+            
+                      <!--Email-->
+                      <ion-row>
+                        <!--<ion-item>-->
+                        <ion-label>
+                          Email Address:
+                        </ion-label>
+                        <!--</ion-item>-->
+                      </ion-row>
+                      <ion-row>
+                        <ion-item>
+                          <ion-input type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
+                        </ion-item>
+                      </ion-row>
+            
+                      <!--Birthday-->
+                      <ion-row>
+                        <ion-label>
+                          Birthday:
+                        </ion-label>
+                      </ion-row>
+                      <ion-row>
+                        <ion-col>
+                          <ion-input type="text" value="" formControlName="day" placeholder="DD"></ion-input>
+                        </ion-col>
+                        <ion-col>
+                          <ion-input type="text" value="" formControlName="month" placeholder="MM"></ion-input>
+                        </ion-col>
+                        <ion-col>
+                          <ion-input type="text" value="" formControlName="year" placeholder="YYYY"></ion-input>
+                        </ion-col>
+                      </ion-row>
+                      <ion-row>
+                        <ion-item no-lines>
+                          <ion-checkbox formControlName="useragre"></ion-checkbox>
+                          <ion-label text-wrap style="font-size: 12px">I have read and accpet the Terms of Use and Privacy Policy</ion-label>
+                        </ion-item>
+                      </ion-row>
+                      <!--botones***************************************************************-->
+                      <ion-row justify-content-center>
+                        <ion-col col-5 align-self-center>
+                          <button ion-button 
+                            color="skip"
+                            class="borderSkip"
+                            round (click)="menuLoginActive()">Back</button>
+                        </ion-col>
+                        <ion-col align-self-center>
+                          <button type="submit" 
+                            ion-button 
+                            large 
+                            round
+                            class="borderCreate" 
+                            color="gold" 
+                            [disabled]="!createUserForm.valid">Create</button>
+                        </ion-col>
+                      </ion-row>
+                    </form>
+                      <!--**********************************************************************-->
+                    </div>
+                  </ion-col>
+                  <ion-col align-self-start >
+                    <!--spacing-->
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+      </ion-content>
+  </ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>
