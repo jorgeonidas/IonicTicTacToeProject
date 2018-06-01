@@ -68,7 +68,13 @@
       </ion-col>
       <!--"side" toolbar-->
       <ion-col align-self-center>
-        
+            <ion-toolbar no-padding>
+
+              <button *ngIf="isSettingsActive==true || isLoginActive==true" ion-button block  icon-only solid color="skipBorder" float-right>
+                <ion-icon name="arrow-round-back" ></ion-icon>
+              </button>
+
+            </ion-toolbar>
             <ion-toolbar no-padding>
 
                 <button ion-button block (click)="menuSettingsActive()" icon-only solid color="fuxia" float-right>

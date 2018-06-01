@@ -23,6 +23,12 @@ export class MyApp {
   createUserForm: FormGroup;
   currentDate;
   dateOfBirth;
+  //configuraciones 
+    languages = ['English','Spanish'];
+    currentLang: string = 'English';
+    music: boolean;
+    sfx: boolean;
+    notifications: boolean;
 
 
   constructor(platform: Platform, 
@@ -127,6 +133,11 @@ export class MyApp {
       'year': new FormControl(null, Validators.required),
       'useragre': new FormControl(true, Validators.required),
     });
+  }
+
+  //configuraciones 
+  onSelectChange($event){
+
   }
 }
 

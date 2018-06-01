@@ -11,7 +11,9 @@ import { CharacterSelectionPage } from '../character-selection/character-selecti
 export class MainMenuPage {
 
   activeMenu: string; //menu a activar
-  
+  isSettingsActive: boolean = false;
+  isLoginActive: boolean = false;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private popoverCtrl: PopoverController,
@@ -32,8 +34,9 @@ export class MainMenuPage {
   }
   //activar menuSettings
   menuSettingsActive(){
-    this.activeMenu = 'menu1' //los ids de cada menu estan en app.html
-    this.menuCtrl.enable(true, 'menu1');
+    this.isSettingsActive = !this.isSettingsActive;
+    this.activeMenu = 'settings' //los ids de cada menu estan en app.html
+    this.menuCtrl.enable(true, 'settings');
     this.menuCtrl.enable(false, 'login');
     this.menuCtrl.open(this.activeMenu);
   }
@@ -41,7 +44,7 @@ export class MainMenuPage {
   menuLoginActive(){
     this.activeMenu = 'login'
     this.menuCtrl.enable(true, 'login');
-    this.menuCtrl.enable(false, 'menu1');
+    this.menuCtrl.enable(false, 'settings');
     this.menuCtrl.open(this.activeMenu);
   }
   
