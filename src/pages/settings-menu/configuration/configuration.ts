@@ -67,7 +67,7 @@ export class ConfigurationPage implements OnInit{
     sfx: boolean;
     notifications: boolean;
 
-    configForm: FormGroup;
+    //configForm: FormGroup;
 
     public configObj: ConfigurationModel;
     errorMsj: string;

@@ -2,6 +2,7 @@
     
     <ion-content padding>
       <ion-grid>
+        <form  #cfg="ngForm">
         <!--Titulo-->
         <ion-row  text-center>
           <ion-col>
@@ -14,11 +15,11 @@
           <ion-col></ion-col>
           <ion-col col-5>
             <h2>Music</h2>
-            <ion-toggle></ion-toggle>
+            <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')"></ion-toggle>
           </ion-col>
           <ion-col col-5>
               <h2 >FX</h2>
-              <ion-toggle></ion-toggle>
+              <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')"></ion-toggle>
           </ion-col>
         </ion-row>
         <!--Notification checkbox-->
@@ -35,7 +36,7 @@
         <ion-row>
             <ion-col col-10 offset-3>
 
-                  <ion-select [(ngModel)]="currentLang">
+                  <ion-select name="language" [(ngModel)]="currentLang" (ionChange)="onSelectChange($event)">
                       <ion-option
                       *ngFor="let language of languages"
                           [value]="language">
@@ -44,8 +45,9 @@
                   </ion-select>
 
             </ion-col>
-   
+            
         </ion-row>
+      </form>
         <!--info buttons-->
         <ion-row>
           <ion-col>

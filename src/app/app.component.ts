@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, MenuController, AlertController } from 'ionic-angular';
+import { Platform, MenuController, AlertController, Toggle } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -10,6 +10,7 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
 import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/authService';
+import { ConfigurationService } from '../services/configuration.service';
 @Component({
   templateUrl: 'app.html'
 })
@@ -36,7 +37,8 @@ export class MyApp {
     splashScreen: SplashScreen, 
     private menuCtrl: MenuController,
     private authService: AuthService, 
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private configService: ConfigurationService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -46,6 +48,27 @@ export class MyApp {
     this.initializeLoginForm();
     this.initializeCreateUserForm();
     //this.authService.testingApi();
+
+    //inicializando formulario de config
+        this.configService.get('sfx').then((val)=>{
+          console.log(val);
+          this.sfx = val; 
+        });
+
+      this.configService.get('music').then((val)=>{
+          console.log(val);
+          this.music = val; 
+      });
+
+      this.configService.get('currentLang').then((val)=>{
+          console.log(val);
+          this.currentLang = val; 
+      });
+
+      this.configService.get('notifications').then((val)=>{
+          console.log(val);
+          this.notifications = val; 
+      });
   }
 
   menuCreateAccActive(){
@@ -136,8 +159,17 @@ export class MyApp {
   }
 
   //configuraciones 
-  onSelectChange($event){
+  onSelectChange(selectedValue: any) {
+    console.log(selectedValue);    
+    this.currentLang = selectedValue;
+    this.configService.set('currentLang',selectedValue);
+  }
 
+  onToggle(toggle: Toggle, option: string){
+    console.log(toggle.value);
+    console.log(option);
+
+    this.configService.set(option,toggle.value);
   }
 }
 
