@@ -1,6 +1,6 @@
 page-login {
     .bg-page{
-        background:#0de5da;
+        background:map-get($colors, loginAndCreateBackground);;
     }
 
     #loginContainer {

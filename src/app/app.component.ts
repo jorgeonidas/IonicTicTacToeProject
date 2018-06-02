@@ -17,7 +17,8 @@ import { ConfigurationService } from '../services/configuration.service';
 export class MyApp {
 
   mainMenuPage = MainMenuPage;
-  rootPage:any = MainMenuPage;
+  //pagina root
+  rootPage:any = LoginPage;
   activeMenu: string;
   //forms en los togglemenus
   loginForm: FormGroup;

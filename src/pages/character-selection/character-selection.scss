@@ -26,4 +26,10 @@ page-character-selection {
     .hardSel{
         background-color: map-get($colors , borderDanger );
     }
+
+    .charSelTitle{
+        color: map-get($colors, skipBorder);
+        font-weight: bold;
+        font-size: 40px;
+    }
 }

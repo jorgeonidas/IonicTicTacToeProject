@@ -1,21 +1,14 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Character Selection</ion-title>
-  </ion-navbar>
-
-</ion-header>
-  
 <ion-content padding>
   <ion-grid >
     <ion-row >
       <ion-col > 
-        <h1 text-center *ngIf="gameType == 'singleplayer'">Human vs Robot</h1>
-        <h1 text-center *ngIf="gameType == 'local-multiplayer'">Human vs Human</h1>
+        <h1 text-center class="charSelTitle" *ngIf="gameType == 'singleplayer'">Human vs Robot</h1>
+        <h1 text-center class="charSelTitle" *ngIf="gameType == 'local-multiplayer'">Human vs Human</h1>
+        <h1 text-center class="charSelTitle" *ngIf="gameType == 'online-multiplayer'">Human vs Human</h1>
       </ion-col>
     </ion-row>
     <!--Avatares-->
-    <ion-row>
+    <ion-row *ngIf="gameType !='online-multiplayer';else multiplayer_content">
       <ion-col>
           <ion-thumbnail>
               <img src="assets/imgs/ollie_logo.png">
@@ -23,7 +16,7 @@
           <button ion-button small block color="fuxia">Random</button>
       </ion-col>
       <ion-col align-self-center>
-        <h2 text-center>VS</h2> 
+        <h2 style="transform: rotate(-20deg); font-weight: bold" text-center>VS</h2> 
       </ion-col>
       <ion-col>
           <ion-thumbnail>
@@ -32,6 +25,18 @@
           <button ion-button small block color="fuxia">Random</button>
       </ion-col>
     </ion-row>
+    <ng-template #multiplayer_content>
+      <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <ion-thumbnail>
+                <img src="assets/imgs/ollie_logo.png">
+            </ion-thumbnail>
+            <button ion-button small block color="fuxia">Random</button>
+          </ion-col>
+          <ion-col></ion-col>
+      </ion-row>
+    </ng-template>
     <!--seleccion de personaje-->
     <ion-row>
       <ion-col>
