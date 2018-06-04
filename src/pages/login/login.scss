@@ -21,10 +21,10 @@ page-login {
     }
 
     .borderCreate{
-        border: 3px solid map-get($colors, createBorder);;
+        border: 3px solid map-get($colors, createBorder);
     }
 
     .borderLogin{
-        border: 3px solid map-get($colors, loginBorder);;
+        border: 3px solid map-get($colors, loginBorder);
     }
 }

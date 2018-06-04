@@ -1,18 +1,20 @@
-<!--
-  Generated template for the GamePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>game</ion-title>
-  </ion-navbar>
-
-</ion-header>
 
 
 <ion-content padding>
-
+  <scoreboard></scoreboard>
+  <ion-grid>
+    <!--portrait-->
+    <ion-row>
+      <ion-col><div class="protrati"></div></ion-col>
+      <ion-col><div class="protrati"></div></ion-col>
+    </ion-row>
+    <!--some bar?-->
+    <ion-row></ion-row>
+    <!--board-->
+    <ion-row>
+      <ion-col>
+          <game-board></game-board>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

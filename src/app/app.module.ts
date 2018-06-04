@@ -19,8 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
 import { AuthService } from '../services/authService';
-import { GridSelectorComponent } from '../components/grid-selector.component';
 import { GamePage } from '../pages/game/game';
+
+import { ScoreboardComponent } from '../components/scoreboard/scoreboard.component';
+import { GridSelectorComponent } from '../components/grid-selector/grid-selector.component';
+import { GameBoardComponent } from '../components/game-board/game-board.component';
 
 @NgModule({
   declarations: [
@@ -32,10 +35,15 @@ import { GamePage } from '../pages/game/game';
     SettingsMenuPage,
     ImportantInfoPage,
     AboutInfoPage,
+    GamePage,
     CharacterSelectionPage,
     ConfigurationPage,
-    GridSelectorComponent,//solo es un componente
-    GamePage
+    //componentes
+    GridSelectorComponent,
+    ScoreboardComponent,
+    GameBoardComponent
+
+    
   ],
   imports: [
     BrowserModule,

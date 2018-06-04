@@ -11,6 +11,7 @@ import { CharacterSelectionPage } from '../pages/character-selection/character-s
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../services/authService';
 import { ConfigurationService } from '../services/configuration.service';
+import { GamePage } from '../pages/game/game';
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,7 +19,7 @@ export class MyApp {
 
   mainMenuPage = MainMenuPage;
   //pagina root
-  rootPage:any = LoginPage;
+  rootPage:any = GamePage;
   activeMenu: string;
   //forms en los togglemenus
   loginForm: FormGroup;
