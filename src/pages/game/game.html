@@ -1,7 +1,5 @@
-
-
 <ion-content padding>
-  <scoreboard></scoreboard>
+  <scoreboard [playerOneScore]="playerOneScore" [playerTwoOrBotScore]="playerTwoOrAIScore"></scoreboard>
   <ion-grid>
     <!--portrait-->
     <ion-row>
@@ -13,7 +11,7 @@
     <!--board-->
     <ion-row>
       <ion-col>
-          <game-board></game-board>
+          <game-board [gameType]="gametype" (isPlayerOneEvent)="setRoundWinner($event)" (isaWinnerEvent)="winOrTie($event)"></game-board>
       </ion-col>
     </ion-row>
   </ion-grid>

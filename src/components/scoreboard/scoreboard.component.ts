@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 
 @Component({
@@ -8,6 +8,6 @@ import { Component } from "@angular/core";
 })
 
 export class ScoreboardComponent{
-    playerOneScore: number = 0;
-    playerTwoOrBotScore: number = 0;
+    @Input() playerOneScore: number = 0;
+    @Input() playerTwoOrBotScore: number = 0;
 }

@@ -9,18 +9,20 @@ import { GamePage } from '../game/game';
   templateUrl: 'character-selection.html',
 })
 export class CharacterSelectionPage {
-  gameType: string='singleplayer';
+  gameType: string='local-multiplayer';
   rounds: number = 1;
   difficulty: string = 'easy';
 
   gamePage = GamePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CharacterSelectionPage');
-    this.gameType = this.navParams.get('selection');
+    //this.gameType = this.navParams.get('selection'); mientras testeo
+    
     console.log(this.gameType); 
   }
 
@@ -37,8 +39,10 @@ export class CharacterSelectionPage {
   }
 
   onClickPlay(){
-    this.navCtrl.push(this.gamePage,{gameType: this.gameType, 
+    this.navCtrl.push(this.gamePage,
+      {gameType: this.gameType, 
       rounds: this.rounds, 
-      difficulty: this.difficulty});
+      difficulty: this.difficulty}
+    );
   }
 }
