@@ -62,16 +62,7 @@ export class GameBoardComponent{
                     //dependiendo de la dificultad elegir algoritmo
                     switch(this.difficulty){
                         case "easy":
-                            //jugador pone su marca
-                            this.origBoard[index] = this.xChar;
-                            //crear array de indices disponibles para la IA
-                            let aviableSpots = this.emptyIndexies(this.origBoard);
-                            console.log(aviableSpots);                            
-                            //la IA escoge uno al azar
-                            let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
-                            console.log(randIndex);                            
-                            //la IA pone su ficha en el lugar escogido anteriormente
-                            this.origBoard[randIndex] = this.oChar;
+                            this.singleplayerEasy(index);
                         break;                       
                     }
 
@@ -163,5 +154,31 @@ export class GameBoardComponent{
          this.roundMoves = 0;
          this.winner = false;
          this.playerOne = true;
+      }
+
+      singleplayerEasy(index: number){
+        //jugador pone su marca
+        this.origBoard[index] = this.xChar;
+        //crear array de indices disponibles para la IA
+        let aviableSpots = this.emptyIndexies(this.origBoard);
+        console.log(aviableSpots); 
+        //necesito verificar si jugador gano
+        if(this.winning(this.origBoard, this.xChar)){
+            //jugador gano avisar al GamePage
+            console.log("Player wins");            
+        }else if(aviableSpots.length > 0){
+            //la IA escoge uno al azar
+            let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
+            console.log(randIndex);                            
+            //la IA pone su ficha en el lugar escogido anteriormente
+            this.origBoard[randIndex] = this.oChar;
+            //necesito verificar si IA gano
+            if(this.winning(this.origBoard, this.oChar)){
+                //IA avisa a gamepage
+                console.log("IA WINS!");               
+            }
+        }else{
+            console.log("TIE");            
+        }
       }
 }
