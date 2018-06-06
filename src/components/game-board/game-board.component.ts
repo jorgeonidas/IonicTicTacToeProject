@@ -39,6 +39,8 @@ export class GameBoardComponent{
 
     alertMsj: string;
 
+    //variables necesarias para el minmax
+    iter: number = 0;
     @Input() gameType: string;
     @Input() difficulty: string;
     playerOne: boolean = true;
@@ -59,13 +61,49 @@ export class GameBoardComponent{
             switch(this.gameType){
                
                 case "singleplayer":
-                    //dependiendo de la dificultad elegir algoritmo
-                    switch(this.difficulty){
-                        case "easy":
-                            this.singleplayerEasy(index);
-                        break;                       
-                    }
-
+                    //juega jugador
+                    this.origBoard[index] = this.xChar;
+                    //crear array de indices disponibles para la IA
+                    let aviableSpots = this.emptyIndexies(this.origBoard);
+                    console.log(aviableSpots); 
+                    //necesito verificar si jugador gano
+                    if(this.winning(this.origBoard, this.xChar)){
+                        //jugador gano avisar al GamePage
+                        console.log("Player wins");            
+                    }else if(aviableSpots.length > 0 ){
+                         //dependiendo de la dificultad elegir algoritmo
+                        
+                         switch(this.difficulty){
+                            case "easy":
+                                //this.singleplayerEasy(index);
+                                this.easyIA(index)
+                            break;
+                            
+                            case "medium":
+                                let aviableSpots = this.emptyIndexies(this.origBoard);
+                                //mezclemos las dificultades "lanzando una moneda"
+                                let moneda = Math.random()
+                                console.log(moneda);
+                                if(moneda <= 0.5){
+                                    this.hardIa(this.origBoard, this.oChar);
+                                }else{
+                                    this.easyIA(index);
+                                }
+                            break;
+                            
+                            case "hard":
+                                this.hardIa(this.origBoard,this.oChar);
+                            break;
+                        }
+                        
+                        if(this.winning(this.origBoard, this.oChar)){
+                            //IA avisa a gamepage
+                            console.log("IA WINS!");               
+                        }
+                    }else{
+                        console.log("TIE!");
+                        
+                    }                   
                 break;
 
                 case "local-multiplayer":
@@ -156,29 +194,78 @@ export class GameBoardComponent{
          this.playerOne = true;
       }
 
-      singleplayerEasy(index: number){
-        //jugador pone su marca
-        this.origBoard[index] = this.xChar;
-        //crear array de indices disponibles para la IA
+      easyIA(index){
         let aviableSpots = this.emptyIndexies(this.origBoard);
-        console.log(aviableSpots); 
-        //necesito verificar si jugador gano
-        if(this.winning(this.origBoard, this.xChar)){
-            //jugador gano avisar al GamePage
-            console.log("Player wins");            
-        }else if(aviableSpots.length > 0){
-            //la IA escoge uno al azar
-            let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
-            console.log(randIndex);                            
-            //la IA pone su ficha en el lugar escogido anteriormente
-            this.origBoard[randIndex] = this.oChar;
-            //necesito verificar si IA gano
-            if(this.winning(this.origBoard, this.oChar)){
-                //IA avisa a gamepage
-                console.log("IA WINS!");               
-            }
-        }else{
-            console.log("TIE");            
-        }
+        let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
+        console.log(randIndex);                            
+        //la IA pone su ficha en el lugar escogido anteriormente
+        this.origBoard[randIndex] = this.oChar;
       }
+
+      minimax(reboard, player) {
+
+        //por ahora
+        let huPlayer = this.xChar;
+        let aiPlayer = this.oChar;
+        //
+        this.iter++;
+        let array = this.emptyIndexies(reboard);
+        if (this.winning(reboard, huPlayer)) {
+          return {
+            score: -10
+          };
+        } else if (this.winning(reboard, aiPlayer)) {
+          return {
+            score: 10
+          };
+        } else if (array.length === 0) {
+          return {
+            score: 0
+          };
+        }
+      
+        var moves = [];
+        for (var i = 0; i < array.length; i++) {
+          var move: any = {};
+          move.index = reboard[array[i]];
+          reboard[array[i]] = player;
+      
+          if (player == aiPlayer) {
+            var g = this.minimax(reboard, huPlayer);
+            move.score = g.score;
+          } else {
+            var g = this.minimax(reboard, aiPlayer);
+            move.score = g.score;
+          }
+          reboard[array[i]] = move.index;
+          moves.push(move);
+        }
+      
+        var bestMove;
+        if (player === aiPlayer) {
+          var bestScore = -10000;
+          for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+              bestScore = moves[i].score;
+              bestMove = i;
+            }
+          }
+        } else {
+          var bestScore = 10000;
+          for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+              bestScore = moves[i].score;
+              bestMove = i;
+            }
+          }
+        }
+        return moves[bestMove];
+      }
+
+      hardIa(board, payer){
+        let iaIndex = this.minimax(board, payer).index;
+        console.log(iaIndex);                               
+        this.origBoard[iaIndex] = payer;
+      }
+
 }
