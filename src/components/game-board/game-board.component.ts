@@ -1,5 +1,6 @@
 import { Component, Input, Output, Injectable, EventEmitter } from "@angular/core";
 import { AlertController } from "ionic-angular";
+import { isDifferent } from "@angular/core/src/render3/util";
 
 @Component({
     selector: 'game-board',
@@ -39,22 +40,41 @@ export class GameBoardComponent{
     alertMsj: string;
 
     @Input() gameType: string;
+    @Input() difficulty: string;
     playerOne: boolean = true;
     winner: boolean = false;
     @Output() isPlayerOneEvent = new EventEmitter<boolean>();
     @Output() isaWinnerEvent = new EventEmitter<boolean>();
     
     constructor(private alertCtrl: AlertController){
-
+        
+        
     }
 
     //jugada
     onCellClickled(index: number){
 
-        if((this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.winner) || this.roundMoves <= 7){
+        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' /*&& !this.winner) || this.roundMoves <= 7*/){
+            
             switch(this.gameType){
                
                 case "singleplayer":
+                    //dependiendo de la dificultad elegir algoritmo
+                    switch(this.difficulty){
+                        case "easy":
+                            //jugador pone su marca
+                            this.origBoard[index] = this.xChar;
+                            //crear array de indices disponibles para la IA
+                            let aviableSpots = this.emptyIndexies(this.origBoard);
+                            console.log(aviableSpots);                            
+                            //la IA escoge uno al azar
+                            let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
+                            console.log(randIndex);                            
+                            //la IA pone su ficha en el lugar escogido anteriormente
+                            this.origBoard[randIndex] = this.oChar;
+                        break;                       
+                    }
+
                 break;
 
                 case "local-multiplayer":
@@ -101,6 +121,11 @@ export class GameBoardComponent{
         }else{
             console.log("movimiento ilegal!");
         }      
+    }
+
+      //filtra las casillas disponibles para la IA
+    emptyIndexies(board){
+        return  board.filter(s => s != "O" && s != "X");
     }
 
     winning(board, player): boolean {

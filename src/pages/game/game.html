@@ -11,7 +11,7 @@
     <!--board-->
     <ion-row>
       <ion-col>
-          <game-board [gameType]="gametype" (isPlayerOneEvent)="setRoundWinner($event)" (isaWinnerEvent)="winOrTie($event)"></game-board>
+          <game-board [gameType]="gametype" [difficulty]="difficulty" (isPlayerOneEvent)="setRoundWinner($event)" (isaWinnerEvent)="winOrTie($event)"></game-board>
       </ion-col>
     </ion-row>
   </ion-grid>

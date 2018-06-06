@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -20,7 +20,7 @@ export class GamePage {
   winner: boolean;
   playerOneWinsRound: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
     this.playerOneScore = 0;
     this.playerTwoOrAIScore = 0;
     this.winner= false;
@@ -68,13 +68,28 @@ export class GamePage {
     this.currentRound++;
     //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador
     if(this.currentRound > this.rounds){
+      let alertmsj: string;
       if(this.playerOneScore > this.playerTwoOrAIScore){
-        console.log("Player One Wins the game!");       
+        console.log("Player One Wins the game!");
+        alertmsj = "Player One Wins the game!";       
       }else if(this.playerOneScore == this.playerTwoOrAIScore){
-        console.log("ITS A TIE!!!");        
+        console.log("ITS A TIE!!!");
+        alertmsj = "ITS A TIE!!!";        
       }else{
         console.log("Player Two or Bot Wins!");
+        alertmsj = "Player Two or Bot Wins!";
       }
+      this.showAlert(alertmsj);
     }
+  }
+
+  showAlert(alertMsj: string){
+    let alert = this.alertCtrl.create({
+        title: "Game Over",
+        subTitle: alertMsj,
+        buttons: ['ok']
+    })
+    //emitir si hay ganador y si ese fue el player uno
+    alert.present();
   }
 }
