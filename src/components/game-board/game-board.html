@@ -1,19 +1,19 @@
-<ion-grid>
+<ion-grid no-padding class="boardBorder">
         <ion-row >
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(0)">
+            <ion-col col-4 no-padding id="topLeft" class="flex-col" (click)="onCellClickled(0)">
                 <h1 *ngIf="origBoard[0] == 'X' || origBoard[0] == 'O'" 
                     [ngClass]="{'X': origBoard[0] == 'X', 'O': origBoard[0]== 'O'}"
                     >
                     {{origBoard[0]}}
                 </h1>
             </ion-col>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(1)">
+            <ion-col col-4 no-padding id="topCenter" class="flex-col" (click)="onCellClickled(1)">
                 <h1 *ngIf="origBoard[1] == 'X' || origBoard[1] == 'O'" 
                     [ngClass]="{'X': origBoard[1] == 'X', 'O': origBoard[1]== 'O'}">
                     {{origBoard[1]}}
                 </h1>
             </ion-col>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(2)">
+            <ion-col col-4 no-padding id="topRight" class="flex-col" (click)="onCellClickled(2)">
                 <h1 *ngIf="origBoard[2] == 'X' || origBoard[2] == 'O'" 
                     [ngClass]="{'X': origBoard[2] == 'X', 'O': origBoard[2]== 'O'}">
                     {{origBoard[2]}}
@@ -21,19 +21,19 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(3)">
+            <ion-col col-4 no-padding id="centerLeft" class="flex-col" (click)="onCellClickled(3)">
                 <h1 *ngIf="origBoard[3] == 'X' || origBoard[3] == 'O'" 
                     [ngClass]="{'X': origBoard[3] == 'X', 'O': origBoard[3]== 'O'}">
                     {{origBoard[3]}}
                 </h1>
             </ion-col>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(4)">
+            <ion-col col-4 no-padding id="centerCell" class="flex-col" (click)="onCellClickled(4)">
                 <h1 *ngIf="origBoard[4] == 'X' || origBoard[4] == 'O'" 
                     [ngClass]="{'X': origBoard[4] == 'X', 'O': origBoard[4]== 'O'}">
                     {{origBoard[4]}}
                 </h1>
             </ion-col>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(5)">
+            <ion-col col-4 no-padding id="centerRight" class="flex-col" (click)="onCellClickled(5)">
                 <h1 *ngIf="origBoard[5] == 'X' || origBoard[5] == 'O'" 
                     [ngClass]="{'X': origBoard[5] == 'X', 'O': origBoard[5]== 'O'}"
                     (click)="onCellClickled(5)">
@@ -42,21 +42,21 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(6)">
+            <ion-col col-4 no-padding id="bottomLeft" class="flex-col" (click)="onCellClickled(6)">
                 <h1 *ngIf="origBoard[6] == 'X' || origBoard[6] == 'O'" 
                     [ngClass]="{'X': origBoard[6] == 'X', 'O': origBoard[6]== 'O'}"
                     (click)="onCellClickled(6)">
                     {{origBoard[6]}}
                 </h1>
             </ion-col>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(7)">
+            <ion-col col-4 no-padding id="bottomCenter" class="flex-col" (click)="onCellClickled(7)">
                 <h1 *ngIf="origBoard[7] == 'X' || origBoard[7] == 'O'" 
                     [ngClass]="{'X': origBoard[7] == 'X', 'O': origBoard[7]== 'O'}"
                     (click)="onCellClickled(7)">
                     {{origBoard[7]}}
                 </h1>
             </ion-col>
-            <ion-col col-4 no-padding class="flex-col" (click)="onCellClickled(8)">
+            <ion-col col-4 no-padding id="bottomRight" class="flex-col" (click)="onCellClickled(8)">
                 <h1 *ngIf="origBoard[8] == 'X' || origBoard[8] == 'O'" 
                     [ngClass]="{'X': origBoard[8] == 'X', 'O': origBoard[8]== 'O'}"
                     (click)="onCellClickled(8)">

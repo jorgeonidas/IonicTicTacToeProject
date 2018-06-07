@@ -28,6 +28,66 @@ import { isDifferent } from "@angular/core/src/render3/util";
             .O{
                 color: #0de5da;
             }
+
+            .boardBorder {
+                border: 4px solid #e8933a;
+                border-radius: 15px;
+            }
+
+            #centerCell{
+                border-top: 2px solid #e8933a;
+                border-left: 2px solid #e8933a;
+                border-right: 2px solid #e8933a;
+                border-bottom: 2px solid #e8933a;
+            }
+
+            #topLeft{
+                border-right: 2px solid #e8933a;
+                border-bottom: 2px solid #e8933a;
+                border-radius: 12px 0px 0px 0px;
+            }
+
+            #topCenter{
+                border-left: 2px solid #e8933a;
+                border-right: 2px solid #e8933a;
+                border-bottom: 2px solid #e8933a;
+            }
+
+            #topRight{
+                border-left: 2px solid #e8933a;
+                border-bottom: 2px solid #e8933a;
+                border-radius: 0px 12px 0px 0px;
+            }
+
+            #centerLeft{
+                border-top: 2px solid #e8933a;
+                border-right: 2px solid #e8933a;
+                border-bottom: 2px solid #e8933a;
+            }
+
+            #centerRight{
+                border-top: 2px solid #e8933a;
+                border-left: 2px solid #e8933a;
+                border-bottom: 2px solid #e8933a;
+            }
+
+            #bottomLeft{
+                border-top: 2px solid #e8933a;
+                border-right: 2px solid #e8933a;
+                border-radius: 0px 0px 0px 12px;
+            }
+
+            #bottomCenter{
+                border-top: 2px solid #e8933a;
+                border-left: 2px solid #e8933a;
+                border-right: 2px solid #e8933a;
+            }
+
+            #bottomRight{
+                border-top: 2px solid #e8933a;
+                border-left: 2px solid #e8933a;
+                border-radius: 0px 0px 12px 0px;
+            }
         `]
 })
 @Injectable()
@@ -61,18 +121,23 @@ export class GameBoardComponent{
             switch(this.gameType){
                
                 case "singleplayer":
+                    let alertMsj: string;
                     //juega jugador
-                    this.origBoard[index] = this.xChar;
+                    this.playerOne = true;
+                    this.origBoard[index] = this.oChar;
                     //crear array de indices disponibles para la IA
                     let aviableSpots = this.emptyIndexies(this.origBoard);
                     console.log(aviableSpots); 
                     //necesito verificar si jugador gano
-                    if(this.winning(this.origBoard, this.xChar)){
+                    if(this.winning(this.origBoard, this.oChar)){
                         //jugador gano avisar al GamePage
-                        console.log("Player wins");            
+                        this.winner = true;
+                        console.log("Player wins"); 
+                        alertMsj = "Player wins";
+                        this.showAlert(alertMsj);           
                     }else if(aviableSpots.length > 0 ){
                          //dependiendo de la dificultad elegir algoritmo
-                        
+                        this.playerOne = false;
                          switch(this.difficulty){
                             case "easy":
                                 //this.singleplayerEasy(index);
@@ -85,24 +150,29 @@ export class GameBoardComponent{
                                 let moneda = Math.random()
                                 console.log(moneda);
                                 if(moneda <= 0.5){
-                                    this.hardIa(this.origBoard, this.oChar);
+                                    this.hardIa(this.origBoard, this.xChar);
                                 }else{
                                     this.easyIA(index);
                                 }
                             break;
                             
                             case "hard":
-                                this.hardIa(this.origBoard,this.oChar);
+                                this.hardIa(this.origBoard,this.xChar);
                             break;
                         }
                         
                         if(this.winning(this.origBoard, this.oChar)){
                             //IA avisa a gamepage
-                            console.log("IA WINS!");               
+                            this.winner = true;
+                            console.log("IA WINS!");
+                            alertMsj = "IA WINS!";
+                            this.showAlert(alertMsj);                
                         }
                     }else{
                         console.log("TIE!");
-                        
+                        alertMsj = "TIE!";
+                        this.winner = false;
+                        this.showAlert(alertMsj);
                     }                   
                 break;
 
@@ -181,8 +251,8 @@ export class GameBoardComponent{
             buttons: ['ok']
         })
         //emitir si hay ganador y si ese fue el player uno
-        alert.onDidDismiss(()=>{this.isPlayerOneEvent.emit(this.playerOne)//en este orden especifico!
-                                this.isaWinnerEvent.emit(this.winner)
+        alert.onDidDismiss(()=>{this.isPlayerOneEvent.emit(this.playerOne)//en este orden especifico! //primero quien gano: true: player1; false: plauer2 o IA
+                                this.isaWinnerEvent.emit(this.winner) //luego si hubo un ganador ( winner= true) o si fue empate( winner = false ) 
                                 this.resetBoard()});
         alert.present();
       }
@@ -199,7 +269,7 @@ export class GameBoardComponent{
         let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
         console.log(randIndex);                            
         //la IA pone su ficha en el lugar escogido anteriormente
-        this.origBoard[randIndex] = this.oChar;
+        this.origBoard[randIndex] = this.xChar;
       }
 
       minimax(reboard, player) {

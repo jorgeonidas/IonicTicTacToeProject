@@ -1,0 +1,43 @@
+<!--<ion-toolbar no-border no-padding text-center><progress-bar [progress]="playerOneHealth"></progress-bar>{{playerOneScore}} - {{playerTwoOrBotScore}}<progress-bar [progress]="playerTwoOrBotHealth"></progress-bar></ion-toolbar>-->
+<!--<ion-grid no-padding>
+    <ion-row>
+        <ion-col col-12>
+            <progress-bar [progress]="playerOneHealth"></progress-bar>{{playerOneScore}} - {{playerTwoOrBotScore}}<progress-bar [progress]="playerTwoOrBotHealth"></progress-bar>
+        </ion-col>
+    </ion-row>
+</ion-grid>-->
+<ion-grid>
+    <ion-row >
+        <ion-col>
+            <div id="barContainer">
+                <div id="heathlBar" class="playerOneColor" [style.width]="playerOneHealth + '%'"></div>
+            </div>
+            <ion-row>
+                <ion-col col-10 no-padding>
+                    <div class="nameContainer" style="padding-left: 5px">Player 1</div>    
+                </ion-col>
+                <ion-col col-2 no-padding>
+                    <ion-icon name="star" color="gold"></ion-icon>
+                </ion-col>
+            </ion-row>
+                     
+        </ion-col>
+        <ion-col class="scoreCol" text-center col-4>
+            {{playerOneScore}} - {{playerTwoOrBotScore}}
+        </ion-col>
+        <ion-col>
+            <div id="barContainer" style="display: flex; justify-content: flex-end">
+                <div id="heathlBar" class="playerTwoOrBotColor" [style.width]="playerTwoOrBotHealth + '%'"></div>
+            </div>
+            <ion-row no-padding>
+                <ion-col no-padding>
+                    <ion-icon name="star" color="gold"></ion-icon>
+                </ion-col>
+                <ion-col col-10 no-padding>
+                        <div class="nameContainer" style="display:flex; justify-content: flex-end; padding-right: 5px;" >Player 2</div>
+                </ion-col>
+            </ion-row>
+                                 
+        </ion-col>
+    </ion-row>
+</ion-grid>

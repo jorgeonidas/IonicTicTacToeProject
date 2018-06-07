@@ -24,6 +24,7 @@ import { GamePage } from '../pages/game/game';
 import { ScoreboardComponent } from '../components/scoreboard/scoreboard.component';
 import { GridSelectorComponent } from '../components/grid-selector/grid-selector.component';
 import { GameBoardComponent } from '../components/game-board/game-board.component';
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { GameBoardComponent } from '../components/game-board/game-board.componen
     //componentes
     GridSelectorComponent,
     ScoreboardComponent,
-    GameBoardComponent
+    GameBoardComponent,
+    ProgressBarComponent
 
     
   ],
