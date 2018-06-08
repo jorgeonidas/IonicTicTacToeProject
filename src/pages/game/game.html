@@ -1,5 +1,10 @@
 <ion-content padding>
-  <scoreboard [playerOneScore]="playerOneScore" [playerTwoOrBotScore]="playerTwoOrAIScore"></scoreboard>
+  <scoreboard 
+  [playerOneScore]="playerOneScore" 
+  [playerTwoOrBotScore]="playerTwoOrAIScore" 
+  [rounds]="rounds" [playerOneHealth]="playerOneHealth" 
+  [playerTwoOrBotHealth]="playerTwoOrBothealth"
+  [playerOneTurn]="playerOneCurrentTurn"></scoreboard>
   <ion-grid>
     <!--portrait-->
     <ion-row>
@@ -11,7 +16,7 @@
     <!--board-->
     <ion-row>
       <ion-col>
-          <game-board [gameType]="gametype" [difficulty]="difficulty" (isPlayerOneEvent)="setRoundWinner($event)" (isaWinnerEvent)="winOrTie($event)"></game-board>
+          <game-board [gameType]="gametype" [difficulty]="difficulty" (currentTurnEvent)="changeTurn($event)" (isPlayerOneEvent)="setRoundWinner($event)" (isaWinnerEvent)="winOrTie($event)"></game-board>
       </ion-col>
     </ion-row>
   </ion-grid>

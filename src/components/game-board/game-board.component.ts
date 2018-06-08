@@ -104,26 +104,30 @@ export class GameBoardComponent{
     @Input() gameType: string;
     @Input() difficulty: string;
     playerOne: boolean = true;
+    isIAthinking: boolean;
     winner: boolean = false;
     @Output() isPlayerOneEvent = new EventEmitter<boolean>();
     @Output() isaWinnerEvent = new EventEmitter<boolean>();
+    @Output() currentTurnEvent = new EventEmitter<boolean>();
     
     constructor(private alertCtrl: AlertController){
-        
-        
+        console.log(this.gameType);  
+        this.isIAthinking = false;    
     }
 
     //jugada
     onCellClickled(index: number){
 
-        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' /*&& !this.winner) || this.roundMoves <= 7*/){
+        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.isIAthinking /*&& !this.winner) || this.roundMoves <= 7*/){
             
             switch(this.gameType){
                
                 case "singleplayer":
+                
                     let alertMsj: string;
                     //juega jugador
-                    this.playerOne = true;
+                    this.playerOne = true;                    
+                    this.currentTurnEvent.emit(this.playerOne);
                     this.origBoard[index] = this.oChar;
                     //crear array de indices disponibles para la IA
                     let aviableSpots = this.emptyIndexies(this.origBoard);
@@ -134,11 +138,61 @@ export class GameBoardComponent{
                         this.winner = true;
                         console.log("Player wins"); 
                         alertMsj = "Player wins";
-                        this.showAlert(alertMsj);           
+                        this.showAlert(alertMsj);
+
                     }else if(aviableSpots.length > 0 ){
                          //dependiendo de la dificultad elegir algoritmo
                         this.playerOne = false;
-                         switch(this.difficulty){
+                        this.isIAthinking = true;
+                        this.currentTurnEvent.emit(this.playerOne);
+                        
+                        //intervalo de delay entre 0.5 y  2s
+                        let delay = Math.floor(Math.random() * (2000 - 500 + 1) + 500); //0.5 y 2 s
+                        console.log(delay);
+                        
+                        //hilo para dar la sensacion de que la pc piensa
+                        setTimeout(() => {
+                            switch(this.difficulty){
+                                case "easy":
+                                    //this.singleplayerEasy(index);
+                                    this.easyIA(index)
+                                break;
+
+                                case "medium":
+                                    let aviableSpots = this.emptyIndexies(this.origBoard);
+                                    //mezclemos las dificultades "lanzando una moneda"
+                                    let moneda = Math.random()
+                                    console.log(moneda);
+                                    if(moneda <= 0.5){
+                                        this.hardIa(this.origBoard, this.xChar);
+                                    }else{
+                                        this.easyIA(index);
+                                    }
+                                break;
+                            
+                            case "hard":
+                                this.hardIa(this.origBoard,this.xChar);
+                            break;
+                            }
+
+                            this.playerOne = true;
+                            this.isIAthinking = false;
+                            this.currentTurnEvent.emit(this.playerOne);
+
+                            console.log(this.origBoard);
+                        
+                            if(this.winning(this.origBoard, this.xChar)){
+                                //IA avisa a gamepage
+                                this.winner = true;
+                                console.log("IA WINS!");
+                                alertMsj = "IA WINS!";
+                                this.showAlert(alertMsj);                
+                            }
+                            
+                        }, delay);
+                        
+                        /*
+                        switch(this.difficulty){
                             case "easy":
                                 //this.singleplayerEasy(index);
                                 this.easyIA(index)
@@ -160,14 +214,18 @@ export class GameBoardComponent{
                                 this.hardIa(this.origBoard,this.xChar);
                             break;
                         }
+
+                        this.playerOne = true;
+                        this.currentTurnEvent.emit(this.playerOne);
+                        console.log(this.origBoard);
                         
-                        if(this.winning(this.origBoard, this.oChar)){
+                        if(this.winning(this.origBoard, this.xChar)){
                             //IA avisa a gamepage
                             this.winner = true;
                             console.log("IA WINS!");
                             alertMsj = "IA WINS!";
                             this.showAlert(alertMsj);                
-                        }
+                        }*/
                     }else{
                         console.log("TIE!");
                         alertMsj = "TIE!";
@@ -208,6 +266,7 @@ export class GameBoardComponent{
                                               
                     }else{
                         this.playerOne = !this.playerOne;
+                        this.currentTurnEvent.emit(this.playerOne);//evento que avisa cambio de turno
                         console.log(this.roundMoves);                       
                     }
                 break;
@@ -228,6 +287,8 @@ export class GameBoardComponent{
     }
 
     winning(board, player): boolean {
+        /*console.log("checking board:" ); 
+        console.log(board); */       
         if (
           (board[0] == player && board[1] == player && board[2] == player) ||
           (board[3] == player && board[4] == player && board[5] == player) ||
@@ -334,7 +395,7 @@ export class GameBoardComponent{
 
       hardIa(board, payer){
         let iaIndex = this.minimax(board, payer).index;
-        console.log(iaIndex);                               
+        console.log("indice escogido por IA: " + iaIndex);                               
         this.origBoard[iaIndex] = payer;
       }
 

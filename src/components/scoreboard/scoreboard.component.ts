@@ -46,9 +46,13 @@ import { Component, Input } from "@angular/core";
 })
 
 export class ScoreboardComponent{
-    @Input() playerOneScore: number = 0;
-    @Input() playerTwoOrBotScore: number = 0;
+    @Input() playerOneScore: number ;
+    @Input() playerTwoOrBotScore: number;
     @Input() playerOneTurn: boolean = true;
-    @Input() playerOneHealth: number = 100;
-    @Input() playerTwoOrBotHealth: number = 100;
+    @Input() rounds: number;
+    //barras de salud
+    @Input() playerOneHealth: number;
+    @Input() playerTwoOrBotHealth: number;
+    
+    
 }

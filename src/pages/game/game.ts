@@ -8,14 +8,17 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class GamePage {
   gameData: any;
-  gametype: string = 'local-multiplayer';
+  gametype: string;
   rounds: number = 3;
   currentRound: number = 1;
   difficulty: string = 'easy';
 
   playerOneScore: number;
   playerTwoOrAIScore: number;
-
+  //scoreboard comp data
+  playerOneHealth: number;
+  playerTwoOrBothealth: number;
+  playerOneCurrentTurn: boolean; 
   //round data
   winner: boolean;
   playerOneWinsRound: boolean;
@@ -25,6 +28,12 @@ export class GamePage {
     this.playerTwoOrAIScore = 0;
     this.winner= false;
     this.playerOneWinsRound = false;
+    //barras de vida
+    this.playerOneHealth = 100;
+    this.playerTwoOrBothealth = 100;
+    //turno actual
+    this.gametype= 'local-multiplayer';
+    this.playerOneCurrentTurn = true;
 
   }
 
@@ -35,6 +44,10 @@ export class GamePage {
     this.gametype = this.navParams.get('gameType');
     this.rounds = this.navParams.get('rounds');
     this.difficulty = this.navParams.get('difficulty');
+  }
+  //cambio el turno
+  changeTurn(currentTurnPlayer: boolean){
+    this.playerOneCurrentTurn = currentTurnPlayer;
   }
 
   setRoundWinner(value1: boolean){
@@ -56,10 +69,14 @@ export class GamePage {
       if(this.playerOneWinsRound){
         this.playerOneScore++;
         console.log(this.playerOneScore);
+        //reducimos la barra de vida del bot o player 2
+        this.playerTwoOrBothealth -= Math.round(100/this.rounds);
         
       }else{
         this.playerTwoOrAIScore++;
         console.log(this.playerTwoOrAIScore);
+        //reducimos la barra de vida del player1
+        this.playerOneHealth -= Math.round(100/this.rounds);
       }
     }else{
       console.log("round tied");  
