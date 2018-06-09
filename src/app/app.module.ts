@@ -25,6 +25,7 @@ import { ScoreboardComponent } from '../components/scoreboard/scoreboard.compone
 import { GridSelectorComponent } from '../components/grid-selector/grid-selector.component';
 import { GameBoardComponent } from '../components/game-board/game-board.component';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+import { TimerBarComponent } from '../components/timer-bar/timer-bar';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
     GridSelectorComponent,
     ScoreboardComponent,
     GameBoardComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    TimerBarComponent
 
     
   ],

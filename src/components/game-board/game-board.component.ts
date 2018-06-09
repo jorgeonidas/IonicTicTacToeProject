@@ -190,42 +190,7 @@ export class GameBoardComponent{
                             }
                             
                         }, delay);
-                        
-                        /*
-                        switch(this.difficulty){
-                            case "easy":
-                                //this.singleplayerEasy(index);
-                                this.easyIA(index)
-                            break;
-                            
-                            case "medium":
-                                let aviableSpots = this.emptyIndexies(this.origBoard);
-                                //mezclemos las dificultades "lanzando una moneda"
-                                let moneda = Math.random()
-                                console.log(moneda);
-                                if(moneda <= 0.5){
-                                    this.hardIa(this.origBoard, this.xChar);
-                                }else{
-                                    this.easyIA(index);
-                                }
-                            break;
-                            
-                            case "hard":
-                                this.hardIa(this.origBoard,this.xChar);
-                            break;
-                        }
-
-                        this.playerOne = true;
-                        this.currentTurnEvent.emit(this.playerOne);
-                        console.log(this.origBoard);
-                        
-                        if(this.winning(this.origBoard, this.xChar)){
-                            //IA avisa a gamepage
-                            this.winner = true;
-                            console.log("IA WINS!");
-                            alertMsj = "IA WINS!";
-                            this.showAlert(alertMsj);                
-                        }*/
+                    //empato?  
                     }else{
                         console.log("TIE!");
                         alertMsj = "TIE!";
