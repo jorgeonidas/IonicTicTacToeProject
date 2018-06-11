@@ -7,7 +7,12 @@ import { ConfigurationModel } from "../../../models/configuration";
 import 'rxjs/Rx';
 import { IConfig } from "../../../interfaces/config.interface";
 @Component({
-    template: `<ion-grid text-center>                   
+    template: `<ion-grid text-center>
+                    <ion-row>
+                        <ion-col text-center>
+                            <h2>Settings</h2>
+                        </ion-col>                        
+                    </ion-row>                   
                     <form #cfg="ngForm">
                         <ion-row>
                             <ion-col>
@@ -24,38 +29,29 @@ import { IConfig } from "../../../interfaces/config.interface";
                                 <ion-toggle name="music" [(ngModel)]="music" (ionChange)="onToggle($event,'music')"></ion-toggle>
                             </ion-col>
                         </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <h3>Language</h3>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <ion-select name="language" [(ngModel)]="currentLang" (ionChange)="onSelectChange($event)">
-                                    <ion-option
-                                    *ngFor="let language of languages"
-                                        [value]="language">
-                                        {{language}}
-                                    </ion-option>
-                                </ion-select>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <h3>Notifications</h3>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col>
-                                <button ion-button color="danger" (click)="onClickBack()">Back</button>
-                            </ion-col>
-                        </ion-row>                                              
-                    </form>    
+                    </form>
+                    <ion-row>
+                        <ion-col>
+                        </ion-col>
+
+                        <ion-col col-8>
+                            <button ion-button color="danger" block round>Leave Game</button>
+                        </ion-col>
+                        
+                        <ion-col>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                        </ion-col>
+
+                        <ion-col col-6>
+                            <button ion-button color="gold" block round (click)="closeMenu()">Close</button>
+                        </ion-col>
+                        
+                        <ion-col>
+                        </ion-col>
+                    </ion-row>        
                 </ion-grid>`,
 })
 
@@ -171,5 +167,9 @@ export class ConfigurationPage implements OnInit{
                 console.log(error.status);
             });
         this.viewCtrl.dismiss();*/
+    }
+
+    closeMenu(){
+        this.viewCtrl.dismiss();
     }
 }

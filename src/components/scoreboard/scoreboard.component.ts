@@ -1,6 +1,5 @@
 import { Component, Input } from "@angular/core";
 
-
 @Component({
     selector:'scoreboard',
     templateUrl: 'scoreboard.html',
@@ -54,5 +53,5 @@ export class ScoreboardComponent{
     @Input() playerOneHealth: number;
     @Input() playerTwoOrBotHealth: number;
     
-    
+   
 }
