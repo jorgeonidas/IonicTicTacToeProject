@@ -91,42 +91,8 @@ export class ConfigurationPage implements OnInit{
         this.cfgService.get('notifications').then((val)=>{
             console.log(val);
             this.notifications = val; 
-        });
-
-        /*this.cfgService.retrieveCfgFromJson()
-            .subscribe(data =>{ 
-                                this.sfx = data.sfx;
-                                console.log(this.sfx);
-                                this.music = data.music;
-                                console.log(this.music);
-                                this.currentLang = data.language;
-                                console.log(this.currentLang);
-                                this.notifications = data.notifications;
-                                console.log(this.notifications);                            
-                                }
-           );*/
-           
+        });           
     }
-    /*
-    initializeForm(){
-        //console.log("cfgObjInside: ");
-        console.log(this.configObj);
-
-        let music = true;
-        let sfx = false;
-        let language = 'Spanish';
-        let notifications = false;
-
-        this.configForm = new FormGroup({
-            'music': new FormControl(this.music, Validators.required),
-            'sfx': new FormControl(this.sfx, Validators.required),
-            'language': new FormControl(this.currentLang, Validators.required),
-            'notifications': new FormControl(this.notifications, Validators.required)
-        });
-
-        console.log(this.configForm);
-        
-    }*/
 
     onToggle(toggle: Toggle, option: string){
         console.log(toggle.value);
@@ -156,17 +122,6 @@ export class ConfigurationPage implements OnInit{
         const popover = this.popoverCtrl.create(SettingsMenuPage);
         popover.present();
         this.viewCtrl.dismiss();
-        /*this.cfgService.writheCfgToJson(this.currentLang, this.music, this.sfx, this.notifications).subscribe(
-            (data)=>{
-                    console.log(data);
-                },
-            error=>{
-                console.log(error.error);
-                console.log(error.name);
-                console.log(error.message);
-                console.log(error.status);
-            });
-        this.viewCtrl.dismiss();*/
     }
 
     closeMenu(){

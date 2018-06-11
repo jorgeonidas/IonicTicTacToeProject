@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { timeInterval } from 'rxjs/operator/timeInterval';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,11 @@ export class GamePage {
   //round data
   winner: boolean;
   playerOneWinsRound: boolean;
+  //countDown
+  turnInterval: number;
+  timeleft: number;
+  timeout : any;
+  toltalTurnBar : number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
     this.playerOneScore = 0;
@@ -34,7 +40,7 @@ export class GamePage {
     //turno actual
     //this.gametype= 'local-multiplayer';
     this.playerOneCurrentTurn = true;
-
+    
   }
 
   ionViewDidLoad() {
@@ -44,9 +50,37 @@ export class GamePage {
     this.gametype = this.navParams.get('gameType');
     this.rounds = this.navParams.get('rounds');
     this.difficulty = this.navParams.get('difficulty');
+    
+    this.turnInterval = 5;
+    this.toltalTurnBar = 100;
+    this.restRoundTimer(5);
+    this.startTimer();
+    /* 
+    //testing timer
+    this.turnInterval = 5;
+    this.timeout = setInterval( () =>{
+      this.turnInterval--
+      if(this.turnInterval == 0){
+        //clearInterval(this.timeout);
+        //ojo funciona para local multiplayer como haremos con singleplayer?
+        switch(this.gametype){
+          case 'local-multiplayer':
+          this.restRoundTimer(5);
+          this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+          console.log("cambio de turno");
+          console.log(this.playerOneCurrentTurn);
+          break;
+        }       
+      }
+      console.log(this.turnInterval);
+    },
+    1000);  */
+    
   }
   //cambio el turno
   changeTurn(iaTinkingOrPlayeroneTurn: boolean){
+    //resetear timer
+    this.restRoundTimer(5);
     if(this.gametype == "singleplayer"){
       this.playerOneCurrentTurn = !iaTinkingOrPlayeroneTurn; // si la NO! esta pesando la IA es el turno del Jugador
     }else{
@@ -56,7 +90,8 @@ export class GamePage {
 
   setRoundWinner(value1: boolean){
     console.log("player one wins?: "+value1); 
-    this.playerOneWinsRound = value1;  
+    this.playerOneWinsRound = value1;
+    this.stopTimer();  
   }
 
   winOrTie(isAWin: boolean){
@@ -90,17 +125,22 @@ export class GamePage {
     //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador
     if(this.currentRound > this.rounds){
       let alertmsj: string;
+      //this.stopTimer(); 
       if(this.playerOneScore > this.playerTwoOrAIScore){
         console.log("Player One Wins the game!");
         alertmsj = "Player One Wins the game!";       
       }else if(this.playerOneScore == this.playerTwoOrAIScore){
         console.log("ITS A TIE!!!");
-        alertmsj = "ITS A TIE!!!";        
+        alertmsj = "ITS A TIE!!!";       
       }else{
         console.log("Player Two or Bot Wins!");
         alertmsj = "Player Two or Bot Wins!";
       }
       this.showAlert(alertmsj);
+    }else{
+      console.log("new round");
+      this.restRoundTimer(5);
+      this.startTimer();
     }
   }
 
@@ -112,5 +152,45 @@ export class GamePage {
     })
     //emitir si hay ganador y si ese fue el player uno
     alert.present();
+  }
+  /*
+  countDown(){
+    this.turnInterval--;
+    if(this.turnInterval == 0){
+       clearInterval(this.timeout);
+    }
+    console.log(this.turnInterval);
+  }*/
+
+  restRoundTimer(time: number){
+    this.timeleft = time;
+  }
+
+  startTimer(){
+    //this.turnInterval = 5;
+    this.timeout = setInterval( () =>{
+      this.timeleft--
+      this.toltalTurnBar -= 100/this.turnInterval; //testing luego le busco la proporcion
+      if(this.timeleft < 0){
+        //clearInterval(this.timeout);
+        //ojo funciona para local multiplayer como haremos con singleplayer?
+        switch(this.gametype){
+          case 'local-multiplayer':
+          this.restRoundTimer(5);
+          this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+          this.toltalTurnBar = 100;
+          console.log("cambio de turno");
+          console.log(this.playerOneCurrentTurn);
+
+          break;
+        }       
+      }
+      console.log(this.timeleft);
+    },
+    1000); 
+  }
+
+  stopTimer(){
+    clearInterval(this.timeout);
   }
 }

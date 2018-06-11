@@ -103,7 +103,7 @@ export class GameBoardComponent{
     iter: number = 0;
     @Input() gameType: string;
     @Input() difficulty: string;
-    playerOne: boolean = true;
+    @Input() playerOne: boolean = true;
     isIAthinking: boolean;
     winner: boolean = false;
     @Output() isPlayerOneEvent = new EventEmitter<boolean>();
@@ -233,6 +233,8 @@ export class GameBoardComponent{
                     }else{
                         this.playerOne = !this.playerOne;
                         this.currentTurnEvent.emit(this.playerOne);//evento que avisa cambio de turno
+                        //resetear timer
+
                         console.log(this.roundMoves);                       
                     }
                 break;
@@ -272,13 +274,14 @@ export class GameBoardComponent{
       }
 
       showAlert(alertMsj: string){
+        this.isPlayerOneEvent.emit(this.playerOne);//envio evento para avisar quien gano y asi en game se encarga de pausar el tiempo de la ronda
         let alert = this.alertCtrl.create({
             title: "End of The Round",
             subTitle: alertMsj,
             buttons: ['ok']
         })
         //emitir si hay ganador y si ese fue el player uno
-        alert.onDidDismiss(()=>{this.isPlayerOneEvent.emit(this.playerOne)//en este orden especifico! //primero quien gano: true: player1; false: plauer2 o IA
+        alert.onDidDismiss(()=>{//this.isPlayerOneEvent.emit(this.playerOne)//en este orden especifico! //primero quien gano: true: player1; false: plauer2 o IA
                                 this.isaWinnerEvent.emit(this.winner) //luego si hubo un ganador ( winner= true) o si fue empate( winner = false ) 
                                 this.resetBoard()});
         alert.present();

@@ -9,8 +9,10 @@
         </div>
       </ion-col>
 
-      <ion-col col-8>
-
+      <ion-col col-8 class="flex-col">
+        <div id="barContainer">
+          <div id="countBar" [style.width]="value + '%'"></div>
+        </div>
       </ion-col>
 
       <ion-col align-self-start col-2>

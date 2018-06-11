@@ -9,6 +9,8 @@ import { ConfigurationPage } from '../../pages/settings-menu/configuration/confi
 export class TimerBarComponent {
 
   @Input() currentRound: number;
+  @Input() timer: number;
+  @Input() value = 100;
 
   constructor(private popoverCtrl: PopoverController) {
     console.log('Hello TimerBarComponent Component');
