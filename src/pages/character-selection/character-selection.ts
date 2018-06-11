@@ -9,7 +9,7 @@ import { GamePage } from '../game/game';
   templateUrl: 'character-selection.html',
 })
 export class CharacterSelectionPage {
-  gameType: string='singleplayer';
+  gameType: string='local-multiplayer';
   rounds: number = 1;
   difficulty: string = 'easy';
 

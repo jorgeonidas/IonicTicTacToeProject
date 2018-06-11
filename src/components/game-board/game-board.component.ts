@@ -117,17 +117,18 @@ export class GameBoardComponent{
 
     //jugada
     onCellClickled(index: number){
-
+        console.log(this.gameType);
+        
         if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.isIAthinking /*&& !this.winner) || this.roundMoves <= 7*/){
             
             switch(this.gameType){
                
                 case "singleplayer":
-                
+
                     let alertMsj: string;
                     //juega jugador
                     this.playerOne = true;                    
-                    this.currentTurnEvent.emit(this.playerOne);
+                    this.currentTurnEvent.emit(this.isIAthinking);
                     this.origBoard[index] = this.oChar;
                     //crear array de indices disponibles para la IA
                     let aviableSpots = this.emptyIndexies(this.origBoard);
@@ -143,8 +144,8 @@ export class GameBoardComponent{
                     }else if(aviableSpots.length > 0 ){
                          //dependiendo de la dificultad elegir algoritmo
                         this.playerOne = false;
-                        this.isIAthinking = true;
-                        this.currentTurnEvent.emit(this.playerOne);
+                        this.isIAthinking = true; //IA esta pesando
+                        this.currentTurnEvent.emit(this.isIAthinking);
                         
                         //intervalo de delay entre 0.5 y  2s
                         let delay = Math.floor(Math.random() * (2000 - 500 + 1) + 500); //0.5 y 2 s
@@ -174,10 +175,10 @@ export class GameBoardComponent{
                                 this.hardIa(this.origBoard,this.xChar);
                             break;
                             }
-
-                            this.playerOne = true;
+                            /*
+                            this.playerOne = true;*/
                             this.isIAthinking = false;
-                            this.currentTurnEvent.emit(this.playerOne);
+                            this.currentTurnEvent.emit(this.isIAthinking);
 
                             console.log(this.origBoard);
                         
@@ -188,7 +189,7 @@ export class GameBoardComponent{
                                 alertMsj = "IA WINS!";
                                 this.showAlert(alertMsj);                
                             }
-                            
+                            //this.playerOne = true;//test
                         }, delay);
                     //empato?  
                     }else{
@@ -202,9 +203,9 @@ export class GameBoardComponent{
                 case "local-multiplayer":
                     let currentPlayer;
                     if(this.playerOne){
-                        currentPlayer = this.xChar;
-                    }else{
                         currentPlayer = this.oChar;
+                    }else{
+                        currentPlayer = this.xChar;
                     }
                     
                     this.origBoard[index] = currentPlayer;

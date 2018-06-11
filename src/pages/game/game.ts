@@ -32,7 +32,7 @@ export class GamePage {
     this.playerOneHealth = 100;
     this.playerTwoOrBothealth = 100;
     //turno actual
-    this.gametype= 'local-multiplayer';
+    //this.gametype= 'local-multiplayer';
     this.playerOneCurrentTurn = true;
 
   }
@@ -46,8 +46,12 @@ export class GamePage {
     this.difficulty = this.navParams.get('difficulty');
   }
   //cambio el turno
-  changeTurn(currentTurnPlayer: boolean){
-    this.playerOneCurrentTurn = currentTurnPlayer;
+  changeTurn(iaTinkingOrPlayeroneTurn: boolean){
+    if(this.gametype == "singleplayer"){
+      this.playerOneCurrentTurn = !iaTinkingOrPlayeroneTurn; // si la NO! esta pesando la IA es el turno del Jugador
+    }else{
+      this.playerOneCurrentTurn = iaTinkingOrPlayeroneTurn;
+    }
   }
 
   setRoundWinner(value1: boolean){
