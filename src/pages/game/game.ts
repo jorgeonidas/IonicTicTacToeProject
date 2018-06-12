@@ -51,7 +51,7 @@ export class GamePage {
     this.rounds = this.navParams.get('rounds');
     this.difficulty = this.navParams.get('difficulty');
     
-    this.turnInterval = 5;
+    this.turnInterval = 10;
     this.toltalTurnBar = 100;
     this.restRoundTimer(5);
     this.startTimer();
@@ -79,6 +79,8 @@ export class GamePage {
   }
   //cambio el turno
   changeTurn(iaTinkingOrPlayeroneTurn: boolean){
+    console.log("change turn");
+    
     //resetear timer
     this.restRoundTimer(5);
     if(this.gametype == "singleplayer"){
@@ -153,24 +155,19 @@ export class GamePage {
     //emitir si hay ganador y si ese fue el player uno
     alert.present();
   }
-  /*
-  countDown(){
-    this.turnInterval--;
-    if(this.turnInterval == 0){
-       clearInterval(this.timeout);
-    }
-    console.log(this.turnInterval);
-  }*/
 
   restRoundTimer(time: number){
-    this.timeleft = time;
+    this.toltalTurnBar = 100;
+    this.timeleft = this.turnInterval;  
   }
 
   startTimer(){
-    //this.turnInterval = 5;
     this.timeout = setInterval( () =>{
       this.timeleft--
-      this.toltalTurnBar -= 100/this.turnInterval; //testing luego le busco la proporcion
+      console.log(this.timeleft);
+      this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
+      console.log(this.toltalTurnBar);
+      
       if(this.timeleft < 0){
         //clearInterval(this.timeout);
         //ojo funciona para local multiplayer como haremos con singleplayer?
@@ -178,14 +175,11 @@ export class GamePage {
           case 'local-multiplayer':
           this.restRoundTimer(5);
           this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-          this.toltalTurnBar = 100;
           console.log("cambio de turno");
           console.log(this.playerOneCurrentTurn);
-
           break;
         }       
-      }
-      console.log(this.timeleft);
+      }     
     },
     1000); 
   }
