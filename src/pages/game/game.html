@@ -20,7 +20,9 @@
       <ion-col>
           <game-board [gameType]="gametype" 
           [difficulty]="difficulty" 
-          [playerOne]="playerOneCurrentTurn" 
+          [playerOne]="playerOneCurrentTurn"
+          [origBoard]="gameboard"
+          (boardChangeEvent)="setCurrentBoardStatus($event)"
           (currentTurnEvent)="changeTurn($event)" 
           (isPlayerOneEvent)="setRoundWinner($event)" 
           (isaWinnerEvent)="winOrTie($event)"></game-board>

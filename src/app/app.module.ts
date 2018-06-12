@@ -26,6 +26,7 @@ import { GridSelectorComponent } from '../components/grid-selector/grid-selector
 import { GameBoardComponent } from '../components/game-board/game-board.component';
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { TimerBarComponent } from '../components/timer-bar/timer-bar';
+import { AIService } from '../services/iaService';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { TimerBarComponent } from '../components/timer-bar/timer-bar';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ConfigurationService,
-    AuthService
+    AuthService,
+    AIService
   ]
 })
 export class AppModule {}

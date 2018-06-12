@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
+import { AIService } from '../../services/iaService';
+//import { GameBoardComponent } from '../../components/game-board/game-board.component';
 
 @IonicPage()
 @Component({
@@ -28,8 +30,10 @@ export class GamePage {
   timeleft: number;
   timeout : any;
   toltalTurnBar : number;
+  //gameboard para llamar a la IA
+  gameboard: string[] = ["0","1","2","3","4","5","6","7","8"];;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private IA : AIService) {
     this.playerOneScore = 0;
     this.playerTwoOrAIScore = 0;
     this.winner= false;
@@ -53,36 +57,23 @@ export class GamePage {
     
     this.turnInterval = 10;
     this.toltalTurnBar = 100;
-    this.restRoundTimer(5);
+    this.restRoundTimer();
     this.startTimer();
-    /* 
-    //testing timer
-    this.turnInterval = 5;
-    this.timeout = setInterval( () =>{
-      this.turnInterval--
-      if(this.turnInterval == 0){
-        //clearInterval(this.timeout);
-        //ojo funciona para local multiplayer como haremos con singleplayer?
-        switch(this.gametype){
-          case 'local-multiplayer':
-          this.restRoundTimer(5);
-          this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-          console.log("cambio de turno");
-          console.log(this.playerOneCurrentTurn);
-          break;
-        }       
-      }
-      console.log(this.turnInterval);
-    },
-    1000);  */
     
   }
+
+  setCurrentBoardStatus(board: string[]){
+    this.gameboard = board;
+    console.log("board from game");
+    console.log(this.gameboard); 
+  }
+
   //cambio el turno
   changeTurn(iaTinkingOrPlayeroneTurn: boolean){
     console.log("change turn");
     
     //resetear timer
-    this.restRoundTimer(5);
+    this.restRoundTimer();
     if(this.gametype == "singleplayer"){
       this.playerOneCurrentTurn = !iaTinkingOrPlayeroneTurn; // si la NO! esta pesando la IA es el turno del Jugador
     }else{
@@ -141,7 +132,7 @@ export class GamePage {
       this.showAlert(alertmsj);
     }else{
       console.log("new round");
-      this.restRoundTimer(5);
+      this.restRoundTimer();
       this.startTimer();
     }
   }
@@ -156,7 +147,8 @@ export class GamePage {
     alert.present();
   }
 
-  restRoundTimer(time: number){
+  restRoundTimer(){
+    console.log("reset timer");    
     this.toltalTurnBar = 100;
     this.timeleft = this.turnInterval;  
   }
@@ -167,16 +159,34 @@ export class GamePage {
       console.log(this.timeleft);
       this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
       console.log(this.toltalTurnBar);
-      
-      if(this.timeleft < 0){
+
+      if(this.timeleft == 0){
         //clearInterval(this.timeout);
         //ojo funciona para local multiplayer como haremos con singleplayer?
+        this.restRoundTimer();
+
         switch(this.gametype){
-          case 'local-multiplayer':
-          this.restRoundTimer(5);
+          
+          case 'local-multiplayer':          
           this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-          console.log("cambio de turno");
-          console.log(this.playerOneCurrentTurn);
+          //console.log("cambio de turno");
+          //console.log(this.playerOneCurrentTurn);
+          break;
+
+          case 'singleplayer':          
+            if(this.playerOneCurrentTurn){
+              this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+              this.IA.setDelay()
+              setTimeout(()=>{
+                this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+                this.restRoundTimer()},this.IA.getDelay());//hilo para hacer el cambio de turno
+              //this.playerOneCurrentTurn = !this.playerOneCurrentTurn;           
+              //tenemos que decirle a la pc que ejecute su jugada
+              this.IA.IATurn(this.gameboard,this.difficulty);
+              this.restRoundTimer();
+              console.log(this.gameboard);
+            }
+            //this.playerOneCurrentTurn = !this.playerOneCurrentTurn;                 
           break;
         }       
       }     

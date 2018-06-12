@@ -1,6 +1,7 @@
 import { Component, Input, Output, Injectable, EventEmitter } from "@angular/core";
 import { AlertController } from "ionic-angular";
 import { isDifferent } from "@angular/core/src/render3/util";
+import { AIService } from '../../services/iaService';
 
 @Component({
     selector: 'game-board',
@@ -92,7 +93,8 @@ import { isDifferent } from "@angular/core/src/render3/util";
 })
 @Injectable()
 export class GameBoardComponent{
-    origBoard: string[] = ["0","1","2","3","4","5","6","7","8"];
+    @Input() origBoard: string[] = ["0","1","2","3","4","5","6","7","8"];
+    @Output() boardChangeEvent = new EventEmitter<string[]>();
     xChar: string = 'X';
     oChar: string = 'O';
     roundMoves: number = 0;
@@ -110,7 +112,7 @@ export class GameBoardComponent{
     @Output() isaWinnerEvent = new EventEmitter<boolean>();
     @Output() currentTurnEvent = new EventEmitter<boolean>();
     
-    constructor(private alertCtrl: AlertController){
+    constructor(private alertCtrl: AlertController, private IA : AIService){
         console.log(this.gameType);  
         this.isIAthinking = false;    
     }
@@ -119,7 +121,7 @@ export class GameBoardComponent{
     onCellClickled(index: number){
         console.log(this.gameType);
         
-        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.isIAthinking /*&& !this.winner) || this.roundMoves <= 7*/){
+        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.IA.isIaTinking()/*&& !this.winner) || this.roundMoves <= 7*/){
             
             switch(this.gameType){
                
@@ -128,8 +130,11 @@ export class GameBoardComponent{
                     let alertMsj: string;
                     //juega jugador
                     this.playerOne = true;                    
-                    this.currentTurnEvent.emit(this.isIAthinking);
+                    this.currentTurnEvent.emit(/*this.isIAthinking*/this.IA.isIaTinking());
                     this.origBoard[index] = this.oChar;
+                    //emito el tablero en su edo actua
+                    this.boardChangeEvent.emit(this.origBoard);
+
                     //crear array de indices disponibles para la IA
                     let aviableSpots = this.emptyIndexies(this.origBoard);
                     console.log(aviableSpots); 
@@ -145,10 +150,14 @@ export class GameBoardComponent{
                          //dependiendo de la dificultad elegir algoritmo
                         this.playerOne = false;
                         this.isIAthinking = true; //IA esta pesando
-                        this.currentTurnEvent.emit(this.isIAthinking);
+                        this.IA.setIaTinking(this.isIAthinking);
+                        this.currentTurnEvent.emit(this.IA.isIaTinking());
+
+                        //testing POO
+                        //this.IATurn();
                         
                         //intervalo de delay entre 0.5 y  2s
-                        let delay = Math.floor(Math.random() * (2000 - 500 + 1) + 500); //0.5 y 2 s
+                        let delay = Math.floor(Math.random() * (5000 - 500 + 1) + 500); //0.5 y 2 s
                         console.log(delay);
                         
                         //hilo para dar la sensacion de que la pc piensa
@@ -156,7 +165,8 @@ export class GameBoardComponent{
                             switch(this.difficulty){
                                 case "easy":
                                     //this.singleplayerEasy(index);
-                                    this.easyIA(index)
+                                    //this.easyIA()
+                                    this.IA.easyIA(this.origBoard);
                                 break;
 
                                 case "medium":
@@ -165,20 +175,24 @@ export class GameBoardComponent{
                                     let moneda = Math.random()
                                     console.log(moneda);
                                     if(moneda <= 0.5){
-                                        this.hardIa(this.origBoard, this.xChar);
+                                        //this.hardIa(this.origBoard, this.xChar);
+                                        this.IA.hardIa(this.origBoard,this.xChar);
                                     }else{
-                                        this.easyIA(index);
+                                        //this.easyIA();
+                                        this.IA.easyIA(this.origBoard);
                                     }
                                 break;
                             
-                            case "hard":
-                                this.hardIa(this.origBoard,this.xChar);
-                            break;
+                                case "hard":
+                                    //this.hardIa(this.origBoard,this.xChar);
+                                    this.IA.hardIa(this.origBoard,this.xChar);
+                                break;
                             }
-                            /*
-                            this.playerOne = true;*/
+                            
+                            //this.playerOne = true;
                             this.isIAthinking = false;
-                            this.currentTurnEvent.emit(this.isIAthinking);
+                            this.IA.setIaTinking(this.isIAthinking);
+                            this.currentTurnEvent.emit(this.IA.isIaTinking());
 
                             console.log(this.origBoard);
                         
@@ -294,7 +308,7 @@ export class GameBoardComponent{
          this.playerOne = true;
       }
 
-      easyIA(index){
+      easyIA(){
         let aviableSpots = this.emptyIndexies(this.origBoard);
         let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
         console.log(randIndex);                            
@@ -366,6 +380,52 @@ export class GameBoardComponent{
         let iaIndex = this.minimax(board, payer).index;
         console.log("indice escogido por IA: " + iaIndex);                               
         this.origBoard[iaIndex] = payer;
+      }
+
+      public IATurn(){
+
+        let delay = Math.floor(Math.random() * (2000 - 500 + 1) + 500); //0.5 y 2 s
+        console.log(delay);
+        let alertMsj: string;
+        setTimeout(() => {
+            switch(this.difficulty){
+                case "easy":
+                    //this.singleplayerEasy(index);
+                    this.easyIA()
+                break;
+
+                case "medium":
+                    let aviableSpots = this.emptyIndexies(this.origBoard);
+                    //mezclemos las dificultades "lanzando una moneda"
+                    let moneda = Math.random()
+                    console.log(moneda);
+                    if(moneda <= 0.5){
+                        this.hardIa(this.origBoard, this.xChar);
+                    }else{
+                        this.easyIA();
+                    }
+                break;
+            
+            case "hard":
+                this.hardIa(this.origBoard,this.xChar);
+            break;
+            }
+            
+            //this.playerOne = true;
+            this.isIAthinking = false;
+            this.currentTurnEvent.emit(this.isIAthinking);
+
+            console.log(this.origBoard);
+        
+            if(this.winning(this.origBoard, this.xChar)){
+                //IA avisa a gamepage
+                this.winner = true;
+                console.log("IA WINS!");
+                alertMsj = "IA WINS!";
+                this.showAlert(alertMsj);                
+            }
+            //this.playerOne = true;//test
+        }, delay);
       }
 
 }
