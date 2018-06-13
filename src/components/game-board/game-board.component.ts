@@ -97,9 +97,10 @@ export class GameBoardComponent{
     @Output() boardChangeEvent = new EventEmitter<string[]>();
     xChar: string = 'X';
     oChar: string = 'O';
-    roundMoves: number = 0;
+    @Input() roundMoves: number = 0;
 
     alertMsj: string;
+    @Output() alertMsjEvent = new EventEmitter<string>();
 
     //variables necesarias para el minmax
     iter: number = 0;
@@ -107,10 +108,11 @@ export class GameBoardComponent{
     @Input() difficulty: string;
     @Input() playerOne: boolean = true;
     isIAthinking: boolean;
-    winner: boolean = false;
+    @Input() winner: boolean = false;
     @Output() isPlayerOneEvent = new EventEmitter<boolean>();
     @Output() isaWinnerEvent = new EventEmitter<boolean>();
     @Output() currentTurnEvent = new EventEmitter<boolean>();
+
     
     constructor(private alertCtrl: AlertController, private IA : AIService){
         console.log(this.gameType);  
@@ -142,9 +144,10 @@ export class GameBoardComponent{
                     if(this.winning(this.origBoard, this.oChar)){
                         //jugador gano avisar al GamePage
                         this.winner = true;
-                        console.log("Player wins"); 
-                        alertMsj = "Player wins";
+                        console.log("Player wins round"); 
+                        alertMsj = "Player wins round";
                         this.showAlert(alertMsj);
+                        //testing sending alerts from GamePage
 
                     }else if(aviableSpots.length > 0 ){
                          //dependiendo de la dificultad elegir algoritmo
@@ -153,9 +156,6 @@ export class GameBoardComponent{
                         this.IA.setIaTinking(this.isIAthinking);
                         this.currentTurnEvent.emit(this.IA.isIaTinking());
 
-                        //testing POO
-                        //this.IATurn();
-                        
                         //intervalo de delay entre 0.5 y  2s
                         let delay = Math.floor(Math.random() * (5000 - 500 + 1) + 500); //0.5 y 2 s
                         console.log(delay);
@@ -215,6 +215,7 @@ export class GameBoardComponent{
                 break;
 
                 case "local-multiplayer":
+                                       
                     let currentPlayer;
                     if(this.playerOne){
                         currentPlayer = this.oChar;
@@ -227,28 +228,39 @@ export class GameBoardComponent{
                     this.winner = this.winning(this.origBoard,currentPlayer);
                     this.roundMoves++;
 
+                    console.log("current board state");
+                    console.log(this.origBoard);
+                    console.log("moves left: "+this.roundMoves);
+                    
                     if( this.winner ){
                         if(this.playerOne){
-                            console.log("Player One Wins");
-                            this.alertMsj = "Player One Wins";     
+                            console.log("Player One Wins Round");
+                            this.alertMsj = "Player One Wins Round";     
                         }else{
-                            console.log("Player Two Wins");
-                            this.alertMsj = "Player Two Wins";
+                            console.log("Player Two Wins ");
+                            this.alertMsj = "Player Two Wins Round";
                         }
                         
-                        this.showAlert(this.alertMsj); 
+                        //this.showAlert(this.alertMsj);
+                        this.isPlayerOneEvent.emit(this.playerOne);
+                        this.alertMsjEvent.emit(this.alertMsj);
+                        this.isaWinnerEvent.emit(this.winner);
+                        this.roundMoves = 0;
+                        //this.resetBoard()
+
 
                     }else if(this.roundMoves > 8 ){
                         console.log("TIE!");
                         this.alertMsj = "TIE!"
-
-                        this.showAlert(this.alertMsj);
+                        //this.showAlert(this.alertMsj);
+                        this.isPlayerOneEvent.emit(this.playerOne);
+                        this.alertMsjEvent.emit(this.alertMsj);
+                        this.isaWinnerEvent.emit(this.winner)
+                        //this.resetBoard()
                                               
                     }else{
                         this.playerOne = !this.playerOne;
                         this.currentTurnEvent.emit(this.playerOne);//evento que avisa cambio de turno
-                        //resetear timer
-
                         console.log(this.roundMoves);                       
                     }
                 break;
@@ -286,7 +298,7 @@ export class GameBoardComponent{
           return false;
         }
       }
-
+/////////////////////////////////////////////////////////////////////
       showAlert(alertMsj: string){
         this.isPlayerOneEvent.emit(this.playerOne);//envio evento para avisar quien gano y asi en game se encarga de pausar el tiempo de la ronda
         let alert = this.alertCtrl.create({
@@ -300,7 +312,7 @@ export class GameBoardComponent{
                                 this.resetBoard()});
         alert.present();
       }
-
+///////////////////////////////////////////////////////////////////////////////////
       resetBoard(){
          this.origBoard = ["0","1","2","3","4","5","6","7","8"];
          this.roundMoves = 0;

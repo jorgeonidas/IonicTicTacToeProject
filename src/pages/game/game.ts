@@ -25,13 +25,15 @@ export class GamePage {
   //round data
   winner: boolean;
   playerOneWinsRound: boolean;
+  alertMsj: string; //quien gana y quien pierde
   //countDown
   turnInterval: number;
   timeleft: number;
   timeout : any;
   toltalTurnBar : number;
   //gameboard para llamar a la IA
-  gameboard: string[] = ["0","1","2","3","4","5","6","7","8"];;
+  gameboard: string[] = ["0","1","2","3","4","5","6","7","8"];
+  moves = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private IA : AIService) {
     this.playerOneScore = 0;
@@ -81,6 +83,10 @@ export class GamePage {
     }
   }
 
+  setAlertMsj(msj: string){
+    this.alertMsj = msj;
+  }
+
   setRoundWinner(value1: boolean){
     console.log("player one wins?: "+value1); 
     this.playerOneWinsRound = value1;
@@ -117,23 +123,29 @@ export class GamePage {
     this.currentRound++;
     //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador
     if(this.currentRound > this.rounds){
-      let alertmsj: string;
-      //this.stopTimer(); 
+      //victoria o empate
       if(this.playerOneScore > this.playerTwoOrAIScore){
         console.log("Player One Wins the game!");
-        alertmsj = "Player One Wins the game!";       
+        this.alertMsj = "Player One Wins the game!";       
       }else if(this.playerOneScore == this.playerTwoOrAIScore){
         console.log("ITS A TIE!!!");
-        alertmsj = "ITS A TIE!!!";       
+        this.alertMsj = "ITS A TIE!!!";       
       }else{
         console.log("Player Two or Bot Wins!");
-        alertmsj = "Player Two or Bot Wins!";
+        this.alertMsj = "Player Two or Bot Wins The Game!";
       }
-      this.showAlert(alertmsj);
-    }else{
+
+      this.showAlert(this.alertMsj);
+    }else{ //Nueva ronda
+      //solo la pc puede ganar desde este estado
+      /*if(!this.playerOneWinsRound){
+        this.showAlert("Robot Wins the round");
+      }*/
+      
+      //testeando con el fin de hacer un nuevo alert que reinicie el round
+      this.showAlert(this.alertMsj);
       console.log("new round");
-      this.restRoundTimer();
-      this.startTimer();
+
     }
   }
 
@@ -143,7 +155,13 @@ export class GamePage {
         subTitle: alertMsj,
         buttons: ['ok']
     })
-    //emitir si hay ganador y si ese fue el player uno
+    alert.onDidDismiss(()=>{
+      if(this.currentRound <= this.rounds){
+        this.resetBoard();
+        this.restRoundTimer();
+        this.startTimer();
+      }
+    });
     alert.present();
   }
 
@@ -151,6 +169,14 @@ export class GamePage {
     console.log("reset timer");    
     this.toltalTurnBar = 100;
     this.timeleft = this.turnInterval;  
+  }
+
+  resetBoard(){
+    this.gameboard = ["0","1","2","3","4","5","6","7","8"];
+    this.winner = false;
+    //this.moves = 0;
+    this.playerOneCurrentTurn = true;
+
   }
 
   startTimer(){
@@ -177,10 +203,20 @@ export class GamePage {
             if(this.playerOneCurrentTurn){
               this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
               this.IA.setDelay()
+              //hilo para hacer el cambio de turno y reseteo del timer
               setTimeout(()=>{
                 this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-                this.restRoundTimer()},this.IA.getDelay());//hilo para hacer el cambio de turno
-              //this.playerOneCurrentTurn = !this.playerOneCurrentTurn;           
+                this.restRoundTimer();
+                if(this.IA.winning(this.gameboard,'X')){
+                  console.log("IA WINS!");
+                  //aca seteo score!!!!!!!!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                  this.setRoundWinner(false);
+                  this.winOrTie(true);
+                  //this.setScore();                  
+                }
+              },
+                this.IA.getDelay()+100); //para que lo ejecute justo despues del movimiento de la pc
+                                          
               //tenemos que decirle a la pc que ejecute su jugada
               this.IA.IATurn(this.gameboard,this.difficulty);
               this.restRoundTimer();

@@ -22,6 +22,8 @@
           [difficulty]="difficulty" 
           [playerOne]="playerOneCurrentTurn"
           [origBoard]="gameboard"
+          [winner]="winner"
+          (alertMsjEvent)="setAlertMsj($event)"
           (boardChangeEvent)="setCurrentBoardStatus($event)"
           (currentTurnEvent)="changeTurn($event)" 
           (isPlayerOneEvent)="setRoundWinner($event)" 
