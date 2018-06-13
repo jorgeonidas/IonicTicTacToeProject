@@ -137,12 +137,14 @@ export class GamePage {
 
       this.showAlert(this.alertMsj);
     }else{ //Nueva ronda
-      //solo la pc puede ganar desde este estado
-      /*if(!this.playerOneWinsRound){
-        this.showAlert("Robot Wins the round");
-      }*/
-      
       //testeando con el fin de hacer un nuevo alert que reinicie el round
+      if(this.gametype=='singleplayer' && !this.playerOneWinsRound)
+        if(this.winner){
+          this.alertMsj = "IA wins the round";
+        }else{
+          this.alertMsj = "Round Tie!";
+        }
+        
       this.showAlert(this.alertMsj);
       console.log("new round");
 
@@ -211,14 +213,13 @@ export class GamePage {
                   console.log("IA WINS!");
                   //aca seteo score!!!!!!!!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                   this.setRoundWinner(false);
-                  this.winOrTie(true);
-                  //this.setScore();                  
+                  this.winOrTie(true);             
                 }
               },
                 this.IA.getDelay()+100); //para que lo ejecute justo despues del movimiento de la pc
                                           
               //tenemos que decirle a la pc que ejecute su jugada
-              this.IA.IATurn(this.gameboard,this.difficulty);
+              this.IA.IATurn(this.gameboard, this.difficulty);
               this.restRoundTimer();
               console.log(this.gameboard);
             }

@@ -145,9 +145,12 @@ export class GameBoardComponent{
                         //jugador gano avisar al GamePage
                         this.winner = true;
                         console.log("Player wins round"); 
-                        alertMsj = "Player wins round";
-                        this.showAlert(alertMsj);
+                        this.alertMsj = "Player wins round";
+                        //this.showAlert(alertMsj);
                         //testing sending alerts from GamePage
+                        this.isPlayerOneEvent.emit(this.playerOne);
+                        this.alertMsjEvent.emit(this.alertMsj);
+                        this.isaWinnerEvent.emit(this.winner);
 
                     }else if(aviableSpots.length > 0 ){
                          //dependiendo de la dificultad elegir algoritmo
@@ -200,17 +203,23 @@ export class GameBoardComponent{
                                 //IA avisa a gamepage
                                 this.winner = true;
                                 console.log("IA WINS!");
-                                alertMsj = "IA WINS!";
-                                this.showAlert(alertMsj);                
+                                this.alertMsj = "IA WINS!";
+                                //this.showAlert(alertMsj);
+                                this.isPlayerOneEvent.emit(this.playerOne);
+                                this.alertMsjEvent.emit(this.alertMsj);
+                                this.isaWinnerEvent.emit(this.winner);                
                             }
                             //this.playerOne = true;//test
                         }, delay);
                     //empato?  
                     }else{
                         console.log("TIE!");
-                        alertMsj = "TIE!";
+                        this.alertMsj = "TIE!";
                         this.winner = false;
-                        this.showAlert(alertMsj);
+                        //this.showAlert(alertMsj);
+                        this.isPlayerOneEvent.emit(this.playerOne);
+                        this.alertMsjEvent.emit(this.alertMsj);
+                        this.isaWinnerEvent.emit(this.winner);
                     }                   
                 break;
 
