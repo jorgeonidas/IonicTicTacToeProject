@@ -13,7 +13,7 @@
     </ion-row>
     <!--some bar?-->
 
-    <timer-bar [currentRound]="currentRound" [value]="toltalTurnBar"></timer-bar>
+    <timer-bar [currentRound]="currentRound" [value]="toltalTurnBar" (pausedEmmiter)="pauseOrResume($event)"></timer-bar>
       
     <!--board-->
     <ion-row>

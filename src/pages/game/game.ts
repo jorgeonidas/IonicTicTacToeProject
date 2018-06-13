@@ -234,4 +234,13 @@ export class GamePage {
   stopTimer(){
     clearInterval(this.timeout);
   }
+
+  pauseOrResume(isPaused: boolean){
+    console.log("paused: "+isPaused);
+    if(isPaused){
+      this.stopTimer()
+    }else{
+      this.startTimer();
+    }
+  }
 }
