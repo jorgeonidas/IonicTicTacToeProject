@@ -85,6 +85,7 @@ export class MyApp {
     this.menuCtrl.enable(true, 'login');
     this.menuCtrl.enable(false, 'createAccount');
     this.menuCtrl.open(this.activeMenu);
+    this.initializeCreateUserForm();//reseteo el formulario si clickeo Back desde crear usuario
   }
 
   //Submit login
