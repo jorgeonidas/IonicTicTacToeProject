@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
-//import { GameBoardComponent } from '../../components/game-board/game-board.component';
 
 @IonicPage()
 @Component({
@@ -10,6 +9,7 @@ import { AIService } from '../../services/iaService';
   templateUrl: 'game.html',
 })
 export class GamePage {
+
   gameData: any;
   gametype: string;
   rounds: number = 3;
@@ -132,7 +132,10 @@ export class GamePage {
         this.alertMsj = "ITS A TIE!!!";       
       }else{
         console.log("Player Two or Bot Wins!");
-        this.alertMsj = "Player Two or Bot Wins The Game!";
+        if(this.gametype=="singleplayer")
+          this.alertMsj = "Robot The Game!";
+        else
+          this.alertMsj = "Player Wins The Game!"
       }
 
       this.showAlert(this.alertMsj);
@@ -140,20 +143,19 @@ export class GamePage {
       //testeando con el fin de hacer un nuevo alert que reinicie el round
       if(this.gametype=='singleplayer' && !this.playerOneWinsRound)
         if(this.winner){
-          this.alertMsj = "IA wins the round";
+          this.alertMsj = "Robot wins the round";
         }else{
           this.alertMsj = "Round Tie!";
         }
         
       this.showAlert(this.alertMsj);
       console.log("new round");
-
     }
   }
 
   showAlert(alertMsj: string){
     let alert = this.alertCtrl.create({
-        title: "Game Over",
+        title: "End Of Round",
         subTitle: alertMsj,
         buttons: ['ok']
     })
@@ -162,6 +164,8 @@ export class GamePage {
         this.resetBoard();
         this.restRoundTimer();
         this.startTimer();
+      }else{
+        this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));//hacemos 2 niveles pop ()
       }
     });
     alert.present();

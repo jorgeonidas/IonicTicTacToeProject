@@ -22,7 +22,7 @@ export class CharacterSelectionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CharacterSelectionPage');
-    //this.gameType = this.navParams.get('selection'); mientras testeo
+    this.gameType = this.navParams.get('selection'); //mientras testeo
     
     console.log(this.gameType); 
   }
