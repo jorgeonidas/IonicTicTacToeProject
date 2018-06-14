@@ -23,3 +23,7 @@
 .borderInfButtons{
     border: 3px solid map-get($colors, borderPlayer);
 }
+
+.importantInfoTitle{
+    color: map-get($colors, loginAndCreateBackground);
+}

@@ -38,12 +38,22 @@ export class MainMenuPage {
     this.activeMenu = 'settings' //los ids de cada menu estan en app.html
     this.menuCtrl.enable(true, 'settings');
     this.menuCtrl.enable(false, 'login');
+    this.menuCtrl.enable(false,'importantInfo');
     this.menuCtrl.open(this.activeMenu);
   }
 
   menuLoginActive(){
     this.activeMenu = 'login'
     this.menuCtrl.enable(true, 'login');
+    this.menuCtrl.enable(false, 'settings');
+    this.menuCtrl.enable(false,'importantInfo');
+    this.menuCtrl.open(this.activeMenu);
+  }
+
+  menuImportantInfo(){
+    this.activeMenu='importantInfo';
+    this.menuCtrl.enable(true,'importantInfo');
+    this.menuCtrl.enable(false, 'login');
     this.menuCtrl.enable(false, 'settings');
     this.menuCtrl.open(this.activeMenu);
   }
