@@ -20,4 +20,11 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  toMainMenuPage(){
+    this.navCtrl.push(this.mainMenuPage, {}, {animate: false});
+  }
+
+  toCreateAccountPage(){
+    this.navCtrl.push(this.createAccPage, {}, {animate: false});
+  }
 }

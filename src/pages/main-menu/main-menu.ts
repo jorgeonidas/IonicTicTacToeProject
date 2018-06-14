@@ -30,7 +30,7 @@ export class MainMenuPage {
   }
 
   onGameSelectio(selected: string){
-    this.navCtrl.push(CharacterSelectionPage, {selection: selected});
+    this.navCtrl.push(CharacterSelectionPage, {selection: selected}, {animate: false});
   }
   //activar menuSettings
   menuSettingsActive(){

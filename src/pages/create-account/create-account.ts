@@ -79,4 +79,8 @@ export class CreateAccountPage implements OnInit  {
       );
     //this.navCtrl.push(LoginPage);
   }
+
+  toMainMenuPage(){
+    this.navCtrl.push(this.mainMenuPage, {}, {animate: false})
+  }
 }

@@ -1,12 +1,3 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>create-account</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content class="bg-page" padding>
   <ion-grid>
     <ion-row>
@@ -90,10 +81,12 @@
           <!--botones***************************************************************-->
           <ion-row justify-content-center>
             <ion-col col-5 align-self-center>
-              <button ion-button 
+              <button ion-button
+                type="button" 
                 color="skip"
                 class="borderSkip"
-                round [navPush]="mainMenuPage">Skip</button>
+                round 
+                (click)="toMainMenuPage()">Skip</button>
             </ion-col>
             <ion-col align-self-center>
               <button type="submit" 

@@ -43,7 +43,11 @@ export class CharacterSelectionPage {
     this.navCtrl.push(this.gamePage,
       {gameType: this.gameType, 
       rounds: this.rounds, 
-      difficulty: this.difficulty}
+      difficulty: this.difficulty}, {animate: false}
     );
+  }
+
+  onClickBack(){
+    this.navCtrl.pop({animate:false});
   }
 }

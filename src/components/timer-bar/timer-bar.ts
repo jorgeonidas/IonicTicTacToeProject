@@ -32,7 +32,7 @@ export class TimerBarComponent {
       this.pausedEmmiter.emit(this.gamePaused);
     });
 
-    popover.present();
+    popover.present({animate: false});
 
   }
 

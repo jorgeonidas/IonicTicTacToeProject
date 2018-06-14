@@ -128,8 +128,10 @@ export class ConfigurationPage implements OnInit{
     }
 
     leaveGame(){
+        console.log("leave game event");
+        
         this.cfgService.setLeavingCurrentGame(true); //el servicio guardara si abandono el juego
         this.viewCtrl.dismiss();
-        this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-3)); //hago pop dos niveles
+        this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-3),{animate:false}); //hago pop dos niveles
     }
 }

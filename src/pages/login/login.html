@@ -1,12 +1,3 @@
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content class="bg-page" padding>
   <ion-grid>
     <ion-row>
@@ -55,7 +46,7 @@
               round 
               color="skip" 
               class="borderSkip"
-              [navPush]="mainMenuPage">Skip</button>
+              (click)="toMainMenuPage()">Skip</button>
             </ion-col>
             <ion-col align-self-center>
                 <button ion-button 
@@ -75,7 +66,7 @@
             round 
             color="gold"
             class="borderCreate" 
-            [navPush]="createAccPage">Create Account</button>
+            (click)="toCreateAccountPage()">Create Account</button>
           </ion-row>
         </div>
       </ion-col>
