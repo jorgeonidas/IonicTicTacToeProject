@@ -57,7 +57,24 @@ export class GamePage {
     this.rounds = this.navParams.get('rounds');
     this.difficulty = this.navParams.get('difficulty');
     
-    this.turnInterval = 10;
+    switch (this.difficulty) {
+      case 'easy':
+        this.turnInterval = 6;
+        break;
+
+      case 'medium':
+        this.turnInterval = 4;
+        break;
+
+      case 'hard':
+        this.turnInterval = 2;
+        break;
+    
+      default:
+        break;
+    } 
+    console.log("turn interval: " + this.turnInterval);
+
     this.toltalTurnBar = 100;
     this.restRoundTimer();
     this.startTimer();
@@ -174,7 +191,7 @@ export class GamePage {
   restRoundTimer(){
     console.log("reset timer");    
     this.toltalTurnBar = 100;
-    this.timeleft = this.turnInterval;  
+    this.timeleft = this.turnInterval + 1;  
   }
 
   resetBoard(){
@@ -190,7 +207,7 @@ export class GamePage {
       this.timeleft--
       console.log(this.timeleft);
       this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
-      console.log(this.toltalTurnBar);
+      //console.log(this.toltalTurnBar);
 
       if(this.timeleft == 0){
         //clearInterval(this.timeout);
@@ -208,7 +225,7 @@ export class GamePage {
           case 'singleplayer':          
             if(this.playerOneCurrentTurn){
               this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-              this.IA.setDelay()
+              this.IA.setDelay(this.turnInterval)
               //hilo para hacer el cambio de turno y reseteo del timer
               setTimeout(()=>{
                 this.playerOneCurrentTurn = !this.playerOneCurrentTurn;

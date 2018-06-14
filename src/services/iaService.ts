@@ -5,8 +5,10 @@ export class AIService{
     isIAthinking: boolean;
     delay : number;
 
-    setDelay(){
-        this.delay = Math.floor(Math.random() * (5000 - 2000 + 1) + 2000);
+    setDelay(time: number){
+        let maxDelay = (time*1000)/2;
+        let minDelay = 1000;
+        this.delay = Math.floor(Math.random() * (maxDelay - minDelay + 1) + minDelay);
     }
 
     getDelay(){
