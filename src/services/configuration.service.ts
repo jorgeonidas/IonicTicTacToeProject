@@ -8,6 +8,8 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ConfigurationService{
+  //para saber si salio o no del juego actual  
+  leavingCurrentGame : boolean = false;
 
     constructor(private storage: Storage){}
     //Base de datos ubicada en www/assests/data/config.json
@@ -31,19 +33,13 @@ export class ConfigurationService{
           console.log('all keys cleared');
         });
       }
-    //private localUrl: string ="assets/data/config.json";
-
-   
-    /*
-    retrieveCfgFromJson() : Observable<IConfig> {
-       return this.http.get<ConfigurationModel>(this.localUrl)
+    
+    //reanudar o salir de la partida
+    public setLeavingCurrentGame(leaving: boolean){
+      this.leavingCurrentGame = leaving;
     }
 
-    writheCfgToJson(language: string, music: boolean, sfx: boolean, notifications: boolean){
-        console.log(music+" "+sfx+" "+language+" "+notifications);
-        let cfg =  new ConfigurationModel(language, music, sfx, notifications);
-        console.log(cfg);
-        
-        return this.http.put(this.localUrl,cfg);
-    }*/
+    public isLeavingCurrentGame(){
+      return this.leavingCurrentGame;
+    }
 }

@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { ViewController, PopoverController, Toggle } from "ionic-angular";
+import { ViewController, PopoverController, Toggle, App } from "ionic-angular";
 import { SettingsMenuPage } from "../settings-menu";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ConfigurationService } from "../../../services/configuration.service";
 import { ConfigurationModel } from "../../../models/configuration";
 import 'rxjs/Rx';
-import { IConfig } from "../../../interfaces/config.interface";
+import { MainMenuPage } from "../../main-menu/main-menu";
 @Component({
     template: `<ion-grid text-center>
                     <ion-row>
@@ -35,7 +34,7 @@ import { IConfig } from "../../../interfaces/config.interface";
                         </ion-col>
 
                         <ion-col col-8>
-                            <button ion-button color="danger" block round>Leave Game</button>
+                            <button ion-button color="danger" block round (click)="leaveGame()">Leave Game</button>
                         </ion-col>
                         
                         <ion-col>
@@ -67,7 +66,7 @@ export class ConfigurationPage implements OnInit{
 
     public configObj: ConfigurationModel;
     errorMsj: string;
-    constructor(private viewCtrl: ViewController, private popoverCtrl: PopoverController, private cfgService: ConfigurationService){}
+    constructor(private viewCtrl: ViewController, private popoverCtrl: PopoverController, private cfgService: ConfigurationService, private appCtrl: App){}
 
     ngOnInit(){
         
@@ -126,5 +125,11 @@ export class ConfigurationPage implements OnInit{
 
     closeMenu(){
         this.viewCtrl.dismiss();
+    }
+
+    leaveGame(){
+        this.cfgService.setLeavingCurrentGame(true); //el servicio guardara si abandono el juego
+        this.viewCtrl.dismiss();
+        this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-3)); //hago pop dos niveles
     }
 }

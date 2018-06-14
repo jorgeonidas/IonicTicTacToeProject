@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
+import { ConfigurationService } from '../../services/configuration.service';
 
 @IonicPage()
 @Component({
@@ -35,7 +36,11 @@ export class GamePage {
   gameboard: string[] = ["0","1","2","3","4","5","6","7","8"];
   moves = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private IA : AIService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private alertCtrl: AlertController, 
+    private IA : AIService, 
+    private cfgService: ConfigurationService) {
     this.playerOneScore = 0;
     this.playerTwoOrAIScore = 0;
     this.winner= false;
@@ -46,6 +51,8 @@ export class GamePage {
     //turno actual
     //this.gametype= 'local-multiplayer';
     this.playerOneCurrentTurn = true;
+    //no estoy dejando el juego
+    this.cfgService.setLeavingCurrentGame(false);
     
   }
 
@@ -260,7 +267,7 @@ export class GamePage {
     console.log("paused: "+isPaused);
     if(isPaused){
       this.stopTimer()
-    }else{
+    }else if(!this.cfgService.isLeavingCurrentGame() && ! isPaused){
       this.startTimer();
     }
   }
