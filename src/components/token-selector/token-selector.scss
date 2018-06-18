@@ -9,4 +9,12 @@ token-selector {
         font-size: 50px;
         margin: 0;
     }
+
+    .p1{
+        color: map-get($colors , emerald);
+    }
+
+    .p2orBot{
+        color: map-get($colors , fuxia);
+    }
 }

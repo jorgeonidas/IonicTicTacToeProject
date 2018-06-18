@@ -1,14 +1,21 @@
 <ion-row>
   <ion-col></ion-col>
   <ion-col class="flex-col">
-    <h1>{{playerOneToken}}</h1>
+    <h1 class="p1">{{playerOneToken}}</h1>
   </ion-col>
   <ion-col class="flex-col">
-    <h1>{{playerTwoOrBotToken}}</h1>
+    <h1 class="p2orBot">{{playerTwoOrBotToken}}</h1>
   </ion-col>
   <ion-col>
-    <button ion-button icon-only clear block large>
-      <ion-icon name="settings"></ion-icon>
+    <button 
+      ion-button 
+      icon-only 
+      clear 
+      block 
+      large
+      (click)="onDeployTokenSelector()">
+      <ion-icon 
+      name="settings"></ion-icon>
     </button>
   </ion-col>
   <ion-col></ion-col>

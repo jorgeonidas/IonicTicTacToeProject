@@ -28,6 +28,7 @@ import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { TimerBarComponent } from '../components/timer-bar/timer-bar';
 import { AIService } from '../services/iaService';
 import { TokenSelectorComponent } from '../components/token-selector/token-selector';
+import {TokenGaleryPage} from '../pages/token-galery/token-galery';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TokenSelectorComponent } from '../components/token-selector/token-selec
     GamePage,
     CharacterSelectionPage,
     ConfigurationPage,
+    TokenGaleryPage,
     //componentes
     GridSelectorComponent,
     ScoreboardComponent,
@@ -70,7 +72,8 @@ import { TokenSelectorComponent } from '../components/token-selector/token-selec
     AboutInfoPage,
     CharacterSelectionPage,
     ConfigurationPage,
-    GamePage
+    GamePage,
+    TokenGaleryPage
   ],
   providers: [
     StatusBar,
