@@ -27,6 +27,7 @@ import { GameBoardComponent } from '../components/game-board/game-board.componen
 import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
 import { TimerBarComponent } from '../components/timer-bar/timer-bar';
 import { AIService } from '../services/iaService';
+import { TokenSelectorComponent } from '../components/token-selector/token-selector';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AIService } from '../services/iaService';
     ScoreboardComponent,
     GameBoardComponent,
     ProgressBarComponent,
-    TimerBarComponent
+    TimerBarComponent, 
+    TokenSelectorComponent
 
     
   ],

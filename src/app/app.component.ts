@@ -19,7 +19,7 @@ export class MyApp {
 
   mainMenuPage = MainMenuPage;
   //pagina root
-  rootPage:any = LoginPage;
+  rootPage:any = CharacterSelectionPage;
   activeMenu: string;
   //forms en los togglemenus
   loginForm: FormGroup;

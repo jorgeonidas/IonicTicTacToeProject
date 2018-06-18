@@ -9,8 +9,8 @@ import { GamePage } from '../game/game';
   templateUrl: 'character-selection.html',
 })
 export class CharacterSelectionPage {
-  gameType: string='singleplayer';
-  //gameType: string='local-multiplayer';
+  //gameType: string='singleplayer';
+  gameType: string='local-multiplayer';
   rounds: number = 1;
   difficulty: string = 'easy';
 
@@ -22,7 +22,7 @@ export class CharacterSelectionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CharacterSelectionPage');
-    this.gameType = this.navParams.get('selection'); //mientras testeo
+    //this.gameType = this.navParams.get('selection'); //mientras testeo
     
     console.log(this.gameType); 
   }
