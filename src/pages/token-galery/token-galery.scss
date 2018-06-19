@@ -10,4 +10,10 @@ page-token-galery {
     .bkgFooter{
         background-color: goldenrod;
     }
+
+    .flex-col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
