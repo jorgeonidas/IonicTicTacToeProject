@@ -30,6 +30,9 @@ import { AIService } from '../services/iaService';
 import { TokenSelectorComponent } from '../components/token-selector/token-selector';
 import {TokenGaleryPage} from '../pages/token-galery/token-galery';
 
+//dragula
+import { DragulaModule } from 'ng2-dragula';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -58,7 +61,8 @@ import {TokenGaleryPage} from '../pages/token-galery/token-galery';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    DragulaModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

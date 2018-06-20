@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
     selector: 'grid-selector-component',
@@ -41,5 +42,14 @@ import { Component } from "@angular/core";
 })
 
 export class GridSelectorComponent{
+    
+    options: any;
+
+    constructor(private dragCtrl : DragulaService){
+        //configuracion
+        dragCtrl.setOptions('bag', { 
+            copy: true
+          });
+    }
 
 }

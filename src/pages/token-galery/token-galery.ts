@@ -17,7 +17,7 @@ export class TokenGaleryPage {
   constructor(private viewCtrl: ViewController) {
  
   }
-
+  //TODO: LLEMARLO CON IMAGENES!
   ionViewDidLoad() {
     console.log('ionViewDidLoad TokenGaleryPage');
     this.tokenGallery = [1,2,3,4,5,6,7,8,9]
