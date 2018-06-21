@@ -15,6 +15,15 @@ export class CharacterSelectionPage {
   difficulty: string = 'easy';
 
   gamePage = GamePage;
+  
+  //retratos
+  playerOnePortrait: string;
+  playerTwoOrBotPortrait: string;
+  isOverOne: boolean;
+  isOverTwo: boolean;
+  //dragulaModel
+  portraitOne = new Array(1);
+  portraitTwo = new Array(1);
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -25,6 +34,8 @@ export class CharacterSelectionPage {
     //this.gameType = this.navParams.get('selection'); //mientras testeo
     
     console.log(this.gameType); 
+    this.isOverOne = false;
+    this.isOverTwo = false;
   }
 
   onRoundSelection(nr: number){
@@ -36,7 +47,7 @@ export class CharacterSelectionPage {
   onDifficultySelection(difficulty: string){
     this.difficulty = difficulty;
     console.log(this.difficulty);
-    
+   
   }
 
   onClickPlay(){
@@ -49,5 +60,32 @@ export class CharacterSelectionPage {
 
   onClickBack(){
     this.navCtrl.pop({animate:false});
+  }
+
+  //eventos 
+  updatePlayerOnePortrati(asset : string){
+    console.log(asset);
+    this.portraitOne[0] = asset;
+    console.log(this.portraitOne);
+    
+    
+  }
+
+  updatePlayerTwoOrBotProtrait(asset : string){
+    console.log(asset);
+    this.portraitTwo[0]= asset;
+    console.log(this.portraitTwo);
+    
+  }
+
+  setOverOnePortrait(value : boolean){
+    this.isOverOne = value;
+    console.log(this.isOverOne);
+    
+  }
+
+  setOverTwoPortrait(value: boolean){
+    this.isOverTwo = value;
+    console.log(this.isOverTwo);
   }
 }

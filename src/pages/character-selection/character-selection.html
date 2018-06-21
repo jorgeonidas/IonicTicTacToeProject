@@ -10,12 +10,14 @@
     <!--Avatares-->
     <ion-row *ngIf="gameType !='online-multiplayer';else multiplayer_content">
       <ion-col col-4>
-        <div id="portraitselectorp1" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'></div>
+        <div id="portraitselectorp1" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'>
+            <img *ngIf="portraitOne[0] != null && !isOverOne" [src]="portraitOne[0]">
+        </div>
         <!--solo para testear-->
         <!--directiva de dragula para contenedor drag an drop-->
         <!--
           <ion-thumbnail [dragula]='"bag"'> 
-              <img src="assets/imgs/ollie_logo.png">
+              
           </ion-thumbnail>
         -->
           <button ion-button small block color="fuxia">Random</button>
@@ -25,7 +27,9 @@
       </ion-col>
       <!--directiva de dragula para contenedor drag an drop-->
       <ion-col col-4>
-        <div id="portraitselectorp2ob" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'></div>
+        <div id="portraitselectorp2ob" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'>
+          <img *ngIf="portraitTwo[0] != null && !isOverTwo" [src]="portraitTwo[0]">
+        </div>
         <!--
           <ion-thumbnail [dragula]='"bag"'> 
               <img src="assets/imgs/ollie_logo.png">
@@ -49,7 +53,12 @@
     <!--seleccion de personaje-->
     <ion-row>
       <ion-col>
-          <grid-selector-component></grid-selector-component>
+          <grid-selector-component 
+          (pOneEmmiter)="updatePlayerOnePortrati($event)" 
+          (pTwoOrBotEmmiter)="updatePlayerTwoOrBotProtrait($event)" 
+          (isOverOneEmmiter)="setOverOnePortrait($event)"
+          (isOverTwoEmmiter)="setOverTwoPortrait($event)" >
+        </grid-selector-component>
       </ion-col>
     </ion-row>
     <!--Botones dificultad-->

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 
 @Component({
@@ -42,10 +42,17 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
 })
 
 export class GridSelectorComponent{
-    
+
     options: any;
     canDrag: boolean; //puedo arrastrar?
+
     asset: string;
+
+    @Output() pOneEmmiter = new EventEmitter<string>();
+    @Output() pTwoOrBotEmmiter = new EventEmitter<string>();
+
+    @Output() isOverOneEmmiter = new EventEmitter<boolean>();
+    @Output() isOverTwoEmmiter = new EventEmitter<boolean>();
 
     constructor(private dragService : DragulaService){
 
@@ -54,6 +61,7 @@ export class GridSelectorComponent{
             copy: true,
             removeOnSpill: true,
             revertOnSpill: true,
+            mmirrorContainer: null,
             //que container son validos para hacer drag
             moves: function (el:any, container:any, handle:any):any {
                 this.canDrag = true;
@@ -85,6 +93,10 @@ export class GridSelectorComponent{
             this.onOver(value);
         });
 
+        dragService.out.subscribe((value)=>{
+            this.onOut(value);
+        });
+
         
 
     }
@@ -94,14 +106,26 @@ export class GridSelectorComponent{
     }
 
     onOver(value){
-        //console.log(value);
-        /*
-        if(value[2].id === "choicecell"){
-            console.log("Borrar over");
-            value[1].remove();
-        }*/
+        switch(value[2].id){
+            case "portraitselectorp1":
+                this.isOverOneEmmiter.emit(true);
+            break;
+            case "portraitselectorp2ob":
+                this.isOverTwoEmmiter.emit(true);
+            break;
+        }
     }
- 
+    
+    onOut(value){
+        switch(value[2].id){
+            case "portraitselectorp1":
+                this.isOverOneEmmiter.emit(false);
+            break;
+            case "portraitselectorp2ob":
+                this.isOverTwoEmmiter.emit(false);
+            break;
+        }
+    }
 
     onDrop(value){
         console.log(value);
@@ -116,17 +140,20 @@ export class GridSelectorComponent{
         console.log(this.asset);
         
         //console.log(source);
-        
-        if(value[4]!= null){
-            value[4].remove();
+        if(value[2].id === "portraitselectorp1"){         
+            this.pOneEmmiter.emit(this.asset);//la info del asset actualizara la vista 
+            value[1].remove(); //remuevo para evitar duplicados
+        }else if(value[2].id === "portraitselectorp2ob"){
+            this.pTwoOrBotEmmiter.emit(this.asset);
+            value[1].remove(); 
         }
-        //console.log("Borrar drop");            
-        
 
     }
 
      getPosition(string, subString, index) {
         return string.split(subString, index).join(subString).length;
      }
+
+     
 
 }
