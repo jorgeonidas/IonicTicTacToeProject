@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { CharacterSelectionPage } from '../pages/character-selection/character-selection';
 import { AuthService } from '../services/authService';
+import { PreGamePage } from '../pages/pre-game/pre-game';
 import { GamePage } from '../pages/game/game';
 
 import { ScoreboardComponent } from '../components/scoreboard/scoreboard.component';
@@ -32,6 +33,7 @@ import {TokenGaleryPage} from '../pages/token-galery/token-galery';
 
 //dragula
 import { DragulaModule } from 'ng2-dragula';
+
 
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ import { DragulaModule } from 'ng2-dragula';
     CharacterSelectionPage,
     ConfigurationPage,
     TokenGaleryPage,
+    PreGamePage,
     //componentes
     GridSelectorComponent,
     ScoreboardComponent,
@@ -77,7 +80,8 @@ import { DragulaModule } from 'ng2-dragula';
     CharacterSelectionPage,
     ConfigurationPage,
     GamePage,
-    TokenGaleryPage
+    TokenGaleryPage,
+    PreGamePage
   ],
   providers: [
     StatusBar,

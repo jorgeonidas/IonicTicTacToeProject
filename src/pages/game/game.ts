@@ -17,6 +17,10 @@ export class GamePage {
   currentRound: number = 1;
   difficulty: string = 'easy';
 
+  //portrait
+  portraitOne: string;
+  portraitTwo: string;
+
   playerOneScore: number;
   playerTwoOrAIScore: number;
   //scoreboard comp data
@@ -63,6 +67,10 @@ export class GamePage {
     this.gametype = this.navParams.get('gameType');
     this.rounds = this.navParams.get('rounds');
     this.difficulty = this.navParams.get('difficulty');
+    this.portraitOne = this.navParams.get('portraitOne');
+    this.portraitTwo = this.navParams.get('portraitTwo');
+    console.log(this.portraitOne, this.portraitTwo);
+    
     
     switch (this.difficulty) {
       case 'easy':

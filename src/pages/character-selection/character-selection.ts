@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { GamePage } from '../game/game';
+import { PreGamePage } from '../pre-game/pre-game';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class CharacterSelectionPage {
   difficulty: string = 'easy';
 
   gamePage = GamePage;
+  preGamePage = PreGamePage;
   
   //retratos
   playerOnePortrait: string;
@@ -51,10 +53,13 @@ export class CharacterSelectionPage {
   }
 
   onClickPlay(){
-    this.navCtrl.push(this.gamePage,
+    this.navCtrl.push(this.preGamePage,
       {gameType: this.gameType, 
       rounds: this.rounds, 
-      difficulty: this.difficulty}, {animate: false}
+      difficulty: this.difficulty,
+      playerOnePortrait: this.playerOnePortrait,
+      playerTwoOrBotPortrait: this.playerTwoOrBotPortrait}, 
+      {animate: false}
     );
   }
 
@@ -66,7 +71,8 @@ export class CharacterSelectionPage {
   updatePlayerOnePortrati(asset : string){
     console.log(asset);
     this.portraitOne[0] = asset;
-    console.log(this.portraitOne);
+    this.playerOnePortrait = asset;
+    console.log("portrait one " + this.portraitOne[0]);
     
     
   }
@@ -74,7 +80,8 @@ export class CharacterSelectionPage {
   updatePlayerTwoOrBotProtrait(asset : string){
     console.log(asset);
     this.portraitTwo[0]= asset;
-    console.log(this.portraitTwo);
+    this.playerTwoOrBotPortrait = asset;
+    console.log("portrait two " + this.portraitTwo[0]);
     
   }
 

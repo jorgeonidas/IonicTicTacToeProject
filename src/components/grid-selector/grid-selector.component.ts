@@ -129,17 +129,15 @@ export class GridSelectorComponent{
 
     onDrop(value){
         console.log(value);
-        let [e, el, targert, source] = value;
+        let [e, el, targert] = value;
         //console.log(e);
         //console.log(el);
         console.log(targert);
         console.log(value[1].currentSrc); //valor del elemento arrastrado
-        let currSrc = value[1].currentSrc;
-        let index = this.getPosition(currSrc,'/',3);
-        this.asset = currSrc.substring(index+1,currSrc.length);
-        console.log(this.asset);
-        
-        //console.log(source);
+        let currSrc : string = value[1].currentSrc;
+        let index = currSrc.lastIndexOf("/");
+        this.asset = "assets/imgs/" + currSrc.substring(index+1,currSrc.length); //substring que dara la direccion del asset
+        console.log("extracterd "+this.asset);
         if(value[2].id === "portraitselectorp1"){         
             this.pOneEmmiter.emit(this.asset);//la info del asset actualizara la vista 
             value[1].remove(); //remuevo para evitar duplicados
@@ -149,7 +147,7 @@ export class GridSelectorComponent{
         }
 
     }
-
+    //
      getPosition(string, subString, index) {
         return string.split(subString, index).join(subString).length;
      }
