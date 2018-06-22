@@ -276,8 +276,6 @@ export class GameBoardComponent{
 
                 case "online-multiplayer":
                 break;
-
-                console.log("gameboardComponent",this.origBoard);
                 
             }
         
