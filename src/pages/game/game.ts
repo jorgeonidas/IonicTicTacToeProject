@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationService } from '../../services/configuration.service';
+import { Title } from '@angular/platform-browser';
 
 @IonicPage()
 @Component({
@@ -39,25 +40,28 @@ export class GamePage {
   //gameboard para llamar a la IA
   gameboard: string[] = ["0","1","2","3","4","5","6","7","8"];
   moves = 0;
+  //
+  initialAlert : Alert;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
     private alertCtrl: AlertController, 
     private IA : AIService, 
     private cfgService: ConfigurationService, 
-    private popover: PopoverController) {
-    this.playerOneScore = 0;
-    this.playerTwoOrAIScore = 0;
-    this.winner= false;
-    this.playerOneWinsRound = false;
-    //barras de vida
-    this.playerOneHealth = 100;
-    this.playerTwoOrBothealth = 100;
-    //turno actual
-    //this.gametype= 'local-multiplayer';
-    this.playerOneCurrentTurn = true;
-    //no estoy dejando el juego
-    this.cfgService.setLeavingCurrentGame(false);
+    private popover: PopoverController) 
+    {
+      this.playerOneScore = 0;
+      this.playerTwoOrAIScore = 0;
+      this.winner= false;
+      this.playerOneWinsRound = false;
+      //barras de vida
+      this.playerOneHealth = 100;
+      this.playerTwoOrBothealth = 100;
+      //turno actual
+      //this.gametype= 'local-multiplayer';
+      this.playerOneCurrentTurn = true;
+      //no estoy dejando el juego
+      this.cfgService.setLeavingCurrentGame(false);
     
   }
 
@@ -90,11 +94,46 @@ export class GamePage {
         break;
     } 
     console.log("turn interval: " + this.turnInterval);
+    //ACA IMPLEMENTO TIME PRE JUEGO
+    this.gameInitializer();
 
     this.toltalTurnBar = 100;
-    this.restRoundTimer();
-    this.startTimer();
+    //this.restRoundTimer();
+    //this.startTimer();
     
+  }
+
+  gameInitializer(){
+    //1.-Are you good enough?
+    this.initialAlert = this.alertCtrl.create({
+      title: "Are you good enough?",
+      enableBackdropDismiss: false
+    });
+    this.initialAlert.present();
+    //2.-Ready
+    this.timeout = setTimeout(()=>{
+      this.initialAlert.dismiss();
+      this.initialAlert = this.alertCtrl.create({
+        title: "Ready",
+        enableBackdropDismiss: false
+      })
+      this.initialAlert.present();
+    },2000);
+    //3.-GO!
+    this.timeout = setTimeout(()=>{
+      this.initialAlert.dismiss();
+      this.initialAlert = this.alertCtrl.create({
+        title: "GO!",
+        enableBackdropDismiss: false
+      })
+      this.initialAlert.present();
+    },4000);
+    //START GAME!
+    this.timeout = setTimeout(()=>{
+      this.initialAlert.dismiss();
+      this.restRoundTimer();
+      this.startTimer();
+    },5000)
   }
 
   setCurrentBoardStatus(board: string[]){
