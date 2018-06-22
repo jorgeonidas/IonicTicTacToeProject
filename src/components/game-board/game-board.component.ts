@@ -238,7 +238,7 @@ export class GameBoardComponent{
                     this.roundMoves++;
 
                     console.log("current board state");
-                    console.log(this.origBoard);
+                    console.log("gameboardCompo",this.origBoard);
                     console.log("moves left: "+this.roundMoves);
                     
                     if( this.winner ){
@@ -266,7 +266,7 @@ export class GameBoardComponent{
                         this.alertMsjEvent.emit(this.alertMsj);
                         this.isaWinnerEvent.emit(this.winner)
                         //this.resetBoard()
-                                              
+                        this.roundMoves = 0;                 
                     }else{
                         this.playerOne = !this.playerOne;
                         this.currentTurnEvent.emit(this.playerOne);//evento que avisa cambio de turno
@@ -276,6 +276,9 @@ export class GameBoardComponent{
 
                 case "online-multiplayer":
                 break;
+
+                console.log("gameboardComponent",this.origBoard);
+                
             }
         
            

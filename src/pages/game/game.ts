@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationService } from '../../services/configuration.service';
@@ -44,7 +44,8 @@ export class GamePage {
     public navParams: NavParams, 
     private alertCtrl: AlertController, 
     private IA : AIService, 
-    private cfgService: ConfigurationService) {
+    private cfgService: ConfigurationService, 
+    private popover: PopoverController) {
     this.playerOneScore = 0;
     this.playerTwoOrAIScore = 0;
     this.winner= false;
@@ -161,13 +162,13 @@ export class GamePage {
         this.alertMsj = "Player One Wins the game!";       
       }else if(this.playerOneScore == this.playerTwoOrAIScore){
         console.log("ITS A TIE!!!");
-        this.alertMsj = "ITS A TIE!!!";       
+        this.alertMsj = "Its A Draw!!!";       
       }else{
         console.log("Player Two or Bot Wins!");
         if(this.gametype=="singleplayer")
           this.alertMsj = "Robot The Game!";
         else
-          this.alertMsj = "Player Wins The Game!"
+          this.alertMsj = "Player Two Wins The Game!"
       }
 
       this.showAlert(this.alertMsj);
@@ -177,7 +178,7 @@ export class GamePage {
         if(this.winner){
           this.alertMsj = "Robot wins the round";
         }else{
-          this.alertMsj = "Round Tie!";
+          this.alertMsj = "Round Draw!";
         }
         
       this.showAlert(this.alertMsj);
@@ -186,7 +187,32 @@ export class GamePage {
   }
 
   showAlert(alertMsj: string){
-    let alert = this.alertCtrl.create({
+
+    let alertPop : Popover = this.popover.create('ModalGameAlertPage',
+    {
+      'message': alertMsj,
+      'currentRound':this.currentRound,
+      'totalRounds': this.rounds
+    },{ enableBackdropDismiss: false });
+
+    alertPop.onDidDismiss((data)=>{
+      console.log("continue:true, end:false =>" +data);
+      if(data != null){
+        if(data){
+          this.resetBoard();
+          this.restRoundTimer();
+          this.startTimer();
+        }else{
+          //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));//hacemos 2 niveles pop ()
+          this.navCtrl.pop();
+        }
+      }
+      
+    });
+    alertPop.present();
+    
+    
+    /*let alert = this.alertCtrl.create({
         title: "End Of Round",
         subTitle: alertMsj,
         buttons: ['ok']
@@ -200,7 +226,7 @@ export class GamePage {
         this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));//hacemos 2 niveles pop ()
       }
     });
-    alert.present();
+    alert.present();*/
   }
 
   restRoundTimer(){
@@ -211,6 +237,8 @@ export class GamePage {
 
   resetBoard(){
     this.gameboard = ["0","1","2","3","4","5","6","7","8"];
+    console.log("gameboard",this.gameboard);
+    
     this.winner = false;
     //this.moves = 0;
     this.playerOneCurrentTurn = true;

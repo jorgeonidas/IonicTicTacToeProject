@@ -1,0 +1,29 @@
+<ion-content padding no-bounce>
+  <ion-grid >
+    <ion-row>
+      <ion-col>
+        <div style="height: 15vh"></div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-end>
+      <ion-col text-center><h1>{{message}}</h1></ion-col>
+    </ion-row>
+    <ion-row align-items-end *ngIf="currentRound <= totalRounds; else endgame">
+      <ion-col align-self-center col-6>
+        <button block ion-button color="danger" (click)="leaveGame(false)">Retire</button>
+      </ion-col>
+      <ion-col col-6>
+        <button block large color="gold" ion-button (click)="nextRound(true)"><p>Next Round</p></button>
+      </ion-col>
+    </ion-row>
+
+    <ng-template #endgame>
+      <ion-row align-items-end>
+        <ion-col col-3></ion-col>
+        <ion-col align-self-center col-6><button block ion-button color="danger" (click)="leaveGame(false)">Leave Game</button></ion-col>
+        <ion-col col-3></ion-col>
+      </ion-row>
+    </ng-template>
+    
+  </ion-grid>
+</ion-content>
