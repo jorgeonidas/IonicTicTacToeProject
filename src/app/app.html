@@ -1,4 +1,4 @@
-<ion-menu [content]="content" [swipeEnabled]="false" side="right" id="settings" type="overlay">
+<ion-menu [content]="content" [swipeEnabled]="false" side="right" id="settings" type="overlay"  (ionClose)="menuClosed()">
   <!--overlay tapa los botones del toolbar-->
 
   <ion-content padding>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { ViewController, PopoverController, Toggle, App } from "ionic-angular";
 import { SettingsMenuPage } from "../settings-menu";
-import { ConfigurationService } from "../../../services/configuration.service";
+import { ConfigurationServiceDB } from "../../../services/configurationdb.service";
 import { ConfigurationModel } from "../../../models/configuration";
 import 'rxjs/Rx';
 import { MainMenuPage } from "../../main-menu/main-menu";
+import { Events } from 'ionic-angular';
 @Component({
     template: `<ion-grid text-center>
                     <ion-row>
@@ -62,51 +63,74 @@ export class ConfigurationPage implements OnInit{
     sfx: boolean;
     notifications: boolean;
 
+    //cfgmodel: ConfigurationModel;
+
     //configForm: FormGroup;
 
     public configObj: ConfigurationModel;
     errorMsj: string;
-    constructor(private viewCtrl: ViewController, private popoverCtrl: PopoverController, private cfgService: ConfigurationService, private appCtrl: App){}
+    constructor(private viewCtrl: ViewController, 
+        private popoverCtrl: PopoverController, 
+        private cfgService: ConfigurationServiceDB, 
+        private appCtrl: App,
+        private cfgModel: ConfigurationModel, private events: Events ){       
 
-    ngOnInit(){
-        
-        console.log('ngOnInit: ');
-        //this.cfgService.clear();
-        this.cfgService.get('sfx').then((val)=>{
-            console.log(val);
-            this.sfx = val; 
-          });
-
-        this.cfgService.get('music').then((val)=>{
-            console.log(val);
-            this.music = val; 
-        });
-
-        this.cfgService.get('currentLang').then((val)=>{
-            console.log(val);
-            this.currentLang = val; 
-        });
-
-        this.cfgService.get('notifications').then((val)=>{
-            console.log(val);
-            this.notifications = val; 
-        });           
     }
 
+
+
+    ngOnInit(){
+        //actualizamos desde modelo para evitar animaciones asincronicas
+        this.sfx = this.cfgModel.sfx;
+        this.music = this.cfgModel.music;
+        this.notifications = this.cfgModel.notifications;
+        this.currentLang = this.cfgModel.language;
+
+        /*
+        console.log('ngOnInit: ');
+        //this.cfgService.clear();
+        this.cfgService.get('sfx').then((val) => {
+            console.log(val);
+            this.sfx = val;
+            //this.cfgmodel.setSfx(val);
+        });
+
+        this.cfgService.get('music').then((val) => {
+            console.log(val);
+            this.music = val;
+        });
+
+        this.cfgService.get('currentLang').then((val) => {
+            console.log(val);
+            this.currentLang = val;
+        });
+
+        this.cfgService.get('notifications').then((val) => {
+            console.log(val);
+            this.notifications = val;
+        });
+        
+        //this.sfx = this.cfgmodel.sfx;*/
+    }
+    //actualizo tanto bd como modelo
     onToggle(toggle: Toggle, option: string){
         console.log(toggle.value);
         console.log(option);
-        /*switch(option){
+        switch(option){
             case 'music':
                 this.music = toggle.value;
+                this.cfgModel.music = this.music;
                 break;
             case 'sfx':
                 this.sfx = toggle.value;
+                this.cfgModel.sfx = this.sfx;
                 break;
             case 'notifications':
-                this.notifications = toggle.value; 
+                this.notifications = toggle.value;
+                this.cfgModel.notifications = this.notifications; 
                 break;
-        }*/
+        }
+
         this.cfgService.set(option,toggle.value);
     }
 
@@ -121,15 +145,17 @@ export class ConfigurationPage implements OnInit{
         const popover = this.popoverCtrl.create(SettingsMenuPage);
         popover.present();
         this.viewCtrl.dismiss();
+        this.events.publish('settings:changed');//app atrapara este evento
     }
 
     closeMenu(){
         this.viewCtrl.dismiss();
+        this.events.publish('settings:changed');//app atrapara este evento
     }
 
     leaveGame(){
         console.log("leave game event");
-        
+        this.events.publish('settings:changed');//app atrapara este evento
         this.cfgService.setLeavingCurrentGame(true); //el servicio guardara si abandono el juego
         this.viewCtrl.dismiss();
         this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-3),{animate:false}); //hago pop dos niveles

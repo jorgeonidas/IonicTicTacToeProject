@@ -55,7 +55,8 @@ export class GridSelectorComponent{
     @Output() isOverTwoEmmiter = new EventEmitter<boolean>();
 
     constructor(private dragService : DragulaService){
-
+        const bag: any = this.dragService.find('bag');
+        if (bag !== undefined ) this.dragService.destroy('bag');
         //configuracion
         dragService.setOptions('bag', { 
             copy: true,

@@ -4,4 +4,8 @@ page-game {
         height: 200px;
         background: gray;
     }
+
+    .no-scroll .scroll-content{
+        overflow: hidden;
+    }
 }

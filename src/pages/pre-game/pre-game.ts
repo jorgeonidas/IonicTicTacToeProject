@@ -14,7 +14,7 @@ export class PreGamePage {
   portraitOne :string;
   portraitTwo: string;
   gamePage = GamePage;
-
+  timeout : any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -26,21 +26,21 @@ export class PreGamePage {
     this.portraitOne = this.navParams.get('playerOnePortrait');
     this.portraitTwo = this.navParams.get('playerTwoOrBotPortrait');
     console.log(this.portraitOne, this.portraitTwo);
+
+    this.loadGamePage();
     
   }
 
-
-  onLoadGame(){
-    console.log("click anywhere");
-    console.log(this.gameType, this.rounds, this.difficulty, this.portraitOne, this.portraitTwo);
-    this.navCtrl.push(this.gamePage,
-      {gameType: this.gameType, 
-      rounds: this.rounds, 
-      difficulty: this.difficulty,
-      portraitOne: this.portraitOne,
-      portraitTwo: this.portraitTwo}, {animate: false}
-    );
-    
+  loadGamePage(){
+    this.timeout = setTimeout(() => {
+      this.navCtrl.push(this.gamePage,
+        {gameType: this.gameType, 
+        rounds: this.rounds, 
+        difficulty: this.difficulty,
+        portraitOne: this.portraitOne,
+        portraitTwo: this.portraitTwo}, {animate: false}
+      );
+    }, 3000);
   }
 
 }

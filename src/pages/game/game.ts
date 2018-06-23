@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
-import { ConfigurationService } from '../../services/configuration.service';
+import { ConfigurationServiceDB } from '../../services/configurationdb.service';
 import { Title } from '@angular/platform-browser';
 
 @IonicPage()
@@ -47,7 +47,7 @@ export class GamePage {
     public navParams: NavParams, 
     private alertCtrl: AlertController, 
     private IA : AIService, 
-    private cfgService: ConfigurationService, 
+    private cfgService: ConfigurationServiceDB, 
     private popover: PopoverController) 
     {
       this.playerOneScore = 0;
@@ -118,7 +118,7 @@ export class GamePage {
         enableBackdropDismiss: false
       })
       this.initialAlert.present();
-    },2000);
+    },1500);
     //3.-GO!
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
@@ -127,13 +127,13 @@ export class GamePage {
         enableBackdropDismiss: false
       })
       this.initialAlert.present();
-    },4000);
+    },3000);
     //START GAME!
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
       this.restRoundTimer();
       this.startTimer();
-    },5000)
+    },4000)
   }
 
   setCurrentBoardStatus(board: string[]){

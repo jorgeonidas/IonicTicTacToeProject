@@ -13,7 +13,7 @@ import { SettingsMenuPage } from '../pages/settings-menu/settings-menu';
 import { ImportantInfoPage } from '../pages/settings-menu/importatn-info/important-info';
 import { AboutInfoPage } from '../pages/settings-menu/about-info/about-info';
 import { ConfigurationPage } from '../pages/settings-menu/configuration/configuration';
-import { ConfigurationService } from '../services/configuration.service';
+import { ConfigurationServiceDB } from '../services/configurationdb.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -33,6 +33,7 @@ import {TokenGaleryPage} from '../pages/token-galery/token-galery';
 
 //dragula
 import { DragulaModule } from 'ng2-dragula';
+import { ConfigurationModel } from '../models/configuration';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { DragulaModule } from 'ng2-dragula';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ConfigurationService,
+    ConfigurationServiceDB,
+    ConfigurationModel,
     AuthService,
     AIService
   ]
