@@ -15,6 +15,7 @@ export class CharacterSelectionPage {
   gameType: string='local-multiplayer';
   rounds: number = 1;
   difficulty: string = 'easy';
+  isSinglePlayer: boolean;
 
   gamePage = GamePage;
   preGamePage = PreGamePage;
@@ -37,9 +38,10 @@ export class CharacterSelectionPage {
     console.log('ionViewDidLoad CharacterSelectionPage');
     this.gameType = this.navParams.get('selection'); //mientras testeo
     
-    console.log(this.gameType); 
+    console.log("gametype: "+this.gameType); 
     this.isOverOne = false;
     this.isOverTwo = false;
+     
   }
 
   onRoundSelection(nr: number){
@@ -55,6 +57,15 @@ export class CharacterSelectionPage {
   }
 
   onClickPlay(){
+    //si los jugadores no seleccionaron nada asignale personaje al azar
+    if(this.playerOnePortrait == null){
+      this.randPortraitSelectOne();
+    }
+
+    if(this.playerTwoOrBotPortrait== null){
+      this.randPortraitSelectTwo();
+    }
+
     this.navCtrl.push(this.preGamePage,
       {gameType: this.gameType, 
       rounds: this.rounds, 
@@ -66,6 +77,7 @@ export class CharacterSelectionPage {
   }
 
   onClickBack(){
+    this.playerSelService.resetPicks();
     this.navCtrl.pop({animate:false});
   }
 

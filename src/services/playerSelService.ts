@@ -1,28 +1,25 @@
 export class PlayerSelectorService{
 
-    portraitUris: string[];
-    public pOnePick: boolean[] = Array(8);
-    public pTwoOrBotPick: boolean[] =  Array(8);
+    portraitUris :string[]  = 
+    [
+      'assets/imgs/enojado.png',
+      'assets/imgs/cansado.png',
+      'assets/imgs/enamorado.png',
+      'assets/imgs/escondido.png',
+      'assets/imgs/like.png',
+      'assets/imgs/upps.png',
+      'assets/imgs/sorprendido.png',
+      'assets/imgs/lol.png',
+    ];
+
+    public pOnePick: boolean[];
+    public pTwoOrBotPick: boolean[] ;
+
+    isSinglePlayer: boolean;
+
     constructor(){
-        this.portraitUris = 
-        [
-          'assets/imgs/enojado.png',
-          'assets/imgs/cansado.png',
-          'assets/imgs/enamorado.png',
-          'assets/imgs/escondido.png',
-          'assets/imgs/like.png',
-          'assets/imgs/upps.png',
-          'assets/imgs/sorprendido.png',
-          'assets/imgs/lol.png',
-        ];
-
-        for (let index = 0; index < this.pOnePick.length; index++) {
-            this.pOnePick[index] = false;
-            this.pTwoOrBotPick[index] = false;
-        }
-        console.log(this.pOnePick, this.pTwoOrBotPick);
-        
-
+        this.pOnePick = new Array(this.portraitUris.length);
+        this.pTwoOrBotPick = new Array(this.portraitUris.length);
     }
 
     public randomPortraitPick() : string{
@@ -47,6 +44,22 @@ export class PlayerSelectorService{
         }
 
         this.pTwoOrBotPick[pickedIndex] = true;
+    }
+
+    public setSinglePlayer(value: boolean){
+        this.isSinglePlayer = value;
+    }
+
+    public getIsSinglePlayer(){
+        return this.isSinglePlayer;
+    }
+
+    public resetPicks(){
+        for (let index = 0; index < this.pOnePick.length; index++) {
+            this.pOnePick[index] = false;
+            this.pTwoOrBotPick[index] = false;
+        }
+        console.log(this.pOnePick, this.pTwoOrBotPick);
     }
 
 }

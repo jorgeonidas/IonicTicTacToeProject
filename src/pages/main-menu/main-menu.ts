@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController, MenuController } from 'ionic-angular';
 import { SettingsMenuPage } from '../settings-menu/settings-menu';
 import { CharacterSelectionPage } from '../character-selection/character-selection';
+import { PlayerSelectorService } from '../../services/playerSelService';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class MainMenuPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private popoverCtrl: PopoverController,
-              private menuCtrl: MenuController ) {
+              private menuCtrl: MenuController,
+              private playerSelService: PlayerSelectorService ) {
   }
 
   ionViewDidLoad() {
@@ -30,6 +32,11 @@ export class MainMenuPage {
   }
 
   onGameSelectio(selected: string){
+    this.playerSelService.setSinglePlayer(false);
+    
+    if(selected == 'singleplayer')
+      this.playerSelService.setSinglePlayer(true);
+
     this.navCtrl.push(CharacterSelectionPage, {selection: selected}, {animate: false});
   }
   //activar menuSettings

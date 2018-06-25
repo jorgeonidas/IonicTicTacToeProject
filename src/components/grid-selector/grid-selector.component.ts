@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from "@angular/core";
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
 import { PlayerSelectorService } from "../../services/playerSelService";
 
@@ -72,6 +72,7 @@ import { PlayerSelectorService } from "../../services/playerSelService";
 })
 
 export class GridSelectorComponent{
+    p2OrBotText: string;
 
     options: any;
     canDrag: boolean; //puedo arrastrar?
@@ -108,6 +109,7 @@ export class GridSelectorComponent{
                 if(target.id !== source.id)
                     return true;
             }
+
           });
 
         //eventos
@@ -127,11 +129,18 @@ export class GridSelectorComponent{
         dragService.out.subscribe((value)=>{
             this.onOut(value);
         });
-
-        
-
+        //para poner el caracter correcto al jugador 2 'R' o 'P2'
+        this.setSingleOrMulti(this.playerSelService.getIsSinglePlayer());
     }
-    
+
+    setSingleOrMulti(single: boolean){
+        if(single){
+            this.p2OrBotText = 'R';
+        }else{
+            this.p2OrBotText = 'P2'
+        }
+    }
+
     onDrag(value){
         //console.log("arrastrando: "+value[2]);
     }
@@ -168,13 +177,17 @@ export class GridSelectorComponent{
         let currSrc : string = value[1].currentSrc;
         let index = currSrc.lastIndexOf("/");
         this.asset = "assets/imgs/" + currSrc.substring(index+1,currSrc.length); //substring que dara la direccion del asset
+        let portraitIndex = this.playerSelService.getPortraitIndex(this.asset);
         console.log("extracterd "+this.asset);
         if(value[2].id === "portraitselectorp1"){         
             this.pOneEmmiter.emit(this.asset);//la info del asset actualizara la vista 
             value[1].remove(); //remuevo para evitar duplicados
+            this.playerSelService.setPickPone(portraitIndex);
+            
         }else if(value[2].id === "portraitselectorp2ob"){
             this.pTwoOrBotEmmiter.emit(this.asset);
             value[1].remove(); 
+            this.playerSelService.setPickTwoOrBot(portraitIndex);
         }
 
     }
