@@ -31,9 +31,9 @@ import { AIService } from '../services/iaService';
 import { TokenSelectorComponent } from '../components/token-selector/token-selector';
 import {TokenGaleryPage} from '../pages/token-galery/token-galery';
 
-//dragula
-import { DragulaModule } from 'ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';//dragula
 import { ConfigurationModel } from '../models/configuration';
+import { PlayerSelectorService } from '../services/playerSelService';
 
 
 @NgModule({
@@ -91,7 +91,8 @@ import { ConfigurationModel } from '../models/configuration';
     ConfigurationServiceDB,
     ConfigurationModel,
     AuthService,
-    AIService
+    AIService,
+    PlayerSelectorService
   ]
 })
 export class AppModule {}

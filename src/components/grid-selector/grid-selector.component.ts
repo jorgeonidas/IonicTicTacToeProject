@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter } from "@angular/core";
 import { DragulaService } from 'ng2-dragula/ng2-dragula';
+import { PlayerSelectorService } from "../../services/playerSelService";
 
 @Component({
     selector: 'grid-selector-component',
@@ -64,6 +65,7 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
         .player-indicator.p2 {
             color: #f26fe5;
             background: #c7d1e0;
+            right: 0;
         }
 
     `]
@@ -82,7 +84,7 @@ export class GridSelectorComponent{
     @Output() isOverOneEmmiter = new EventEmitter<boolean>();
     @Output() isOverTwoEmmiter = new EventEmitter<boolean>();
 
-    constructor(private dragService : DragulaService){
+    constructor(private dragService : DragulaService, private playerSelService: PlayerSelectorService){
         const bag: any = this.dragService.find('bag');
         if (bag !== undefined ) this.dragService.destroy('bag');
         //configuracion

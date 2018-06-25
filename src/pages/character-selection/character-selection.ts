@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { GamePage } from '../game/game';
 import { PreGamePage } from '../pre-game/pre-game';
+import { PlayerSelectorService } from '../../services/playerSelService';
 
 @IonicPage()
 @Component({
@@ -28,30 +29,17 @@ export class CharacterSelectionPage {
   portraitOne = new Array(1);
   portraitTwo = new Array(1);
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private playerSelService: PlayerSelectorService) {
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CharacterSelectionPage');
-    //this.gameType = this.navParams.get('selection'); //mientras testeo
+    this.gameType = this.navParams.get('selection'); //mientras testeo
     
     console.log(this.gameType); 
     this.isOverOne = false;
     this.isOverTwo = false;
-
-    //llenamos el array de assets
-    this.portraitsUrls = 
-    [
-      'assets/imgs/enojado.png',
-      'assets/imgs/cansado.png',
-      'assets/imgs/enamorado.png',
-      'assets/imgs/escondido.png',
-      'assets/imgs/like.png',
-      'assets/imgs/upps.png',
-      'assets/imgs/sorprendido.png',
-      'assets/imgs/lol.png',
-    ];
   }
 
   onRoundSelection(nr: number){
@@ -111,10 +99,16 @@ export class CharacterSelectionPage {
   }
 
   randPortraitSelectOne(){
-    this.updatePlayerOnePortrati(this.portraitsUrls[Math.floor(Math.random()*this.portraitsUrls.length)]);
+    let uri = this.playerSelService.randomPortraitPick();
+    this.updatePlayerOnePortrati(uri);
+    let index = this.playerSelService.getPortraitIndex(uri);
+    this.playerSelService.setPickPone(index);
   }
 
   randPortraitSelectTwo(){
-    this.updatePlayerTwoOrBotProtrait(this.portraitsUrls[Math.floor(Math.random()*this.portraitsUrls.length)]);
+    let uri = this.playerSelService.randomPortraitPick();
+    this.updatePlayerTwoOrBotProtrait(uri);
+    let index = this.playerSelService.getPortraitIndex(uri);
+    this.playerSelService.setPickTwoOrBot(index);
   }
 }
