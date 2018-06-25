@@ -38,6 +38,10 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
             border-right: 2px solid gray;
         }
 
+        img{
+            max-height: 8rem;
+        }
+
     `]
 })
 

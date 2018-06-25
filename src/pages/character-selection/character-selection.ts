@@ -23,12 +23,13 @@ export class CharacterSelectionPage {
   playerTwoOrBotPortrait: string;
   isOverOne: boolean;
   isOverTwo: boolean;
+  portraitsUrls : string[];
   //dragulaModel
   portraitOne = new Array(1);
   portraitTwo = new Array(1);
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+    
   }
 
   ionViewDidLoad() {
@@ -38,6 +39,19 @@ export class CharacterSelectionPage {
     console.log(this.gameType); 
     this.isOverOne = false;
     this.isOverTwo = false;
+
+    //llenamos el array de assets
+    this.portraitsUrls = 
+    [
+      'assets/imgs/enojado.png',
+      'assets/imgs/cansado.png',
+      'assets/imgs/enamorado.png',
+      'assets/imgs/escondido.png',
+      'assets/imgs/like.png',
+      'assets/imgs/upps.png',
+      'assets/imgs/sorprendido.png',
+      'assets/imgs/triste.png',
+    ];
   }
 
   onRoundSelection(nr: number){
@@ -94,5 +108,13 @@ export class CharacterSelectionPage {
   setOverTwoPortrait(value: boolean){
     this.isOverTwo = value;
     console.log(this.isOverTwo);
+  }
+
+  randPortraitSelectOne(){
+    this.updatePlayerOnePortrati(this.portraitsUrls[Math.floor(Math.random()*this.portraitsUrls.length)]);
+  }
+
+  randPortraitSelectTwo(){
+    this.updatePlayerTwoOrBotProtrait(this.portraitsUrls[Math.floor(Math.random()*this.portraitsUrls.length)]);
   }
 }
