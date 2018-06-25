@@ -42,6 +42,30 @@ import { DragulaService } from 'ng2-dragula/ng2-dragula';
             max-height: 8rem;
         }
 
+        .ollie-character-wrapper {
+            position: relative;
+        }
+
+        .player-indicator-wrapper {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .player-indicator.p1 {
+            color: #488aff;
+            background: #c7d1e0;
+        }
+
+        .player-indicator.p2 {
+            color: #f26fe5;
+            background: #c7d1e0;
+        }
+
     `]
 })
 
