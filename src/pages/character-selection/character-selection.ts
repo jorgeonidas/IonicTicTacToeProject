@@ -50,7 +50,7 @@ export class CharacterSelectionPage {
       'assets/imgs/like.png',
       'assets/imgs/upps.png',
       'assets/imgs/sorprendido.png',
-      'assets/imgs/triste.png',
+      'assets/imgs/lol.png',
     ];
   }
 
