@@ -158,6 +158,6 @@ export class ConfigurationPage implements OnInit{
         this.events.publish('settings:changed');//app atrapara este evento
         this.cfgService.setLeavingCurrentGame(true); //el servicio guardara si abandono el juego
         this.viewCtrl.dismiss();
-        this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-3),{animate:false}); //hago pop dos niveles
+        this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-4),{animate:false}); //hago pop 3 niveles
     }
 }

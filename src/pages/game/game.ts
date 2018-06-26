@@ -247,8 +247,7 @@ export class GamePage {
           this.restRoundTimer();
           this.startTimer();
         }else{
-          this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-4),{animate: false});//hacemos 3 niveles pop ()
-          //this.navCtrl.pop();
+          this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-4),{animate: false});//hacemos 2 niveles pop ()
         }
       }
       
@@ -265,9 +264,7 @@ export class GamePage {
   resetBoard(){
     this.gameboard = ["0","1","2","3","4","5","6","7","8"];
     console.log("gameboard",this.gameboard);
-    
     this.winner = false;
-    //this.moves = 0;
     this.playerOneCurrentTurn = true;
 
   }
