@@ -114,6 +114,7 @@ export class GameBoardComponent{
     @Output() isaWinnerEvent = new EventEmitter<boolean>();
     @Output() currentTurnEvent = new EventEmitter<boolean>();
 
+    @Input() gameStart: boolean = false;
     
     constructor(private alertCtrl: AlertController, private IA : AIService){  
         this.isIAthinking = false;    
@@ -123,7 +124,7 @@ export class GameBoardComponent{
     onCellClickled(index: number){
         console.log(this.gameType);
         
-        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.IA.isIaTinking()/*&& !this.winner) || this.roundMoves <= 7*/){
+        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.IA.isIaTinking() && this.gameStart/*&& !this.winner) || this.roundMoves <= 7*/){
             
             switch(this.gameType){
                
@@ -214,7 +215,7 @@ export class GameBoardComponent{
                                 this.alertMsjEvent.emit(this.alertMsj);
                                 this.isaWinnerEvent.emit(this.winner); 
                             }
-                            
+
                             this.isIAthinking = false;
                             this.IA.setIaTinking(this.isIAthinking);
                             this.currentTurnEvent.emit(this.IA.isIaTinking());

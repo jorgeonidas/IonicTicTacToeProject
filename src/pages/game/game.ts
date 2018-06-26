@@ -42,6 +42,7 @@ export class GamePage {
   moves = 0;
   //
   initialAlert : Alert;
+  gameDidStart: boolean;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -90,12 +91,10 @@ export class GamePage {
         break;
     }
     console.log("turn interval: " + this.turnInterval);
+    this.gameDidStart = false;
     //ACA IMPLEMENTO TIME PRE JUEGO
     this.gameInitializer();
-
     this.toltalTurnBar = 100;
-    //this.restRoundTimer();
-    //this.startTimer();
 
   }
 
@@ -106,11 +105,14 @@ export class GamePage {
 
   gameInitializer(){
     //1.-Are you good enough?
-    this.initialAlert = this.alertCtrl.create({
-      title: "Are you good enough?",
-      enableBackdropDismiss: false
-    });
-    this.initialAlert.present();
+    this.timeout = setTimeout(() => {
+      this.initialAlert = this.alertCtrl.create({
+        title: "Are you good enough?",
+        enableBackdropDismiss: false
+      });
+      this.initialAlert.present();
+    }, 1000);
+    
     //2.-Ready
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
@@ -134,6 +136,7 @@ export class GamePage {
       this.initialAlert.dismiss();
       this.restRoundTimer();
       this.startTimer();
+      this.gameDidStart = true;
     },4000)
   }
 
