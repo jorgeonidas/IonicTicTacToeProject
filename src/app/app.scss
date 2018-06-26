@@ -46,3 +46,7 @@
     opacity:.2;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter:alpha(opacity=20)
 }
+//no scrollo content
+.no-scroll .scroll-content{
+    overflow: hidden;
+}
