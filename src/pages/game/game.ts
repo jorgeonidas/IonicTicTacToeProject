@@ -47,26 +47,22 @@ export class GamePage {
     public navParams: NavParams, 
     private alertCtrl: AlertController, 
     private IA : AIService, 
-    private cfgService: ConfigurationServiceDB, 
-    private popover: PopoverController) 
-    {
-      this.playerOneScore = 0;
-      this.playerTwoOrAIScore = 0;
-      this.winner= false;
-      this.playerOneWinsRound = false;
-      //barras de vida
-      this.playerOneHealth = 100;
-      this.playerTwoOrBothealth = 100;
-      //turno actual
-      //this.gametype= 'local-multiplayer';
-      this.playerOneCurrentTurn = true;
-      //no estoy dejando el juego
-      this.cfgService.setLeavingCurrentGame(false);
-    
-  }
+    private cfgService: ConfigurationServiceDB,
+    private popover: PopoverController) {
+    this.playerOneScore = 0;
+    this.playerTwoOrAIScore = 0;
+    this.winner = false;
+    this.playerOneWinsRound = false;
+    //barras de vida
+    this.playerOneHealth = 100;
+    this.playerTwoOrBothealth = 100;
+    //turno actual
+    //this.gametype= 'local-multiplayer';
+    this.playerOneCurrentTurn = true;
+    //no estoy dejando el juego
+    this.cfgService.setLeavingCurrentGame(false);
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GamePage');
+
     this.gameData = this.navParams.data;
     console.log(this.gameData);
     this.gametype = this.navParams.get('gameType');
@@ -75,8 +71,8 @@ export class GamePage {
     this.portraitOne = this.navParams.get('portraitOne');
     this.portraitTwo = this.navParams.get('portraitTwo');
     console.log(this.portraitOne, this.portraitTwo);
-    
-    
+
+
     switch (this.difficulty) {
       case 'easy':
         this.turnInterval = 6;
@@ -89,10 +85,10 @@ export class GamePage {
       case 'hard':
         this.turnInterval = 2;
         break;
-    
+
       default:
         break;
-    } 
+    }
     console.log("turn interval: " + this.turnInterval);
     //ACA IMPLEMENTO TIME PRE JUEGO
     this.gameInitializer();
@@ -100,6 +96,11 @@ export class GamePage {
     this.toltalTurnBar = 100;
     //this.restRoundTimer();
     //this.startTimer();
+
+  }
+
+  ionViewDidLoad() {
+    
     
   }
 
@@ -205,7 +206,7 @@ export class GamePage {
       }else{
         console.log("Player Two or Bot Wins!");
         if(this.gametype=="singleplayer")
-          this.alertMsj = "Robot The Game!";
+          this.alertMsj = "Robot The Wins Game!";
         else
           this.alertMsj = "Player Two Wins The Game!"
       }
@@ -213,13 +214,14 @@ export class GamePage {
       this.showAlert(this.alertMsj);
     }else{ //Nueva ronda
       //testeando con el fin de hacer un nuevo alert que reinicie el round
-      if(this.gametype=='singleplayer' && !this.playerOneWinsRound)
+      if(this.gametype=='singleplayer' && !this.playerOneWinsRound){
+        console.log("singleplayer result: "+this.winner+" | true: IA win, false: ITS A DRAW");       
         if(this.winner){
           this.alertMsj = "Robot wins the round";
         }else{
           this.alertMsj = "Round Draw!";
         }
-        
+      }
       this.showAlert(this.alertMsj);
       console.log("new round");
     }
@@ -242,30 +244,13 @@ export class GamePage {
           this.restRoundTimer();
           this.startTimer();
         }else{
-          //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));//hacemos 2 niveles pop ()
-          this.navCtrl.pop();
+          this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-4),{animate: false});//hacemos 3 niveles pop ()
+          //this.navCtrl.pop();
         }
       }
       
     });
     alertPop.present();
-    
-    
-    /*let alert = this.alertCtrl.create({
-        title: "End Of Round",
-        subTitle: alertMsj,
-        buttons: ['ok']
-    })
-    alert.onDidDismiss(()=>{
-      if(this.currentRound <= this.rounds){
-        this.resetBoard();
-        this.restRoundTimer();
-        this.startTimer();
-      }else{
-        this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));//hacemos 2 niveles pop ()
-      }
-    });
-    alert.present();*/
   }
 
   restRoundTimer(){
@@ -287,7 +272,7 @@ export class GamePage {
   startTimer(){
     this.timeout = setInterval( () =>{
       this.timeleft--
-      console.log(this.timeleft);
+      //console.log(this.timeleft);
       this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
       //console.log(this.toltalTurnBar);
 
@@ -299,39 +284,45 @@ export class GamePage {
         switch(this.gametype){
           
           case 'local-multiplayer':          
-          this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-          //console.log("cambio de turno");
-          //console.log(this.playerOneCurrentTurn);
+            this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
           break;
 
           case 'singleplayer':          
-            if(this.playerOneCurrentTurn){
+            if (this.playerOneCurrentTurn) {
               this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
               this.IA.setDelay(this.turnInterval)
-              //hilo para hacer el cambio de turno y reseteo del timer
-              setTimeout(()=>{
-                this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-                this.restRoundTimer();
-                if(this.IA.winning(this.gameboard,'X')){
-                  console.log("IA WINS!");
-                  //aca seteo score!!!!!!!!/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                  this.setRoundWinner(false);
-                  this.winOrTie(true);             
-                }
-              },
-                this.IA.getDelay()+100); //para que lo ejecute justo despues del movimiento de la pc
-                                          
               //tenemos que decirle a la pc que ejecute su jugada
-              this.IA.IATurn(this.gameboard, this.difficulty);
-              this.restRoundTimer();
-              console.log(this.gameboard);
-            }
-            //this.playerOneCurrentTurn = !this.playerOneCurrentTurn;                 
+              this.IA.IATurn(this.gameboard, this.difficulty);//La jugada de La IA se ejecuta en paralelo
+              //hilo para hacer el cambio de turno y reseteo del timer
+              setTimeout(() => {
+                console.log("board despuesd que IA juega: " + this.gameboard);
+                console.log("espacios disponibles: ",this.IA.emptyIndexies(this.gameboard).length);
+                
+                if (this.IA.winning(this.gameboard, 'X')) {//si gana 
+                  console.log("IA WINS!");
+                  //aca seteo score!!!!!!!!
+                  this.setRoundWinner(false);
+                  this.winOrTie(true);
+                } else if (this.IA.emptyIndexies(this.gameboard).length == 0) {//si empata
+                  console.log("IA Puts a Draw");
+                  this.setRoundWinner(false);
+                  this.winOrTie(false);
+                } else { //caso contrario el juego continua
+                  
+                  this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+                  this.restRoundTimer();
+                }
+              }, this.IA.getDelay()+100); //para que lo ejecute justo despues del movimiento de la pc          
+            }              
           break;
         }       
       }     
     },
     1000); 
+  }
+
+  checkGameAftherIA(){
+    
   }
 
   stopTimer(){

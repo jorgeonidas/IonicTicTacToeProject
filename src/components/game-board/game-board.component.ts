@@ -107,6 +107,7 @@ export class GameBoardComponent{
     @Input() gameType: string;
     @Input() difficulty: string;
     @Input() playerOne: boolean = true;
+    @Input() turnInterval: number;
     isIAthinking: boolean;
     @Input() winner: boolean = false;
     @Output() isPlayerOneEvent = new EventEmitter<boolean>();
@@ -114,8 +115,7 @@ export class GameBoardComponent{
     @Output() currentTurnEvent = new EventEmitter<boolean>();
 
     
-    constructor(private alertCtrl: AlertController, private IA : AIService){
-        console.log(this.gameType);  
+    constructor(private alertCtrl: AlertController, private IA : AIService){  
         this.isIAthinking = false;    
     }
 
@@ -159,8 +159,10 @@ export class GameBoardComponent{
                         this.IA.setIaTinking(this.isIAthinking);
                         this.currentTurnEvent.emit(this.IA.isIaTinking());
 
-                        //intervalo de delay entre 0.5 y  2s
-                        let delay = Math.floor(Math.random() * (5000 - 500 + 1) + 500); //0.5 y 2 s
+                        //intervalo de delay entre 0.5 y  2s}
+                        console.log("From board turn Interval: "+this.turnInterval);
+                        this.IA.setDelay(this.turnInterval);
+                        let delay = this.IA.getDelay();
                         console.log(delay);
                         
                         //hilo para dar la sensacion de que la pc piensa
@@ -192,13 +194,8 @@ export class GameBoardComponent{
                                 break;
                             }
                             
-                            //this.playerOne = true;
-                            this.isIAthinking = false;
-                            this.IA.setIaTinking(this.isIAthinking);
-                            this.currentTurnEvent.emit(this.IA.isIaTinking());
-
                             console.log(this.origBoard);
-                        
+                            //gana IA?
                             if(this.winning(this.origBoard, this.xChar)){
                                 //IA avisa a gamepage
                                 this.winner = true;
@@ -208,7 +205,21 @@ export class GameBoardComponent{
                                 this.isPlayerOneEvent.emit(this.playerOne);
                                 this.alertMsjEvent.emit(this.alertMsj);
                                 this.isaWinnerEvent.emit(this.winner);                
+                            }else if(this.IA.emptyIndexies(this.origBoard).length == 0){
+                                console.log("TIE!");
+                                this.alertMsj = "TIE!";
+                                this.winner = false;
+                                //this.showAlert(alertMsj);
+                                this.isPlayerOneEvent.emit(this.playerOne);
+                                this.alertMsjEvent.emit(this.alertMsj);
+                                this.isaWinnerEvent.emit(this.winner); 
                             }
+                            
+                            this.isIAthinking = false;
+                            this.IA.setIaTinking(this.isIAthinking);
+                            this.currentTurnEvent.emit(this.IA.isIaTinking());
+                            //this.playerOne = true;
+                            
                             //this.playerOne = true;//test
                         }, delay);
                     //empato?  

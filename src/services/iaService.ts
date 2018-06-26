@@ -7,8 +7,10 @@ export class AIService{
 
     setDelay(time: number){
         let maxDelay = (time*1000)/2;
-        let minDelay = 1000;
+        let minDelay = 1500;
         this.delay = Math.floor(Math.random() * (maxDelay - minDelay + 1) + minDelay);
+        console.log("delay "+ this.delay);
+        
     }
 
     getDelay(){
@@ -36,7 +38,6 @@ export class AIService{
                 break;
 
                 case "medium":
-                    let aviableSpots = this.emptyIndexies(board);
                     //mezclemos las dificultades "lanzando una moneda"
                     let moneda = Math.random()
                     console.log(moneda);
@@ -56,7 +57,7 @@ export class AIService{
 
                 
             }
-            
+            //JUGAR Y REVISAR SI GANO O PERDIO DE UNA VEZ!
             this.setIaTinking(false);
             console.log(board);
             console.log("IA SERVICE PIENSA: " + this.isIaTinking());
