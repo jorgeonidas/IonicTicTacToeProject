@@ -1,17 +1,6 @@
-<ion-header>
-
-  <ion-navbar color="fuxia" hideBackButton="true">
-    <ion-title>Tic Tac Toe Ollie</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
+<!--aca colocaremos custom header con las estadisticas-->
 
 <ion-content class="bg-main-menu-page" no-bounce>
-  <!--
-  <button ion-button  (click)="menuSettingsActive()" >SettingsToggleMenuTest</button>
-  <br>
-  <button ion-button  (click)="menuLoginActive()">LoginToggleMenuTest</button>-->
   <ion-grid no-padding>
     <!--spacing-->
     <ion-row>
@@ -71,7 +60,13 @@
           <ion-col></ion-col>
         </ion-row>
       </ion-col>
+      <ion-col>
+        
+      </ion-col>
+      
+      
       <!--"side" toolbar-->
+      <!--
       <ion-col align-self-center>
             <ion-toolbar no-padding>
 
@@ -89,7 +84,7 @@
             </ion-toolbar>
             <ion-toolbar no-padding>
   
-                  <button ion-button block (click)="menuLoginActive()" solid icon-only color="fuxia" float-right>
+                  <button  ion-button block (click)="menuLoginActive()" solid icon-only color="fuxia" float-right>
                       <ion-icon name="contact"></ion-icon>
                   </button>
   
@@ -104,6 +99,7 @@
           </ion-toolbar>
 
       </ion-col>
+    -->
     </ion-row>
     <!--free energy button-->
     <ion-row>
@@ -128,4 +124,5 @@
       <ion-col></ion-col>
     </ion-row>
   </ion-grid>
+  <vr-custom-sidemenu></vr-custom-sidemenu>
 </ion-content>

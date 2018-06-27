@@ -40,7 +40,7 @@ export class MainMenuPage {
     this.navCtrl.push(CharacterSelectionPage, {selection: selected}, {animate: false});
   }
   //activar menuSettings
-  menuSettingsActive(){
+  menuSettingsActive(){  
     this.isSettingsActive = !this.isSettingsActive;
     this.activeMenu = 'settings' //los ids de cada menu estan en app.html
     this.menuCtrl.enable(true, 'settings');
@@ -50,6 +50,7 @@ export class MainMenuPage {
   }
 
   menuLoginActive(){
+    console.log("login clicked");
     this.activeMenu = 'login'
     this.menuCtrl.enable(true, 'login');
     this.menuCtrl.enable(false, 'settings');

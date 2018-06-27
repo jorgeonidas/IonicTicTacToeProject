@@ -46,7 +46,22 @@
     opacity:.2;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
     filter:alpha(opacity=20)
 }
-//no scrollo content
+//no scroll content
 .no-scroll .scroll-content{
     overflow: hidden;
+}
+
+.sidemenu-wrapper{
+    width: 50px;
+    height: 50px;
+    background-color: aquamarine;
+    left: 0;
+    
+    position: relative;
+}
+
+.sidemenu-btn{
+    position: absolute;
+    overflow: visible;
+    left: -45px;
 }

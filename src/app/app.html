@@ -1,7 +1,11 @@
-<ion-menu [content]="content" [swipeEnabled]="false" side="right" id="settings" type="overlay"  (ionClose)="menuClosed()">
+<!--type="overlay"-->
+<ion-menu [content]="content" [swipeEnabled]="false" side="right" id="settings" type="push" (ionClose)="menuClosed()">
   <!--overlay tapa los botones del toolbar-->
-
-  <ion-content padding>
+  
+  <ion-content no-padding>
+    <div class="sidemenu-wrapper">
+      <button ion-button class="sidemenu-btn">bnt</button>
+    </div>
     <ion-grid>
       <form #cfg="ngForm">
         <!--Titulo-->
@@ -65,15 +69,13 @@
   </ion-content>
 </ion-menu>
 <!--Menu Login-->
-<ion-menu [content]="content" side="right" id="login">
-
+<ion-menu [content]="content" epersistent="false" side="right" id="login" type="overlay">
 
   <ion-content>
-
     <ion-grid>
-      <ion-row text-center>
-        <ion-col>
-          <h1 class="menu-title">User Account</h1>
+      <ion-row >
+        <ion-col >
+          <h1 text-center class="menu-title">User Account</h1>
         </ion-col>
       </ion-row>
 
@@ -148,7 +150,7 @@
 
 </ion-menu>
 <!--menu create account-->
-<ion-menu [content]="content" side="right" id="createAccount" padding>
+<ion-menu [content]="content" side="right" id="createAccount" padding type="overlay">
   <!--ojo codigo original create-account.html-->
   <ion-content>
     <ion-grid>
@@ -253,7 +255,7 @@
   </ion-content>
 </ion-menu>
 <!--Menu Important Info-->
-<ion-menu [content]="content" side="right" id="importantInfo" padding>
+<ion-menu [content]="content" side="right" id="importantInfo" padding type="overlay">
   <ion-content>
     <ion-grid no-padding>
       <!--titulo-->

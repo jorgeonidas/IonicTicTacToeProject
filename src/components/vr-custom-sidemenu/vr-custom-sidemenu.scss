@@ -1,0 +1,31 @@
+vr-custom-sidemenu {
+    .customSidebar{
+        position: absolute;
+        right: 0;
+        top: 0;
+        margin-right:0;
+        width: 20%;
+        height: 100%;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .customSidebarButtons{
+        padding-bottom: 50vh;
+        position: absolute;
+        right: 0;
+        widows: 80%;
+    }
+
+    .sideNav{
+        height: 100%;
+        width: 0;
+        top: 0;
+        right: 0;
+        position: fixed;
+        overflow-x: hidden;
+        background-color: cornsilk;
+    }
+}

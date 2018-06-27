@@ -34,6 +34,7 @@ import {TokenGaleryPage} from '../pages/token-galery/token-galery';
 import { DragulaModule } from 'ng2-dragula';//dragula
 import { ConfigurationModel } from '../models/configuration';
 import { PlayerSelectorService } from '../services/playerSelService';
+import { VrCustomSidemenuComponent } from '../components/vr-custom-sidemenu/vr-custom-sidemenu';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { PlayerSelectorService } from '../services/playerSelService';
     GameBoardComponent,
     ProgressBarComponent,
     TimerBarComponent, 
-    TokenSelectorComponent
+    TokenSelectorComponent,
+    VrCustomSidemenuComponent
 
     
   ],

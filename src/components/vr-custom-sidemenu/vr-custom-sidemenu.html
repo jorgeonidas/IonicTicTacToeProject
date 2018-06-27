@@ -1,0 +1,45 @@
+<!-- Generated template for the VrCustomSidemenuComponent component -->
+<div class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity">
+  <div class="customSidebarButtons">
+    <button *ngIf="isOpen" block ion-button (click)="closeNav()" icon-only>
+      <ion-icon name="redo"></ion-icon>
+    </button>
+    <!--settings-->
+    <button *ngIf="settingsBtnActive" ion-button block (click)=" openSettingsCategory()" icon-only>
+      <ion-icon name="settings"></ion-icon>
+    </button>
+    <button *ngIf="settingsBtnActive && settingSubActive" ion-button block icon-only>
+      <ion-icon name="information-circle"></ion-icon>
+    </button>
+    <!--User-->
+    <button *ngIf="userBtnActive" ion-button block (click)="openUserCategory()" icon-only>
+      <ion-icon name="contact"></ion-icon>
+    </button>
+    <button *ngIf="userBtnActive && userSubActive" ion-button block icon-only>
+      <ion-icon name="grid"></ion-icon>
+    </button>
+    <button *ngIf="userBtnActive && userSubActive" ion-button block  icon-only>
+      <ion-icon name="medal"></ion-icon>
+    </button>
+  </div>
+
+
+</div>
+
+<div class="sideNav" [style.width]="navWidth + '%'">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>Settings</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h1>Login</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
