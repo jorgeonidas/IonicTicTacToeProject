@@ -4,31 +4,32 @@
     <button *ngIf="isOpen" block ion-button (click)="closeNav()" icon-only>
       <ion-icon name="redo"></ion-icon>
     </button>
-    <!--settings-->
-    <button *ngIf="settingsBtnActive" ion-button block (click)=" openSettingsCategory()" icon-only>
+    <!--Settings Category-->
+    <button *ngIf="settingsBtnActive" ion-button block (click)="openSettingsCategory()" icon-only>
       <ion-icon name="settings"></ion-icon>
     </button>
-    <button *ngIf="settingsBtnActive && settingSubActive" ion-button block icon-only>
+    <button *ngIf="settingsBtnActive && settingSubActive" (click)="openImportantInfoView()" ion-button block icon-only>
       <ion-icon name="information-circle"></ion-icon>
     </button>
-    <!--User-->
+    <!--User Category-->
     <button *ngIf="userBtnActive" ion-button block (click)="openUserCategory()" icon-only>
       <ion-icon name="contact"></ion-icon>
     </button>
-    <button *ngIf="userBtnActive && userSubActive" ion-button block icon-only>
+    <button *ngIf="userBtnActive && userSubActive" (click)="openTokensView()" ion-button block icon-only>
       <ion-icon name="grid"></ion-icon>
     </button>
-    <button *ngIf="userBtnActive && userSubActive" ion-button block  icon-only>
+    <button *ngIf="userBtnActive && userSubActive" (click)="openRankingView()" ion-button block  icon-only>
       <ion-icon name="medal"></ion-icon>
     </button>
   </div>
 
 
 </div>
-
+<!--VISTAS DE MENU A DESPLEGAR DEPENDIENDO DEL VALOR EL MENU ACTIVO ACTUAL!-->
 <div class="sideNav" [style.width]="navWidth + '%'">
+    <!--Settings View!-->
     <ion-content no-padding>
-        <ion-grid>
+        <ion-grid *ngIf="currentActiveMenu == 'settings'">
           <form #cfg="ngForm">
             <!--Titulo-->
             <ion-row text-center>
@@ -88,5 +89,16 @@
             <h1>ACA VA EL LOGO DE VIRTUAL ROBOTS!</h1>
           </ion-row>
         </ion-grid>
+        <!--IMPORTANT INFO!-->
+        <h1 *ngIf="currentActiveMenu == 'settings-info'">IMPORTANT INFO</h1>
+        <!--User Login-->
+        <h1 *ngIf="currentActiveMenu == 'user-login'">User Login</h1>
+        <!--User Create-->
+        <h1 *ngIf="currentActiveMenu == 'user-create'">User Create</h1>
+        <!--User Tokens-->
+        <h1 *ngIf="currentActiveMenu == 'user-tokens'">User Tokens</h1>
+        <!--User Tokens-->
+        <h1 *ngIf="currentActiveMenu == 'user-rankings'">User Ranking</h1>
       </ion-content>
+      
 </div>

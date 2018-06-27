@@ -40,7 +40,8 @@ export class VrCustomSidemenuComponent {
 
   constructor(private cfgServiceDB: ConfigurationServiceDB, 
               private configModel: ConfigurationModel,
-              private events: Events) {
+              private events: Events) 
+    {
     console.log('Hello VrCustomSidemenuComponent Component');
     this.navWidth = 0;
     this.sidePos = 0;
@@ -52,6 +53,8 @@ export class VrCustomSidemenuComponent {
     //user and subcatd
     this.userBtnActive = true;
     this.userSubActive = false;
+    //Menu actualmente activo
+    this.currentActiveMenu = 'settings'
     //inicializar configuraciones
     //inicializando formulario de config
     this.cfgServiceDB.get('sfx').then((val) => {
@@ -109,23 +112,43 @@ export class VrCustomSidemenuComponent {
       this.sidebarOpacity = this.transparent;
     }
   }
-
+  //Settings view Deployment
   openSettingsCategory() {
-    this.openNav();
-    //disble user
-    this.userBtnActive = false;
-    this.disableAllSubCategories();
-    //enable settings subcat
-    this.settingSubActive = true;
+    if (!this.isOpen) {
+      this.openNav();
+      //disable user
+      this.userBtnActive = false;
+      this.disableAllSubCategories();
+      //enable settings subcat
+      this.settingSubActive = true;
+    }
+    this.setCurrentActiveMenu('settings');
   }
 
+  openImportantInfoView(){
+    this.setCurrentActiveMenu('settings-info');
+  }
+  //User view deployment
   openUserCategory() {
-    this.openNav();
-    this.settingsBtnActive = false;
-    this.disableAllSubCategories();
-    this.userSubActive = true;
+    if(!this.isOpen){
+      this.openNav();
+      this.settingsBtnActive = false;
+      this.disableAllSubCategories();
+      this.userSubActive = true;
+    }
+    
+    this.setCurrentActiveMenu('user-login');
   }
 
+  openTokensView(){
+    this.setCurrentActiveMenu('user-tokens');
+  }
+
+  openRankingView(){
+    this.setCurrentActiveMenu('user-rankings');
+  }
+
+  //Enable and disable sidemenu buttons states
   enableAllCategories() {
     this.settingsBtnActive = true;
     this.userBtnActive = true;
@@ -136,8 +159,14 @@ export class VrCustomSidemenuComponent {
     this.userSubActive = false;
   }
 
+  //Current Active menu to show on the sideNav
+  setCurrentActiveMenu(currMenu: string){
+    this.currentActiveMenu = currMenu;
+  }
+
+  //Initialize the settings form
   initSettings() {
-    console.log("menu opened", this.configModel.sfx, this.configModel.sfx, this.configModel.language, this.configModel.notifications);
+    console.log("from vr-custom-sidemenu", this.configModel.sfx, this.configModel.sfx, this.configModel.language, this.configModel.notifications);
 
     this.sfx = this.configModel.sfx;
     this.music = this.configModel.music;
@@ -145,6 +174,7 @@ export class VrCustomSidemenuComponent {
     this.notifications = this.configModel.notifications;
   }
 
+  //Configuration changes
   onSelectChange(selectedValue: any) {
     console.log(selectedValue);
     this.currentLang = selectedValue;
