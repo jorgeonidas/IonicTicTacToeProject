@@ -27,19 +27,66 @@
 </div>
 
 <div class="sideNav" [style.width]="navWidth + '%'">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h1>Settings</h1>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h1>Login</h1>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-content no-padding>
+        <ion-grid>
+          <form #cfg="ngForm">
+            <!--Titulo-->
+            <ion-row text-center>
+              <ion-col>
+                <h1 class="menu-title">Settings</h1>
+              </ion-col>
+            </ion-row>
+            <br>
+            <!--Toggles-->
+            <ion-row>
+              <ion-col></ion-col>
+              <ion-col col-5>
+                <h2>Music</h2>
+                <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
+              </ion-col>
+              <ion-col col-5>
+                <h2>FX</h2>
+                <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
+              </ion-col>
+            </ion-row>
+            <!--Notification checkbox-->
+            <br>
+            <ion-row>
+              <ion-col text-center>
+                <h4>Notifications</h4>
+              </ion-col>
+              <ion-col text-center>
+                <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <!--language-->
+            <ion-row>
+              <ion-col col-10 offset-3>
+    
+                <ion-select name="language" [(ngModel)]="currentLang" (ionChange)="onSelectChange($event)">
+                  <ion-option *ngFor="let language of languages" [value]="language">
+                    {{language}}
+                  </ion-option>
+                </ion-select>
+    
+              </ion-col>
+    
+            </ion-row>
+          </form>
+          <!--info buttons-->
+          <ion-row>
+            <ion-col>
+              <button color="emerald" class="borderInfButtons" block round ion-button>Official Website</button>
+              <br>
+              <button color="emerald" class="borderInfButtons" block round ion-button>Support</button>
+            </ion-col>
+          </ion-row>
+          <!--Footer-->
+          <br>
+          <br>
+          <ion-row>
+            <h1>ACA VA EL LOGO DE VIRTUAL ROBOTS!</h1>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
 </div>

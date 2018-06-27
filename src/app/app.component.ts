@@ -58,28 +58,28 @@ export class MyApp {
 
     //inicializando formulario de config
     this.configService.get('sfx').then((val) => {
-      console.log(val);
+      //console.log(val);
       this.configModel.setSfx(val);
       this.sfx = this.configModel.sfx;
 
     });
 
     this.configService.get('music').then((val) => {
-      console.log(val);
+      //console.log(val);
       this.configModel.setMusic(val);
       this.music = this.configModel.music;
 
     });
 
     this.configService.get('currentLang').then((val) => {
-      console.log(val);
+      //console.log(val);
       this.configModel.setlanguage(val);
       this.currentLang = this.configModel.language;
 
     });
 
     this.configService.get('notifications').then((val) => {
-      console.log(val);
+      //console.log(val);
       this.configModel.setNotif(val);
       this.notifications = this.configModel.notifications;
     });
