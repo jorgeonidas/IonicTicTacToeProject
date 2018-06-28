@@ -22,8 +22,9 @@ export class VrCustomSidemenuComponent {
   //User
   userBtnActive: boolean;
   userSubActive: boolean;
-  //login
+  //login & create user
   loginForm: FormGroup;
+  createUserForm: FormGroup;
   //configuraciones 
   languages = ['English', 'Spanish'];
   currentLang: string = 'English';
@@ -94,6 +95,8 @@ export class VrCustomSidemenuComponent {
 
     //Login Form
     this.initializeLoginForm();
+    //crate user form 
+    this.initializeCreateUserForm();
   }
 
   openNav() {
@@ -143,8 +146,12 @@ export class VrCustomSidemenuComponent {
       this.disableAllSubCategories();
       this.userSubActive = true;
     }
-    
+    this.initializeLoginForm();
     this.setCurrentActiveMenu('user-login');
+  }
+
+  openCreateUserView(){
+    this.setCurrentActiveMenu('user-create');
   }
 
   openTokensView(){
@@ -223,5 +230,18 @@ export class VrCustomSidemenuComponent {
       const values = this.loginForm.value;
       console.log(values);
     }
+  }
+
+  //Create Form Functions
+  public initializeCreateUserForm() {
+    this.createUserForm = new FormGroup({
+      'name': new FormControl('jorgeonidas', Validators.required),
+      'password': new FormControl('123456', Validators.required),
+      'email': new FormControl('maitest@mail.com', Validators.required),
+      'day': new FormControl(null, Validators.required),
+      'month': new FormControl(null, Validators.required),
+      'year': new FormControl(null, Validators.required),
+      'useragre': new FormControl(true, Validators.required),
+    });
   }
 }
