@@ -1,54 +1,26 @@
-<!-- Generated template for the VrCustomSidemenuComponent component -->
 <div class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity">
   <div class="customSidebarButtons">
-    <button *ngIf="isOpen" 
-      color="skipBorder"
-      block 
-      ion-button 
-      (click)="closeNav()" 
-      icon-only>
-        <ion-icon name="redo"></ion-icon>
+    <button *ngIf="isOpen" color="skipBorder" block ion-button (click)="closeNav()" icon-only>
+      <ion-icon name="redo"></ion-icon>
     </button>
     <!--Settings Category-->
-    <button color="borderMainBtns" *ngIf="settingsBtnActive" 
-      ion-button block 
-      (click)="openSettingsCategory()" 
-      icon-only
-      [class.active-sidebtn]="activeButtons[0]" 
+    <button color="borderMainBtns" *ngIf="settingsBtnActive" ion-button block (click)="openSettingsCategory()" icon-only [class.active-sidebtn]="activeButtons[0]"
       [class.unactive-sidebtn]="!activeButtons[0]">
-        <ion-icon name="settings"></ion-icon>
+      <ion-icon name="settings"></ion-icon>
     </button>
-    <button color="borderMainBtns" *ngIf="settingsBtnActive && settingSubActive" 
-      (click)="openImportantInfoView()" 
-      ion-button 
-      block 
-      icon-only
-      [class.active-sidebtn]="activeButtons[1]" 
-      [class.unactive-sidebtn]="!activeButtons[1]">
+    <button color="borderMainBtns" *ngIf="settingsBtnActive && settingSubActive" (click)="openImportantInfoView()" ion-button
+      block icon-only [class.active-sidebtn]="activeButtons[1]" [class.unactive-sidebtn]="!activeButtons[1]">
       <ion-icon name="information-circle"></ion-icon>
     </button>
     <!--User Category-->
-    <button color="borderMainBtns"  *ngIf="userBtnActive" 
-      ion-button 
-      block 
-      (click)="openUserCategory()" 
-      icon-only
-      [class.unactive-sidebtn]="!activeButtons[2]">
+    <button color="borderMainBtns" *ngIf="userBtnActive" ion-button block (click)="openUserCategory()" icon-only [class.unactive-sidebtn]="!activeButtons[2]">
       <ion-icon name="contact"></ion-icon>
     </button>
-    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" 
-      (click)="openTokensView()" 
-      ion-button 
-      block 
-      icon-only
+    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openTokensView()" ion-button block icon-only
       [class.unactive-sidebtn]="!activeButtons[3]">
       <ion-icon name="grid"></ion-icon>
     </button>
-    <button 
-      color="borderMainBtns" 
-      *ngIf="userBtnActive && userSubActive" 
-      (click)="openRankingView()" 
-      ion-button block icon-only
+    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openRankingView()" ion-button block icon-only
       [class.unactive-sidebtn]="!activeButtons[4]">
       <ion-icon name="medal"></ion-icon>
     </button>
@@ -366,7 +338,72 @@
 
     </ion-grid>
     <!--User Tokens-->
-    <h1 *ngIf="currentActiveMenu == 'user-rankings'">User Ranking</h1>
+    <ion-grid *ngIf="currentActiveMenu == 'user-rankings'" padding>
+      <ion-row>
+        <ion-col text-center>
+          <h1 class="side-menu-title">Ranking</h1>
+        </ion-col>
+      </ion-row>
+      <ion-row padding>
+        <ion-col text-center>
+          <img width="100px" height="100px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+
+      </ion-row>
+      
+      <ion-row>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+        <ion-col text-center>
+          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col style="padding-top: 20px" col-12>
+          <div class="statics-container">
+            <ion-grid>
+              <ion-row>
+                <ion-col>Ranking Name</ion-col>
+                <ion-col># Games Won</ion-col>
+              </ion-row>
+              <ion-row style="padding-top: 10px">
+                <ion-col text-center no-padding>Ranking Description and Benefits</ion-col>
+              </ion-row>   
+            </ion-grid>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-content>
 
 </div>

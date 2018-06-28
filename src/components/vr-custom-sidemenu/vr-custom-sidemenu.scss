@@ -30,12 +30,23 @@ vr-custom-sidemenu {
     }
 
     .active-sidebtn{
-        //background-color: map-get($colors, borderMainBtns);
+
         opacity: 1;
     }
 
     .unactive-sidebtn{
-        //background-color: map-get($colors, borderMainBtns);
+
         opacity: 0.6;
+    }
+
+    .topIcon{
+        size: 50px;
+    }
+    
+    .statics-container{
+        background-color: #edeeef;
+        border: solid thin black;
+        border-radius: 12px;
+        height: 100px;
     }
 }
