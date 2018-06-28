@@ -57,15 +57,6 @@ export class CharacterSelectionPage {
   }
 
   onClickPlay(){
-    //si los jugadores no seleccionaron nada asignale personaje al azar
-    if(this.playerOnePortrait == null){
-      this.randPortraitSelectOne();
-    }
-
-    if(this.playerTwoOrBotPortrait== null){
-      this.randPortraitSelectTwo();
-    }
-
     this.navCtrl.push(this.preGamePage,
       {gameType: this.gameType, 
       rounds: this.rounds, 

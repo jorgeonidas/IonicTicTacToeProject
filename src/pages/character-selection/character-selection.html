@@ -126,6 +126,7 @@
             color="gold"
             class="borderPlay"
             round
+            [disabled]="portraitOne[0] == null || portraitTwo[0] == null"
             (click)="onClickPlay()">Play</button>
         </ion-col>
       </ion-row>

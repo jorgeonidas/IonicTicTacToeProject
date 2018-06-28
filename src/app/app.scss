@@ -65,3 +65,9 @@
     overflow: visible;
     left: -45px;
 }
+//flex column
+.flex-col{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

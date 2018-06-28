@@ -53,10 +53,10 @@
             <!--Notification checkbox-->
             <br>
             <ion-row>
-              <ion-col text-center>
+              <ion-col>
                 <h4>Notifications</h4>
               </ion-col>
-              <ion-col text-center>
+              <ion-col class="flex-col">                
                 <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
               </ion-col>
             </ion-row>
