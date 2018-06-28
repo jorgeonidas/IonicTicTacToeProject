@@ -1,8 +1,9 @@
 import { Component, Injectable } from '@angular/core';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
 import { ConfigurationModel } from '../../models/configuration';
-import { Events, Toggle } from 'ionic-angular';
+import { Events, Toggle, AlertController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/authService';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 @Injectable()
 export class VrCustomSidemenuComponent {
+  
 
   //parametros para desplegar el sideNav y reposicionar el sidebar
   navWidth: number;
@@ -25,6 +27,8 @@ export class VrCustomSidemenuComponent {
   //login & create user
   loginForm: FormGroup;
   createUserForm: FormGroup;
+  currentDate;
+  dateOfBirth;
   //configuraciones 
   languages = ['English', 'Spanish'];
   currentLang: string = 'English';
@@ -44,7 +48,9 @@ export class VrCustomSidemenuComponent {
 
   constructor(private cfgServiceDB: ConfigurationServiceDB, 
               private configModel: ConfigurationModel,
-              private events: Events) 
+              private events: Events,
+              private authService: AuthService, 
+              private alertCtrl: AlertController) 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
     this.navWidth = 0;
@@ -61,6 +67,22 @@ export class VrCustomSidemenuComponent {
     this.currentActiveMenu = 'settings'
     //inicializar configuraciones
     //inicializando formulario de config
+    this.getSettingsFromDB();
+    
+    //ATRAPA ESTE EVENTO DONDE QUIERA QUE SE LLAME Y EJECUTA LA FUNCION FAT ARROW!
+    events.subscribe(('settings:changed'),() => {
+      console.log("Event catched by app");
+      this.initSettings();
+    } );
+
+    //Login Form
+    this.initializeLoginForm();
+    //crate user form 
+    this.initializeCreateUserForm();
+  }
+
+  //get settings from json
+  getSettingsFromDB(){
     this.cfgServiceDB.get('sfx').then((val) => {
       console.log(val);
       this.configModel.setSfx(val);
@@ -87,16 +109,6 @@ export class VrCustomSidemenuComponent {
       this.configModel.setNotif(val);
       this.notifications = this.configModel.notifications;
     });
-    //ATRAPA ESTE EVENTO DONDE QUIERA QUE SE LLAME Y EJECUTA LA FUNCION FAT ARROW!
-    events.subscribe(('settings:changed'),() => {
-      console.log("Event catched by app");
-      this.initSettings();
-    } );
-
-    //Login Form
-    this.initializeLoginForm();
-    //crate user form 
-    this.initializeCreateUserForm();
   }
 
   openNav() {
@@ -111,6 +123,7 @@ export class VrCustomSidemenuComponent {
     this.enableAllCategories();
     this.disableAllSubCategories();
     this.initializeLoginForm();
+    this.initializeCreateUserForm();
     this.toggleOpen();
   }
 
@@ -147,6 +160,7 @@ export class VrCustomSidemenuComponent {
       this.userSubActive = true;
     }
     this.initializeLoginForm();
+    this.initializeCreateUserForm();
     this.setCurrentActiveMenu('user-login');
   }
 
@@ -243,5 +257,49 @@ export class VrCustomSidemenuComponent {
       'year': new FormControl(null, Validators.required),
       'useragre': new FormControl(true, Validators.required),
     });
+  }
+
+  onSubmitCreateUser(event: any) {
+    console.log(event);
+
+    if (!this.createUserForm.invalid) {
+      const value = this.createUserForm.value;
+      console.log(value);
+      console.log(this.createUserForm.value);
+      this.currentDate = new Date();
+      console.log(this.currentDate.toISOString().split('.')[0] + " ");
+      this.dateOfBirth = new Date(value.year, value.month, value.day);
+
+      this.authService.signup(value.email,
+        value.name, value.password,
+        this.dateOfBirth.toISOString().split('.')[0] + " ",
+        this.currentDate.toISOString().split('.')[0] + " ",
+        "N")
+        .subscribe((resutl) => {
+          console.log(resutl);
+          this.initializeCreateUserForm();
+          this.openUserCategory();
+        },
+          error => {
+            let alert = this.alertCtrl.create({
+              title: 'Error!',
+              message: error.name,
+              buttons:
+                [
+                  {
+                    text: 'Ok',
+                    role: 'cancel',
+                  }
+                ]
+            });
+            alert.present();
+          /*console.log(error);
+          console.log(error.name);
+          console.log(error.message);
+          console.log(error.status);*/}
+        );
+      //this.navCtrl.push(LoginPage);
+    }
+
   }
 }
