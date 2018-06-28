@@ -39,6 +39,7 @@ export class VrCustomSidemenuComponent {
   //Menu activo actual para saber que vista rendeizar
   currentActiveMenu: string;
   menus: string[] = ['settings', 'settings-info', 'user-login', 'user-create', 'user-tokens', 'user-rankings'];
+  activeButtons: boolean[];
 
   //Color del Sidebar al abrir y cerrar el sideNav
   opaque = "rgba(0,0,0,0.4)"
@@ -53,6 +54,10 @@ export class VrCustomSidemenuComponent {
               private alertCtrl: AlertController) 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
+    //[0:'settings', 1:'settings-info', 2:'user-login' y 'user-create', 3:'user-tokens', 4:'user-rankings'];
+    this.activeButtons =  [true, false, true, false, false];//solo hay 5 pestañas ya que user y create comparten la misma
+    console.log(this.activeButtons);
+    
     this.navWidth = 0;
     this.sidePos = 0;
     this.isOpen = false;
@@ -125,6 +130,7 @@ export class VrCustomSidemenuComponent {
     this.initializeLoginForm();
     this.initializeCreateUserForm();
     this.toggleOpen();
+    this.setToOriginalState();
   }
 
   toggleOpen() {
@@ -145,11 +151,13 @@ export class VrCustomSidemenuComponent {
       //enable settings subcat
       this.settingSubActive = true;
     }
+    this.setToOriginalState();
     this.setCurrentActiveMenu('settings');
   }
 
   openImportantInfoView(){
     this.setCurrentActiveMenu('settings-info');
+    this.activateButton(1);
   }
   //User view deployment
   openUserCategory() {
@@ -159,6 +167,7 @@ export class VrCustomSidemenuComponent {
       this.disableAllSubCategories();
       this.userSubActive = true;
     }
+    this.setToOriginalState();
     this.initializeLoginForm();
     this.initializeCreateUserForm();
     this.setCurrentActiveMenu('user-login');
@@ -166,14 +175,17 @@ export class VrCustomSidemenuComponent {
 
   openCreateUserView(){
     this.setCurrentActiveMenu('user-create');
+    this.setToOriginalState();
   }
 
   openTokensView(){
     this.setCurrentActiveMenu('user-tokens');
+    this.activateButton(3);
   }
 
   openRankingView(){
     this.setCurrentActiveMenu('user-rankings');
+    this.activateButton(4);
   }
 
   //Enable and disable sidemenu buttons states
@@ -301,5 +313,22 @@ export class VrCustomSidemenuComponent {
       //this.navCtrl.push(LoginPage);
     }
 
+  }
+
+  deactivateAllButtons(){
+    for (let index = 0 ; index < this.activeButtons.length; index++) {
+      this.activeButtons[index] = false;
+    }
+  }
+
+  setToOriginalState(){
+    this.activeButtons =  [true, false, true, false, false];
+  }
+
+  activateButton(index: number){
+    this.deactivateAllButtons();
+    this.activeButtons[index] = true;
+    console.log(this.activeButtons);
+    
   }
 }

@@ -28,4 +28,14 @@ vr-custom-sidemenu {
         overflow-x: hidden;
         background-color: cornsilk;
     }
+
+    .active-sidebtn{
+        //background-color: map-get($colors, borderMainBtns);
+        opacity: 1;
+    }
+
+    .unactive-sidebtn{
+        //background-color: map-get($colors, borderMainBtns);
+        opacity: 0.6;
+    }
 }

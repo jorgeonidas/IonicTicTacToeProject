@@ -1,24 +1,55 @@
 <!-- Generated template for the VrCustomSidemenuComponent component -->
 <div class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity">
   <div class="customSidebarButtons">
-    <button *ngIf="isOpen" block ion-button (click)="closeNav()" icon-only>
-      <ion-icon name="redo"></ion-icon>
+    <button *ngIf="isOpen" 
+      color="skipBorder"
+      block 
+      ion-button 
+      (click)="closeNav()" 
+      icon-only>
+        <ion-icon name="redo"></ion-icon>
     </button>
     <!--Settings Category-->
-    <button *ngIf="settingsBtnActive" ion-button block (click)="openSettingsCategory()" icon-only>
-      <ion-icon name="settings"></ion-icon>
+    <button color="borderMainBtns" *ngIf="settingsBtnActive" 
+      ion-button block 
+      (click)="openSettingsCategory()" 
+      icon-only
+      [class.active-sidebtn]="activeButtons[0]" 
+      [class.unactive-sidebtn]="!activeButtons[0]">
+        <ion-icon name="settings"></ion-icon>
     </button>
-    <button *ngIf="settingsBtnActive && settingSubActive" (click)="openImportantInfoView()" ion-button block icon-only>
+    <button color="borderMainBtns" *ngIf="settingsBtnActive && settingSubActive" 
+      (click)="openImportantInfoView()" 
+      ion-button 
+      block 
+      icon-only
+      [class.active-sidebtn]="activeButtons[1]" 
+      [class.unactive-sidebtn]="!activeButtons[1]">
       <ion-icon name="information-circle"></ion-icon>
     </button>
     <!--User Category-->
-    <button *ngIf="userBtnActive" ion-button block (click)="openUserCategory()" icon-only>
+    <button color="borderMainBtns"  *ngIf="userBtnActive" 
+      ion-button 
+      block 
+      (click)="openUserCategory()" 
+      icon-only
+      [class.unactive-sidebtn]="!activeButtons[2]">
       <ion-icon name="contact"></ion-icon>
     </button>
-    <button *ngIf="userBtnActive && userSubActive" (click)="openTokensView()" ion-button block icon-only>
+    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" 
+      (click)="openTokensView()" 
+      ion-button 
+      block 
+      icon-only
+      [class.unactive-sidebtn]="!activeButtons[3]">
       <ion-icon name="grid"></ion-icon>
     </button>
-    <button *ngIf="userBtnActive && userSubActive" (click)="openRankingView()" ion-button block icon-only>
+    <button 
+      color="borderMainBtns" 
+      *ngIf="userBtnActive && userSubActive" 
+      (click)="openRankingView()" 
+      ion-button block icon-only
+      [class.unactive-sidebtn]="!activeButtons[4]">
       <ion-icon name="medal"></ion-icon>
     </button>
   </div>
@@ -28,7 +59,7 @@
 <!--VISTAS DE MENU A DESPLEGAR DEPENDIENDO DEL VALOR EL MENU ACTIVO ACTUAL!-->
 <div class="sideNav" [style.width]="navWidth + '%'">
   <!--Settings View!-->
-  <ion-content no-padding>
+  <ion-content padding>
     <ion-grid *ngIf="currentActiveMenu == 'settings'">
       <form #cfg="ngForm">
         <!--Titulo-->
@@ -329,8 +360,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <!--User Tokens-->
-    <h1 *ngIf="currentActiveMenu == 'user-tokens'">User Tokens</h1>
+    <ion-grid *ngIf="currentActiveMenu == 'user-tokens'">
+
+    </ion-grid>
     <!--User Tokens-->
     <h1 *ngIf="currentActiveMenu == 'user-rankings'">User Ranking</h1>
   </ion-content>
