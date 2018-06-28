@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
 import { ConfigurationModel } from '../../models/configuration';
 import { Events, Toggle } from 'ionic-angular';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class VrCustomSidemenuComponent {
   //User
   userBtnActive: boolean;
   userSubActive: boolean;
+  //login
+  loginForm: FormGroup;
   //configuraciones 
   languages = ['English', 'Spanish'];
   currentLang: string = 'English';
@@ -88,6 +91,9 @@ export class VrCustomSidemenuComponent {
       console.log("Event catched by app");
       this.initSettings();
     } );
+
+    //Login Form
+    this.initializeLoginForm();
   }
 
   openNav() {
@@ -101,6 +107,7 @@ export class VrCustomSidemenuComponent {
     this.sidePos = 0;
     this.enableAllCategories();
     this.disableAllSubCategories();
+    this.initializeLoginForm();
     this.toggleOpen();
   }
 
@@ -201,4 +208,20 @@ export class VrCustomSidemenuComponent {
     }
   }
 
+  //Login Form Functions
+  initializeLoginForm() {
+    this.loginForm = new FormGroup({
+      'username': new FormControl(null, Validators.required),
+      'password': new FormControl(null, Validators.required)
+    });
+  }
+
+  onSubmitLogin(event: any) {
+    console.log(event);
+
+    if (!this.loginForm.invalid) {
+      const values = this.loginForm.value;
+      console.log(values);
+    }
+  }
 }

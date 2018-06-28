@@ -1,18 +1,18 @@
 <!--type="overlay"-->
+<!--
 <ion-menu [content]="content" [swipeEnabled]="false" side="right" id="settings" type="push" (ionClose)="menuClosed()">
-  <!--overlay tapa los botones del toolbar-->
-  
+
   <ion-content no-padding>
     <ion-grid>
       <form #cfg="ngForm">
-        <!--Titulo-->
+
         <ion-row text-center>
           <ion-col>
             <h1 class="menu-title">Settings</h1>
           </ion-col>
         </ion-row>
         <br>
-        <!--Toggles-->
+        
         <ion-row>
           <ion-col></ion-col>
           <ion-col col-5>
@@ -24,7 +24,7 @@
             <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
           </ion-col>
         </ion-row>
-        <!--Notification checkbox-->
+      
         <br>
         <ion-row>
           <ion-col text-center>
@@ -34,7 +34,7 @@
             <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
           </ion-col>
         </ion-row>
-        <!--language-->
+      
         <ion-row>
           <ion-col col-10 offset-3>
 
@@ -48,7 +48,7 @@
 
         </ion-row>
       </form>
-      <!--info buttons-->
+     
       <ion-row>
         <ion-col>
           <button color="emerald" class="borderInfButtons" block round ion-button>Official Website</button>
@@ -56,7 +56,7 @@
           <button color="emerald" class="borderInfButtons" block round ion-button>Support</button>
         </ion-col>
       </ion-row>
-      <!--Footer-->
+      
       <br>
       <br>
       <ion-row>
@@ -65,7 +65,9 @@
     </ion-grid>
   </ion-content>
 </ion-menu>
+-->
 <!--Menu Login-->
+<!--
 <ion-menu [content]="content" epersistent="false" side="right" id="login" type="overlay">
 
   <ion-content>
@@ -79,19 +81,19 @@
       <ion-row>
 
         <ion-col align-self-start>
-          <!--spacing-->
+        
         </ion-col>
         <ion-col align-self-center col-11>
           <div id="loginContainer" color="primary">
 
-            <!--formulario aca-->
+           
             <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin($event)">
               <ion-row>
-                <!--<ion-item>-->
+              
                 <ion-label>
                   Username:
                 </ion-label>
-                <!--</ion-item>-->
+          
               </ion-row>
               <ion-row>
                 <ion-item>
@@ -99,13 +101,13 @@
                 </ion-item>
               </ion-row>
 
-              <!--password-->
+             
               <ion-row>
-                <!--<ion-item>-->
+         
                 <ion-label>
                   Password:
                 </ion-label>
-                <!--</ion-item>-->
+           
               </ion-row>
 
               <ion-row>
@@ -117,12 +119,12 @@
               <ion-row align-items-center>
                 <p align="center">The username can only numbers & letters</p>
               </ion-row>
-              <!--botones-->
+           
               <ion-row justify-content-center>
                 <button ion-button type="submit" round [disabled]="!loginForm.valid">Login</button>
               </ion-row>
             </form>
-            <!--info-->
+   
             <ion-row>
               <h6 align="center">
                 Don't Have a Virtual Robot Account?
@@ -131,11 +133,11 @@
             <ion-row justify-content-center>
               <button ion-button round color="gold" class="borderCreate" (click)="menuCreateAccActive()">Create Account</button>
             </ion-row>
-            <!---->
+
           </div>
         </ion-col>
         <ion-col align-self-end>
-          <!--spacing-->
+
         </ion-col>
 
       </ion-row>
@@ -145,7 +147,7 @@
 
   </ion-content>
 
-</ion-menu>
+</ion-menu> -->
 <!--menu create account-->
 <ion-menu [content]="content" side="right" id="createAccount" padding type="overlay">
   <!--ojo codigo original create-account.html-->
