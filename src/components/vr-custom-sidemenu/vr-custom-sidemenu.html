@@ -25,11 +25,10 @@
       <ion-icon name="medal"></ion-icon>
     </button>
   </div>
-
-
 </div>
+
 <!--VISTAS DE MENU A DESPLEGAR DEPENDIENDO DEL VALOR EL MENU ACTIVO ACTUAL!-->
-<div class="sideNav" [style.width]="navWidth + '%'">
+<div class="sideNav no-scroll" [style.width]="navWidth + '%'">
   <!--Settings View!-->
   <ion-content padding>
     <ion-grid *ngIf="currentActiveMenu == 'settings'">
@@ -334,76 +333,9 @@
     </ion-grid>
     <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <!--User Tokens-->
-    <ion-grid *ngIf="currentActiveMenu == 'user-tokens'">
-
-    </ion-grid>
-    <!--User Tokens-->
-    <ion-grid *ngIf="currentActiveMenu == 'user-rankings'" padding>
-      <ion-row>
-        <ion-col text-center>
-          <h1 class="side-menu-title">Ranking</h1>
-        </ion-col>
-      </ion-row>
-      <ion-row padding>
-        <ion-col text-center>
-          <img width="100px" height="100px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-
-      </ion-row>
-      
-      <ion-row>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-        <ion-col text-center>
-          <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col style="padding-top: 20px" col-12>
-          <div class="statics-container">
-            <ion-grid>
-              <ion-row>
-                <ion-col>Ranking Name</ion-col>
-                <ion-col># Games Won</ion-col>
-              </ion-row>
-              <ion-row style="padding-top: 10px">
-                <ion-col text-center no-padding>Ranking Description and Benefits</ion-col>
-              </ion-row>   
-            </ion-grid>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <token-selector *ngIf="currentActiveMenu == 'user-tokens'"></token-selector>
+    <!--User Ranking-->
+    <ranking-statistics *ngIf="currentActiveMenu == 'user-rankings'"></ranking-statistics>
   </ion-content>
 
 </div>

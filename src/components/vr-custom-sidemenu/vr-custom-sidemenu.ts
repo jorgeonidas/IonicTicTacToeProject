@@ -117,8 +117,8 @@ export class VrCustomSidemenuComponent {
   }
 
   openNav() {
-    this.navWidth = 80;
-    this.sidePos = 80;
+    this.navWidth = 85;
+    this.sidePos = 85;
     this.toggleOpen();
   }
 

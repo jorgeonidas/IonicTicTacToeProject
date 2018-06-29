@@ -1,20 +1,42 @@
 token-selector {
-    .flex-col {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    
+    .header-section{
+        background-color: dimgray;
+        height: 25vh; //alto de la vista
+        border-radius: 15px 15px 0 0;
     }
 
-    h1{
-        font-size: 50px;
-        margin: 0;
+    .first-section{
+        background-color: map-get($colors, primary);
     }
 
-    .p1{
-        color: map-get($colors , emerald);
+    .invert{
+        -webkit-filter: invert(100%);
     }
 
-    .p2orBot{
-        color: map-get($colors , fuxia);
+    .select-button{
+        border: 1px solid map-get($colors, gold);
+        border-radius: 15px;
+    }
+    
+    .second-section{
+        background-color: #ffd09b;
+    }
+
+    .last-section{
+        background-color: map-get($colors, createBorder);
+        border-radius: 0 0 15px 15px;
+    }
+
+    .icon-wrapper{
+        background-color: white;
+        border-radius: 15px;
+        border: solid thin grey;
+        padding: 5px;
+    }
+
+    .count-container{
+        background-color: gray;
+        border-radius: 12px;
     }
 }

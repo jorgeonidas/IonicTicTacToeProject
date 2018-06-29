@@ -35,6 +35,7 @@ import { DragulaModule } from 'ng2-dragula';//dragula
 import { ConfigurationModel } from '../models/configuration';
 import { PlayerSelectorService } from '../services/playerSelService';
 import { VrCustomSidemenuComponent } from '../components/vr-custom-sidemenu/vr-custom-sidemenu';
+import { RankingStatisticsComponent } from '../components/ranking-statistics/ranking-statistics';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { VrCustomSidemenuComponent } from '../components/vr-custom-sidemenu/vr-c
     ProgressBarComponent,
     TimerBarComponent, 
     TokenSelectorComponent,
-    VrCustomSidemenuComponent
+    VrCustomSidemenuComponent,
+    RankingStatisticsComponent
 
     
   ],
