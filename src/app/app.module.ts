@@ -36,6 +36,7 @@ import { ConfigurationModel } from '../models/configuration';
 import { PlayerSelectorService } from '../services/playerSelService';
 import { VrCustomSidemenuComponent } from '../components/vr-custom-sidemenu/vr-custom-sidemenu';
 import { RankingStatisticsComponent } from '../components/ranking-statistics/ranking-statistics';
+import { TokenSelectorBarComponent } from '../components/token-selector-bar/token-selector-bar';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { RankingStatisticsComponent } from '../components/ranking-statistics/ran
     TimerBarComponent, 
     TokenSelectorComponent,
     VrCustomSidemenuComponent,
-    RankingStatisticsComponent
+    RankingStatisticsComponent,
+    TokenSelectorBarComponent
 
     
   ],
