@@ -41,6 +41,7 @@ import { LoginComponent } from '../components/login/login';
 import { ImportantInformationComponent } from '../components/important-information/important-information';
 import { SettingsComponent } from '../components/settings/settings';
 import { CreateAccountComponent } from '../components/create-account/create-account';
+import { InformationBarComponent } from '../components/information-bar/information-bar';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { CreateAccountComponent } from '../components/create-account/create-acco
     ImportantInformationComponent,
     SettingsComponent,
     LoginComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    InformationBarComponent
 
     
   ],

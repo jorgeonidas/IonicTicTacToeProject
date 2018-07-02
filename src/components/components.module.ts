@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login';
 import { ImportantInformationComponent } from './important-information/important-information';
 import { SettingsComponent } from './settings/settings';
 import { CreateAccountComponent } from './create-account/create-account';
+import { InformationBarComponent } from './information-bar/information-bar';
 @NgModule({
 	declarations: [ProgressBarComponent,
     TimerBarComponent,
@@ -20,7 +21,8 @@ import { CreateAccountComponent } from './create-account/create-account';
     LoginComponent,
     ImportantInformationComponent,
     SettingsComponent,
-    CreateAccountComponent],
+    CreateAccountComponent,
+    InformationBarComponent],
 	imports: [],
 	exports: [ProgressBarComponent,
     TimerBarComponent,
@@ -32,6 +34,7 @@ import { CreateAccountComponent } from './create-account/create-account';
     LoginComponent,
     ImportantInformationComponent,
     SettingsComponent,
-    CreateAccountComponent]
+    CreateAccountComponent,
+    InformationBarComponent]
 })
 export class ComponentsModule {}

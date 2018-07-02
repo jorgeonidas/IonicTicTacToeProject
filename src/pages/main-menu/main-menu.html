@@ -1,6 +1,7 @@
 <!--aca colocaremos custom header con las estadisticas-->
 
 <ion-content class="bg-main-menu-page" no-bounce>
+  <information-bar></information-bar>
   <ion-grid no-padding>
     <!--spacing-->
     <ion-row>
@@ -12,7 +13,7 @@
 
       </ion-col>
       <!--tittle and buttons-->
-      <ion-col col-8 align-self-center> 
+      <ion-col col-8 align-self-center>
         <ion-row text-center>
           <ion-col>
             <div style="height: 20px"></div>
@@ -21,85 +22,33 @@
         </ion-row>
         <!--Buttons Gametype-->
         <ion-row>
-            <div style="height: 20px"></div>
+          <div style="height: 20px"></div>
         </ion-row>
-        <ion-row >
+        <ion-row>
           <ion-col></ion-col>
           <ion-col col-10 text-center>
-            <button ion-button 
-            large            
-            round
-            block 
-            color="emerald"
-            (click)="onGameSelectio('singleplayer')">1 Player</button>
+            <button ion-button large round block color="emerald" (click)="onGameSelectio('singleplayer')">1 Player</button>
           </ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
           <ion-col col-10 text-center>
-            <button ion-button 
-            large             
-            round
-            block 
-            color="emerald"
-            (click)="onGameSelectio('local-multiplayer')">2 Player local</button>
+            <button ion-button large round block color="emerald" (click)="onGameSelectio('local-multiplayer')">2 Player local</button>
           </ion-col>
           <ion-col></ion-col>
         </ion-row>
         <ion-row>
           <ion-col></ion-col>
           <ion-col col-10 text-center>
-            <button ion-button 
-            large 
-            round
-            block 
-            color="emerald"
-            (click)="onGameSelectio('online-multiplayer')">Multiplayer</button>
+            <button ion-button large round block color="emerald" (click)="onGameSelectio('online-multiplayer')">Multiplayer</button>
           </ion-col>
           <ion-col></ion-col>
         </ion-row>
       </ion-col>
       <ion-col>
-        
-      </ion-col>
-      
-      
-      <!--"side" toolbar-->
-      <!--
-      <ion-col align-self-center>
-            <ion-toolbar no-padding>
-
-              <button *ngIf="isSettingsActive==true || isLoginActive==true" ion-button block  icon-only solid color="skipBorder" float-right>
-                <ion-icon name="arrow-round-back" ></ion-icon>
-              </button>
-
-            </ion-toolbar>
-            <ion-toolbar no-padding>
-
-                <button ion-button block (click)="menuSettingsActive()" icon-only solid color="fuxia" float-right>
-                    <ion-icon name="settings" ></ion-icon>
-                </button>
-  
-            </ion-toolbar>
-            <ion-toolbar no-padding>
-  
-                  <button  ion-button block (click)="menuLoginActive()" solid icon-only color="fuxia" float-right>
-                      <ion-icon name="contact"></ion-icon>
-                  </button>
-  
-            </ion-toolbar>
-
-            <ion-toolbar no-padding>
-  
-                <button ion-button block (click)="menuImportantInfo()" solid icon-only color="fuxia" float-right>
-                    <ion-icon name="information-circle"></ion-icon>
-                </button>
-
-          </ion-toolbar>
 
       </ion-col>
-    -->
     </ion-row>
     <!--free energy button-->
     <ion-row>
@@ -118,9 +67,15 @@
     <!--lower buttons-->
     <ion-row>
       <ion-col></ion-col>
-      <ion-col text-center col-5 padding><button block ion-button icon-start round color="fuxia"><ion-icon name="people"></ion-icon>Friends</button></ion-col>
+      <ion-col text-center col-5 padding>
+        <button block ion-button icon-start round color="fuxia">
+          <ion-icon name="people"></ion-icon>Friends</button>
+      </ion-col>
       <ion-col></ion-col>
-      <ion-col text-center col-5 padding><button block ion-button icon-start round color="fuxia"><ion-icon name="cash"></ion-icon>Store</button></ion-col>
+      <ion-col text-center col-5 padding>
+        <button block ion-button icon-start round color="fuxia">
+          <ion-icon name="cash"></ion-icon>Store</button>
+      </ion-col>
       <ion-col></ion-col>
     </ion-row>
   </ion-grid>
