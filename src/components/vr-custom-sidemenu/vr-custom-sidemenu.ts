@@ -1,10 +1,4 @@
 import { Component, Injectable } from '@angular/core';
-import { ConfigurationServiceDB } from '../../services/configurationdb.service';
-import { ConfigurationModel } from '../../models/configuration';
-import { Events, Toggle, AlertController } from 'ionic-angular';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../services/authService';
-
 
 @Component({
   selector: 'vr-custom-sidemenu',
@@ -24,11 +18,6 @@ export class VrCustomSidemenuComponent {
   //User
   userBtnActive: boolean;
   userSubActive: boolean;
-  //login & create user
-  createUserForm: FormGroup;
-  currentDate;
-  dateOfBirth; 
-
   //Menu activo actual para saber que vista rendeizar
   currentActiveMenu: string;
   menus: string[] = ['settings', 'settings-info', 'user-login', 'user-create', 'user-tokens', 'user-rankings'];
@@ -40,8 +29,7 @@ export class VrCustomSidemenuComponent {
   //Variable para hacer property binding
   sidebarOpacity: string;
 
-  constructor(private authService: AuthService, 
-              private alertCtrl: AlertController) 
+  constructor() 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
     //[0:'settings', 1:'settings-info', 2:'user-login' y 'user-create', 3:'user-tokens', 4:'user-rankings'];
@@ -60,11 +48,7 @@ export class VrCustomSidemenuComponent {
     this.userSubActive = false;
     //Menu actualmente activo
     this.currentActiveMenu = 'settings'
-
-    //crate user form 
-    //this.initializeCreateUserForm();
   }
-
 
   openNav() {
     this.navWidth = 85;
@@ -77,7 +61,6 @@ export class VrCustomSidemenuComponent {
     this.sidePos = 0;
     this.enableAllCategories();
     this.disableAllSubCategories();
-    this.initializeCreateUserForm();
     this.toggleOpen();
     this.setToOriginalState();
   }
@@ -117,7 +100,6 @@ export class VrCustomSidemenuComponent {
       this.userSubActive = true;
     }
     this.setToOriginalState();
-    this.initializeCreateUserForm();
     this.setCurrentActiveMenu('user-login');
   }
   
@@ -152,63 +134,6 @@ export class VrCustomSidemenuComponent {
     this.currentActiveMenu = currMenu;
   }
 
-  //Create Form Functions
-  public initializeCreateUserForm() {
-    this.createUserForm = new FormGroup({
-      'name': new FormControl('jorgeonidas', Validators.required),
-      'password': new FormControl('123456', Validators.required),
-      'email': new FormControl('maitest@mail.com', Validators.required),
-      'day': new FormControl(null, Validators.required),
-      'month': new FormControl(null, Validators.required),
-      'year': new FormControl(null, Validators.required),
-      'useragre': new FormControl(true, Validators.required),
-    });
-  }
-
-  onSubmitCreateUser(event: any) {
-    console.log(event);
-
-    if (!this.createUserForm.invalid) {
-      const value = this.createUserForm.value;
-      console.log(value);
-      console.log(this.createUserForm.value);
-      this.currentDate = new Date();
-      console.log(this.currentDate.toISOString().split('.')[0] + " ");
-      this.dateOfBirth = new Date(value.year, value.month, value.day);
-
-      this.authService.signup(value.email,
-        value.name, value.password,
-        this.dateOfBirth.toISOString().split('.')[0] + " ",
-        this.currentDate.toISOString().split('.')[0] + " ",
-        "N")
-        .subscribe((resutl) => {
-          console.log(resutl);
-          this.initializeCreateUserForm();
-          this.openUserCategory();
-        },
-          error => {
-            let alert = this.alertCtrl.create({
-              title: 'Error!',
-              message: error.name,
-              buttons:
-                [
-                  {
-                    text: 'Ok',
-                    role: 'cancel',
-                  }
-                ]
-            });
-            alert.present();
-          /*console.log(error);
-          console.log(error.name);
-          console.log(error.message);
-          console.log(error.status);*/}
-        );
-      //this.navCtrl.push(LoginPage);
-    }
-
-  }
-
   deactivateAllButtons(){
     for (let index = 0 ; index < this.activeButtons.length; index++) {
       this.activeButtons[index] = false;
@@ -222,7 +147,7 @@ export class VrCustomSidemenuComponent {
   activateButton(index: number){
     this.deactivateAllButtons();
     this.activeButtons[index] = true;
-    console.log(this.activeButtons);
+    //console.log(this.activeButtons);
     
   }
 }
