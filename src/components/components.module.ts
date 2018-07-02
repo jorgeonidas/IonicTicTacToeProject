@@ -5,6 +5,10 @@ import { TokenSelectorComponent } from './token-selector/token-selector';
 import { VrCustomSidemenuComponent } from './vr-custom-sidemenu/vr-custom-sidemenu';
 import { RankingStatisticsComponent } from './ranking-statistics/ranking-statistics';
 import { TokenSelectorBarComponent } from './token-selector-bar/token-selector-bar';
+import { LoginComponent } from './login/login';
+import { ImportantInformationComponent } from './important-information/important-information';
+import { SettingsComponent } from './settings/settings';
+import { CreateAccountComponent } from './create-account/create-account';
 @NgModule({
 	declarations: [ProgressBarComponent,
     TimerBarComponent,
@@ -12,7 +16,11 @@ import { TokenSelectorBarComponent } from './token-selector-bar/token-selector-b
     VrCustomSidemenuComponent,
     RankingStatisticsComponent,
     TokenSelectorComponent,
-    TokenSelectorBarComponent],
+    TokenSelectorBarComponent,
+    LoginComponent,
+    ImportantInformationComponent,
+    SettingsComponent,
+    CreateAccountComponent],
 	imports: [],
 	exports: [ProgressBarComponent,
     TimerBarComponent,
@@ -20,6 +28,10 @@ import { TokenSelectorBarComponent } from './token-selector-bar/token-selector-b
     VrCustomSidemenuComponent,
     RankingStatisticsComponent,
     TokenSelectorComponent,
-    TokenSelectorBarComponent]
+    TokenSelectorBarComponent,
+    LoginComponent,
+    ImportantInformationComponent,
+    SettingsComponent,
+    CreateAccountComponent]
 })
 export class ComponentsModule {}

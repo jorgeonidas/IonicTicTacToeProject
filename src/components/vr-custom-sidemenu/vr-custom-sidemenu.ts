@@ -25,7 +25,7 @@ export class VrCustomSidemenuComponent {
   userBtnActive: boolean;
   userSubActive: boolean;
   //login & create user
-  loginForm: FormGroup;
+
   createUserForm: FormGroup;
   currentDate;
   dateOfBirth;
@@ -80,8 +80,7 @@ export class VrCustomSidemenuComponent {
       this.initSettings();
     } );
 
-    //Login Form
-    this.initializeLoginForm();
+
     //crate user form 
     this.initializeCreateUserForm();
   }
@@ -127,7 +126,6 @@ export class VrCustomSidemenuComponent {
     this.sidePos = 0;
     this.enableAllCategories();
     this.disableAllSubCategories();
-    this.initializeLoginForm();
     this.initializeCreateUserForm();
     this.toggleOpen();
     this.setToOriginalState();
@@ -168,13 +166,12 @@ export class VrCustomSidemenuComponent {
       this.userSubActive = true;
     }
     this.setToOriginalState();
-    this.initializeLoginForm();
     this.initializeCreateUserForm();
     this.setCurrentActiveMenu('user-login');
   }
-
-  openCreateUserView(){
-    this.setCurrentActiveMenu('user-create');
+  
+  openCreateUserView(value: string){
+    this.setCurrentActiveMenu(value);
     this.setToOriginalState();
   }
 
@@ -241,22 +238,6 @@ export class VrCustomSidemenuComponent {
     }
   }
 
-  //Login Form Functions
-  initializeLoginForm() {
-    this.loginForm = new FormGroup({
-      'username': new FormControl(null, Validators.required),
-      'password': new FormControl(null, Validators.required)
-    });
-  }
-
-  onSubmitLogin(event: any) {
-    console.log(event);
-
-    if (!this.loginForm.invalid) {
-      const values = this.loginForm.value;
-      console.log(values);
-    }
-  }
 
   //Create Form Functions
   public initializeCreateUserForm() {

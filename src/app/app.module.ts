@@ -37,6 +37,8 @@ import { PlayerSelectorService } from '../services/playerSelService';
 import { VrCustomSidemenuComponent } from '../components/vr-custom-sidemenu/vr-custom-sidemenu';
 import { RankingStatisticsComponent } from '../components/ranking-statistics/ranking-statistics';
 import { TokenSelectorBarComponent } from '../components/token-selector-bar/token-selector-bar';
+import { LoginComponent } from '../components/login/login';
+import { ImportantInformationComponent } from '../components/important-information/important-information';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { TokenSelectorBarComponent } from '../components/token-selector-bar/toke
     TokenSelectorComponent,
     VrCustomSidemenuComponent,
     RankingStatisticsComponent,
-    TokenSelectorBarComponent
+    TokenSelectorBarComponent,
+    ImportantInformationComponent,
+    LoginComponent
 
     
   ],
