@@ -28,13 +28,7 @@ export class VrCustomSidemenuComponent {
 
   createUserForm: FormGroup;
   currentDate;
-  dateOfBirth;
-  //configuraciones 
-  languages = ['English', 'Spanish'];
-  currentLang: string = 'English';
-  music: boolean;
-  sfx: boolean;
-  notifications: boolean;
+  dateOfBirth; 
 
   //Menu activo actual para saber que vista rendeizar
   currentActiveMenu: string;
@@ -47,10 +41,7 @@ export class VrCustomSidemenuComponent {
   //Variable para hacer property binding
   sidebarOpacity: string;
 
-  constructor(private cfgServiceDB: ConfigurationServiceDB, 
-              private configModel: ConfigurationModel,
-              private events: Events,
-              private authService: AuthService, 
+  constructor(private authService: AuthService, 
               private alertCtrl: AlertController) 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
@@ -72,48 +63,14 @@ export class VrCustomSidemenuComponent {
     this.currentActiveMenu = 'settings'
     //inicializar configuraciones
     //inicializando formulario de config
-    this.getSettingsFromDB();
-    
-    //ATRAPA ESTE EVENTO DONDE QUIERA QUE SE LLAME Y EJECUTA LA FUNCION FAT ARROW!
-    events.subscribe(('settings:changed'),() => {
-      console.log("Event catched by app");
-      this.initSettings();
-    } );
-
+    //this.getSettingsFromDB();
 
     //crate user form 
     this.initializeCreateUserForm();
   }
 
   //get settings from json
-  getSettingsFromDB(){
-    this.cfgServiceDB.get('sfx').then((val) => {
-      console.log(val);
-      this.configModel.setSfx(val);
-      this.sfx = this.configModel.sfx;
-
-    });
-
-    this.cfgServiceDB.get('music').then((val) => {
-      console.log(val);
-      this.configModel.setMusic(val);
-      this.music = this.configModel.music;
-
-    });
-
-    this.cfgServiceDB.get('currentLang').then((val) => {
-      console.log(val);
-      this.configModel.setlanguage(val);
-      this.currentLang = this.configModel.language;
-
-    });
-
-    this.cfgServiceDB.get('notifications').then((val) => {
-      console.log(val);
-      this.configModel.setNotif(val);
-      this.notifications = this.configModel.notifications;
-    });
-  }
+  
 
   openNav() {
     this.navWidth = 85;
@@ -202,41 +159,10 @@ export class VrCustomSidemenuComponent {
   }
 
   //Initialize the settings form
-  initSettings() {
-    console.log("from vr-custom-sidemenu", this.configModel.sfx, this.configModel.sfx, this.configModel.language, this.configModel.notifications);
-
-    this.sfx = this.configModel.sfx;
-    this.music = this.configModel.music;
-    this.currentLang = this.configModel.language;
-    this.notifications = this.configModel.notifications;
-  }
-
+  
   //Configuration changes
-  onSelectChange(selectedValue: any) {
-    console.log(selectedValue);
-    this.currentLang = selectedValue;
-    this.cfgServiceDB.set('currentLang', selectedValue);
-    this.configModel.language = this.currentLang;
-  }
+  
 
-  onToggle(toggle: Toggle, option: string) {
-    console.log(toggle.value);
-    console.log(option);
-
-    this.cfgServiceDB.set(option, toggle.value);
-    //actualizo el modelo tambien
-    switch (option) {
-      case 'music':
-        this.configModel.music = toggle.value;
-        break;
-      case 'sfx':
-        this.configModel.sfx = toggle.value;
-        break;
-      case 'notifications':
-        this.configModel.notifications = toggle.value;
-        break;
-    }
-  }
 
 
   //Create Form Functions

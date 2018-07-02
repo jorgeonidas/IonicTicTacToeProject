@@ -39,6 +39,7 @@ import { RankingStatisticsComponent } from '../components/ranking-statistics/ran
 import { TokenSelectorBarComponent } from '../components/token-selector-bar/token-selector-bar';
 import { LoginComponent } from '../components/login/login';
 import { ImportantInformationComponent } from '../components/important-information/important-information';
+import { SettingsComponent } from '../components/settings/settings';
 
 
 @NgModule({
@@ -67,6 +68,7 @@ import { ImportantInformationComponent } from '../components/important-informati
     RankingStatisticsComponent,
     TokenSelectorBarComponent,
     ImportantInformationComponent,
+    SettingsComponent,
     LoginComponent
 
     

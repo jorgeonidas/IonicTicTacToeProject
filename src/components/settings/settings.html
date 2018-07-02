@@ -1,4 +1,59 @@
-<!-- Generated template for the SettingsComponent component -->
-<div>
-  {{text}}
-</div>
+<ion-grid>
+    <form #cfg="ngForm">
+      <ion-row text-center>
+        <ion-col>
+          <h1 class="side-menu-title">Settings</h1>
+        </ion-col>
+      </ion-row>
+      <br>
+
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col col-5>
+          <h2>Music</h2>
+          <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
+        </ion-col>
+        <ion-col col-5>
+          <h2>FX</h2>
+          <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
+        </ion-col>
+      </ion-row>
+
+      <br>
+      <ion-row>
+        <ion-col>
+          <h4>Notifications</h4>
+        </ion-col>
+        <ion-col class="flex-col">
+          <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-10 offset-3>
+
+          <ion-select name="language" [(ngModel)]="currentLang" (ionChange)="onSelectChange($event)">
+            <ion-option *ngFor="let language of languages" [value]="language">
+              {{language}}
+            </ion-option>
+          </ion-select>
+
+        </ion-col>
+
+      </ion-row>
+    </form>
+
+    <ion-row>
+      <ion-col>
+        <button color="emerald" class="borderInfButtons" block round ion-button>Official Website</button>
+        <br>
+        <button color="emerald" class="borderInfButtons" block round ion-button>Support</button>
+      </ion-col>
+    </ion-row>
+
+    <br>
+    <br>
+    <ion-row>
+      <h1>ACA VA EL LOGO DE VIRTUAL ROBOTS!</h1>
+    </ion-row>
+  </ion-grid>
