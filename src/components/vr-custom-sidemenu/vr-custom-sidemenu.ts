@@ -25,7 +25,6 @@ export class VrCustomSidemenuComponent {
   userBtnActive: boolean;
   userSubActive: boolean;
   //login & create user
-
   createUserForm: FormGroup;
   currentDate;
   dateOfBirth; 
@@ -61,16 +60,11 @@ export class VrCustomSidemenuComponent {
     this.userSubActive = false;
     //Menu actualmente activo
     this.currentActiveMenu = 'settings'
-    //inicializar configuraciones
-    //inicializando formulario de config
-    //this.getSettingsFromDB();
 
     //crate user form 
-    this.initializeCreateUserForm();
+    //this.initializeCreateUserForm();
   }
 
-  //get settings from json
-  
 
   openNav() {
     this.navWidth = 85;
@@ -157,13 +151,6 @@ export class VrCustomSidemenuComponent {
   setCurrentActiveMenu(currMenu: string){
     this.currentActiveMenu = currMenu;
   }
-
-  //Initialize the settings form
-  
-  //Configuration changes
-  
-
-
 
   //Create Form Functions
   public initializeCreateUserForm() {

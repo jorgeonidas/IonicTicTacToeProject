@@ -40,6 +40,7 @@ import { TokenSelectorBarComponent } from '../components/token-selector-bar/toke
 import { LoginComponent } from '../components/login/login';
 import { ImportantInformationComponent } from '../components/important-information/important-information';
 import { SettingsComponent } from '../components/settings/settings';
+import { CreateAccountComponent } from '../components/create-account/create-account';
 
 
 @NgModule({
@@ -69,7 +70,8 @@ import { SettingsComponent } from '../components/settings/settings';
     TokenSelectorBarComponent,
     ImportantInformationComponent,
     SettingsComponent,
-    LoginComponent
+    LoginComponent,
+    CreateAccountComponent
 
     
   ],
