@@ -42,6 +42,7 @@ import { ImportantInformationComponent } from '../components/important-informati
 import { SettingsComponent } from '../components/settings/settings';
 import { CreateAccountComponent } from '../components/create-account/create-account';
 import { InformationBarComponent } from '../components/information-bar/information-bar';
+import { TokenService } from '../services/tokenService';
 
 
 @NgModule({
@@ -108,7 +109,8 @@ import { InformationBarComponent } from '../components/information-bar/informati
     ConfigurationModel,
     AuthService,
     AIService,
-    PlayerSelectorService
+    PlayerSelectorService,
+    TokenService
   ]
 })
 export class AppModule {}

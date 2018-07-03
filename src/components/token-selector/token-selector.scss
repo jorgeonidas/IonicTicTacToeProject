@@ -40,7 +40,13 @@ token-selector {
         border-radius: 12px;
     }
 
-    .currentSelectedBorder{
+    .currentInspectBorder{
         border: green solid 5px;
     }
+
+    .currentSelectedBorder{
+        border: map-get($colors, fuxia) solid 5px;
+    }
+
+    
 }
