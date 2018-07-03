@@ -6,11 +6,14 @@ import { Component } from '@angular/core';
 })
 export class UserAccountComponent {
 
-  text: string;
+  profileImgUlr: string;
+  profileName: string;
+  coins: number;
+  eolas: number;
 
   constructor() {
     console.log('Hello UserAccountComponent Component');
-    this.text = 'Hello USER!';
+    this.profileImgUlr = 'assets/imgs//user.png'//Obviamente esto cargara luego de un servicio
   }
 
 }
