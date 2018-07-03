@@ -1,19 +1,29 @@
 <ion-grid class="info-bar" no-padding>
   <ion-row padding>
-    <ion-col class="flex-col">
+    <ion-col  col-5>
       <div class="info-wrapper">
-        {{nickname}}
+        <div class="data-container">
+            {{nickname}}
+        </div>
       </div>
     </ion-col>
-    <ion-col class="flex-col">
+    <ion-col >     
       <div class="info-wrapper">
-        {{crystals}}
+        <div class="coin-container">
+          <ion-img src="{{coinIconUrl}}" class="coin-icon"></ion-img>
+          
+        </div>
+        <div class="data-container">{{coins}}</div>
       </div>
     </ion-col>
-    <ion-col class="flex-col">
-      <div class="info-wrapper">
-        {{eolas}}
-      </div>
-    </ion-col>
+    <ion-col >     
+        <div class="info-wrapper">
+          <div class="coin-container">
+            <ion-img src="{{eolaIconUrl}}" class="coin-icon"></ion-img>
+            
+          </div>
+          <div class="data-container">{{coins}}</div>
+        </div>
+      </ion-col>
   </ion-row>
 </ion-grid>

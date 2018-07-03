@@ -6,13 +6,16 @@ import { Component } from '@angular/core';
 export class InformationBarComponent {
 
   nickname: string;
-  crystals: number;
+  coins: number;
   eolas: number;
+
+  coinIconUrl = "assets/imgs/coins.png";
+  eolaIconUrl = "assets/imgs/eolas.png";
 
   constructor() {
     console.log('Hello InformationBarComponent Component');
     this.nickname = 'human';
-    this.crystals = 9999;
+    this.coins = 9999;
     this.eolas = 9999;
 
   }
