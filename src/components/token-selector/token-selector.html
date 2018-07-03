@@ -33,57 +33,14 @@
   <ion-row class="second-section">
     <ion-col>
       <ion-row>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
+        <ion-col col-4 class="flex-col" *ngFor="let ulr of tokensUrls; let i = index">
+          <div text-center class="icon-wrapper" (click)="inspect(i)">
+            <img  width="50px" height="50px" src="{{tokensUrls[i]}}">
           </div>
-        </ion-col>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
-        <ion-col col-4>
-          <div text-center class="icon-wrapper flex-col">
-            <img width="50px" height="50px" src="assets/imgs/Tic-Tac-Toe-icon-mockup.ico">
-          </div>
-        </ion-col>
+          </ion-col>
       </ion-row>
     </ion-col>
+    
   </ion-row>
 
   <ion-row >
