@@ -15,7 +15,12 @@
       </ion-col>
       <ion-col col-3></ion-col>
   </ion-row>
-  <ion-row></ion-row>
+  <ion-row>
+    <ion-col col-1></ion-col>
+    <ion-col><coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="coins"></coin-eola-container></ion-col>
+    <ion-col><coin-eola-container [currencyIcon]="eolaIconUrl" [currencyAmmnt]="eolas"></coin-eola-container></ion-col>
+    <ion-col col-1></ion-col>
+  </ion-row>
   <ion-row></ion-row>
   <ion-row></ion-row>
   <ion-row></ion-row>
