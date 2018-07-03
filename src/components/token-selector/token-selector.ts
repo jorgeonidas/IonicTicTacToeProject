@@ -9,12 +9,14 @@ export class TokenSelectorComponent {
 
   tokensUrls: string[];
   currentInspectIndex: number;
+  currentInspectedUrl: string;
   currentSelection: number;
 
   constructor(private tokenService: TokenService) {
     console.log('Hello TokenSelectorComponent Component');
     this.tokensUrls = tokenService.getTokens();
     this.currentSelection = this.tokenService.getCurrentSelectionIndex();
+    this.currentInspectedUrl = this.tokenService.getCurrentSelectionUrl();
     console.log("last selection ", this.currentSelection);
     
   }
@@ -22,6 +24,7 @@ export class TokenSelectorComponent {
   inspect(index: number){
     console.log("token index: " + index);
     this.currentInspectIndex = index;
+    this.currentInspectedUrl = this.tokensUrls[this.currentInspectIndex];
   }
 
   onSelectTokens(){
