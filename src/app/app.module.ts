@@ -43,6 +43,7 @@ import { SettingsComponent } from '../components/settings/settings';
 import { CreateAccountComponent } from '../components/create-account/create-account';
 import { InformationBarComponent } from '../components/information-bar/information-bar';
 import { TokenService } from '../services/tokenService';
+import { UserAccountComponent } from '../components/user-account/user-account';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { TokenService } from '../services/tokenService';
     SettingsComponent,
     LoginComponent,
     CreateAccountComponent,
+    UserAccountComponent,
     InformationBarComponent
 
     

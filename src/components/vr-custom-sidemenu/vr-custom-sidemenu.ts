@@ -20,7 +20,7 @@ export class VrCustomSidemenuComponent {
   userSubActive: boolean;
   //Menu activo actual para saber que vista rendeizar
   currentActiveMenu: string;
-  menus: string[] = ['settings', 'settings-info', 'user-login', 'user-create', 'user-tokens', 'user-rankings'];
+  menus: string[] = ['settings', 'settings-info', 'user-login','user-account', 'user-create', 'user-tokens', 'user-rankings'];
   activeButtons: boolean[];
 
   //Color del Sidebar al abrir y cerrar el sideNav
@@ -32,7 +32,7 @@ export class VrCustomSidemenuComponent {
   constructor() 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
-    //[0:'settings', 1:'settings-info', 2:'user-login' y 'user-create', 3:'user-tokens', 4:'user-rankings'];
+    //[0:'settings', 1:'settings-info', 2:'user-login' - 'user-create' y 'user-account', 3:'user-tokens', 4:'user-rankings'];
     this.activeButtons =  [true, false, true, false, false];//solo hay 5 pestañas ya que user y create comparten la misma
     console.log(this.activeButtons);
     
@@ -131,6 +131,8 @@ export class VrCustomSidemenuComponent {
 
   //Current Active menu to show on the sideNav
   setCurrentActiveMenu(currMenu: string){
+    console.log(currMenu);
+    
     this.currentActiveMenu = currMenu;
   }
 

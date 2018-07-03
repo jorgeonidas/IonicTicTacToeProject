@@ -8,6 +8,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
   @Output() toCreateUserComp: EventEmitter<string> = new EventEmitter<string>();
+  @Output() toUserAccount: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() {
     console.log('Hello LoginComponent Component');
@@ -33,6 +34,10 @@ export class LoginComponent {
 
   openCreateUserView(){
     this.toCreateUserComp.emit('user-create');
+  }
+
+  openUserAccount(){
+    this.toUserAccount.emit('user-account');
   }
 
 }

@@ -36,7 +36,9 @@
     <!--IMPORTANT INFO!-->
     <important-information *ngIf="currentActiveMenu == 'settings-info'"></important-information>
     <!--User Login-->
-    <login *ngIf="currentActiveMenu == 'user-login'" (toCreateUserComp)="openCreateUserView($event)"></login>  
+    <login *ngIf="currentActiveMenu == 'user-login'" (toCreateUserComp)="openCreateUserView($event)" (toUserAccount)="setCurrentActiveMenu($event)"></login>
+    <!--User Account-->
+    <user-account *ngIf="currentActiveMenu == 'user-account'"></user-account>  
     <!--User Create-->
     <create-account *ngIf="currentActiveMenu == 'user-create'"
     (toLogin)="openUserCategory()"></create-account>
