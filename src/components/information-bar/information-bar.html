@@ -8,22 +8,10 @@
       </div>
     </ion-col>
     <ion-col >     
-      <div class="info-wrapper">
-        <div class="coin-container">
-          <ion-img src="{{coinIconUrl}}" class="coin-icon"></ion-img>
-          
-        </div>
-        <div class="data-container">{{coins}}</div>
-      </div>
+      <coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="coins"></coin-eola-container>
     </ion-col>
     <ion-col >     
-        <div class="info-wrapper">
-          <div class="coin-container">
-            <ion-img src="{{eolaIconUrl}}" class="coin-icon"></ion-img>
-            
-          </div>
-          <div class="data-container">{{coins}}</div>
-        </div>
+        <coin-eola-container [currencyIcon]="eolaIconUrl" [currencyAmmnt]="eolas"></coin-eola-container>
       </ion-col>
   </ion-row>
 </ion-grid>

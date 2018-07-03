@@ -44,6 +44,7 @@ import { CreateAccountComponent } from '../components/create-account/create-acco
 import { InformationBarComponent } from '../components/information-bar/information-bar';
 import { TokenService } from '../services/tokenService';
 import { UserAccountComponent } from '../components/user-account/user-account';
+import { CoinEolaContainerComponent } from '../components/coin-eola-container/coin-eola-container';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { UserAccountComponent } from '../components/user-account/user-account';
     LoginComponent,
     CreateAccountComponent,
     UserAccountComponent,
-    InformationBarComponent
+    InformationBarComponent,
+    CoinEolaContainerComponent
 
     
   ],
