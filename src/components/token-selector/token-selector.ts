@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 export class TokenSelectorComponent {
 
   tokensUrls: string[];
-
+  currentInspectIndex: number;
   constructor() {
     console.log('Hello TokenSelectorComponent Component');
     this.tokensUrls = 
@@ -25,7 +25,7 @@ export class TokenSelectorComponent {
 
   inspect(index: number){
     console.log("token index: " + index);
-    
+    this.currentInspectIndex = index;
   }
 
 }

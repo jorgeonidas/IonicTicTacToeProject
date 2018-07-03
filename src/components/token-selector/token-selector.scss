@@ -39,4 +39,8 @@ token-selector {
         background-color: gray;
         border-radius: 12px;
     }
+
+    .currentSelectedBorder{
+        border: green solid 5px;
+    }
 }

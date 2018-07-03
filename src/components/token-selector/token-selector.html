@@ -34,16 +34,20 @@
     <ion-col>
       <ion-row>
         <ion-col col-4 class="flex-col" *ngFor="let ulr of tokensUrls; let i = index">
-          <div text-center class="icon-wrapper" (click)="inspect(i)">
-            <img  width="50px" height="50px" src="{{tokensUrls[i]}}">
+          <div 
+            text-center 
+            class="icon-wrapper" 
+            (click)="inspect(i)"
+            [class.currentSelectedBorder]="i == currentInspectIndex">
+            <img width="50px" height="50px" src="{{tokensUrls[i]}}">
           </div>
-          </ion-col>
+        </ion-col>
       </ion-row>
     </ion-col>
-    
+
   </ion-row>
 
-  <ion-row >
+  <ion-row>
     <ion-col class="last-section">
       <ion-row>
 
@@ -55,10 +59,14 @@
         </ion-col>
         <!--buttons-->
         <ion-col col-3>
-          <button color="light" ion-button  icon-only clear><ion-icon name="arrow-dropleft"></ion-icon></button>
+          <button color="light" ion-button icon-only clear>
+            <ion-icon name="arrow-dropleft"></ion-icon>
+          </button>
         </ion-col>
         <ion-col col-3>
-            <button color="light" ion-button  icon-only clear><ion-icon name="arrow-dropright"></ion-icon></button>
+          <button color="light" ion-button icon-only clear>
+            <ion-icon name="arrow-dropright"></ion-icon>
+          </button>
         </ion-col>
 
         <ion-col style="color: white" text-center co-3>
