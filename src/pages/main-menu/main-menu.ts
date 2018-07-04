@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, PopoverController, MenuController 
 import { SettingsMenuPage } from '../settings-menu/settings-menu';
 import { CharacterSelectionPage } from '../character-selection/character-selection';
 import { PlayerSelectorService } from '../../services/playerSelService';
+import { ContactsPage } from '../contacts/contacts';
 
 @IonicPage()
 @Component({
@@ -64,6 +65,10 @@ export class MainMenuPage {
     this.menuCtrl.enable(false, 'login');
     this.menuCtrl.enable(false, 'settings');
     this.menuCtrl.open(this.activeMenu);
+  }
+
+  openContacsPage(){
+    this.navCtrl.push(ContactsPage,{},{animate: false});
   }
   
 }

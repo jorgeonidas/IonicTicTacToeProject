@@ -45,6 +45,7 @@ import { InformationBarComponent } from '../components/information-bar/informati
 import { TokenService } from '../services/tokenService';
 import { UserAccountComponent } from '../components/user-account/user-account';
 import { CoinEolaContainerComponent } from '../components/coin-eola-container/coin-eola-container';
+import { ContactsPage } from '../pages/contacts/contacts';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { CoinEolaContainerComponent } from '../components/coin-eola-container/co
     ConfigurationPage,
     TokenGaleryPage,
     PreGamePage,
+    ContactsPage,
     //componentes
     GridSelectorComponent,
     ScoreboardComponent,
@@ -103,7 +105,8 @@ import { CoinEolaContainerComponent } from '../components/coin-eola-container/co
     ConfigurationPage,
     GamePage,
     TokenGaleryPage,
-    PreGamePage
+    PreGamePage,
+    ContactsPage
   ],
   providers: [
     StatusBar,
