@@ -42,10 +42,17 @@ token-selector {
 
     .currentInspectBorder{
         border: green solid 5px;
+        border-radius: 20px;
+    }
+
+    .unInspectedBortder{
+        border: transparent solid 5px;
+        border-radius: 20px;
     }
 
     .currentSelectedBorder{
         border: map-get($colors, fuxia) solid 5px;
+        border-radius: 20px;
     }
 
     

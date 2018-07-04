@@ -34,14 +34,12 @@
     <ion-col>
       <ion-row>
         <ion-col col-4 class="flex-col" *ngFor="let ulr of tokensUrls; let i = index">
-          <div 
-            text-center 
-            class="icon-wrapper" 
-            (click)="inspect(i)"
-            [class.currentSelectedBorder]="i == currentSelection"
-            [class.currentInspectBorder]="i == currentInspectIndex">
-            
-            <img width="50px" height="50px" src="{{tokensUrls[i]}}">
+          <div  [class.unInspectedBortder]="i!= currentSelection && i != currentInspectIndex" 
+                [class.currentSelectedBorder]="i == currentSelection"
+                [class.currentInspectBorder]="i == currentInspectIndex">
+            <div text-center class="icon-wrapper" (click)="inspect(i)">
+              <img width="50px" height="50px" src="{{tokensUrls[i]}}">
+            </div>
           </div>
         </ion-col>
       </ion-row>
