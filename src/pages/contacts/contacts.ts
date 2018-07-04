@@ -15,4 +15,8 @@ export class ContactsPage {
     console.log('ionViewDidLoad ContactsPage');
   }
 
+  backToMainMenu(){
+    this.navCtrl.pop({animate:false});
+  }
+
 }
