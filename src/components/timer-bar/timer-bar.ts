@@ -26,7 +26,7 @@ export class TimerBarComponent {
   onOptionsMenu(){
     this.gamePaused = true;
     this.pausedEmmiter.emit(this.gamePaused);
-    const popover = this.popoverCtrl.create(ConfigurationPage);
+    const popover = this.popoverCtrl.create(ConfigurationPage,{},{enableBackdropDismiss: false});
 
     popover.onDidDismiss((data)=>{
       if(data){
