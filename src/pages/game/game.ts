@@ -27,7 +27,7 @@ export class GamePage {
   //scoreboard comp data
   playerOneHealth: number;
   playerTwoOrBothealth: number;
-  playerOneCurrentTurn: boolean; 
+  playerOneCurrentTurn: boolean; //Si el turno actual es del primer player o el segundo-bot
   //round data
   winner: boolean;
   playerOneWinsRound: boolean;
@@ -103,15 +103,42 @@ export class GamePage {
     
   }
 
+  generateFirstTurn(){
+    let moneda = Math.random();
+    if(moneda <= 0.5){
+      this.playerOneCurrentTurn = true;
+    }else{
+      this.playerOneCurrentTurn = false;
+    }
+  }
+
   gameInitializer(){
     //1.-Are you good enough?
     this.timeout = setTimeout(() => {
+      this.generateFirstTurn(); //SELECCIONAMOS QUIEN VA A COMENZAR EL JUEGO
+      let msj;
+      if(this.playerOneCurrentTurn){//El mensaje dependiendo del tipo de juego
+        msj = 'Player One Starts Game'
+      }else{
+        if(this.gametype=='local-multiplayer')
+          msj='Player Two Starts Game';
+        else if(this.gametype=='singleplayer')
+          msj = 'Robot Starts The Game'
+      }
+      this.initialAlert = this.alertCtrl.create({
+        title: msj,
+        enableBackdropDismiss: false
+      });
+      this.initialAlert.present();
+    }, 1000);
+    this.timeout = setTimeout(() => {
+      this.initialAlert.dismiss();
       this.initialAlert = this.alertCtrl.create({
         title: "Are you good enough?",
         enableBackdropDismiss: false
       });
       this.initialAlert.present();
-    }, 1000);
+    }, 2000);
     
     //2.-Ready
     this.timeout = setTimeout(()=>{
@@ -121,7 +148,7 @@ export class GamePage {
         enableBackdropDismiss: false
       })
       this.initialAlert.present();
-    },1500);
+    },3500);
     //3.-GO!
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
@@ -130,14 +157,14 @@ export class GamePage {
         enableBackdropDismiss: false
       })
       this.initialAlert.present();
-    },3000);
+    },4000);
     //START GAME!
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
       this.restRoundTimer();
       this.startTimer();
       this.gameDidStart = true;
-    },4000)
+    },5000);
   }
 
   setCurrentBoardStatus(board: string[]){
@@ -276,7 +303,12 @@ export class GamePage {
       //console.log(this.timeleft);
       this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
       //console.log(this.toltalTurnBar);
-
+      
+      //CASO ESPECIAL: SI LA IA COMIENZA EL JUEGO?
+      if(this.timeleft == this.turnInterval && (!this.playerOneCurrentTurn && this.IA.emptyIndexies(this.gameboard).length == 9 )){
+        console.log('IA Plays First!');
+        this.IAplaying();
+      }
       if(this.timeleft == 0){
         //clearInterval(this.timeout);
         //ojo funciona para local multiplayer como haremos con singleplayer?
@@ -288,32 +320,11 @@ export class GamePage {
             this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
           break;
 
-          case 'singleplayer':          
-            if (this.playerOneCurrentTurn) {
+          case 'singleplayer':
+                      
+            if (this.playerOneCurrentTurn /*|| (!this.playerOneCurrentTurn && this.IA.emptyIndexies(this.gameboard).length == 9 )*/) {
               this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-              this.IA.setDelay(this.turnInterval)
-              //tenemos que decirle a la pc que ejecute su jugada
-              this.IA.IATurn(this.gameboard, this.difficulty);//La jugada de La IA se ejecuta en paralelo
-              //hilo para hacer el cambio de turno y reseteo del timer
-              setTimeout(() => {
-                console.log("board despuesd que IA juega: " + this.gameboard);
-                console.log("espacios disponibles: ",this.IA.emptyIndexies(this.gameboard).length);
-                
-                if (this.IA.winning(this.gameboard, 'X')) {//si gana 
-                  console.log("IA WINS!");
-                  //aca seteo score!!!!!!!!
-                  this.setRoundWinner(false);
-                  this.winOrTie(true);
-                } else if (this.IA.emptyIndexies(this.gameboard).length == 0) {//si empata
-                  console.log("IA Puts a Draw");
-                  this.setRoundWinner(false);
-                  this.winOrTie(false);
-                } else { //caso contrario el juego continua
-                  
-                  this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-                  this.restRoundTimer();
-                }
-              }, this.IA.getDelay()+100); //para que lo ejecute justo despues del movimiento de la pc          
+              this.IAplaying();    
             }              
           break;
         }       
@@ -322,8 +333,30 @@ export class GamePage {
     1000); 
   }
 
-  checkGameAftherIA(){
-    
+  IAplaying() {
+    this.IA.setDelay(this.turnInterval)
+    //tenemos que decirle a la pc que ejecute su jugada
+    this.IA.IATurn(this.gameboard, this.difficulty);//La jugada de La IA se ejecuta en paralelo
+    //hilo para hacer el cambio de turno y reseteo del timer
+    setTimeout(() => {
+      console.log("board despuesd que IA juega: " + this.gameboard);
+      console.log("espacios disponibles: ", this.IA.emptyIndexies(this.gameboard).length);
+
+      if (this.IA.winning(this.gameboard, 'X')) {//si gana 
+        console.log("IA WINS!");
+        //aca seteo score!!!!!!!!
+        this.setRoundWinner(false);
+        this.winOrTie(true);
+      } else if (this.IA.emptyIndexies(this.gameboard).length == 0) {//si empata
+        console.log("IA Puts a Draw");
+        this.setRoundWinner(false);
+        this.winOrTie(false);
+      } else { //caso contrario el juego continua
+
+        this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+        this.restRoundTimer();
+      }
+    }, this.IA.getDelay() + 100); //para que lo ejecute justo despues del movimiento de la pc   
   }
 
   stopTimer(){
