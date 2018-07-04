@@ -32,14 +32,18 @@ export class PreGamePage {
   }
 
   loadGamePage(){
+    
     this.timeout = setTimeout(() => {
+      let currentIndex = this.navCtrl.getActive().index;
       this.navCtrl.push(this.gamePage,
         {gameType: this.gameType, 
         rounds: this.rounds, 
         difficulty: this.difficulty,
         portraitOne: this.portraitOne,
         portraitTwo: this.portraitTwo}, {animate: false}
-      );
+      ).then(()=>{
+        this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
+      });
     }, 3000);
   }
 

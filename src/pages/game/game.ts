@@ -247,7 +247,8 @@ export class GamePage {
           this.restRoundTimer();
           this.startTimer();
         }else{
-          this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-4),{animate: false});//hacemos 2 niveles pop ()
+          console.log('finishing game');
+          this.leaveGame();
         }
       }
       
@@ -336,5 +337,12 @@ export class GamePage {
     }else if(!this.cfgService.isLeavingCurrentGame() && ! isPaused){
       this.startTimer();
     }
+  }
+
+  leaveGame(){
+    //this.navCtrl.popToRoot({animate:false}); //TODO No elimina transicion
+    //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-1),{animate: false});//hacemos 2 niveles pop ()
+    console.log("leaving");
+    this.navCtrl.pop({animate:false});
   }
 }

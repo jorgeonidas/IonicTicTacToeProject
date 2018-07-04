@@ -149,7 +149,7 @@ export class ConfigurationPage implements OnInit{
     }
 
     closeMenu(){
-        this.viewCtrl.dismiss();
+        this.viewCtrl.dismiss(true/*el juego continua*/);
         this.events.publish('settings:changed');//app atrapara este evento
     }
 
@@ -157,7 +157,8 @@ export class ConfigurationPage implements OnInit{
         console.log("leave game event");
         this.events.publish('settings:changed');//app atrapara este evento
         this.cfgService.setLeavingCurrentGame(true); //el servicio guardara si abandono el juego
-        this.viewCtrl.dismiss();
-        this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-4),{animate:false}); //hago pop 3 niveles
+        this.viewCtrl.dismiss(false/*el juego NO continua*/);
+        //this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-4),{animate:false}); //hago pop 3 niveles
+        //this.appCtrl.getRootNav().pop({animate:false});
     }
 }

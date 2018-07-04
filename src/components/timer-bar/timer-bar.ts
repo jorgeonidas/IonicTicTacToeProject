@@ -14,6 +14,7 @@ export class TimerBarComponent {
 
   gamePaused : boolean;
   @Output() pausedEmmiter = new EventEmitter<boolean>();
+  @Output() continueGameEmmiter = new EventEmitter<boolean>();
 
   constructor(private popoverCtrl: PopoverController) {
     console.log('Hello TimerBarComponent Component');
@@ -27,9 +28,14 @@ export class TimerBarComponent {
     this.pausedEmmiter.emit(this.gamePaused);
     const popover = this.popoverCtrl.create(ConfigurationPage);
 
-    popover.onDidDismiss(()=>{
-      this.gamePaused = false;
-      this.pausedEmmiter.emit(this.gamePaused);
+    popover.onDidDismiss((data)=>{
+      if(data){
+        this.gamePaused = false;
+        this.pausedEmmiter.emit(this.gamePaused);
+      }else{
+        this.continueGameEmmiter.emit(false);
+      }
+      
     });
 
     popover.present({animate: false});

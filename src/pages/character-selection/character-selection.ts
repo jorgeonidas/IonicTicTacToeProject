@@ -57,6 +57,7 @@ export class CharacterSelectionPage {
   }
 
   onClickPlay(){
+    let currentIndex = this.navCtrl.getActive().index;
     this.navCtrl.push(this.preGamePage,
       {gameType: this.gameType, 
       rounds: this.rounds, 
@@ -64,7 +65,9 @@ export class CharacterSelectionPage {
       playerOnePortrait: this.playerOnePortrait,
       playerTwoOrBotPortrait: this.playerTwoOrBotPortrait}, 
       {animate: false}
-    );
+    ).then(()=>{
+      this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
+    });
   }
 
   onClickBack(){

@@ -131,6 +131,7 @@ export class GridSelectorComponent{
         });
         //para poner el caracter correcto al jugador 2 'R' o 'P2'
         this.setSingleOrMulti(this.playerSelService.getIsSinglePlayer());
+        this.playerSelService.resetPicks();
     }
 
     setSingleOrMulti(single: boolean){

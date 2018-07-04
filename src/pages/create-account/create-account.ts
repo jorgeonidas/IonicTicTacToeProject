@@ -4,6 +4,7 @@ import { MainMenuPage } from '../main-menu/main-menu';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/authService';
+import { animate } from '@angular/core/src/animation/dsl';
 
 @IonicPage()
 @Component({
@@ -81,6 +82,7 @@ export class CreateAccountPage implements OnInit  {
   }
 
   toMainMenuPage(){
+    this.navCtrl.setRoot(this.mainMenuPage,{},{animate: false});
     this.navCtrl.push(this.mainMenuPage, {}, {animate: false})
   }
 }

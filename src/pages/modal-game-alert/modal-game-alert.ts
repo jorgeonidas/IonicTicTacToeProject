@@ -32,9 +32,7 @@ export class ModalGameAlertPage {
   }
 
   leaveGame(nextRound: boolean){
-    this.viewCtrl.dismiss(nextRound);
-    this.app.getRootNav().pop();
-    //this.app.getRootNav().popTo(this.app.getRootNav().getByIndex(this.app.getRootNav().length()-3),{animate:false}); //hago pop dos niveles
+    this.viewCtrl.dismiss(nextRound);//false si no quiere continuar el juego
   }
 
 }

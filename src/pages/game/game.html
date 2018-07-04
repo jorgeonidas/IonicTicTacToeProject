@@ -17,7 +17,7 @@
     </ion-row>
     <!--some bar?-->
 
-    <timer-bar [currentRound]="currentRound > rounds ? rounds : currentRound " [value]="toltalTurnBar" (pausedEmmiter)="pauseOrResume($event)"></timer-bar>
+    <timer-bar [currentRound]="currentRound > rounds ? rounds : currentRound " [value]="toltalTurnBar" (pausedEmmiter)="pauseOrResume($event)" (continueGameEmmiter)="leaveGame()"></timer-bar>
       
     <!--board-->
     <ion-row>

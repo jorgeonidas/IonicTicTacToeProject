@@ -21,6 +21,7 @@ export class LoginPage {
   }
 
   toMainMenuPage(){
+    this.navCtrl.setRoot(MainMenuPage, {}, {animate: false});
     this.navCtrl.push(this.mainMenuPage, {}, {animate: false});
   }
 
