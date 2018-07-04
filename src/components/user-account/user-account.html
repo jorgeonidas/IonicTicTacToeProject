@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid padding>
   <ion-row>
     <ion-col col-3></ion-col>
     <ion-col text-center>
@@ -7,21 +7,54 @@
     <ion-col col-3></ion-col>
   </ion-row>
   <ion-row>
-      <ion-col col-3></ion-col>
-      <ion-col text-center>
-          <ion-thumbnail>
-            <img src="{{profileImgUlr}}"/>
-          </ion-thumbnail>
-      </ion-col>
-      <ion-col col-3></ion-col>
+    <ion-col col-3></ion-col>
+    <ion-col text-center>
+      <ion-thumbnail>
+        <img src="{{profileImgUlr}}" />
+      </ion-thumbnail>
+    </ion-col>
+    <ion-col col-3></ion-col>
   </ion-row>
   <ion-row>
     <ion-col col-1></ion-col>
-    <ion-col><coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="coins"></coin-eola-container></ion-col>
-    <ion-col><coin-eola-container [currencyIcon]="eolaIconUrl" [currencyAmmnt]="eolas"></coin-eola-container></ion-col>
+    <ion-col text-center>
+      <coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="coins"></coin-eola-container>
+    </ion-col>
+    <ion-col text-center>
+      <coin-eola-container [currencyIcon]="eolaIconUrl" [currencyAmmnt]="eolas"></coin-eola-container>
+    </ion-col>
     <ion-col col-1></ion-col>
   </ion-row>
-  <ion-row></ion-row>
-  <ion-row></ion-row>
-  <ion-row></ion-row>
+  <ion-row padding>
+    <ion-item no-lines class="ion-item-input">
+      <ion-input class="username-input" disabled="{{userNameInputDisable}}" type="text" [(ngModel)]="profileName"></ion-input>
+      <button ion-button item-right icon-only clear (click)="toggleEdit()" color="input-inner-btn">
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-row>
+  <ion-row padding>
+    <ion-col text-center>
+      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+      <h2>Ranking</h2>
+    </ion-col>
+    <ion-col text-center>
+      <img width="80px" height="80px" src="{{currTokenUrl}}" />
+      <h2>Token</h2>
+    </ion-col>
+  </ion-row>
+  <ion-row no-padding>
+    <ion-col col-2></ion-col>
+    <ion-col>
+      <button class="borderInfButtons" color="emerald" round block ion-button>Game Center</button>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
+  <ion-row no-padding>
+    <ion-col col-2></ion-col>
+    <ion-col>
+      <button no-padding class="borderInfButtons" color="emerald" round block ion-button>Manage Account</button>
+    </ion-col>
+    <ion-col col-2></ion-col>
+  </ion-row>
 </ion-grid>

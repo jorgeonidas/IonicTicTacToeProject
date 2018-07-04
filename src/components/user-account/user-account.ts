@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
+import { TokenService } from '../../services/tokenService';
 
 @Component({
   selector: 'user-account',
   templateUrl: 'user-account.html'
 })
+@Injectable()
 export class UserAccountComponent {
 
   profileImgUlr: string;
@@ -14,8 +16,11 @@ export class UserAccountComponent {
   coinIconUrl : string; 
   eolaIconUrl: string;
   
+  userNameInputDisable: boolean;
 
-  constructor() {
+  currTokenUrl: string;
+
+  constructor(private tokenServ : TokenService) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
     this.coins = 9999;
@@ -23,6 +28,17 @@ export class UserAccountComponent {
 
     this.coinIconUrl = "assets/imgs/coins.png";
     this.eolaIconUrl = "assets/imgs/eolas.png";
+
+    this.profileName = 'Human';
+
+    this.userNameInputDisable = true;
+
+    this.currTokenUrl = tokenServ.getCurrentSelectionUrl();
+
+  }
+
+  toggleEdit(){
+    this.userNameInputDisable = !this.userNameInputDisable;
   }
 
 }
