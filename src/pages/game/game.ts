@@ -28,6 +28,7 @@ export class GamePage {
   playerOneHealth: number;
   playerTwoOrBothealth: number;
   playerOneCurrentTurn: boolean; //Si el turno actual es del primer player o el segundo-bot
+  playerOneDidGoFirst: boolean;
   //round data
   winner: boolean;
   playerOneWinsRound: boolean;
@@ -110,12 +111,14 @@ export class GamePage {
     }else{
       this.playerOneCurrentTurn = false;
     }
+
+    return this.playerOneCurrentTurn;
   }
 
   gameInitializer(){
     //1.-Are you good enough?
     this.timeout = setTimeout(() => {
-      this.generateFirstTurn(); //SELECCIONAMOS QUIEN VA A COMENZAR EL JUEGO
+      this.playerOneDidGoFirst = this.generateFirstTurn(); //SELECCIONAMOS QUIEN VA A COMENZAR EL JUEGO
       let msj;
       if(this.playerOneCurrentTurn){//El mensaje dependiendo del tipo de juego
         msj = 'Player One Starts Game'
@@ -224,6 +227,8 @@ export class GamePage {
     }
     //agrego una ronda
     this.currentRound++;
+    //Asigno quien va a comenzar siguiente ronda
+    //this.setNextRound(this.playerOneWinsRound); //////////////////////////////////////////////////////////////////Ojo!
     //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador
     if(this.currentRound > this.rounds){
       //victoria o empate
@@ -273,6 +278,7 @@ export class GamePage {
           this.resetBoard();
           this.restRoundTimer();
           this.startTimer();
+          this.setNextRound(this.playerOneWinsRound);//setear nuevo round
         }else{
           console.log('finishing game');
           this.leaveGame();
@@ -304,8 +310,8 @@ export class GamePage {
       this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
       //console.log(this.toltalTurnBar);
       
-      //CASO ESPECIAL: SI LA IA COMIENZA EL JUEGO?
-      if(this.timeleft == this.turnInterval && (!this.playerOneCurrentTurn && this.IA.emptyIndexies(this.gameboard).length == 9 )){
+      //CASO ESPECIAL:SI LA IA COMIENZA EL JUEGO?
+      if(this.timeleft == this.turnInterval && (!this.playerOneCurrentTurn && this.IA.emptyIndexies(this.gameboard).length == 9 ) && this.gametype == 'singleplayer' ){
         console.log('IA Plays First!');
         this.IAplaying();
       }
@@ -377,5 +383,52 @@ export class GamePage {
     //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-1),{animate: false});//hacemos 2 niveles pop ()
     console.log("leaving");
     this.navCtrl.pop({animate:false});
+  }
+
+  setNextRound(poneWins: boolean) {
+    let msj;
+    this.gameDidStart = false;
+    this.restRoundTimer()
+    this.stopTimer();
+    
+    if (poneWins) {//player 1 gano
+      this.playerOneCurrentTurn = false;
+
+      if (this.gametype == 'local-multiplayer')
+        msj = 'Player Two Starts Game';
+      else if (this.gametype == 'singleplayer')
+        msj = 'Robot Starts The Game'
+
+    } else if(!poneWins && this.winner) {//player 2 o bot gano
+      
+      this.playerOneCurrentTurn = true;
+      msj = 'Player One Starts Game';
+
+    }else{//caso empate//comienza el que no comenzo de primero
+      if(this.playerOneDidGoFirst){//si player uno arranco de primero/ el oponente comienza la segunda ronda
+        this.playerOneCurrentTurn = false;
+        if (this.gametype == 'local-multiplayer')
+          msj = 'Player Two Starts Game';
+        else if (this.gametype == 'singleplayer')
+          msj = 'Robot Starts The Game'
+      }else{//
+        this.playerOneCurrentTurn = true;
+        msj = 'Player One Starts Game';
+      }     
+    }
+
+    this.playerOneDidGoFirst = this.playerOneCurrentTurn;//guardo la variable de quien comenzo primero en caso de otro empate
+
+    let alert = this.alertCtrl.create({
+      title: msj,
+      enableBackdropDismiss: false
+    });
+
+    alert.present();
+    this.timeout = setTimeout(() => {
+      alert.dismiss();
+      this.gameDidStart = true;
+      this.startTimer();
+    }, 1000);
   }
 }
