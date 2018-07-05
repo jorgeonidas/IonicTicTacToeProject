@@ -20,46 +20,17 @@ export class SettingsComponent {
   constructor(private cfgServiceDB: ConfigurationServiceDB, 
     private configModel: ConfigurationModel,
     private events: Events,) {
-    console.log('Hello SettingsComponent Component');
+    console.log('Hello SettingsComponent Component');  
+    //this.getSettingsFromDB();
 
-    this.getSettingsFromDB();
-  }
-
-  getSettingsFromDB(){
-    this.cfgServiceDB.get('sfx').then((val) => {
-      console.log(val);
-      this.configModel.setSfx(val);
-      this.sfx = this.configModel.sfx;
-
-    });
-
-    this.cfgServiceDB.get('music').then((val) => {
-      console.log(val);
-      this.configModel.setMusic(val);
-      this.music = this.configModel.music;
-
-    });
-
-    this.cfgServiceDB.get('currentLang').then((val) => {
-      console.log(val);
-      this.configModel.setlanguage(val);
-      this.currentLang = this.configModel.language;
-
-    });
-
-    this.cfgServiceDB.get('notifications').then((val) => {
-      console.log(val);
-      this.configModel.setNotif(val);
-      this.notifications = this.configModel.notifications;
-    });
-
+    //this.getSettingsFromDB();
+    this.initSettings();
     this.events.subscribe(('settings:changed'),() => {
       console.log("Event catched by settings component");
       this.initSettings();
     } );
-
   }
-
+ 
   initSettings() {
     console.log("from vr-custom-sidemenu", this.configModel.sfx, this.configModel.sfx, this.configModel.language, this.configModel.notifications);
 

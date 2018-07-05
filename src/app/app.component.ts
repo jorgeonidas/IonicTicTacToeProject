@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Platform} from 'ionic-angular';
+import { Platform, Events} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { LoginPage } from '../pages/login/login';
+import { ConfigurationServiceDB } from '../services/configurationdb.service';
+import { ConfigurationModel } from '../models/configuration';
 
 
 @Component({
@@ -15,9 +17,67 @@ export class MyApp {
   mainMenuPage = MainMenuPage;
   //pagina root
   rootPage: any = this.mainMenuPage;
+  
   constructor(platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen) { }
+    splashScreen: SplashScreen,
+    private cfgServiceDB: ConfigurationServiceDB,
+    private configModel: ConfigurationModel,
+    private events: Events) {
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      statusBar.styleDefault();
+      splashScreen.hide();
+    });
+    
+    this.getSettingsFromDB();
+  
+      /*this.events.subscribe(('settings:changed'),() => {
+        console.log("Event catched by settings component");
+        //this.initSettings();
+      } );*/
+  
+    }
+
+    getSettingsFromDB(){
+      this.cfgServiceDB.get('sfx').then((val) => {
+        console.log(val);
+        this.configModel.setSfx(val);
+        //this.sfx = this.configModel.sfx;
+        this.events.publish('settings:changed');
+  
+      });
+  
+      this.cfgServiceDB.get('music').then((val) => {
+        console.log(val);
+        this.configModel.setMusic(val);
+        //this.music = this.configModel.music;
+        this.events.publish('settings:changed');
+  
+      });
+  
+      this.cfgServiceDB.get('currentLang').then((val) => {
+        console.log(val);
+        this.configModel.setlanguage(val);
+        //this.currentLang = this.configModel.language;
+        this.events.publish('settings:changed');
+  
+      });
+  
+      this.cfgServiceDB.get('notifications').then((val) => {
+        console.log(val);
+        this.configModel.setNotif(val);
+        //this.notifications = this.configModel.notifications;
+        this.events.publish('settings:changed');
+      });
+
+
+  }
+
+
 
 }
+
+
 
