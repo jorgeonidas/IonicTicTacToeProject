@@ -21,9 +21,7 @@ export class SettingsComponent {
     private configModel: ConfigurationModel,
     private events: Events,) {
     console.log('Hello SettingsComponent Component');  
-    //this.getSettingsFromDB();
-
-    //this.getSettingsFromDB();
+    
     this.initSettings();
     this.events.subscribe(('settings:changed'),() => {
       console.log("Event catched by settings component");
