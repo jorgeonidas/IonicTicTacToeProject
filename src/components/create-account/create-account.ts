@@ -26,27 +26,32 @@ export class CreateAccountComponent {
       'name': new FormControl('jorgeonidas', Validators.required),
       'password': new FormControl('123456', Validators.required),
       'email': new FormControl('maitest@mail.com', Validators.required),
-      'day': new FormControl(null, Validators.required),
+      /*'day': new FormControl(null, Validators.required),
       'month': new FormControl(null, Validators.required),
-      'year': new FormControl(null, Validators.required),
+      'year': new FormControl(null, Validators.required),*/
+      'dob': new FormControl(null, Validators.required),
       'useragre': new FormControl(true, Validators.required),
     });
   }
 
   onSubmitCreateUser(event: any) {
-    console.log(event);
-
+    //console.log(event);
+    console.log(this.createUserForm.value);
+    
+    
     const loading = this.loadingCtrl.create({content: 'Please Waint...'});
 
     if (!this.createUserForm.invalid) {
       loading.present();
       const value = this.createUserForm.value;
       console.log(value);
-      console.log(this.createUserForm.value);
+      console.log(this.createUserForm.value.dob);
       this.currentDate = new Date();
       console.log(this.currentDate.toISOString().split('.')[0] + " ");
-      this.dateOfBirth = new Date(value.year, value.month, value.day);
-
+      //this.dateOfBirth = new Date(value.year, value.month, value.day);
+      this.dateOfBirth = new Date(value.dob);
+      console.log("date of birtdh:",this.dateOfBirth);
+      
       this.authService.signup(value.email,
         value.name, value.password,
         this.dateOfBirth.toISOString().split('.')[0] + " ",
@@ -80,13 +85,13 @@ export class CreateAccountComponent {
             });
             loading.dismiss();
             alert.present();
-            /*console.log(error);
+            console.log(error);
             console.log(error.name);
             console.log(error.message);
-            console.log(error.status);*/}
+            console.log(error.status);}
         );
     }
-
+    
   }
 
   backToLoginPage(){

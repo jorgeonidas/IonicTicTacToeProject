@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/authService';
-import { animate } from '@angular/core/src/animation/dsl';
 
 @IonicPage()
 @Component({
@@ -23,7 +22,11 @@ export class CreateAccountPage implements OnInit  {
     this.initializeForm();
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private authService: AuthService, 
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
     authService.testingApi();
   }
 
@@ -36,19 +39,26 @@ export class CreateAccountPage implements OnInit  {
       'name': new FormControl('jorgeonidas', Validators.required),
       'password': new FormControl('123456', Validators.required),
       'email': new FormControl('maitest@mail.com', Validators.required),
+      /*
       'day': new FormControl(null, Validators.required),
       'month': new FormControl(null, Validators.required),
       'year': new FormControl(null, Validators.required),
+      */
+      'dob': new FormControl(null, Validators.required),
       'useragre': new FormControl(true, Validators.required),
     });
   }
 
   onSubmit(){
+
+    const loading = this.loadingCtrl.create({content: 'Please Waint...'});
+    loading.present();
     const value = this.createUserForm.value;
     console.log(this.createUserForm.value);
     this.currentDate = new Date();
     console.log(this.currentDate.toISOString().split('.')[0]+" " );
-    this.dateOfBirth = new Date(value.year,value.month, value.day);
+    //this.dateOfBirth = new Date(value.year,value.month, value.day);
+    this.dateOfBirth = new Date(value.dob);
     console.log(this.dateOfBirth.toISOString().split('.')[0]+" " );
 
     this.authService.signup(value.email, 
@@ -57,10 +67,12 @@ export class CreateAccountPage implements OnInit  {
       this.currentDate.toISOString().split('.')[0]+" " ,
       "N")
       .subscribe((resutl)=>{
+        loading.dismiss();
         console.log(resutl);
         this.navCtrl.push(LoginPage);
       },
       error=>{
+        loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Error!',
           message: error.name,
