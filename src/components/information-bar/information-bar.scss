@@ -2,25 +2,12 @@ information-bar {
     .info-bar{
         background-color: map-get($colors, fuxia);
     }
-
-    .info-wrapper{
-        position: relative;
+    .nickname-wrapper{
         background-color: gray;
         width: 90%;
-        height: 100%;
-        padding-bottom: 2%;
-        padding-top: 2%;
+        padding: 2px;
+        text-align: center;
         color: white;
         border-radius: 15px;
-        display: flex;
-        flex-direction: row;
-        height: 3.5vh;
-        
-    }
-    
-    .data-container{
-        position: absolute;
-        width: 100%;
-        text-align: center;
     }
 }

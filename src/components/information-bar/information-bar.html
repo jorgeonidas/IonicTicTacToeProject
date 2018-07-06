@@ -1,16 +1,14 @@
 <ion-grid class="info-bar" no-padding>
   <ion-row padding>
     <ion-col  col-5>
-      <div class="info-wrapper">
-        <div class="data-container">
-            {{nickname}}
-        </div>
+      <div class="nickname-wrapper">
+        {{nickname}}
       </div>
     </ion-col>
-    <ion-col >     
+    <ion-col>     
       <coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="coins"></coin-eola-container>
     </ion-col>
-    <ion-col >     
+    <ion-col>     
         <coin-eola-container [currencyIcon]="eolaIconUrl" [currencyAmmnt]="eolas"></coin-eola-container>
       </ion-col>
   </ion-row>
