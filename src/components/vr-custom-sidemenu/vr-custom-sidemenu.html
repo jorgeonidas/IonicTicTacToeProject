@@ -1,5 +1,6 @@
-<div class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity">
+<div id="custom-sidenav" class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity" (click)="clickOnNav($event)">
   <div class="customSidebarButtons">
+    <div style="height: 100%"></div>
     <button *ngIf="isOpen" color="skipBorder" block ion-button (click)="closeNav()" icon-only>
       <ion-icon name="redo"></ion-icon>
     </button>
@@ -20,7 +21,7 @@
       [class.unactive-sidebtn]="!activeButtons[3]">
       <ion-icon name="grid"></ion-icon>
     </button>
-    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openRankingView()" ion-button block icon-only
+    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openRankingView($event)" ion-button block icon-only
       [class.unactive-sidebtn]="!activeButtons[4]">
       <ion-icon name="medal"></ion-icon>
     </button>

@@ -149,7 +149,14 @@ export class VrCustomSidemenuComponent {
   activateButton(index: number){
     this.deactivateAllButtons();
     this.activeButtons[index] = true;
-    //console.log(this.activeButtons);
-    
+    //console.log(this.activeButtons);   
+  }
+
+  clickOnNav(event){
+    console.log(event.target.id);
+    if(event.target.id === "custom-sidenav" && this.isOpen){
+      console.log("click outside",true);
+      this.closeNav();
+    }
   }
 }
