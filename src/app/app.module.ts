@@ -86,7 +86,13 @@ import { ContactsPage } from '../pages/contacts/contacts';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      platforms:{
+        ios:{
+          swipeBackEnabled: false
+        }
+      }
+    }),
     HttpClientModule,
     IonicStorageModule.forRoot(),
     DragulaModule
