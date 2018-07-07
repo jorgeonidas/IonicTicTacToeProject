@@ -39,10 +39,6 @@ import { PlayerSelectorService } from "../../services/playerSelService";
             border-right: 2px solid gray;
         }
 
-        img{
-            max-height: 8rem;
-        }
-
         .ollie-character-wrapper {
             position: relative;
         }
@@ -66,6 +62,15 @@ import { PlayerSelectorService } from "../../services/playerSelService";
             color: #f26fe5;
             background: #c7d1e0;
             right: 0;
+        }
+        
+        img{
+            max-height: 8rem;
+        }
+
+        ion-thumbnail img{
+            width: 100%;
+            height: 100%;
         }
 
     `]

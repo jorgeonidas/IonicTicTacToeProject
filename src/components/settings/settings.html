@@ -2,7 +2,7 @@
     <form #cfg="ngForm">
       <ion-row text-center>
         <ion-col>
-          <h1 class="side-menu-title">Settings</h1>
+          <h1 no-margin class="side-menu-title">Settings</h1>
         </ion-col>
       </ion-row>
       <br>
@@ -10,19 +10,19 @@
       <ion-row>
         <ion-col></ion-col>
         <ion-col col-5>
-          <h2>Music</h2>
+          <h2 no-margin>Music</h2>
           <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
         </ion-col>
         <ion-col col-5>
-          <h2>FX</h2>
+          <h2 no-margin>FX</h2>
           <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
         </ion-col>
       </ion-row>
 
       <br>
       <ion-row>
-        <ion-col>
-          <h4>Notifications</h4>
+        <ion-col text-center>
+          <h4 no-margin>Notifications</h4>
         </ion-col>
         <ion-col class="flex-col">
           <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
