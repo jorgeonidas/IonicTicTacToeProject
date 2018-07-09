@@ -32,25 +32,26 @@
   <ion-toolbar>
     <ion-grid>
       <ion-row>
-        
-        <ion-col>
-          <button ion-button block icon-only small outline (click)="backToMainMenu()">
-            <ion-icon name="home"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col col-2></ion-col>
-        <ion-col>
-          <button ion-button block icon-start small>
-            <ion-icon color="gold" name="logo-bitcoin"></ion-icon>Free Energy
-          </button>
-        </ion-col>
-        <ion-col col-2></ion-col>
-        <ion-col>
-          <button ion-button block icon-only small outline>
-            <ion-icon name="md-person-add"></ion-icon>
-          </button>
-        </ion-col>
-        
+        <div class="footer-btns">
+          <ion-col text-center>
+            <button round ion-button icon-only outline color="gold" (click)="backToMainMenu()">
+              <ion-icon name="home"></ion-icon>
+            </button>
+          </ion-col>
+
+          <ion-col text-center>
+            <button ion-button round icon-start color="borderMainBtns"> 
+              <ion-icon color="gold" name="logo-bitcoin"></ion-icon>Free Energy
+            </button>
+          </ion-col>
+
+
+          <ion-col text-center>
+            <button round ion-button blok icon-only outline color="borderMainBtns">
+              <ion-icon name="md-person-add"></ion-icon>
+            </button>
+          </ion-col>
+        </div>
       </ion-row>
     </ion-grid>
   </ion-toolbar>

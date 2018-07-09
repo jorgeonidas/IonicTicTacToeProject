@@ -6,4 +6,11 @@ page-contacts {
     .avatar{
         border-radius: 50%;
     }
+
+    .footer-btns{
+        width: 100%;
+        display: flex;
+        direction: row;
+        margin: 0;
+    }
 }
