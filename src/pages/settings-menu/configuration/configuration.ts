@@ -7,27 +7,36 @@ import 'rxjs/Rx';
 import { MainMenuPage } from "../../main-menu/main-menu";
 import { Events } from 'ionic-angular';
 @Component({
-    template: `<ion-grid text-center>
+    template: `<ion-content class="no-scroll">
+                <ion-grid padding>
                     <ion-row>
                         <ion-col text-center>
-                            <h2>Settings</h2>
+                            <h2 no-margin class="side-menu-title">Settings</h2>
                         </ion-col>                        
                     </ion-row>                   
                     <form #cfg="ngForm">
                         <ion-row>
-                            <ion-col>
-                                <h1>Music</h1>
+                            <ion-col text-center>
+                                <div class="menuSubtitle">
+                                    <h1 no-margin>Audio</h1>
+                                </div>
                             </ion-col>
                         </ion-row>
                         <ion-row>
-                            <ion-col>
-                                <h3>Sfx</h3>
-                                <ion-toggle name="sfx"  [(ngModel)]="sfx" (ionChange)="onToggle($event,'sfx')"></ion-toggle>
+                            <ion-col></ion-col>
+                            <ion-col text-center col-5>
+                                <h2 no-margin>Music</h2>
+                                <div class="toggleWrapper">
+                                    <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
+                                </div>
                             </ion-col>
-                            <ion-col>
-                                <h3>Music</h3>
-                                <ion-toggle name="music" [(ngModel)]="music" (ionChange)="onToggle($event,'music')"></ion-toggle>
+                            <ion-col text-center col-5>
+                                <h2 no-margin>FX</h2>
+                                <div class="toggleWrapper">
+                                    <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
+                                </div>
                             </ion-col>
+                            <ion-col></ion-col>
                         </ion-row>
                     </form>
                     <ion-row>
@@ -52,7 +61,34 @@ import { Events } from 'ionic-angular';
                         <ion-col>
                         </ion-col>
                     </ion-row>        
-                </ion-grid>`,
+                </ion-grid>
+            </ion-content>`,
+            styles: [`
+                    .no-scroll{
+                        overflow: hidden;
+                        border: 10px solid #D4AF37;
+                        border-radius: 15px;
+                        margin: 0;
+                    }
+
+                    ion-row{
+                        margin-top: 5%;
+                    }
+
+                    .menuSubtitle h1{
+                        color: #d3d3d3;
+                    }
+                    
+                    .toggleWrapper{
+                        display: block;
+                        width: 100%;  
+                    }
+
+                    ion-toggle{
+                        margin: auto;
+                    }
+
+                    `]
 })
 
 export class ConfigurationPage implements OnInit{
