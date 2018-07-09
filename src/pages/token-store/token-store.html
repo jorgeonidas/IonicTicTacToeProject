@@ -1,0 +1,36 @@
+<ion-content no-margin no-padding>
+  <information-bar></information-bar>
+  <token-selector></token-selector>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <div class="store-footer">
+          <ion-col col-2 class="flex-col" text-center>
+            <button round ion-button icon-only outline color="gold" (click)="backToMainMenu()">
+              <ion-icon name="home"></ion-icon>
+            </button>
+          </ion-col>
+
+          <ion-col col-5 text-center>
+            <div class="footer-btn-wrapper">
+              <button block outline ion-button round color="gold">
+                Tokens
+              </button>
+            </div>
+
+          </ion-col>
+
+          <ion-col col-5 text-center>
+            <div class="footer-btn-wrapper">
+              <button block outline round ion-button color="gold">
+                Gold
+              </button>
+            </div>
+          </ion-col>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, Input } from '@angular/core';
 import { TokenService } from '../../services/tokenService';
 @Component({
   selector: 'token-selector',
@@ -11,6 +11,7 @@ export class TokenSelectorComponent {
   currentInspectIndex: number;
   currentInspectedUrl: string;
   currentSelection: number;
+  @Input() isStore: boolean = false;
 
   constructor(private tokenService: TokenService) {
     console.log('Hello TokenSelectorComponent Component');

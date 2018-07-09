@@ -4,6 +4,7 @@ import { SettingsMenuPage } from '../settings-menu/settings-menu';
 import { CharacterSelectionPage } from '../character-selection/character-selection';
 import { PlayerSelectorService } from '../../services/playerSelService';
 import { ContactsPage } from '../contacts/contacts';
+import { TokenStorePage } from '../token-store/token-store';
 
 @IonicPage()
 @Component({
@@ -69,6 +70,10 @@ export class MainMenuPage {
 
   openContacsPage(){
     this.navCtrl.push(ContactsPage,{},{animate: false});
+  }
+
+  openStorePage(){
+    this.navCtrl.push(TokenStorePage,{},{animate: false});
   }
   
 }
