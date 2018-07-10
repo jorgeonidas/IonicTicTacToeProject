@@ -6,6 +6,11 @@ token-selector {
         border-radius: 15px 15px 0 0;
     }
 
+    .header-sections-store{
+        background-color: dimgray;
+        height: 30%; //alto de la vista
+    }
+
     .first-section{
         background-color: map-get($colors, primary);
     }
@@ -26,6 +31,10 @@ token-selector {
     .last-section{
         background-color: map-get($colors, createBorder);
         border-radius: 0 0 15px 15px;
+    }
+
+    .last-section-store{
+        background-color: map-get($colors, createBorder);
     }
 
     .icon-wrapper{
@@ -55,5 +64,12 @@ token-selector {
         border-radius: 20px;
     }
 
+    /*si rehuso este componente para la tienda*/
+    .token-store{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
     
 }

@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the TokenStorePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { TokenService } from '../../services/tokenService';
 @IonicPage()
 @Component({
   selector: 'page-token-store',
@@ -15,7 +8,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TokenStorePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  currentToken: string;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService) {
+    this.currentToken = tokenService.getTokens()[0];
   }
 
   ionViewDidLoad() {

@@ -72,7 +72,8 @@ import { Events } from 'ionic-angular';
                     }
 
                     ion-row{
-                        margin-top: 5%;
+                        padding-top: 2%;
+                        padding-bottom: 2%;
                     }
 
                     .menuSubtitle h1{

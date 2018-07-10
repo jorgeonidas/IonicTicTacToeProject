@@ -1,9 +1,39 @@
 page-token-store {
+    .no-scroll{
+        overflow: hidden;
+    }
+
+    .token-inspector{
+        background-color: dimgray;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 25vh;
+    }
+
+    .name-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div.name-wrapper p{
+        font-size: 16px;
+    }
+
     .store-footer{
         display: flex;
         width: 100%;
         margin: 0;
         flex-direction: row;
+    }
+
+    .footer-row{
+        background-color: map-get($colors, primary );
     }
 
     .footer-btn-wrapper{

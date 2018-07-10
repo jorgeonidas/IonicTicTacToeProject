@@ -1,7 +1,7 @@
 <!-- Generated template for the TokenSelectorComponent component -->
-<ion-grid class="tokens-grid">
+<ion-grid [class.token-store]="isStore">
   <ion-row>
-    <ion-col text-center class="header-section flex-col">
+    <ion-col text-center [ngClass]="{'header-section flex-col': !isStore, 'header-sections-store flex-col': isStore}">
       <img width="80px" height="80px" src="{{currentInspectedUrl}}" />
     </ion-col>
   </ion-row>
@@ -47,8 +47,8 @@
 
   </ion-row>
 
-  <ion-row>
-    <ion-col class="last-section">
+  <ion-row *ngIf="!isStore"> 
+    <ion-col [ngClass]="{'last-section flex-col': !isStore, 'last-section-store flex-col': isStore}">
       <ion-row>
 
         <ion-col text-center col-3>
