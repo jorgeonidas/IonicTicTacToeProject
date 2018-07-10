@@ -49,6 +49,8 @@ page-token-store {
         width: 100%;
         background-color: #ffe6a3;
         padding-top: 5%;
+        display: flex;
+        align-items: center;
     }
 
     .icon-wrapper{
@@ -64,7 +66,6 @@ page-token-store {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        bottom: 0;
     }
 
     .store-footer{
@@ -82,4 +83,5 @@ page-token-store {
         background-color: #ffe6a3;
         border-radius: 12px;
     }
+
 }
