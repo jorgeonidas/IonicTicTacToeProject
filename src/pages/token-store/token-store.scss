@@ -1,6 +1,16 @@
 page-token-store {
     .no-scroll{
         overflow: hidden;
+        height: 100%;
+        background-color:#ffe6a3; 
+    }
+
+    ion-grid{
+        height: 100%;
+    }
+
+    inspector-row{
+        height: 30%;
     }
 
     .token-inspector{
@@ -14,15 +24,47 @@ page-token-store {
         height: 25vh;
     }
 
+    .buyout-row{
+        height: 20%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        background-color: map-get($colors, primary );
+    }
+
     .name-wrapper{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
+        color: #fff;
     }
 
     div.name-wrapper p{
         font-size: 16px;
+    }
+
+    .gallery-row{
+        height: 50%;
+        margin: 0;
+        width: 100%;
+        background-color: #ffe6a3;
+        padding-top: 5%;
+    }
+
+    .icon-wrapper{
+        background-color: white;
+        border-radius: 15px;
+        border: solid thin grey;
+        padding: 5px;
+    }
+
+    div.paginator{
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
     }
 
     .store-footer{
@@ -33,7 +75,7 @@ page-token-store {
     }
 
     .footer-row{
-        background-color: map-get($colors, primary );
+        background-color:#a6c1ed;
     }
 
     .footer-btn-wrapper{

@@ -8,6 +8,8 @@ import { LoginPage } from '../pages/login/login';
 import { ConfigurationServiceDB } from '../services/configurationdb.service';
 import { ConfigurationModel } from '../models/configuration';
 import { ConfigurationPage } from '../pages/settings-menu/configuration/configuration';
+import { ContactsPage } from '../pages/contacts/contacts';
+import { TokenStorePage } from '../pages/token-store/token-store';
 
 
 @Component({
@@ -17,6 +19,8 @@ export class MyApp {
   loginPage = LoginPage;
   mainMenuPage = MainMenuPage;
   cfgPageText= ConfigurationPage;
+  contactsPage = ContactsPage;
+  storePage = TokenStorePage;
   //pagina root
   rootPage: any = this.mainMenuPage;
   
