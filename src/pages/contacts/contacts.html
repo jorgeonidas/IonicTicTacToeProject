@@ -29,29 +29,34 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <div class="footer-btns">
-          <ion-col text-center>
+  <ion-toolbar no-margin no-padding>
+    <ion-grid no-margin no-padding>
+      <ion-row >
+
+          <ion-col col-2 text-center>
             <button round ion-button icon-only outline color="gold" (click)="backToMainMenu()">
               <ion-icon name="home"></ion-icon>
             </button>
           </ion-col>
 
-          <ion-col text-center>
+          <ion-col col-6 text-center>
             <button ion-button round icon-start color="borderMainBtns"> 
               <ion-icon color="gold" name="logo-bitcoin"></ion-icon>Free Energy
             </button>
           </ion-col>
+          
+          <ion-col col-2 text-center>
+              <button round ion-button  icon-only outline color="danger">
+                <ion-icon name="md-person-add"></ion-icon>
+              </button>
+            </ion-col>
 
-
-          <ion-col text-center>
-            <button round ion-button blok icon-only outline color="borderMainBtns">
+          <ion-col col-2 text-center>
+            <button round ion-button  icon-only outline color="borderMainBtns">
               <ion-icon name="md-person-add"></ion-icon>
             </button>
           </ion-col>
-        </div>
+
       </ion-row>
     </ion-grid>
   </ion-toolbar>
