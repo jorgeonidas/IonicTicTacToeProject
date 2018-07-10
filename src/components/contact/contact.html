@@ -1,0 +1,34 @@
+<!-- Generated template for the ContactComponent component -->
+<ion-content  class="contact-grid">
+  <ion-grid no-padding>
+    <ion-row class="row">
+      <ion-col no-padding col-1>
+        <div class="status-wrapper">
+          <div [class.status-connect]="currentStatus === statusEnum.conectado"
+              [class.status-not-connect]="currentStatus === statusEnum.desconectado"
+              [class.status-connect-other]="currentStatus === statusEnum.conectOtro"
+              [class.status-not-firend]="currentStatus === statusEnum.notFriend"
+          ></div>
+        </div>
+      </ion-col>
+      <ion-col col-2 no-padding>
+        <div class="rank-nick">
+          <img width="40%" height="50%" src="{{rankingUri}}">
+          <h3 no-margin>{{nickname}}</h3>
+        </div>
+      </ion-col>
+      <ion-col no-padding>
+        <div class="chat-notf-wrapper">
+          <p no-margin no-padding>{{lastMsjNotif}}</p>
+        </div>
+      </ion-col>
+      <ion-col col-2 no-padding>
+        <div class="action-container">
+          <button ion-button icon-only outline clear large block color="gold">
+            <ion-icon name="md-arrow-dropright-circle"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

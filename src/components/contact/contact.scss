@@ -1,0 +1,95 @@
+contact {
+    .contact-grid{
+        height: 15%;
+        background-color: #FFF;
+        margin: 0;
+        padding: 0;
+        border-bottom: solid thin gray;
+    }
+
+    ion-grid{
+        height: 100%;
+    }
+
+    ion-row{
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    ion-row ion-col{
+        height: 100%;
+    }
+
+    div.status-wrapper{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    /*Connection Status*/
+    .status-connect{
+        background-color: green;
+        border: solid thin black;
+        border-radius: 50%;
+        height: 20%;
+        width: 25%;
+    }
+
+    .status-not-connect{
+        background-color: gray;
+        border: solid thin black;
+        border-radius: 50%;
+        height: 20%;
+        width: 25%;
+    }
+
+    .status-connect-other{
+        background-color: purple;
+        border: solid thin black;
+        border-radius: 50%;
+        height: 20%;
+        width: 25%;
+    }
+
+    .status-not-firend{
+        background-color: #FFF;
+        border-radius: 50%;
+        border: solid thin black;
+        height: 20%;
+        width: 25%;
+    }
+
+    /*ranking*/
+    .rank-nick{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+    }
+
+    /*chat & notification*/
+    div.chat-notf-wrapper{
+        width: 90%;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /*action*/
+    .action-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -47,6 +47,7 @@ import { UserAccountComponent } from '../components/user-account/user-account';
 import { CoinEolaContainerComponent } from '../components/coin-eola-container/coin-eola-container';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
+import { ContactComponent } from '../components/contact/contact';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { TokenStorePage } from '../pages/token-store/token-store';
     CreateAccountComponent,
     UserAccountComponent,
     InformationBarComponent,
-    CoinEolaContainerComponent
+    CoinEolaContainerComponent,
+    ContactComponent
 
     
   ],

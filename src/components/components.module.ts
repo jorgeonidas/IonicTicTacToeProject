@@ -12,6 +12,7 @@ import { CreateAccountComponent } from './create-account/create-account';
 import { InformationBarComponent } from './information-bar/information-bar';
 import { UserAccountComponent } from './user-account/user-account';
 import { CoinEolaContainerComponent } from './coin-eola-container/coin-eola-container';
+import { ContactComponent } from './contact/contact';
 @NgModule({
 	declarations: [ProgressBarComponent,
     TimerBarComponent,
@@ -26,7 +27,8 @@ import { CoinEolaContainerComponent } from './coin-eola-container/coin-eola-cont
     CreateAccountComponent,
     InformationBarComponent,
     UserAccountComponent,
-    CoinEolaContainerComponent],
+    CoinEolaContainerComponent,
+    ContactComponent],
 	imports: [],
 	exports: [ProgressBarComponent,
     TimerBarComponent,
@@ -41,6 +43,7 @@ import { CoinEolaContainerComponent } from './coin-eola-container/coin-eola-cont
     CreateAccountComponent,
     InformationBarComponent,
     UserAccountComponent,
-    CoinEolaContainerComponent]
+    CoinEolaContainerComponent,
+    ContactComponent]
 })
 export class ComponentsModule {}
