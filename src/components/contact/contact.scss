@@ -4,7 +4,15 @@ contact {
         background-color: #FFF;
         margin: 0;
         padding: 0;
-        border-bottom: solid thin gray;
+        border-bottom: solid thin #eaebed;
+    }
+
+    .contact-grid-notify{
+        height: 15%;
+        background-color: #f99a9a;
+        margin: 0;
+        padding: 0;
+        border-bottom: solid thin #eaebed;
     }
 
     ion-grid{
@@ -32,34 +40,34 @@ contact {
     /*Connection Status*/
     .status-connect{
         background-color: green;
-        border: solid thin black;
+        border: solid thin #eaebed;
         border-radius: 50%;
         height: 20%;
-        width: 25%;
+        width: 30%;
     }
 
     .status-not-connect{
-        background-color: gray;
-        border: solid thin black;
+        background-color: #eaebed;
+        border: solid thin gray;
         border-radius: 50%;
         height: 20%;
-        width: 25%;
+        width: 30%;
     }
 
     .status-connect-other{
         background-color: purple;
-        border: solid thin black;
+        border: solid thin #eaebed;
         border-radius: 50%;
         height: 20%;
-        width: 25%;
+        width: 30%;
     }
 
     .status-not-firend{
         background-color: #FFF;
         border-radius: 50%;
-        border: solid thin black;
+        border: solid thin #eaebed;
         height: 20%;
-        width: 25%;
+        width: 30%;
     }
 
     /*ranking*/

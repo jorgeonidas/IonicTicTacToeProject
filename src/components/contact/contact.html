@@ -1,5 +1,6 @@
 <!-- Generated template for the ContactComponent component -->
-<ion-content  class="contact-grid">
+<ion-content [class.contact-grid]="MsjNotif.type === 'message'"
+              [class.contact-grid-notify]="MsjNotif.type === 'notification'">
   <ion-grid no-padding>
     <ion-row class="row">
       <ion-col no-padding col-1>
@@ -13,20 +14,30 @@
       </ion-col>
       <ion-col col-2 no-padding>
         <div class="rank-nick">
-          <img width="40%" height="50%" src="{{rankingUri}}">
-          <h3 no-margin>{{nickname}}</h3>
+          <img width="20%" height="30%" src="{{rankingUri}}">
+          <h4 no-margin>{{nickname}}</h4>
         </div>
       </ion-col>
-      <ion-col no-padding>
+      <ion-col col-6 no-padding>
         <div class="chat-notf-wrapper">
-          <p no-margin no-padding>{{lastMsjNotif}}</p>
+          <p no-margin no-padding>{{MsjNotif.msj}}</p>
         </div>
       </ion-col>
-      <ion-col col-2 no-padding>
+      <ion-col col-3 no-padding> <!--Accion-->
         <div class="action-container">
-          <button ion-button icon-only outline clear large block color="gold">
+          <button *ngIf="currentAction === actionEnum.invite" ion-button icon-only outline clear large block color="gold">
             <ion-icon name="md-arrow-dropright-circle"></ion-icon>
           </button>
+          <button *ngIf="currentAction === actionEnum.isInviting" ion-button icon-only outline clear large block color="danger">
+            <ion-icon name="ios-alert"></ion-icon>
+          </button>
+          <button *ngIf="currentAction === actionEnum.wasInvited" ion-button icon-only outline clear large block color="primary">
+            <ion-icon name="md-arrow-dropright-circle"></ion-icon>
+          </button>
+          <button *ngIf="currentAction === actionEnum.appInvite" ion-button block color="secondary" style="margin-right: 5%">
+            Invite
+          </button>
+
         </div>
       </ion-col>
     </ion-row>
