@@ -5,22 +5,27 @@
     <ion-row class="row">
       <ion-col no-padding col-1>
         <div class="status-wrapper">
-          <div [class.status-connect]="currentStatus === statusEnum.conectado"
-              [class.status-not-connect]="currentStatus === statusEnum.desconectado"
-              [class.status-connect-other]="currentStatus === statusEnum.conectOtro"
-              [class.status-not-firend]="currentStatus === statusEnum.notFriend"
-          ></div>
+          <ion-icon name="radio-button-on" color="secondary" *ngIf="currentStatus === statusEnum.conectado" ></ion-icon>
+          <ion-icon name="radio-button-on" color="input-inner-btn" *ngIf="currentStatus === statusEnum.desconectado" ></ion-icon>
+          <ion-icon name="radio-button-on" color="borderMainBtns" *ngIf="currentStatus === statusEnum.conectOtro" ></ion-icon>
+          <ion-icon name="radio-button-on" color="light" *ngIf="currentStatus === statusEnum.notFriend" ></ion-icon>
+          <ion-icon name="game-controller-a" color="secondary" *ngIf="currentStatus === statusEnum.enPartida" ></ion-icon>
         </div>
+          
       </ion-col>
-      <ion-col col-2 no-padding>
+      <ion-col col-3 no-padding>
         <div class="rank-nick">
           <img width="20%" height="30%" src="{{rankingUri}}">
-          <h4 no-margin>{{nickname}}</h4>
+          <div class="nickname-wrapper">
+            {{nickname}}
+          </div> 
         </div>
       </ion-col>
-      <ion-col col-6 no-padding>
+      <ion-col col-5 no-padding>
         <div class="chat-notf-wrapper">
-          <p no-margin no-padding>{{MsjNotif.msj}}</p>
+          <div class="text-wrapper">
+            {{MsjNotif.msj}}
+          </div>
         </div>
       </ion-col>
       <ion-col col-3 no-padding> <!--Accion-->

@@ -80,15 +80,30 @@ contact {
         align-items: center;
     }
 
+    div.nickname-wrapper{
+        width: 80%;
+        font-weight: bold;
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     /*chat & notification*/
     div.chat-notf-wrapper{
-        width: 90%;
+        width: 100%;
         height: 100%;
-        margin: auto;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
+    }
+
+    div.text-wrapper{
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     /*action*/
