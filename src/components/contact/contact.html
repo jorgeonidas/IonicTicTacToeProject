@@ -1,5 +1,5 @@
 <!-- Generated template for the ContactComponent component -->
-<ion-content [class.contact-grid]="(MsjNotif.type === 'message' || MsjNotif.type === 'notification') && currentStatus !== statusEnum.enPartida"
+<ion-content no-bounce [class.contact-grid]="(MsjNotif.type === 'message' || MsjNotif.type === 'notification') && currentStatus !== statusEnum.enPartida"
               [class.contact-grid-notify]="MsjNotif.type === 'notification' && currentAction === actionEnum.isInviting"
               [class.contact-grid-playing]="MsjNotif.type === 'message' && currentStatus === statusEnum.enPartida">
   <ion-grid no-padding>
