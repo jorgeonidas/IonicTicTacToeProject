@@ -34,7 +34,7 @@ export class ContactComponent {
 
   @Input() MsjNotif = {
     type: 'message',
-    msjReaded: false,
+    msjReaded: true,
     msj: ''
   }
 

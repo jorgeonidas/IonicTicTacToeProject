@@ -36,7 +36,7 @@ export class ContactsPage {
     ranking: 'assets/imgs/medal-icon.png',
     nick: 'Lika',
     msjNot: {type:'message',
-              msjReaded: true,
+              msjReaded: false,
               msj: "espera que ando jugando"},
     action: 1
   }

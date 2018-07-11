@@ -114,6 +114,22 @@ contact {
         text-overflow: ellipsis;
     }
 
+    .not-readed-notf{
+        font-weight: bold;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .readed-msj{
+        font-weight: lighter;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     /*action*/
     .action-container{
         width: 100%;

@@ -22,13 +22,16 @@
           </div> 
         </div>
       </ion-col>
+      <!--si es amigo puedo ver sus msjs-->
       <ion-col *ngIf="currentStatus !== statusEnum.notFriend" col-5 no-padding>
         <div class="chat-notf-wrapper">
-          <div class="text-wrapper">
+          <div [class.readed-msj]="MsjNotif.msjReaded && MsjNotif.type === 'message'" 
+                [class.not-readed-notf]="!MsjNotif.msjReaded || MsjNotif.type === 'notification'">
             {{MsjNotif.msj}}
           </div>
         </div>
       </ion-col>
+      <!--Acciones si es amigo-->
       <ion-col *ngIf="currentStatus !== statusEnum.notFriend" col-3 no-padding> <!--Accion-->
         <div class="action-container">
           <button *ngIf="currentAction === actionEnum.invite" ion-button icon-only outline clear large block color="gold">
@@ -46,6 +49,7 @@
 
         </div>
       </ion-col>
+      <!--Acciones si no es amigo-->
       <ion-col style="width: 100%; height: 100%;" col-8 *ngIf="currentStatus === statusEnum.notFriend">
         <ion-grid style="width: 100%; height: 100%;"  no-padding *ngIf="currentAction === actionEnum.friendRequest" >
           <ion-row>
