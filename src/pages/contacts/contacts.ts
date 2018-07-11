@@ -31,6 +31,16 @@ export class ContactsPage {
     action: 4
   }
 
+  contactTest4 = {
+    status: 4,
+    ranking: 'assets/imgs/medal-icon.png',
+    nick: 'Lika',
+    msjNot: {type:'message',
+              msjReaded: true,
+              msj: "espera que ando jugando"},
+    action: 1
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     console.log(this.contactTest2);
     this.contactTest2.msjNot.msj=this.GameIvnPending;

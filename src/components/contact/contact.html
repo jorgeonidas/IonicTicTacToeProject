@@ -1,6 +1,7 @@
 <!-- Generated template for the ContactComponent component -->
-<ion-content [class.contact-grid]="MsjNotif.type === 'message'"
-              [class.contact-grid-notify]="MsjNotif.type === 'notification'">
+<ion-content [class.contact-grid]="MsjNotif.type === 'message' && currentStatus !== statusEnum.enPartida"
+              [class.contact-grid-notify]="MsjNotif.type === 'notification' && currentStatus !== statusEnum.enPartida"
+              [class.contact-grid-playing]="MsjNotif.type === 'message' && currentStatus === statusEnum.enPartida">
   <ion-grid no-padding>
     <ion-row class="row">
       <ion-col no-padding col-1>
@@ -39,7 +40,7 @@
           <button *ngIf="currentAction === actionEnum.wasInvited" ion-button icon-only outline clear large block color="primary">
             <ion-icon name="md-arrow-dropright-circle"></ion-icon>
           </button>
-          <button *ngIf="currentAction === actionEnum.appInvite" ion-button block color="secondary" style="margin-right: 5%">
+          <button *ngIf="currentAction === actionEnum.appInvite" ion-button block small color="secondary" style="margin-right: 5%">
             Invite
           </button>
 
