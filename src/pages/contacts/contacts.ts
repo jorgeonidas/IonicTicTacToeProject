@@ -17,7 +17,7 @@ export class ContactsPage {
     nick: 'AveryLongNickname',
     msjNot: {type:'notification',
               msjReaded: true,
-              msj: ""},
+              msj: "Game Invitation Pending"},
     action: 2
   }
 
@@ -41,9 +41,39 @@ export class ContactsPage {
     action: 1
   }
 
+  contactTest5 = {
+    status: 5,
+    ranking: 'assets/imgs/medal-icon.png',
+    nick: 'Ububi',
+    msjNot: {type:'notification',
+              msjReaded: true,
+              msj: ""},
+    action: 5
+  }
+
+  contactTest6 = {
+    status: 5,
+    ranking: 'assets/imgs/medal-icon.png',
+    nick: 'Grisa',
+    msjNot: {type:'notification',
+              msjReaded: true,
+              msj: ""},
+    action: 6
+  }
+
+  contactTest7 = {
+    status: 2,
+    ranking: 'assets/imgs/medal-icon.png',
+    nick: 'Kalo',
+    msjNot: {type:'notification',
+              msjReaded: true,
+              msj: "Game Invitation Sent"},
+    action: 3
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.contactTest2);
-    this.contactTest2.msjNot.msj=this.GameIvnPending;
+    //console.log(this.contactTest2);
+    //this.contactTest2.msjNot.msj=this.GameIvnPending;
   }
 
   ionViewDidLoad() {

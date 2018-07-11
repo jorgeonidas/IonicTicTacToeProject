@@ -1,6 +1,6 @@
 <!-- Generated template for the ContactComponent component -->
-<ion-content [class.contact-grid]="MsjNotif.type === 'message' && currentStatus !== statusEnum.enPartida"
-              [class.contact-grid-notify]="MsjNotif.type === 'notification' && currentStatus !== statusEnum.enPartida"
+<ion-content [class.contact-grid]="(MsjNotif.type === 'message' || MsjNotif.type === 'notification') && currentStatus !== statusEnum.enPartida"
+              [class.contact-grid-notify]="MsjNotif.type === 'notification' && currentAction === actionEnum.isInviting"
               [class.contact-grid-playing]="MsjNotif.type === 'message' && currentStatus === statusEnum.enPartida">
   <ion-grid no-padding>
     <ion-row class="row">
@@ -22,14 +22,14 @@
           </div> 
         </div>
       </ion-col>
-      <ion-col col-5 no-padding>
+      <ion-col *ngIf="currentStatus !== statusEnum.notFriend" col-5 no-padding>
         <div class="chat-notf-wrapper">
           <div class="text-wrapper">
             {{MsjNotif.msj}}
           </div>
         </div>
       </ion-col>
-      <ion-col col-3 no-padding> <!--Accion-->
+      <ion-col *ngIf="currentStatus !== statusEnum.notFriend" col-3 no-padding> <!--Accion-->
         <div class="action-container">
           <button *ngIf="currentAction === actionEnum.invite" ion-button icon-only outline clear large block color="gold">
             <ion-icon name="md-arrow-dropright-circle"></ion-icon>
@@ -44,6 +44,29 @@
             Invite
           </button>
 
+        </div>
+      </ion-col>
+      <ion-col style="width: 100%; height: 100%;" col-8 *ngIf="currentStatus === statusEnum.notFriend">
+        <ion-grid style="width: 100%; height: 100%;"  no-padding *ngIf="currentAction === actionEnum.friendRequest" >
+          <ion-row>
+            <ion-col class="flex-col">
+               <h5 no-margin no-padding style="font-size: 16px">Friend Request</h5>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2></ion-col>
+            <ion-col class="flex-col">
+              <button color="secondary" ion-button small>Accpet</button>
+            </ion-col>
+            <ion-col class="flex-col">
+                <button color="danger" ion-button small>Decline</button>
+            </ion-col>
+            <ion-col col-2></ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <div class="flex-col" style="width: 100%; height: 100%;" *ngIf="currentAction === actionEnum.friendRequestSent" >
+            <h5 no-margin no-padding style="font-size: 14px">{{friendRequestSentNotf}}</h5>
         </div>
       </ion-col>
     </ion-row>
