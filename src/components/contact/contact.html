@@ -1,8 +1,12 @@
 <!-- Generated template for the ContactComponent component -->
+<!--
 <ion-content no-bounce [class.contact-grid]="(MsjNotif.type === 'message' || MsjNotif.type === 'notification') && currentStatus !== statusEnum.enPartida"
               [class.contact-grid-notify]="MsjNotif.type === 'notification' && currentAction === actionEnum.isInviting"
               [class.contact-grid-playing]="MsjNotif.type === 'message' && currentStatus === statusEnum.enPartida">
-  <ion-grid no-padding>
+-->
+  <ion-grid no-padding [class.contact-grid]="(MsjNotif.type === 'message' || MsjNotif.type === 'notification') && currentStatus !== statusEnum.enPartida"
+  [class.contact-grid-notify]="MsjNotif.type === 'notification' && currentAction === actionEnum.isInviting"
+  [class.contact-grid-playing]="MsjNotif.type === 'message' && currentStatus === statusEnum.enPartida">
     <ion-row class="row">
       <ion-col no-padding col-1>
         <div class="status-wrapper">
@@ -43,7 +47,7 @@
           <button *ngIf="currentAction === actionEnum.wasInvited" ion-button icon-only outline clear large block color="primary">
             <ion-icon name="md-arrow-dropright-circle"></ion-icon>
           </button>
-          <button *ngIf="currentAction === actionEnum.appInvite" ion-button block small color="secondary" style="margin-right: 5%">
+          <button class="accept-btn" *ngIf="currentAction === actionEnum.appInvite" ion-button block small color="secondary" style="margin-right: 5%">
             Invite
           </button>
 
@@ -51,7 +55,7 @@
       </ion-col>
       <!--Acciones si no es amigo-->
       <ion-col style="width: 100%; height: 100%;" col-8 *ngIf="currentStatus === statusEnum.notFriend">
-        <ion-grid style="width: 100%; height: 100%;"  no-padding *ngIf="currentAction === actionEnum.friendRequest" >
+        <ion-grid style="width: 100%; height: 90%;"  no-padding *ngIf="currentAction === actionEnum.friendRequest" >
           <ion-row>
             <ion-col class="flex-col">
                <h5 no-margin no-padding style="font-size: 16px">Friend Request</h5>
@@ -60,10 +64,10 @@
           <ion-row>
             <ion-col col-2></ion-col>
             <ion-col class="flex-col">
-              <button color="secondary" ion-button small>Accpet</button>
+              <button color="secondary" class="accept-btn" ion-button small>Accpet</button>
             </ion-col>
             <ion-col class="flex-col">
-                <button color="danger" ion-button small>Decline</button>
+                <button class="decline-btn" color="danger" ion-button small>Decline</button>
             </ion-col>
             <ion-col col-2></ion-col>
           </ion-row>
@@ -75,4 +79,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <!--
 </ion-content>
+-->
