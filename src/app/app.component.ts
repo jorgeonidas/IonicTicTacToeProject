@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, Events, IonicApp} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+//import {Keyboard} from '@ioni'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { LoginPage } from '../pages/login/login';
 import { ConfigurationServiceDB } from '../services/configurationdb.service';
@@ -10,6 +10,7 @@ import { ConfigurationModel } from '../models/configuration';
 import { ConfigurationPage } from '../pages/settings-menu/configuration/configuration';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
+
 
 
 @Component({
@@ -34,9 +35,11 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       splashScreen.hide();
+      //statusBar.styleDefault();
+
     });
     
-    statusBar.hide();
+    //statusBar.hide();
     this.getSettingsFromDB();
 
   

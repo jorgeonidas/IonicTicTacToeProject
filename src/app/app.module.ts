@@ -93,7 +93,10 @@ import { ContactComponent } from '../components/contact/contact';
     IonicModule.forRoot(MyApp,{
       platforms:{
         ios:{
-          swipeBackEnabled: false
+          swipeBackEnabled: false,
+          scrollPadding: false,
+          scrollAssist: true,
+          autoFocusAssist: false
         }
       }
     }),
