@@ -23,7 +23,7 @@ export class MyApp {
   contactsPage = ContactsPage;
   storePage = TokenStorePage;
   //pagina root
-  rootPage: any = this.contactsPage;
+  rootPage: any = this.mainMenuPage;
   
   constructor(platform: Platform,
     statusBar: StatusBar,
