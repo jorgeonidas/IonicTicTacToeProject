@@ -90,8 +90,21 @@ export class GridSelectorComponent{
     @Output() isOverOneEmmiter = new EventEmitter<boolean>();
     @Output() isOverTwoEmmiter = new EventEmitter<boolean>();
 
+    characterUris: string[];
+
     constructor(private dragService : DragulaService, private playerSelService: PlayerSelectorService){
         const bag: any = this.dragService.find('bag');
+        this.characterUris = ['assets/imgs/enojado.png',
+                                'assets/imgs/cansado.png',
+                                'assets/imgs/enamorado.png',
+                                'assets/imgs/escondido.png',
+                                'assets/imgs/like.png',
+                                'assets/imgs/upps.png',
+                                'assets/imgs/sorprendido.png',
+                                'assets/imgs/lol.png',
+                            ];
+
+
         if (bag !== undefined ) this.dragService.destroy('bag');
         //configuracion
         dragService.setOptions('bag', { 

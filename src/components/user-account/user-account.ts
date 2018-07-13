@@ -19,6 +19,7 @@ export class UserAccountComponent {
   userNameInputDisable: boolean;
 
   currTokenUrl: string;
+  rankingUri: string = 'assets/imgs/medal-icon.png';
 
   constructor(private tokenServ : TokenService) {
     console.log('Hello UserAccountComponent Component');

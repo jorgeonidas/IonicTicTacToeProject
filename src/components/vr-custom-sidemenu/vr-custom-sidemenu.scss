@@ -30,6 +30,7 @@ vr-custom-sidemenu {
         position: fixed;
         overflow-x: hidden;
         background-color: cornsilk;
+        transition: 0.3s;
     }
 
     .active-sidebtn{

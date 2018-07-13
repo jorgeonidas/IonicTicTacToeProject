@@ -31,7 +31,7 @@
 <!--VISTAS DE MENU A DESPLEGAR DEPENDIENDO DEL VALOR EL MENU ACTIVO ACTUAL!-->
 <div class="sideNav no-scroll" [style.width]="navWidth + '%'">
   <!--Settings View!-->
-  <ion-content padding>
+  <ion-content *ngIf="navWidth >= 80" padding>
     <!--Configuraciones-->
     <settings *ngIf="currentActiveMenu == 'settings'"></settings>
     <!--IMPORTANT INFO!-->
