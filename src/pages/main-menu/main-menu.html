@@ -1,18 +1,68 @@
-<!--aca colocaremos custom header con las estadisticas-->
-
 <ion-content class="bg-main-menu-page" no-bounce>
-  <information-bar></information-bar>
-  <ion-grid no-padding>
-    <!--spacing-->
-    <ion-row>
 
+  <ion-grid class="mm-grid" no-padding>
+    <ion-row>
+      <ion-col>
+        <information-bar style="top: 0;"></information-bar>
+      </ion-col>
     </ion-row>
-    <!--space,title and buttons, sidetoolbar-->
+    <ion-row class="spacer-row"></ion-row>
+    <ion-row class="title-row">
+      <ion-col class="flex-col">
+        <div class="tittle-wrapper">
+          <h1 text-center no-margin no-padding class="menu-title">Tic Tac Toe Ollie</h1>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="spacer-row"></ion-row>
+    <ion-row class="gt-btn-row">
+      <ion-col class="flex-col">
+        <button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('singleplayer')">1 Player</button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-gt-spacer"></ion-row>
+    <ion-row class="gt-btn-row">
+      <ion-col class="flex-col">
+        <button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('local-multiplayer')">2 Player</button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-gt-spacer"></ion-row>
+    <ion-row class="gt-btn-row">
+      <ion-col class="flex-col">
+        <button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('online-multiplayer')">Multiplayer</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 6%;"></ion-row>
+    <ion-row>
+      <ion-col class="flex-col">
+          <button ion-button icon-start round style="width: 35%; height: 60%;" color="fuxia"><!--proporcional a su espacio local-->
+            <ion-icon name="logo-bitcoin" color="gold"></ion-icon>Free Energy
+          </button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="row-gt-spacer"></ion-row>
+    <ion-row style="height: 6%;">
+      <ion-col class="friend-store-col">
+        <button class="friend-store-btn" block ion-button icon-start round color="fuxia" (click)="openContacsPage()">
+          <ion-icon name="people"></ion-icon>Friends
+        </button>
+        <button class="friend-store-btn" block ion-button icon-start round color="fuxia" (click)="openStorePage()">
+          <ion-icon name="cash"></ion-icon>Store
+        </button>
+      </ion-col>
+    </ion-row>
+  <!--
+    <ion-row>
+      <ion-col col-12 no-margin no-padding>
+        <information-bar style="top: 0;"></information-bar>
+      </ion-col>  
+    </ion-row>
+
     <ion-row>
       <ion-col>
 
       </ion-col>
-      <!--tittle and buttons-->
+
       <ion-col col-8 align-self-center>
         <ion-row text-center>
           <ion-col>
@@ -20,7 +70,7 @@
             <h1 class="menu-title">Tic Tac Toe Ollie</h1>
           </ion-col>
         </ion-row>
-        <!--Buttons Gametype-->
+     
         <ion-row>
           <div style="height: 20px"></div>
         </ion-row>
@@ -50,7 +100,7 @@
 
       </ion-col>
     </ion-row>
-    <!--free energy button-->
+  
     <ion-row>
       <div style="height: 60px"></div>
     </ion-row>
@@ -64,7 +114,7 @@
     <ion-row>
       <div style="height: 10px"></div>
     </ion-row>
-    <!--lower buttons-->
+  
     <ion-row>
       <ion-col></ion-col>
       <ion-col text-center col-5 padding>
@@ -78,6 +128,7 @@
       </ion-col>
       <ion-col></ion-col>
     </ion-row>
+  -->
   </ion-grid>
   <vr-custom-sidemenu></vr-custom-sidemenu>
 </ion-content>

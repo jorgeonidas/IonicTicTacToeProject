@@ -2,12 +2,70 @@ page-main-menu {
     $button-round-border-radius: 100px;
     .bg-main-menu-page{
         background-color: #ffcc00;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    ion-grid.mm-grid{
+        height: 100%;
     }
 
+    ion-row{
+        height: 8%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .gt-btn-row{
+        height: 10%;
+        margin: 0;
+        padding: 0;
+    }
+
+    ion-col{
+        height: 100%;
+    }
+
+    .title-row{
+        height: 12%;
+    }
+
+    .spacer-row{
+        height: 8%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .row-gt-spacer{
+        height: 2%;
+    }
+
+    .tittle-wrapper{
+        width: 60%;
+        height: 100%
+    }
+
+    .gt-btn{
+        width: 50%;
+        height: 100%;
+    }
+
+    .friend-store-col{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .friend-store-btn{
+        height: 100%;
+        width: 40%;
+    }
+
+    /*cosas viejas*/
     .menu-title{
         color: red;
         font-weight: bold;
-        font-size: 35px;
+        font-size: 10vw;
     }
 
     .borderPlayer{
