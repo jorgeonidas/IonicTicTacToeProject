@@ -28,7 +28,8 @@ export class VrCustomSidemenuComponent {
   transparent = "transparent";
   //Variable para hacer property binding
   sidebarOpacity: string;
-
+  timeout: any;
+  fullyOpen: boolean;
   constructor() 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
@@ -48,12 +49,17 @@ export class VrCustomSidemenuComponent {
     this.userSubActive = false;
     //Menu actualmente activo
     this.currentActiveMenu = 'settings'
+    this.fullyOpen = false;
   }
 
   openNav() {
     this.navWidth = 85;
     this.sidePos = 85;
     this.toggleOpen();
+
+    this.timeout = setTimeout(() => {
+      this.fullyOpen = true;
+    }, 300);
   }
 
   closeNav() {
@@ -63,6 +69,7 @@ export class VrCustomSidemenuComponent {
     this.disableAllSubCategories();
     this.toggleOpen();
     this.setToOriginalState();
+    this.fullyOpen = false;
   }
 
   toggleOpen() {
