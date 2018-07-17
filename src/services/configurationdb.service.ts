@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { IConfig } from '../interfaces/config.interface'
+
 //import { ConfigurationModel } from "../models/configuration";
-import { Observable } from 'rxjs/Observable';
-import { ConfigurationModel } from "../models/configuration";
+
 import { Storage } from '@ionic/storage';
 
 @Injectable()
@@ -34,6 +32,7 @@ export class ConfigurationServiceDB {
   public async remove(settingName) {
     return await this.storage.remove(`setting:${settingName}`);
   }
+
   public clear() {
     this.storage.clear().then(() => {
       console.log('all keys cleared');

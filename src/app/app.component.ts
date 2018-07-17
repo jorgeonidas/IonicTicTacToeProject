@@ -49,36 +49,59 @@ export class MyApp {
 
     getSettingsFromDB(){
       this.cfgServiceDB.get('sfx').then((val) => {
-        console.log(val);
-        this.configModel.setSfx(val);
+        console.log('sfx',val);
+        
+        if(val != null)
+          this.configModel.setSfx(val);
+        else{
+          console.log("null field");
+          this.cfgServiceDB.set('sfx',true);
+          this.configModel.setSfx(true);
+        }
+              
         //this.sfx = this.configModel.sfx;
         this.events.publish('settings:changed');
   
       });
   
       this.cfgServiceDB.get('music').then((val) => {
-        console.log(val);
-        this.configModel.setMusic(val);
-        //this.music = this.configModel.music;
+        console.log('music',val);
+        if(val != null)
+          this.configModel.setMusic(val);
+        else{
+          console.log("null field");
+          this.cfgServiceDB.set('music',true);
+          this.configModel.setMusic(true);
+        }
         this.events.publish('settings:changed');
   
       });
   
-      this.cfgServiceDB.get('currentLang').then((val) => {
-        console.log(val);
-        this.configModel.setlanguage(val);
+      this.cfgServiceDB.get('language').then((val) => {
+        console.log('language',val);
+        if(val != null)
+          this.configModel.setlanguage(val);
+        else{
+          console.log("null field");
+          this.cfgServiceDB.set('language','English');
+          this.configModel.setlanguage('English');
+        }
         //this.currentLang = this.configModel.language;
         this.events.publish('settings:changed');
   
       });
   
       this.cfgServiceDB.get('notifications').then((val) => {
-        console.log(val);
-        this.configModel.setNotif(val);
-        //this.notifications = this.configModel.notifications;
+        console.log('notifications',val);
+        if(val != null)
+          this.configModel.setNotif(val);
+        else{
+          console.log("null field");
+          this.cfgServiceDB.set('notifications',true);
+          this.configModel.setNotif(true);
+        }
         this.events.publish('settings:changed');
       });
-
 
   }
 

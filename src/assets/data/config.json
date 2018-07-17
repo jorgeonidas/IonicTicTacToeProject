@@ -1,6 +1,6 @@
 {
-    "language": "English",
-    "music": true,
+    "language": "Spanish",
+    "music": false,
     "sfx": true,
-    "notifications": true
+    "notifications": false
 }

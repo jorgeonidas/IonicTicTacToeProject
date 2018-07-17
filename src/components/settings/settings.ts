@@ -41,7 +41,7 @@ export class SettingsComponent {
   onSelectChange(selectedValue: any) {
     console.log(selectedValue);
     this.currentLang = selectedValue;
-    this.cfgServiceDB.set('currentLang', selectedValue);
+    this.cfgServiceDB.set('language', selectedValue);
     this.configModel.language = this.currentLang;
   }
 
