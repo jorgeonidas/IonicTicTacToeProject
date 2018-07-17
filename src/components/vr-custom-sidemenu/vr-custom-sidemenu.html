@@ -1,27 +1,27 @@
 <div id="custom-sidenav" class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity" (click)="clickOnNav($event)">
   <div class="customSidebarButtons">
     <div style="height: 100%"></div>
-    <button *ngIf="isOpen" color="skipBorder" block ion-button (click)="closeNav()" icon-only>
+    <button class="side-btn" *ngIf="isOpen" color="skipBorder" block ion-button (click)="closeNav()" icon-only>
       <ion-icon name="redo"></ion-icon>
     </button>
     <!--Settings Category-->
-    <button color="borderMainBtns" *ngIf="settingsBtnActive" ion-button block (click)="openSettingsCategory()" icon-only [class.active-sidebtn]="activeButtons[0]"
+    <button class="side-btn" color="borderMainBtns" *ngIf="settingsBtnActive" ion-button block (click)="openSettingsCategory()" icon-only [class.active-sidebtn]="activeButtons[0]"
       [class.unactive-sidebtn]="!activeButtons[0]">
       <ion-icon name="settings"></ion-icon>
     </button>
-    <button color="borderMainBtns" *ngIf="settingsBtnActive && settingSubActive" (click)="openImportantInfoView()" ion-button
+    <button class="side-btn" color="borderMainBtns" *ngIf="settingsBtnActive && settingSubActive" (click)="openImportantInfoView()" ion-button
       block icon-only [class.active-sidebtn]="activeButtons[1]" [class.unactive-sidebtn]="!activeButtons[1]">
       <ion-icon name="information-circle"></ion-icon>
     </button>
     <!--User Category-->
-    <button color="borderMainBtns" *ngIf="userBtnActive" ion-button block (click)="openUserCategory()" icon-only [class.unactive-sidebtn]="!activeButtons[2]">
+    <button class="side-btn" color="borderMainBtns" *ngIf="userBtnActive" ion-button block (click)="openUserCategory()" icon-only [class.unactive-sidebtn]="!activeButtons[2]">
       <ion-icon name="contact"></ion-icon>
     </button>
-    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openTokensView()" ion-button block icon-only
+    <button class="side-btn" color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openTokensView()" ion-button block icon-only
       [class.unactive-sidebtn]="!activeButtons[3]">
       <ion-icon name="grid"></ion-icon>
     </button>
-    <button color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openRankingView($event)" ion-button block icon-only
+    <button class="side-btn" color="borderMainBtns" *ngIf="userBtnActive && userSubActive" (click)="openRankingView($event)" ion-button block icon-only
       [class.unactive-sidebtn]="!activeButtons[4]">
       <ion-icon name="medal"></ion-icon>
     </button>
