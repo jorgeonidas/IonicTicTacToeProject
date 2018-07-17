@@ -17,5 +17,7 @@ page-contacts {
         display: flex;
         direction: row;
         margin: 0;
+        justify-content: space-between;
+        align-content: center;
     }
 }
