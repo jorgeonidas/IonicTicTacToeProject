@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 @Component({
   selector: 'important-information',
   templateUrl: 'important-information.html'
@@ -10,6 +11,8 @@ export class ImportantInformationComponent {
   constructor() {
     console.log('Hello ImportantInformationComponent Component');
     this.text = 'Hello World';
+
+  
   }
 
 }

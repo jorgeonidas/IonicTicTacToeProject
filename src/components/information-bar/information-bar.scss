@@ -1,6 +1,15 @@
 information-bar {
     .info-bar{
         background-color: map-get($colors, fuxia);
+        width: 100%;
+    }
+
+    .regular-padding{
+        padding: 16px;
+    }
+
+    .iphoneXpadding{
+       padding: 40px 16px 16px 16px;
     }
     
     .nickname-wrapper{

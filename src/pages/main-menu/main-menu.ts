@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, MenuController, Platform } from 'ionic-angular';
 import { SettingsMenuPage } from '../settings-menu/settings-menu';
 import { CharacterSelectionPage } from '../character-selection/character-selection';
 import { PlayerSelectorService } from '../../services/playerSelService';
 import { ContactsPage } from '../contacts/contacts';
 import { TokenStorePage } from '../token-store/token-store';
+
 
 @IonicPage()
 @Component({
@@ -21,7 +22,11 @@ export class MainMenuPage {
               public navParams: NavParams,
               private popoverCtrl: PopoverController,
               private menuCtrl: MenuController,
-              private playerSelService: PlayerSelectorService ) {
+              private playerSelService: PlayerSelectorService,
+              ) {
+
+               
+              
   }
 
   ionViewDidLoad() {
