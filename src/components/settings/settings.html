@@ -1,36 +1,35 @@
-<ion-grid>
-    <form #cfg="ngForm">
+<ion-grid class="settings-grid">
+    <form style="height: 50%;" #cfg="ngForm">
       <ion-row text-center>
-        <ion-col>
+        <ion-col class="flex-col">
           <h1 no-margin class="side-menu-title">Settings</h1>
         </ion-col>
       </ion-row>
-      <br>
-
-      <ion-row>
-        <ion-col></ion-col>
-        <ion-col col-5>
+      <ion-row class="toogle-row">
+        <ion-col text-center col-6>
           <h2 no-margin>Music</h2>
-          <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
+          <div class="toggle-container">
+            <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
+          </div>
+      
         </ion-col>
-        <ion-col col-5>
+        <ion-col text-center col-6>
           <h2 no-margin>FX</h2>
-          <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
+          <div class="toggle-container">
+            <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
+          </div>
         </ion-col>
       </ion-row>
 
-      <br>
       <ion-row>
-        <ion-col text-center>
+        <ion-col class="notifications-col">
           <h4 no-margin>Notifications</h4>
-        </ion-col>
-        <ion-col class="flex-col">
           <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
         </ion-col>
       </ion-row>
 
-      <ion-row>
-        <ion-col col-10 offset-3>
+      <ion-row style="height: 10%;">
+        <ion-col col-12 class="flex-col">
 
           <ion-select name="language" [(ngModel)]="currentLang" (ionChange)="onSelectChange($event)">
             <ion-option *ngFor="let language of languages" [value]="language">
@@ -51,9 +50,9 @@
       </ion-col>
     </ion-row>
 
-    <br>
-    <br>
     <ion-row>
-      <h1>ACA VA EL LOGO DE VIRTUAL ROBOTS!</h1>
+      <ion-col text-center>
+          <h1>ACA VA EL LOGO DE VIRTUAL ROBOTS!</h1>
+      </ion-col> 
     </ion-row>
   </ion-grid>
