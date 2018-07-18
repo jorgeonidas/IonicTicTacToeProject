@@ -33,6 +33,20 @@ page-token-store {
         background-color: map-get($colors, primary );
     }
 
+    .name-wrapper{
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+    
+    #buy-btn{
+        border: solid 4px map-get($colors, gold );
+    }
+
     .gallery-row{
         height: 35%;
         background-color: aqua;
@@ -41,6 +55,7 @@ page-token-store {
     .paginator-row{
         height: 5%;
     }
+   
 /*
     .token-inspector{
         background-color: dimgray;
@@ -64,14 +79,7 @@ page-token-store {
         height: 100%;
     }
 
-    .name-wrapper{
-        height: 50%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-    }
+    
 
     div.name-wrapper p{
         font-size: 2.6%;    
