@@ -33,6 +33,10 @@ page-token-store {
         background-color: map-get($colors, primary );
     }
 
+    .desc-col{
+        height: 100%;
+    }
+
     .name-wrapper{
         height: 50%;
         width: 100%;
@@ -45,8 +49,6 @@ page-token-store {
     
     #buy-btn{
         border: solid 4px map-get($colors, gold );
-        width: 60%;
-        height: 60%;
     }
 
     .gallery-row{
@@ -56,6 +58,15 @@ page-token-store {
 
     .paginator-row{
         height: 5%;
+    }
+
+    .icon-wrapper{
+        height: 80%;
+        width: 80%;
+        background-color: white;
+        border-radius: 15px;
+        border: solid thin grey;
+        padding: 5px;
     }
    
 /*
