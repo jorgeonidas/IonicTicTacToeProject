@@ -1,23 +1,37 @@
 page-token-store {
     .no-scroll{
         overflow: hidden;
-        height: 100%;
         background-color:#ffe6a3; 
     }
 
     .store-grid{
-        height: 100%;
-        width: 100%;
+        height: 100vh;
+        width: 100vw;
         padding: 0;
         margin: 0;
     }
 
     .inspector-row{
-        height: 40vh;
+        height: 25%;
         margin: 0;
-        padding: 0; 
+        padding: 0;
+        background-color: dimgray; 
     }
 
+    .buyout-row{
+        height: 15%;
+        background-color: map-get($colors, primary );
+    }
+
+    .gallery-row{
+        height: 35%;
+        background-color: aqua;
+    }
+
+    .paginator-row{
+        height: 5%;
+    }
+/*
     .token-inspector{
         background-color: dimgray;
         display: flex;
@@ -50,7 +64,7 @@ page-token-store {
     }
 
     div.name-wrapper p{
-        font-size: 2.6vh;    
+        font-size: 2.6%;    
         text-align: center;
     }
 
@@ -89,7 +103,7 @@ page-token-store {
         justify-content: center;
         align-items: center;
     }
-
+*/
     .store-footer{
         display: flex;
         width: 100%;
