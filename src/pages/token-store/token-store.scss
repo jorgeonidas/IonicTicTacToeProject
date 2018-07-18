@@ -53,11 +53,23 @@ page-token-store {
 
     .gallery-row{
         height: 35%;
-        background-color: aqua;
+        background-color: transparent;
     }
 
     .paginator-row{
         height: 5%;
+    }
+    
+    .paginator-col{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    ion-col.paginator-col h2{
+        font-size: 3vh;
     }
 
     .icon-wrapper{
