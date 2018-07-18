@@ -13,7 +13,7 @@ page-token-store {
     }
 
     .inspector-row{
-        height: 40%;
+        height: 40vh;
         margin: 0;
         padding: 0; 
     }
@@ -30,7 +30,7 @@ page-token-store {
     }
 
     .buyout-row{
-        height: 25%;
+        height: 20vh;
         background-color: map-get($colors, primary );
     }
 
@@ -59,7 +59,7 @@ page-token-store {
     }
 
     .gallery-row{
-        height: 50%;
+        height: 50vh;
         margin: 0;
         width: 100%;
         background-color: #ffe6a3;
@@ -79,6 +79,9 @@ page-token-store {
         padding: 5px;
     }
 
+    .paginator-row{
+        height: 15vh;
+    }
     div.paginator{
         margin: 0;
         display: flex;
