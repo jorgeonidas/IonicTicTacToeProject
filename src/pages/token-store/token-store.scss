@@ -45,6 +45,8 @@ page-token-store {
     
     #buy-btn{
         border: solid 4px map-get($colors, gold );
+        width: 60%;
+        height: 60%;
     }
 
     .gallery-row{
