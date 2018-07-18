@@ -70,24 +70,24 @@
 
 <ion-footer>
   <ion-toolbar no-margin no-padding>
-    <ion-grid no-margin no-padding>
-      <ion-row style="width: 100%;">
+    <ion-grid style="height: 100%;" no-margin no-padding>
+      <ion-row style="width: 100%; height: 100%;">
 
-          <ion-col class="footer-btns" style="width: 100%">
+          <ion-col class="footer-btns" style="width: 100%;">
             
-            <button style="width: 15%;" round ion-button icon-only outline color="gold" (click)="backToMainMenu()">
+            <button class="btn-footer-h" style="width: 15%;" round ion-button icon-only outline color="gold" (click)="backToMainMenu()">
               <ion-icon name="home"></ion-icon>
             </button>
           
-            <button  ion-button round icon-start color="borderMainBtns">
+            <button  class="btn-footer-h" ion-button round icon-start color="borderMainBtns">
               <ion-icon color="gold" name="logo-bitcoin"></ion-icon>Free Energy
             </button>
           
-            <button style="width: 15%;" round ion-button icon-only outline color="danger">
+            <button class="btn-footer-h" style="width: 15%; " round ion-button icon-only outline color="danger">
               <ion-icon name="md-person"></ion-icon>
             </button>
           
-            <button round style="width: 15%;" ion-button icon-only outline color="borderMainBtns">
+            <button class="btn-footer-h" round style="width: 15%;" ion-button icon-only outline color="borderMainBtns">
               <ion-icon name="md-person-add"></ion-icon>
             </button>
           </ion-col>
