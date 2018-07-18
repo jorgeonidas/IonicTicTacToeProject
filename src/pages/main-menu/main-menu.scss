@@ -2,12 +2,14 @@ page-main-menu {
     $button-round-border-radius: 100px;
     .bg-main-menu-page{
         background-color: #ffcc00;
-        width: 100%;
         height: 100%;
         margin: 0;
     }
     ion-grid.mm-grid{
         height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     ion-row{
