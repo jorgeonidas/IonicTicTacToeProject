@@ -1,36 +1,25 @@
 <!-- Generated template for the TokenSelectorComponent component -->
-<ion-grid [class.token-store]="isStore">
-  <ion-row>
-    <ion-col text-center [ngClass]="{'header-section flex-col': !isStore, 'header-sections-store flex-col': isStore}">
+<ion-grid class="token-selector-page">
+  <ion-row class="header-section">
+    <ion-col class="header-col flex-col" text-center>
       <img width="80px" height="80px" src="{{currentInspectedUrl}}" />
     </ion-col>
   </ion-row>
-
-  <ion-row>
-    <ion-col class="first-section">
-      <ion-row>
-        <ion-col text-center>
-          <img class="invert" left width="50px" height="50px" src="assets/imgs/medal-icon.png">
-        </ion-col>
-        <ion-col text-left no-padding col-8 style="text-align: left;">
-          <h2 no-margin style="color: white; padding-top: 10%">Tokens Name</h2>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col text-center>
-          <p no-margin style="color: white">Token description and benefits</p>
-        </ion-col>
-      </ion-row>
-      <ion-row text-center>
-        <ion-col col-3></ion-col>
-        <ion-col col-6>
-          <button class="select-button" color="secondary" ion-button block (click)="onSelectTokens()">Select</button>
-        </ion-col>
-        <ion-col col-3></ion-col>
-      </ion-row>
+  <ion-row class="first-section">
+    <ion-col class="first-section-col">
+      <div class="icon-and-name">
+        <img class="invert" left width="30%" height="100%" src="assets/imgs/medal-icon.png">
+        <h2 no-margin style="height: 3vh" style="color: white;">Tokens Name</h2>
+      </div>
+      <p no-margin style="font-size: 2vh; height: 20%" style="color: white">Token description and benefits</p>
+      <button no-margin no-padding style="height: 30%;width: 50%; font-size: 4vw" class="select-button" color="secondary" ion-button block (click)="onSelectTokens()">Select</button>
     </ion-col>
   </ion-row>
+
+
+
   <ion-row class="second-section">
+    <!--
     <ion-col>
       <ion-row>
         <ion-col col-4 class="flex-col" *ngFor="let ulr of tokensUrls; let i = index">
@@ -44,11 +33,13 @@
         </ion-col>
       </ion-row>
     </ion-col>
-
+    -->
   </ion-row>
 
-  <ion-row *ngIf="!isStore"> 
-    <ion-col [ngClass]="{'last-section flex-col': !isStore, 'last-section-store flex-col': isStore}">
+
+  <ion-row class="last-section">
+    <!-- 
+    <ion-col >
       <ion-row>
 
         <ion-col text-center col-3>
@@ -57,7 +48,6 @@
             500
           </div>
         </ion-col>
-        <!--buttons-->
         <ion-col col-3>
           <button color="light" ion-button icon-only clear>
             <ion-icon name="arrow-dropleft"></ion-icon>
@@ -76,5 +66,7 @@
 
       </ion-row>
     </ion-col>
+  -->
   </ion-row>
+  
 </ion-grid>
