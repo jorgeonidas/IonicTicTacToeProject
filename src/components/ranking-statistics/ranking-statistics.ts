@@ -7,10 +7,23 @@ import { Component } from '@angular/core';
 export class RankingStatisticsComponent {
 
   text: string;
+  rankingUris: string[];
 
   constructor() {
     console.log('Hello RankingStatisticsComponent Component');
     this.text = 'Hello World';
+
+    this.rankingUris = [
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png',
+        'assets/imgs/medal-icon.png'
+      ];
   }
 
 }

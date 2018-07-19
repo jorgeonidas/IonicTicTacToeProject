@@ -1,64 +1,31 @@
 
-<ion-grid padding>
-  <ion-row>
-    <ion-col text-center>
-      <h1 class="side-menu-title">Ranking</h1>
+<ion-grid  class="ranking-sidepage">
+  <ion-row class="title-row">
+    <ion-col class="flex-col">
+      <h1 no-margin class="side-menu-title">Ranking</h1>
     </ion-col>
   </ion-row>
-  <ion-row padding>
-    <ion-col text-center>
-      <img width="100px" height="100px" src="assets/imgs/medal-icon.png" />
+  <ion-row class="top-rank-row">
+    <ion-col class="top-rank-col flex-col">
+      <img width="50%" height="90%" src="assets/imgs/medal-icon.png" />
     </ion-col>
   </ion-row>
-
   <ion-row>
-
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-
-  </ion-row>
-  
-  <ion-row>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
+    <ion-col col-4 *ngFor="let ulr of rankingUris; let i = index">
+      <img width="80vw" height="80vh" src="{{rankingUris[i]}}" />
     </ion-col>
   </ion-row>
-  
+  <ion-row class="spacer-row"></ion-row>
   <ion-row>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="assets/imgs/medal-icon.png" />
-    </ion-col>
-  </ion-row>
-  
-  <ion-row>
-    <ion-col style="padding-top: 20px" col-12>
+    <ion-col col-12>
       <div class="statics-container">
         <ion-grid>
           <ion-row>
-            <ion-col>Ranking Name</ion-col>
-            <ion-col># Games Won</ion-col>
+            <ion-col text-center id="rank-info">Ranking Name</ion-col>
+            <ion-col text-center id="rank-info"># Games Won</ion-col>
           </ion-row>
           <ion-row style="padding-top: 10px">
-            <ion-col text-center no-padding>Ranking Description and Benefits</ion-col>
+            <ion-col text-center no-padding id="rank-info">Ranking Description and Benefits</ion-col>
           </ion-row>   
         </ion-grid>
       </div>
