@@ -53,7 +53,17 @@ token-selector {
     .second-section{
         background-color: #ffd09b;
         height: 40%;
+        margin: 0;
+        padding: 0;
     }
+    
+    .cell-col{
+        height: 30%;
+        padding: 1%;
+        margin: 0;
+    }
+
+
 
     .last-section{
         background-color: map-get($colors, createBorder);
@@ -70,6 +80,8 @@ token-selector {
         border-radius: 15px;
         border: solid thin grey;
         padding: 5px;
+        width: 100%;
+        height: 100%;
     }
 
     .count-container{

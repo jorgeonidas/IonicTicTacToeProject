@@ -18,22 +18,16 @@
 
 
 
-  <ion-row class="second-section">
-    <!--
-    <ion-col>
-      <ion-row>
-        <ion-col col-4 class="flex-col" *ngFor="let ulr of tokensUrls; let i = index">
-          <div  [class.unInspectedBortder]="i!= currentSelection && i != currentInspectIndex" 
+  <ion-row  class="second-section">
+        <ion-col no-padding col-4 class="flex-col cell-col" *ngFor="let ulr of tokensUrls; let i = index">
+          <div style="width: 100%; height: 100%;"  [class.unInspectedBortder]="i!= currentSelection && i != currentInspectIndex" 
                 [class.currentSelectedBorder]="i == currentSelection"
                 [class.currentInspectBorder]="i == currentInspectIndex">
             <div text-center class="icon-wrapper" (click)="inspect(i)">
-              <img width="50px" height="50px" src="{{tokensUrls[i]}}">
+              <img width="100%" height="100%" src="{{tokensUrls[i]}}">
             </div>
           </div>
         </ion-col>
-      </ion-row>
-    </ion-col>
-    -->
   </ion-row>
 
 
