@@ -29,6 +29,17 @@
 
 .side-menu-title{
     color: map-get($colors, loginAndCreateBackground);
+    font-size: 7vw;
+}
+
+.title-wrapper{
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 //dragula

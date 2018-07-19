@@ -1,60 +1,54 @@
-<ion-grid padding>
-  <ion-row>
-    <ion-col col-3></ion-col>
-    <ion-col text-center>
-      <h1 class="side-menu-title">User Account</h1>
-    </ion-col>
-    <ion-col col-3></ion-col>
+<ion-grid class="user-acc-sidepage">
+  <ion-row style="height: 12%;">
+    <ion-col class="flex-col" style="height: 100%;">
+      <div class="title-wrapper">
+          <h1 no-margin class="side-menu-title">User Account</h1>
+      </div>    
+    </ion-col> 
   </ion-row>
-  <ion-row>
-    <ion-col col-3></ion-col>
-    <ion-col text-center>
-      <ion-thumbnail>
-        <img src="{{profileImgUlr}}" />
+
+  <ion-row class="profile-pic-row"> 
+    <ion-col style="height: 100%" class="flex-col">
+      <ion-thumbnail style="width: 50%; height: 100%">
+        <img style="width: 100%; height: 100%" src="{{profileImgUlr}}" />
       </ion-thumbnail>
     </ion-col>
-    <ion-col col-3></ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col col-1></ion-col>
-    <ion-col text-center>
+
+  <ion-row class="currency-row">
+    <ion-col col1></ion-col>
+    <ion-col col-5 class="currency-col">
       <coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="coins"></coin-eola-container>
     </ion-col>
-    <ion-col text-center>
+    <ion-col col-5 class="currency-col">
       <coin-eola-container [currencyIcon]="eolaIconUrl" [currencyAmmnt]="eolas"></coin-eola-container>
     </ion-col>
-    <ion-col col-1></ion-col>
+    <ion-col col1></ion-col>
   </ion-row>
-  <ion-row padding>
-    <ion-item no-lines class="ion-item-input">
-      <ion-input class="username-input" disabled="{{userNameInputDisable}}" type="text" [(ngModel)]="profileName"></ion-input>
-      <button ion-button item-right icon-only clear (click)="toggleEdit()" color="input-inner-btn">
-        <ion-icon name="create"></ion-icon>
-      </button>
-    </ion-item>
-  </ion-row>
-  <ion-row padding>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="{{rankingUri}}" />
-      <h2>Ranking</h2>
-    </ion-col>
-    <ion-col text-center>
-      <img width="80px" height="80px" src="{{currTokenUrl}}" />
-      <h2>Token</h2>
+  <ion-row>
+    <ion-col col-12>
+      <ion-item no-lines class="ion-item-input">
+        <ion-input class="username-input" disabled="{{userNameInputDisable}}" type="text" [(ngModel)]="profileName"></ion-input>
+        <button ion-button item-right icon-only clear (click)="toggleEdit()" color="input-inner-btn">
+          <ion-icon name="create"></ion-icon>
+        </button>
+      </ion-item>
     </ion-col>
   </ion-row>
-  <ion-row no-padding>
-    <ion-col col-2></ion-col>
-    <ion-col>
-      <button class="borderInfButtons" color="emerald" round block ion-button>Game Center</button>
+  <ion-row class="token-ranking-row">
+    <ion-col class="token-ranking-col" col-6>
+      <img width="60%" height="60%" src="{{rankingUri}}" />
+      <h2 no-margin>Ranking</h2>
     </ion-col>
-    <ion-col col-2></ion-col>
+    <ion-col class="token-ranking-col" col-6>
+      <img width="60%" height="60%" src="{{currTokenUrl}}" />
+      <h2  no-margin>Token</h2>
+    </ion-col>
   </ion-row>
-  <ion-row no-padding>
-    <ion-col col-2></ion-col>
-    <ion-col>
-      <button no-padding class="borderInfButtons" color="emerald" round block ion-button>Manage Account</button>
+  <ion-row class="info-row">
+    <ion-col class="info-col">
+      <button style="width: 60%" class="borderInfButtons" color="emerald" round block ion-button>Game Center</button>
+      <button style="width: 60%" no-padding class="borderInfButtons" color="emerald" round block ion-button>Manage Account</button>
     </ion-col>
-    <ion-col col-2></ion-col>
   </ion-row>
 </ion-grid>

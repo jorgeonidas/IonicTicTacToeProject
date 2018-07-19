@@ -1,9 +1,11 @@
 <ion-grid no-padding style="width: 100%; height: 100%">
-  <ion-row style="height: 8%;">
-    <ion-col class="flex-col" col-12>
-      <h1 no-margin class="side-menu-title">User Account</h1>
-    </ion-col>
-  </ion-row>
+    <ion-row style="height: 8%;">
+        <ion-col class="flex-col" style="height: 100%;">
+          <div class="title-wrapper">
+            <h1 no-margin class="side-menu-title">User Account</h1>
+          </div>
+        </ion-col>
+      </ion-row>
   <ion-row style="height: 92%;">
     <ion-col no-padding>
       <form style="height: 100%;width: 100%;" class="create-form" [formGroup]="createUserForm" (ngSubmit)="onSubmitCreateUser($event)">
