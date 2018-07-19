@@ -1,51 +1,47 @@
 <ion-content class="no-scroll" padding>
-  <ion-grid >
-    <ion-row >
-      <ion-col > 
-        <h1 text-center class="charSelTitle" *ngIf="gameType == 'singleplayer'">Human vs Robot</h1>
-        <h1 text-center class="charSelTitle" *ngIf="gameType == 'local-multiplayer'">Human vs Human</h1>
-        <h1 text-center class="charSelTitle" *ngIf="gameType == 'online-multiplayer'">Human vs Human</h1>
+  <ion-grid class="char-sel-page-grid" >
+    <ion-row class="title-row" >
+      <ion-col no-padding class="flex-col" > 
+        <h1 no-margin text-center class="charSelTitle" *ngIf="gameType == 'singleplayer'">Human vs Robot</h1>
+        <h1 no-margin text-center class="charSelTitle" *ngIf="gameType == 'local-multiplayer'">Human vs Human</h1>
+        <h1 no-margin text-center class="charSelTitle" *ngIf="gameType == 'online-multiplayer'">Human vs Human</h1>
       </ion-col>
     </ion-row>
     <!--Avatares-->
-    <ion-row *ngIf="gameType !='online-multiplayer';else multiplayer_content">
-      <!--<ion-col id="portraitselectorp1" col-4 style="height: 100px; background-color: gray" [dragula]='"bag"'>
-        <ion-img *ngIf="portraitOne[0] != null && !isOverOne" style="width: 100%; height: 100%;" [src]="portraitOne[0]"></ion-img>
-        <button ion-button small block color="fuxia">Random</button>
-      </ion-col>-->
-      <ion-col col-4>
-        <div id="portraitselectorp1" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'>
+    <ion-row class="portrait-row" *ngIf="gameType !='online-multiplayer';else multiplayer_content">
+      <ion-col class="portrait-col" col-5>
+        <div id="portraitselectorp1" class="portrait-div" [dragula]='"bag"'>
             <img style="width: 100%; height: 100%;" *ngIf="portraitOne[0] != null && !isOverOne" [src]="portraitOne[0]">
         </div>
-          <button ion-button small block color="fuxia" (click)="randPortraitSelectOne()">Random</button>
+          <button no-margin ion-button class="rand-btn" block color="fuxia" (click)="randPortraitSelectOne()">Random</button>
       </ion-col>
-      <ion-col align-self-center col-4>
+      <ion-col align-self-center col-2>
         <h2 style="transform: rotate(-20deg); font-weight: bold" text-center>VS</h2> 
       </ion-col>
       <!--directiva de dragula para contenedor drag an drop-->
-      <ion-col col-4>
-        <div id="portraitselectorp2ob" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'>
+      <ion-col class="portrait-col" col-5>
+        <div id="portraitselectorp2ob" class="portrait-div" [dragula]='"bag"'>
           <img style="width: 100%; height: 100%;" *ngIf="portraitTwo[0] != null && !isOverTwo" [src]="portraitTwo[0]">
         </div>
-          <button ion-button small block color="fuxia" (click)="randPortraitSelectTwo()">Random</button>
+          <button no-margin ion-button class="rand-btn" block color="fuxia" (click)="randPortraitSelectTwo()">Random</button>
       </ion-col>
     </ion-row>
-    <!--falta agregar reglas aca!!!-->
+    <!--falta agregar reglas dragula aca!!!-->
     <ng-template #multiplayer_content>
       <ion-row>
           <ion-col></ion-col>
-          <ion-col>
-              <div id="portraitselectorp1" style="width: 100%; height: 100px; background-color: dimgray" [dragula]='"bag"'>
+          <ion-col class="portrait-col">
+              <div id="portraitselectorp1" class="portrait-div" [dragula]='"bag"'>
                   <img style="width: 100%; height: 100%;" *ngIf="portraitOne[0] != null && !isOverOne" [src]="portraitOne[0]">
               </div>
-            <button ion-button small block color="fuxia" (click)="randPortraitSelectOne()">Random</button>
+            <button no-margin ion-button small block color="fuxia" (click)="randPortraitSelectOne()">Random</button>
           </ion-col>
           <ion-col></ion-col>
       </ion-row>
     </ng-template>
     <!--seleccion de personaje-->
-    <ion-row>
-      <ion-col>
+    <ion-row class="char-picker-row">
+      <ion-col class="flex-col">
           <grid-selector-component 
           (pOneEmmiter)="updatePlayerOnePortrati($event)" 
           (pTwoOrBotEmmiter)="updatePlayerTwoOrBotProtrait($event)" 
@@ -56,25 +52,25 @@
       </ion-col>
     </ion-row>
     <!--Botones dificultad-->
-    <ion-row *ngIf="gameType == 'singleplayer'">
-      <ion-col>
-        <button 
+    <ion-row class="difficulty-row" *ngIf="gameType == 'singleplayer'">
+      <ion-col class="difficulty-col flex-col">
+        <button class="difficulty-btn"
         ion-button  
         small block 
         color="secondary"
         [ngClass]="{easySel: difficulty=='easy'}" 
         (click)="onDifficultySelection('easy')">Easy</button>
       </ion-col>
-      <ion-col>
-          <button 
+      <ion-col class="difficulty-col flex-col">
+          <button class="difficulty-btn"
           ion-button  
           small 
           block color="gold"
           [ngClass]="{mediumSel: difficulty=='medium'}" 
           (click)="onDifficultySelection('medium')">Medium</button>
       </ion-col>
-      <ion-col>
-          <button 
+      <ion-col class="difficulty-col flex-col">
+          <button class="difficulty-btn"
           ion-button  
           small block 
           color="danger"
@@ -84,33 +80,31 @@
     </ion-row>
     <token-selector-bar *ngIf="gameType != 'singleplayer'"></token-selector-bar>
     <!--Seleccion de rondas-->
-    <ion-row >
-      <ion-col>
-        <h2 text-center>Rounds</h2>
+    <ion-row class="rounds-row" >
+      <ion-col col-6 class="flex-col">
+        <h2 no-margin text-center>Rounds</h2>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-6 class="round-sel-col">
         <button 
         color="emerald" 
         ion-button 
         small
         (click)="onRoundSelection(1)" [ngClass]="{active: rounds==1, unactive: rounds!=1}">x1</button>
-      </ion-col>
-      <ion-col col-2>
-          <button 
-          color="emerald" 
-          ion-button 
-          small
-          (click)="onRoundSelection(3)" [ngClass]="{active: rounds==3, unactive: rounds!=3}">x3</button>
-      </ion-col>
-      <ion-col col-2> 
-          <button 
-          color="emerald" 
-          ion-button 
-          small
-          (click)="onRoundSelection(5)" [ngClass]="{active: rounds==5, unactive: rounds!=5}">x5</button>
+
+        <button 
+        color="emerald" 
+        ion-button 
+        small
+        (click)="onRoundSelection(3)" [ngClass]="{active: rounds==3, unactive: rounds!=3}">x3</button>
+        
+        <button 
+        color="emerald" 
+        ion-button 
+        small
+        (click)="onRoundSelection(5)" [ngClass]="{active: rounds==5, unactive: rounds!=5}">x5</button>
       </ion-col>
     </ion-row>
-    <ion-row justify-content-center>
+    <ion-row class="action-row">
         <ion-col align-self-center>
           <button ion-button 
           round 

@@ -6,11 +6,12 @@ import { PlayerSelectorService } from "../../services/playerSelService";
     selector: 'grid-selector-component',
     templateUrl: 'grid-selector.html',
     styles: [`
+        /**##################Borde de componente#################################*/
         .borderGrid {
             border: 4px solid #0de5da;
             border-radius: 12px;
         }
-
+        /*##############Cell Borders################*/
         #oo{
             border-bottom: 2px solid gray;
         }
@@ -38,7 +39,7 @@ import { PlayerSelectorService } from "../../services/playerSelService";
             border-left: 2px solid gray;
             border-right: 2px solid gray;
         }
-
+        /*#########selector indicators############*/
         .ollie-character-wrapper {
             position: relative;
         }
@@ -63,7 +64,7 @@ import { PlayerSelectorService } from "../../services/playerSelService";
             background: #c7d1e0;
             right: 0;
         }
-        
+        /*#################images##############################*/
         img{
             max-height: 8rem;
         }

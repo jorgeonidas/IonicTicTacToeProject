@@ -1,4 +1,84 @@
 page-character-selection {
+
+    .char-sel-page-grid{
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /*title row*/
+    .title-row{
+        height: 15%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    /**current selection portrait**/
+    .portrait-row{
+        height: 25%;
+        width: 100%;
+    }
+
+    .portrait-col{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .portrait-div{
+        width: 90%; 
+        height: 75%; 
+        background-color: dimgray;
+    }
+
+    .rand-btn{
+        height: 25%;
+        font-size: 3vh;
+    }
+    /*##################character picker######################*/
+    .char-picker-row{
+        width: 100%;
+        height: 30%;
+    }
+    /*difficulty btns ( singleplayer only)*/
+    .difficulty-row{
+        width: 100%;
+        height: 8%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .difficulty-col{
+        height: 100%;
+        padding: 0;
+    }
+
+    .difficulty-btn{
+        height: 60%;
+        width: 90%;
+    }
+
+    .action-row{
+        width: 100%;
+        height: 14%;
+    }
+
+    /*rounds selection*/
+    .rounds-row{
+        height: 8%;
+        width: 100%;
+    }
+
+    .round-sel-col{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    /*border & colors*/
     .borderPlay{
         border: 3px solid map-get($colors, createBorder);
     }
@@ -30,6 +110,6 @@ page-character-selection {
     .charSelTitle{
         color: map-get($colors, skipBorder);
         font-weight: bold;
-        font-size: 40px;
+        font-size: 10vw;
     }
 }
