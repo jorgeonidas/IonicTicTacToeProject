@@ -7,58 +7,58 @@ import 'rxjs/Rx';
 import { MainMenuPage } from "../../main-menu/main-menu";
 import { Events } from 'ionic-angular';
 @Component({
-    template: `<ion-content class="no-scroll">
-                <ion-grid padding>
-                    <ion-row>
-                        <ion-col text-center>
+    template: `<ion-content style="width: 100%;  height: 100%;"  class="no-scroll">
+                <ion-grid style="width: 100%;  height: 100%;" no-padding>
+                    <ion-row style="height: 14%;">
+                        <ion-col style="height: 100%;" text-center>
                             <h2 no-margin class="side-menu-title">Settings</h2>
                         </ion-col>                        
                     </ion-row>                   
                     <form #cfg="ngForm">
-                        <ion-row>
-                            <ion-col text-center>
+                        <ion-row style="height: 14%;">
+                            <ion-col style="height: 100%;" text-center>
                                 <div class="menuSubtitle">
                                     <h1 no-margin>Audio</h1>
                                 </div>
                             </ion-col>
                         </ion-row>
-                        <ion-row>
-                            <ion-col></ion-col>
-                            <ion-col text-center col-5>
+                        <ion-row style="height: 14%;">
+                            <ion-col style="height: 100%;"></ion-col>
+                            <ion-col style="height: 100%;" text-center col-5>
                                 <h2 no-margin>Music</h2>
                                 <div class="toggleWrapper">
                                     <ion-toggle [(ngModel)]="music" name="music" (ionChange)="onToggle($event,'music')" color="secondary"></ion-toggle>
                                 </div>
                             </ion-col>
-                            <ion-col text-center col-5>
+                            <ion-col style="height: 100%;" text-center col-5>
                                 <h2 no-margin>FX</h2>
                                 <div class="toggleWrapper">
                                     <ion-toggle [(ngModel)]="sfx" name="sfx" (ionChange)="onToggle($event,'sfx')" color="secondary"></ion-toggle>
                                 </div>
                             </ion-col>
-                            <ion-col></ion-col>
+                            <ion-col style="height: 100%;"></ion-col>
                         </ion-row>
                     </form>
-                    <ion-row>
-                        <ion-col>
+                    <ion-row style="height: 14%;">
+                        <ion-col style="height: 100%;">
                         </ion-col>
 
-                        <ion-col col-8>
-                            <button ion-button color="danger" block round (click)="leaveGame()">Leave Game</button>
+                        <ion-col style="height: 100%;" col-8>
+                            <button  ion-button color="danger" block round (click)="leaveGame()">Leave Game</button>
                         </ion-col>
                         
-                        <ion-col>
+                        <ion-col style="height: 100%;">
                         </ion-col>
                     </ion-row>
-                    <ion-row>
-                        <ion-col>
+                    <ion-row style="height: 14%;">
+                        <ion-col style="height: 100%;">
                         </ion-col>
 
-                        <ion-col col-6>
-                            <button ion-button color="gold" block round (click)="closeMenu()">Close</button>
+                        <ion-col style="height: 100%;" col-6>
+                            <button  ion-button color="gold" block round (click)="closeMenu()">Close</button>
                         </ion-col>
                         
-                        <ion-col>
+                        <ion-col style="height: 100%;">
                         </ion-col>
                     </ion-row>        
                 </ion-grid>
