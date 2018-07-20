@@ -40,7 +40,7 @@ import { Component, Input } from "@angular/core";
             color: #0de5da;
             font-size: 5vw;
             font-weight: bold;
-            width:80%;
+            width: 25vw;
         }
     `] 
 })
