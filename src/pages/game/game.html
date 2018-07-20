@@ -22,9 +22,9 @@
     
       
     <!--board-->
-    <!--
-    <ion-row style="height: 40%;">
-      <ion-col>
+  
+    <ion-row style="height: 60%;">
+      <ion-col col-12 style="height: 100%" >
           <game-board [gameType]="gametype" 
           [difficulty]="difficulty" 
           [playerOne]="playerOneCurrentTurn"
@@ -39,6 +39,6 @@
           (isaWinnerEvent)="winOrTie($event)"></game-board>
       </ion-col>
     </ion-row>
-    -->
+
   </ion-grid>
 </ion-content>

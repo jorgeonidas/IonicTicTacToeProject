@@ -8,7 +8,7 @@ import { AIService } from '../../services/iaService';
     templateUrl: 'game-board.html',
     styles:[`
             ion-col{
-                height: 100px;
+                height: 100%%;
                 background: #f9c79a;
             }
             
@@ -33,6 +33,8 @@ import { AIService } from '../../services/iaService';
             .boardBorder {
                 border: 4px solid #e8933a;
                 border-radius: 15px;
+                height: 100%;
+                background-color: #f9c79a;
             }
 
             #centerCell{

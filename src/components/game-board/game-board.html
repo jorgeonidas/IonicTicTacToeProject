@@ -1,5 +1,5 @@
 <ion-grid no-padding class="boardBorder">
-        <ion-row >
+        <ion-row style="height:33.3%">
             <ion-col col-4 no-padding id="topLeft" class="flex-col" (click)="onCellClickled(0)">
                 <h1 *ngIf="origBoard[0] == 'X' || origBoard[0] == 'O'" 
                     [ngClass]="{'X': origBoard[0] == 'X', 'O': origBoard[0]== 'O'}"
@@ -20,7 +20,7 @@
                 </h1>
             </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row style="height:33.3%">
             <ion-col col-4 no-padding id="centerLeft" class="flex-col" (click)="onCellClickled(3)">
                 <h1 *ngIf="origBoard[3] == 'X' || origBoard[3] == 'O'" 
                     [ngClass]="{'X': origBoard[3] == 'X', 'O': origBoard[3]== 'O'}">
@@ -41,7 +41,7 @@
                 </h1>
             </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row style="height:33.3%">
             <ion-col col-4 no-padding id="bottomLeft" class="flex-col" (click)="onCellClickled(6)">
                 <h1 *ngIf="origBoard[6] == 'X' || origBoard[6] == 'O'" 
                     [ngClass]="{'X': origBoard[6] == 'X', 'O': origBoard[6]== 'O'}"
