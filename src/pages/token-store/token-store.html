@@ -50,7 +50,7 @@
 <ion-footer no-margin no-padding>
     <ion-grid no-margin no-padding>
       <ion-row class="footer-row">
-        <div class="store-footer">
+        <div [class.iphoneXpadding]="iphonex" class="store-footer">
           <ion-col col-2 class="flex-col" text-center>
             <button round ion-button icon-only outline color="gold" (click)="backToMainMenu()">
               <ion-icon name="home"></ion-icon>
