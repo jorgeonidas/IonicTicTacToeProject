@@ -6,6 +6,15 @@ settings {
         margin: 0;
     }
 
+    .fromGameBorder{
+        border: 6px solid map-get($colors, gold );
+        border-radius: 2%;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
     .toogle-row{
         width: 100%;
         height: 20%;

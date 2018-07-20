@@ -120,7 +120,9 @@ import { ContactComponent } from '../components/contact/contact';
     TokenGaleryPage,
     PreGamePage,
     ContactsPage,
-    TokenStorePage
+    TokenStorePage,
+    //test
+    SettingsComponent
   ],
   providers: [
     StatusBar,

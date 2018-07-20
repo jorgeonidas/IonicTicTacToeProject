@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { PopoverController } from 'ionic-angular';
 import { ConfigurationPage } from '../../pages/settings-menu/configuration/configuration';
+import { SettingsComponent } from '../settings/settings';
 
 @Component({
   selector: 'timer-bar',
@@ -26,7 +27,7 @@ export class TimerBarComponent {
   onOptionsMenu(){
     this.gamePaused = true;
     this.pausedEmmiter.emit(this.gamePaused);
-    const popover = this.popoverCtrl.create(ConfigurationPage,{},{enableBackdropDismiss: false});
+    const popover = this.popoverCtrl.create(SettingsComponent,{fromTimebar:true},{enableBackdropDismiss: false});
 
     popover.onDidDismiss((data)=>{
       if(data){

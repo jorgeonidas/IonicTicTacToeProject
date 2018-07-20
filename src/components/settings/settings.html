@@ -1,4 +1,4 @@
-<ion-grid class="settings-grid">
+<ion-grid [class.settings-grid]="lauchedFromGame-grid" [class.fromGameBorder]="lauchedFromGame">
     <form style="height: 50%;" #cfg="ngForm">
       <ion-row text-center>
         <ion-col class="flex-col">
@@ -22,13 +22,13 @@
       </ion-row>
 
       <ion-row>
-        <ion-col class="notifications-col">
+        <ion-col *ngIf="!lauchedFromGame" class="notifications-col">
           <h4 no-margin>Notifications</h4>
           <ion-checkbox name="notifications" [(ngModel)]="notifications" (ionChange)="onToggle($event,'notifications')"></ion-checkbox>
         </ion-col>
       </ion-row>
 
-      <ion-row style="height: 10%;">
+      <ion-row *ngIf="!lauchedFromGame" style="height: 10%;">
         <ion-col col-12 class="flex-col">
 
           <ion-select name="language" [(ngModel)]="currentLang" (ionChange)="onSelectChange($event)">
@@ -42,7 +42,7 @@
       </ion-row>
     </form>
 
-    <ion-row>
+    <ion-row *ngIf="!lauchedFromGame">
       <ion-col>
         <button color="emerald" class="borderInfButtons" block round ion-button>Official Website</button>
         <br>
@@ -50,9 +50,25 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
+    <ion-row *ngIf="!lauchedFromGame">
       <ion-col text-center>
           <h1>ACA VA EL LOGO DE VIRTUAL ROBOTS!</h1>
       </ion-col> 
     </ion-row>
+
+    <ion-row *ngIf="lauchedFromGame">
+      <ion-col col-12>
+        <button ion-button block color="danger" (click)="leaveGame()">
+          Leave Game
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="lauchedFromGame">
+      <ion-col class="flex-col" col-12 (click)="closeMenu()">
+        <button style="width: 60%;" ion-button block color="gold">
+          Resume
+        </button>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>

@@ -1,7 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
 import { ConfigurationModel } from '../../models/configuration';
-import { Events, Toggle } from 'ionic-angular';
+import { Events, Toggle, NavParams, ViewController } from 'ionic-angular';
 
 @Component({
   selector: 'settings',
@@ -16,10 +16,11 @@ export class SettingsComponent {
    music: boolean;
    sfx: boolean;
    notifications: boolean;
-
-  constructor(private cfgServiceDB: ConfigurationServiceDB, 
+  lauchedFromGame: boolean;
+  constructor(private viewCtrl: ViewController, private cfgServiceDB: ConfigurationServiceDB, 
     private configModel: ConfigurationModel,
-    private events: Events,) {
+    private events: Events,
+    public navParams:NavParams) {
     console.log('Hello SettingsComponent Component');  
     
     this.initSettings();
@@ -27,6 +28,10 @@ export class SettingsComponent {
       console.log("Event catched by settings component");
       this.initSettings();
     } );
+
+    this.lauchedFromGame = this.navParams.get('fromTimebar');
+    console.log("lauched from game", this.lauchedFromGame);
+    
   }
  
   initSettings() {
@@ -65,5 +70,18 @@ export class SettingsComponent {
     }
   }
 
+  closeMenu(){
+    this.viewCtrl.dismiss(true/*el juego continua*/);
+    this.events.publish('settings:changed');//app atrapara este evento
+  }
+
+  leaveGame() {
+    console.log("leave game event");
+    this.events.publish('settings:changed');//app atrapara este evento
+    this.cfgServiceDB.setLeavingCurrentGame(true); //el servicio guardara si abandono el juego
+    this.viewCtrl.dismiss(false/*el juego NO continua*/);
+    //this.appCtrl.getRootNav().popTo(this.appCtrl.getRootNav().getByIndex(this.appCtrl.getRootNav().length()-4),{animate:false}); //hago pop 3 niveles
+    //this.appCtrl.getRootNav().pop({animate:false});
+  }
 
 }
