@@ -1,9 +1,21 @@
 page-game {
+    
+    .portraits-col{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+    }
+    
     .protrati{
-        width: 100%;
-        height: 200px;
+        width: 45%;
+        height:100%;
         background: gray;
     }
+
+
 
     
 }

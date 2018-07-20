@@ -3,6 +3,7 @@ timer-bar {
         background-color: map-get($colors ,skip);
         width: 100%;
         border-radius: 15px;
+        height: 95%;
     }
 
     .roudnArea{
@@ -11,12 +12,6 @@ timer-bar {
         height: 70%;
         border-radius: 12px;
         border: 2px solid red;
-    }
-
-    .flex-col{
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     h2{

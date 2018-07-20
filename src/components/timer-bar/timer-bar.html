@@ -1,11 +1,11 @@
 <!-- Generated template for the TimerBarComponent component -->
 
   <ion-grid no-padding class="timeBarDiv" >
-    <ion-row >
+    <ion-row style="height: 100%" >
 
       <ion-col col-2 class="flex-col">
-        <div class="roudnArea" text-center>
-          <h2>{{currentRound}}</h2>
+        <div class="roudnArea flex-col" text-center>
+          <h2 no-margin style="font-size: 5vw; font-weight: bold">{{currentRound}}</h2>
         </div>
       </ion-col>
 
@@ -15,8 +15,8 @@
         </div>
       </ion-col>
 
-      <ion-col align-self-start col-2>
-        <button ion-button icon-only clear outline color="light" (click)="onOptionsMenu()"><ion-icon name="settings"></ion-icon></button>
+      <ion-col style="height: 100%" class="flex-col" col-2>
+        <button style="width: 100%; height: 100%;" ion-button icon-only clear outline color="light" (click)="onOptionsMenu()"><ion-icon name="settings"></ion-icon></button>
       </ion-col>
 
     </ion-row>

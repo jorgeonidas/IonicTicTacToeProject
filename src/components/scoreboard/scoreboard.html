@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid style="width: 100%; height: 8%;" no-padding no-margin>
     <ion-row >
         <ion-col>
             <div id="barContainer">
@@ -14,8 +14,10 @@
             </ion-row>
                      
         </ion-col>
-        <ion-col class="scoreCol" text-center col-4>
-            {{playerOneScore}} - {{playerTwoOrBotScore}}
+        <ion-col class="flex-col" text-center col-4>
+            <div class="scoreCol">
+                {{playerOneScore}} - {{playerTwoOrBotScore}}
+            </div>
         </ion-col>
         <ion-col>
             <div id="barContainer" style="display: flex; justify-content: flex-end">

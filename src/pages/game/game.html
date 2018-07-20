@@ -5,22 +5,25 @@
   [rounds]="rounds" [playerOneHealth]="playerOneHealth" 
   [playerTwoOrBotHealth]="playerTwoOrBothealth"
   [playerOneTurn]="playerOneCurrentTurn"></scoreboard>
-  <ion-grid>
+  <ion-grid style="width: 100%; height:92%;" no-padding no-margin>
     <!--portrait-->
-    <ion-row>
-      <ion-col>
-      </ion-col>
-      <ion-col col-5><div class="protrati"></div></ion-col>
-      <ion-col col-5><div class="protrati"></div></ion-col>
-      <ion-col>
+    <ion-row style="height: 30%">
+      <ion-col col-12 class="portraits-col">
+        <div class="protrati"></div>
+        <div class="protrati"></div>
       </ion-col>
     </ion-row>
     <!--some bar?-->
-
-    <timer-bar [currentRound]="currentRound > rounds ? rounds : currentRound " [value]="toltalTurnBar" (pausedEmmiter)="pauseOrResume($event)" (continueGameEmmiter)="leaveGame()"></timer-bar>
+    <ion-row style="height: 10%">
+      <ion-col style="padding-top: 2%; padding-bottom: 2%;" col-12>
+          <timer-bar [currentRound]="currentRound > rounds ? rounds : currentRound " [value]="toltalTurnBar" (pausedEmmiter)="pauseOrResume($event)" (continueGameEmmiter)="leaveGame()"></timer-bar>
+      </ion-col>
+    </ion-row>
+    
       
     <!--board-->
-    <ion-row>
+    <!--
+    <ion-row style="height: 40%;">
       <ion-col>
           <game-board [gameType]="gametype" 
           [difficulty]="difficulty" 
@@ -36,5 +39,6 @@
           (isaWinnerEvent)="winOrTie($event)"></game-board>
       </ion-col>
     </ion-row>
+    -->
   </ion-grid>
 </ion-content>

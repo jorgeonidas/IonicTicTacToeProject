@@ -38,8 +38,9 @@ import { Component, Input } from "@angular/core";
             justify-content: center;
             align-items: center;
             color: #0de5da;
-            font-size: 22px;
+            font-size: 5vw;
             font-weight: bold;
+            width:80%;
         }
     `] 
 })
