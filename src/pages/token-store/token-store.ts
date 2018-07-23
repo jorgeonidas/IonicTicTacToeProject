@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TokenService } from '../../services/tokenService';
 import { Platform } from 'ionic-angular';
+import { platformCoreDynamic } from '@angular/platform-browser-dynamic/src/platform_core_dynamic';
 
 @IonicPage()
 @Component({
@@ -20,12 +21,11 @@ export class TokenStorePage {
 
   constructor(platform: Platform,public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService) {
     //obtener altura del telefono
-    this.isIos = platform.is('ios');
     this.deviceHeight = platform.height();
-    this.iphonex = this.deviceHeight > 800;
-    console.log("device",this.deviceHeight, this.iphonex);
+    this.isIphoneX(platform.height(),platform.width(),platform.is('ios'));
+
     //maximo de paginacion dependiendo del la altura del dispositivo
-    if(this.iphonex){
+    if(this.iphonex || platform.height() >= 800){
       this.tokensUris = new Array(this.maxPerPageIphoneX);
       console.log(this.tokensUris.length);
     }else{
@@ -46,5 +46,14 @@ export class TokenStorePage {
 
   backToMainMenu(){
     this.navCtrl.pop({animate:false});
+  }
+
+  isIphoneX(h : number, w: number,p: boolean): boolean{
+    let isX = false;
+    if(h == 812 && w == 375 && p == true){
+      isX = true;
+    }
+
+    return isX;
   }
 }

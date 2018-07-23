@@ -36,10 +36,21 @@ export class InformationBarComponent {
     console.log("device", this.model);
     
     this.deviceHeight = platform.height();
+
+    this.iphonex = this.isIphoneX(platform.height(), platform.width(),platform.is('ios'));
     this.isIos = platform.is('ios');
-    this.iphonex = this.deviceHeight > 800;
-    console.log("device",this.deviceHeight, this.iphonex,"ios: ",this.isIos);
+    //this.iphonex = this.deviceHeight > 800;
+    console.log("iphonex", this.iphonex);
     
+  }
+
+  isIphoneX(h : number, w: number,p: boolean): boolean{
+    let isX = false;
+    if(h == 812 && w == 375 && p == true){
+      isX = true;
+    }
+
+    return isX;
   }
 
 }

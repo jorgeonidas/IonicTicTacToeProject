@@ -27,7 +27,7 @@
     <ion-row class="gallery-row">
       <!--<ion-col col-4 class="flex-col" *ngFor="let ulr of tokensUris; let i = index">-->
       <ion-col [class.gallery-col]="!iphonex"
-      [class.gallery-col-x]="iphonex"
+      [class.gallery-col-x]="iphonex || deviceHeight > 800"
        class="flex-col" col-4 *ngFor="let ulr of tokensUris; let i = index">
         <div  class="icon-wrapper">
           <img width="100%" height="100%" src="{{tokensUris[i]}}">
