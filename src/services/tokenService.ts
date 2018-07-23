@@ -13,6 +13,9 @@ export class TokenService{
           'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
           'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
           'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
+          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
+          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
+          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
           'assets/imgs/Tic-Tac-Toe-icon-mockup.ico'
         ];
 
