@@ -48,7 +48,7 @@ import { CoinEolaContainerComponent } from '../components/coin-eola-container/co
 import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
 import { ContactComponent } from '../components/contact/contact';
-
+import { Device } from '@ionic-native/device';
 
 @NgModule({
   declarations: [
@@ -133,7 +133,8 @@ import { ContactComponent } from '../components/contact/contact';
     AuthService,
     AIService,
     PlayerSelectorService,
-    TokenService
+    TokenService,
+    Device 
   ]
 })
 export class AppModule {}

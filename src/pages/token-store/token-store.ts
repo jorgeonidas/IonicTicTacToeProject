@@ -16,9 +16,11 @@ export class TokenStorePage {
   tokensUris: string[];
   iphonex: boolean;
   deviceHeight: number;
+  isIos: boolean;
 
   constructor(platform: Platform,public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService) {
     //obtener altura del telefono
+    this.isIos = platform.is('ios');
     this.deviceHeight = platform.height();
     this.iphonex = this.deviceHeight > 800;
     console.log("device",this.deviceHeight, this.iphonex);
@@ -35,13 +37,7 @@ export class TokenStorePage {
     for(let i = 0; i< this.tokensUris.length; i++){
       this.tokensUris[i] = tokenService.getTokens()[i];
     }
-
     console.log(this.tokensUris);
-
-    
-
-    
-    
   }
 
   ionViewDidLoad() {
