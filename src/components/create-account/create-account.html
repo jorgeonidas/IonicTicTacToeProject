@@ -65,7 +65,7 @@
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-datetime formControlName="dob" displayFormat="MM/DD/YYYY" placeholder="Click To select your Birthday"></ion-datetime>
+              <ion-datetime formControlName="dob" displayFormat="MMMM/DD/YYYY" placeholder="Click To select your Birthday"></ion-datetime>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -99,119 +99,4 @@
       </form>
     </ion-col>
   </ion-row>
-  <!--
-  <ion-row text-center>
-    <ion-col>
-      <h1 class="side-menu-title">User Account</h1>
-    </ion-col>
-  </ion-row>
-  <ion-row style="width: 100%; height: 50%;">
-    <ion-col align-self-center col-11 style="width: 100%; height: 80%;">
-      <div id="loginContainer" color="primary">
-
-
-        <form class="create-form" [formGroup]="createUserForm" (ngSubmit)="onSubmitCreateUser($event)">
-          <ion-row>
-
-            <ion-label>
-              Username:
-            </ion-label>
-
-          </ion-row>
-
-          <ion-row>
-
-            <ion-item no-lines class="ion-item-input">
-              <ion-input type="text" formControlName="name"></ion-input>
-            </ion-item>
-          </ion-row>
-
-
-          <ion-row>
-
-            <ion-label>
-              Password:
-            </ion-label>
-
-          </ion-row>
-          <ion-row>
-            <ion-item no-lines class="ion-item-input">
-              <ion-input type="password" formControlName="password"></ion-input>
-            </ion-item>
-          </ion-row>
-
-
-          <ion-row>
-
-            <ion-label>
-              Email Address:
-            </ion-label>
-
-          </ion-row>
-          <ion-row>
-            <ion-item no-lines class="ion-item-input">
-              <ion-input type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
-            </ion-item>
-          </ion-row>
-
-
-          <ion-row>
-            <ion-label>
-              Birthday:
-            </ion-label>
-          </ion-row>
-          *******
-          <ion-row>
-            <ion-col>
-              <ion-item no-lines class="ion-item-input">
-                <ion-input type="number" value="" formControlName="day" maxlength="2" placeholder="DD"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item no-lines class="ion-item-input">
-                <ion-input type="number" value="" formControlName="month" maxlength="2" placeholder="MM"></ion-input>
-              </ion-item>
-            </ion-col>
-            <ion-col>
-              <ion-item no-lines class="ion-item-input">
-                <ion-input type="number" value="" formControlName="year" maxlength="4" placeholder="YYYY"></ion-input>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-       ********     
-            <ion-row>
-              <ion-col>
-                <ion-item>
-                    <ion-datetime formControlName="dob" displayFormat="MM/DD/YYYY"></ion-datetime>
-                </ion-item>
-              </ion-col> 
-            </ion-row>
-          <ion-row>
-            <ion-item no-lines>
-              <ion-checkbox></ion-checkbox>
-
-              <ion-label text-wrap style="font-size: 12px">Keep Current Game Data</ion-label>
-            </ion-item>
-          </ion-row>
-          <ion-row>
-            <ion-item no-lines>
-              <ion-checkbox formControlName="useragre"></ion-checkbox>
-              <ion-label text-wrap style="font-size: 12px">I have read and accpet the Terms of Use and Privacy Policy</ion-label>
-            </ion-item>
-          </ion-row>
-
-          <ion-row justify-content-center>
-            <ion-col col-5 align-self-center>
-              <button ion-button type="button" color="skip" class="borderSkip" round (click)="backToLoginPage()">Back</button>
-            </ion-col>
-            <ion-col align-self-center>
-              <button type="submit" ion-button large round class="borderCreate" color="gold" [disabled]="!createUserForm.valid">Create</button>
-            </ion-col>
-          </ion-row>
-        </form>
-
-      </div>
-    </ion-col>
-  </ion-row>
--->
 </ion-grid>

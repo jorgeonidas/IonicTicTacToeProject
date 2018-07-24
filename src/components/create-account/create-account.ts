@@ -94,9 +94,9 @@ export class CreateAccountComponent {
     
   }
 
+
   backToLoginPage(){
     this.toLogin.emit();
   }
-
 
 }
