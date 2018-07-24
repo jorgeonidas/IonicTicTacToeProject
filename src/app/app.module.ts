@@ -97,6 +97,11 @@ import { Device } from '@ionic-native/device';
           scrollPadding: false,
           scrollAssist: true,
           autoFocusAssist: false
+        },
+        android:{
+          scrollPadding: false,
+          scrollAssist: true,
+          autoFocusAssist: false
         }
       }
     }),
