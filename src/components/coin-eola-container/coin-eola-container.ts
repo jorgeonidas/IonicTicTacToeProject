@@ -8,10 +8,15 @@ export class CoinEolaContainerComponent {
 
   @Input() currencyAmmnt: number;
   @Input() currencyIcon: string;
+  /*
+  coinIconUrl = 'assets/imgs/coins.png';
+  eolaIconUrl = 'assets/imgs/eolas.png';*/
+
+  //asset: string;
 
   constructor() {
-    this.currencyAmmnt = 9999;
-    this.currencyIcon = "assets/imgs/coins.png";
+    //this.currencyIcon = "assets/imgs/coins.png";
   }
+
 
 }

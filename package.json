@@ -60,7 +60,6 @@
       "cordova-plugin-statusbar": {}
     },
     "platforms": [
-      "android",
       "ios"
     ]
   }
