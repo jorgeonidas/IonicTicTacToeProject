@@ -24,7 +24,7 @@ export class CreateAccountComponent {
   public initializeCreateUserForm() {
     this.createUserForm = new FormGroup({
       'name': new FormControl('jorgeonidas', Validators.compose([Validators.minLength(4),Validators.maxLength(30),Validators.required])),
-      'password': new FormControl('123456', Validators.compose([Validators.minLength(6),Validators.maxLength(8),Validators.required])),
+      'password': new FormControl('123456', Validators.compose([Validators.minLength(4),Validators.maxLength(8),Validators.required])),
       'email': new FormControl('maitest@mail.com', 
       Validators.compose([
         Validators.minLength(4),

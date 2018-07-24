@@ -19,6 +19,10 @@
     border-radius: 12px;
 }
 
+.invalid{
+    background-color: map-get($colors, danger ); 
+}
+
 .menu-title{
     color: map-get($colors, borderMainBtns);
 }

@@ -19,7 +19,7 @@
 
         <ion-row>
           <ion-col col-12>
-            <ion-item no-lines class="ion-item-input input-form">
+            <ion-item [class.invalid]="!this.createUserForm.get('name').valid" no-lines class="ion-item-input input-form">
               <ion-input type="text" formControlName="name"></ion-input>
             </ion-item>
           </ion-col>
@@ -34,7 +34,7 @@
         </ion-row>
         <ion-row>
           <ion-col col-12>
-            <ion-item no-lines class="ion-item-input input-form">
+            <ion-item [class.invalid]="!this.createUserForm.get('password').valid" no-lines class="ion-item-input input-form">
               <ion-input type="password" formControlName="password"></ion-input>
             </ion-item>
           </ion-col>
@@ -43,13 +43,14 @@
         <ion-row>
           <ion-col no-padding>
             <ion-label no-margin>
-              Email Address:
+              Email Address: <!--<h5 no-margin *ngIf="!this.createUserForm.get('email').valid">invalid Email</h5>-->
             </ion-label>
+            
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-item no-lines class="ion-item-input input-form">
+            <ion-item no-lines [class.invalid]="!this.createUserForm.get('email').valid" class="ion-item-input input-form">
               <ion-input type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
             </ion-item>
           </ion-col>
