@@ -32,9 +32,6 @@ export class CreateAccountComponent {
         Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'),
         Validators.required
       ])),
-      /*'day': new FormControl(null, Validators.required),
-      'month': new FormControl(null, Validators.required),
-      'year': new FormControl(null, Validators.required),*/
       'dob': new FormControl(null, Validators.required),
       'useragre': new FormControl(true, Validators.required),
     });

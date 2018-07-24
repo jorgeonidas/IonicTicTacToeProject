@@ -7,72 +7,85 @@
         </ion-col>
       </ion-row>
   <ion-row style="height: 92%;">
-    <ion-col no-padding>
+    <ion-col style="height: 100%;" no-padding>
       <form style="height: 100%;width: 100%;" class="create-form" [formGroup]="createUserForm" (ngSubmit)="onSubmitCreateUser($event)">
-        <ion-row>
-          <ion-col no-padding>
+        <ion-row class="label-row">
+          <ion-col  class="label-col"no-padding>
             <ion-label no-margin>
               Username:
             </ion-label>
           </ion-col>
         </ion-row>
-
-        <ion-row>
-          <ion-col col-12>
+        <ion-row class="input-row">
+          <ion-col class="input-col" col-12>
             <ion-item [class.invalid]="!this.createUserForm.get('name').valid" no-lines class="ion-item-input input-form">
-              <ion-input type="text" formControlName="name"></ion-input>
+              <ion-input style="height: 100%" type="text" formControlName="name"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
+        <ion-row style="height: 2%" >
+          <ion-col *ngIf="!this.createUserForm.get('name').valid" col-12 no-padding class="invalid-tip" >
+            <h5 style="font-size: 3vw; text-align: center" no-margin>Name Must Have Between 4 an 30 characters</h5>
+          </ion-col>
+        </ion-row>
 
-        <ion-row>
+        <ion-row class="label-row">
           <ion-col no-padding>
             <ion-label no-margin>
               Password:
             </ion-label>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col col-12>
+        <ion-row class="input-row">
+          <ion-col class="input-col" col-12>
             <ion-item [class.invalid]="!this.createUserForm.get('password').valid" no-lines class="ion-item-input input-form">
-              <ion-input type="password" formControlName="password"></ion-input>
+              <ion-input style="height: 100%" type="password" formControlName="password"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
+        <ion-row style="height: 2%;" >
+          <ion-col *ngIf="!this.createUserForm.get('password').valid" col-12 no-padding class="invalid-tip" >
+            <h5 style="font-size: 3vw; text-align: center" no-margin>Password Must Have Between 4 a 8 Characters</h5>
+          </ion-col>
+        </ion-row>
 
-        <ion-row>
+        <ion-row class="label-row">
           <ion-col no-padding>
             <ion-label no-margin>
               Email Address: <!--<h5 no-margin *ngIf="!this.createUserForm.get('email').valid">invalid Email</h5>-->
             </ion-label>
-            
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
+        <ion-row class="input-row">
+          <ion-col class="input-col" col-12>
             <ion-item no-lines [class.invalid]="!this.createUserForm.get('email').valid" class="ion-item-input input-form">
-              <ion-input type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
+              <ion-input style="height: 100%" type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
+        <ion-row style="height: 2%;">
+          <ion-col  *ngIf="!this.createUserForm.get('email').valid" col-12 no-padding col-6 class="invalid-tip" >
+            <h5 style="font-size: 3vw; text-align: center" no-margin>Invalid Address</h5>
+          </ion-col>
+        </ion-row>
 
-        <ion-row>
+        <ion-row class="label-row">
             <ion-col no-padding>
               <ion-label no-margin>
                 Birthday:
               </ion-label>
             </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
+        <ion-row class="input-row">
+          <ion-col class="input-col" col-12>
             <ion-item>
               <ion-datetime formControlName="dob" displayFormat="MMMM/DD/YYYY" placeholder="Click To select your Birthday"></ion-datetime>
             </ion-item>
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col>
+        <ion-row style="height: 8%">
+          <ion-col no-padding>
             <ion-item no-lines>
               <ion-checkbox></ion-checkbox>
               <ion-label  text-wrap style="font-size: 12px; padding-top: 2%">Keep Current Game Data</ion-label>
@@ -80,8 +93,8 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col>
+        <ion-row style="height: 8%">
+          <ion-col no-padding>
             <ion-item no-lines>
               <ion-checkbox formControlName="useragre"></ion-checkbox>
               <ion-label text-wrap style="font-size: 12px; padding-top: 2%">I have read and accpet the Terms of Use and Privacy Policy</ion-label>
@@ -89,11 +102,11 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="last-row"> 
-          <ion-col class="flex-col" col-5 align-self-center>
+        <ion-row no-padding class="last-row"> 
+          <ion-col no-padding style="height: 100%" class="flex-col" col-5 align-self-center>
             <button ion-button type="button" color="skip" class="borderSkip" round (click)="backToLoginPage()">Back</button>
           </ion-col>
-          <ion-col class="flex-col" align-self-center>
+          <ion-col no-padding style="height: 100%" class="flex-col" align-self-center>
             <button type="submit" ion-button large round class="borderCreate" color="gold" [disabled]="!createUserForm.valid">Create</button>
           </ion-col>
         </ion-row>

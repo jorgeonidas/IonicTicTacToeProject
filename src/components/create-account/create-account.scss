@@ -3,21 +3,52 @@ create-account {
     ion-label{
         font-weight: bold;
         font-size: 3vh;
-        padding-top: 10%;
+        padding-top: 2%;
     }
-
+    /*
     form ion-row{
         width: 100%;
         height: 8%;
-    }
+    }*/
     
     .input-form{
         width: 100%;
-        height: 80%;
+        height: 70%;
+    }
+
+    .label-row{
+        height: 5%;
+    }
+
+    .label-col{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: baseline;
+        align-items: flex-start;
+    }
+
+    .input-row{
+        height: 8.5%;
+        padding-bottom: 1.5%;
+    }
+
+    .input-col{
+        height: 100%;
+        padding: 0;
     }
 
     .last-row{
         width: 100%;
         height: 20%;
+    }
+
+    .invalid-tip{
+        color: map-get($colors, danger );
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        padding-top: 2%;
     }
 }
