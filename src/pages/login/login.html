@@ -1,19 +1,70 @@
-<ion-content class="bg-page" padding>
-  <ion-grid>
-    <ion-row>
+<ion-content class="bg-page">
+  <div class="up-spacer"></div>
+  <ion-grid class="loginContainer">
+    <ion-row id="up-spacer-row"></ion-row>
+    <ion-row class="form-row">
+      <ion-col class="label-col">
+        <ion-label no-margin>
+          Username:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="form-row">
+      <ion-input class="ion-item-input" type="text" value=""></ion-input>
+    </ion-row>
+    <ion-row style="height: 5%;"></ion-row>
+    <ion-row class="form-row">
+      <ion-col class="label-col">
+        <ion-label no-margin>
+          Password:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="form-row">
+      <ion-input class="ion-item-input" type="password" value=""></ion-input>
+    </ion-row>
+    <ion-row style="height: 5%;"></ion-row>
+    <ion-row style="height: 5%; justify-content: center">
+      <p no-margin style="font-size: 4vw">The username can only numbers & letters</p>
+    </ion-row>
+    <ion-row class="buttons-row">
+      <ion-col class="button-coll">
+        <button round ion-button 
+        color="skip" 
+        class="borderSkip" 
+        (click)="toMainMenuPage()">Skip</button>
+        <button round ion-button
+        class="borderLogin">Login</button>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 5%; justify-content: center">
+        <p no-margin style="font-size: 4vw;font-weight: bold;">Don't Have a Virtual Robot Account?</p>
+      </ion-row>
+      <ion-row class="buttons-row">
+        <ion-col class="button-coll">
+          <button ion-button 
+          round 
+          color="gold"
+          class="borderCreate" 
+          (click)="toCreateAccountPage()">Create Account</button>
+        </ion-col>
+      </ion-row>
+    <ion-row></ion-row>
+    
+    <!--<ion-row>
       <ion-col align-self-start >
-        <!--spacing-->
+
       </ion-col>
       <ion-col align-self-center col-11>
         <div id="loginContainer" color="primary">
           
-          <!--formulario aca-->
+
           <ion-row>
-              <!--<ion-item>-->
+
                   <ion-label>
                     Username:
                   </ion-label>
-                <!--</ion-item>-->
+
           </ion-row>
           <ion-row>
             <ion-item>
@@ -21,13 +72,13 @@
             </ion-item>
           </ion-row>
           
-          <!--password-->
+
           <ion-row>
-              <!--<ion-item>-->
+
                   <ion-label>
                     Password:
                   </ion-label>
-                <!--</ion-item>-->
+
           </ion-row>
           
           <ion-row>
@@ -39,7 +90,7 @@
           <ion-row align-items-center>
             <p align="center">The username can only numbers & letters</p>
           </ion-row>
-          <!--botones-->
+
           <ion-row justify-content-center>
             <ion-col align-self-center >
               <button ion-button 
@@ -55,7 +106,7 @@
                 class="borderLogin">Login</button>
             </ion-col>
           </ion-row>
-          <!--info-->
+
           <ion-row>
             <h6 align="center">
               Don't Have a Virtual Robot Account?
@@ -71,8 +122,9 @@
         </div>
       </ion-col>
       <ion-col align-self-end >
-        <!--spacing-->
+
       </ion-col>
     </ion-row>
+  -->
   </ion-grid>
 </ion-content>
