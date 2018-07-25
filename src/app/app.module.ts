@@ -90,11 +90,11 @@ import { Device } from '@ionic-native/device';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp,{
-          swipeBackEnabled: false,
-          scrollPadding: false,
-          scrollAssist: true,
-          autoFocusAssist: false
+    IonicModule.forRoot(MyApp, {
+      swipeBackEnabled: false,
+      scrollPadding: false,
+      scrollAssist: true,
+      autoFocusAssist: false
     }),
     HttpClientModule,
     IonicStorageModule.forRoot(),
