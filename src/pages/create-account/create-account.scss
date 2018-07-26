@@ -12,19 +12,32 @@ page-create-account {
         background: #e9ead0;
         border: 5px solid rgb(213, 6, 231);
         padding: 20px;  
+        width: 95%;
+        height: 90%;
+        margin: auto;
+        padding: 0;
     }
     .item{
         background-color: #e9ead0;
     }
+
     ion-label{
+        height: 100%;
         font-weight: bold;
+        font-size: 6vw;
+        padding-top: 2.5%;
+
     }
 
     .borderSkip{
         border: 3px solid map-get($colors, skipBorder);
+        height: 60%;
+        width: 25%;
     }
 
     .borderCreate{
-        border: 3px solid map-get($colors, createBorder);;
+        border: 3px solid map-get($colors, createBorder);
+        height: 80%;
+        width: 50%;
     }
 }

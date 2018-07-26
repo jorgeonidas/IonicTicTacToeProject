@@ -1,20 +1,86 @@
-<ion-content class="bg-page" padding>
-  <ion-grid>
+<ion-content no-padding class="bg-page" padding>
+  <div style="width: 100%; height: 5%; margin: 0"></div>
+  <ion-grid id="loginContainer">
+    <form style="height: 100%" [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+    <ion-row style="height: 4%;"></ion-row>
+    <ion-row style="height: 8%;padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+        <ion-label no-margin>
+          Username:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 9%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+          <input style="width: 100%; height: 100%" class="ion-item-input" type="text"formControlName="name"/>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 8%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+        <ion-label no-margin>
+          Password:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 9%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+          <input style="width: 100%;  height: 100%" class="ion-item-input" type="password" formControlName="password"/>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 8%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+        <ion-label no-margin>
+          Email Address:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 9%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+        <input style="width: 100%;  height: 100%" class="ion-item-input" type="email" formControlName="email" placeholder="user@mail.com"/>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 8; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+        <ion-label no-margin>
+          Birthday:
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 9%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0">
+        <ion-item>
+          <ion-datetime formControlName="dob" displayFormat="MMMM/DD/YYYY"></ion-datetime>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 9%; padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+      <ion-col style="height: 100%; padding: 0; display: flex; flex-direction: row; justify-content: center; align-items: center">
+          <ion-checkbox formControlName="useragre"></ion-checkbox>
+          <ion-label no-margin text-wrap style="font-size: 2vh; padding-top: 2%; padding-left: 2%">I have read and accpet the Terms of Use and Privacy Policy</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 15%; padding: 0">
+      <ion-col style="height: 100%; padding: 0; display: flex; flex-direction: row; justify-content: space-around; align-items: center">
+          <button ion-button type="button" color="skip" class="borderSkip" round (click)="toMainMenuPage()">Skip</button>
+          <button type="submit" ion-button large round class="borderCreate" color="gold" [disabled]="!createUserForm.valid">Create</button>
+      </ion-col>
+    </ion-row>
+    <!--
     <ion-row>
       <ion-col align-self-start>
-        <!--spacing-->
+
       </ion-col>
       <ion-col align-self-center col-11>
         <div id="loginContainer" color="primary">
 
-          <!--formulario aca-->
+
           <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
             <ion-row>
-              <!--<ion-item>-->
+
               <ion-label>
                 Username:
               </ion-label>
-              <!--</ion-item>-->
+
             </ion-row>
 
             <ion-row>
@@ -23,13 +89,13 @@
               </ion-item>
             </ion-row>
 
-            <!--password-->
+
             <ion-row>
-              <!--<ion-item>-->
+
               <ion-label>
                 Password:
               </ion-label>
-              <!--</ion-item>-->
+
             </ion-row>
             <ion-row>
               <ion-item>
@@ -37,13 +103,12 @@
               </ion-item>
             </ion-row>
 
-            <!--Email-->
             <ion-row>
-              <!--<ion-item>-->
+
               <ion-label>
                 Email Address:
               </ion-label>
-              <!--</ion-item>-->
+
             </ion-row>
             <ion-row>
               <ion-item>
@@ -51,27 +116,12 @@
               </ion-item>
             </ion-row>
 
-            <!--Birthday-->
             <ion-row>
               <ion-label>
                 Birthday:
               </ion-label>
             </ion-row>
-            <!--
-          <ion-row>
-            <ion-col>
-              <ion-item class="borderInfButtons">
-                  <ion-input type="text" value="" formControlName="day" maxlength="2" placeholder="DD"></ion-input>
-              </ion-item>     
-            </ion-col>
-            <ion-col>
-              <ion-input type="text" value="" formControlName="month" maxlength="2" placeholder="MM"></ion-input>
-            </ion-col>
-            <ion-col>
-              <ion-input type="text" value="" formControlName="year" maxlength="4" placeholder="YYYY"></ion-input>
-            </ion-col>
-          </ion-row>
-        -->
+
             <ion-row>
               <ion-col>
                 <ion-item>
@@ -85,7 +135,7 @@
                 <ion-label text-wrap style="font-size: 12px">I have read and accpet the Terms of Use and Privacy Policy</ion-label>
               </ion-item>
             </ion-row>
-            <!--botones***************************************************************-->
+
             <ion-row justify-content-center>
               <ion-col col-5 align-self-center>
                 <button ion-button type="button" color="skip" class="borderSkip" round (click)="toMainMenuPage()">Skip</button>
@@ -95,12 +145,14 @@
               </ion-col>
             </ion-row>
           </form>
-          <!--**********************************************************************-->
+
         </div>
       </ion-col>
       <ion-col align-self-start>
-        <!--spacing-->
+
       </ion-col>
     </ion-row>
+  -->
+  </form>
   </ion-grid>
 </ion-content>
