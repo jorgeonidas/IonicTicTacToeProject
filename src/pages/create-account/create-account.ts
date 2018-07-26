@@ -55,8 +55,9 @@ export class CreateAccountPage implements OnInit  {
     });
   }
 
-  onSubmit(){
-
+  onSubmit(event: any){
+    console.log(event);
+ 
     const loading = this.loadingCtrl.create({content: 'Please Waint...'});
     loading.present();
     const value = this.createUserForm.value;
@@ -91,7 +92,7 @@ export class CreateAccountPage implements OnInit  {
           ]
         });
         alert.present();
-        /*console.log(error);
+       /*console.log(error);
         console.log(error.name);
         console.log(error.message);
         console.log(error.status);*/}
