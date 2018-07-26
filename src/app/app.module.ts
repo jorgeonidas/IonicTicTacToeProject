@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, Keyboard } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -94,7 +94,7 @@ import { Device } from '@ionic-native/device';
       swipeBackEnabled: false,
       scrollPadding: false,
       scrollAssist: true,
-      autoFocusAssist: false
+      autoFocusAssist: true
     }),
     HttpClientModule,
     IonicStorageModule.forRoot(),
@@ -130,7 +130,8 @@ import { Device } from '@ionic-native/device';
     AIService,
     PlayerSelectorService,
     TokenService,
-    Device 
+    Device,
+    Keyboard 
   ]
 })
 export class AppModule {}

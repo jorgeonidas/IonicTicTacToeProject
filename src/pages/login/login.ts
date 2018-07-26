@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { CreateAccountPage } from '../create-account/create-account';
 
@@ -13,8 +13,9 @@ export class LoginPage {
   mainMenuPage = MainMenuPage;
   createAccPage = CreateAccountPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
