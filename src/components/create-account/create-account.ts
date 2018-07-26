@@ -41,7 +41,7 @@ export class CreateAccountComponent {
     //console.log(event);
     console.log(this.createUserForm.value);
     
-    
+   /*
     const loading = this.loadingCtrl.create({content: 'Please Waint...'});
 
     if (!this.createUserForm.invalid) {
@@ -94,7 +94,7 @@ export class CreateAccountComponent {
             console.log(error.status);}
         );
     }
-    
+    */
   }
 
 

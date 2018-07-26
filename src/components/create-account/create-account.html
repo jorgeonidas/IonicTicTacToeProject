@@ -18,9 +18,7 @@
         </ion-row>
         <ion-row class="input-row">
           <ion-col class="input-col" col-12>
-            <ion-item [class.invalid]="!this.createUserForm.get('name').valid" no-lines class="ion-item-input input-form">
-              <ion-input style="height: 100%" type="text" formControlName="name"></ion-input>
-            </ion-item>
+            <input [class.invalid]="!this.createUserForm.get('name').valid" class="ion-item-input input-form" style="height: 100%" type="text" formControlName="name"/>
           </ion-col>
         </ion-row>
         <ion-row style="height: 2%" >
@@ -38,9 +36,7 @@
         </ion-row>
         <ion-row class="input-row">
           <ion-col class="input-col" col-12>
-            <ion-item [class.invalid]="!this.createUserForm.get('password').valid" no-lines class="ion-item-input input-form">
-              <ion-input style="height: 100%" type="password" formControlName="password"></ion-input>
-            </ion-item>
+            <input [class.invalid]="!this.createUserForm.get('name').valid" class="ion-item-input input-form" style="height: 100%" type="password" formControlName="password"/>
           </ion-col>
         </ion-row>
         <ion-row style="height: 2%;" >
@@ -58,9 +54,7 @@
         </ion-row>
         <ion-row class="input-row">
           <ion-col class="input-col" col-12>
-            <ion-item no-lines [class.invalid]="!this.createUserForm.get('email').valid" class="ion-item-input input-form">
-              <ion-input style="height: 100%" type="text" formControlName="email" placeholder="user@mail.com"></ion-input>
-            </ion-item>
+            <input [class.invalid]="!this.createUserForm.get('email').valid" class="ion-item-input input-form" style="height: 100%" type="text" formControlName="email" placeholder="user@mail.com"/>
           </ion-col>
         </ion-row>
         <ion-row style="height: 2%;">

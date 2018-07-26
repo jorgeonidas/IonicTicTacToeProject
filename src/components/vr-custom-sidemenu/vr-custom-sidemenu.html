@@ -41,8 +41,7 @@
     <!--User Account-->
     <user-account *ngIf="currentActiveMenu == 'user-account'"></user-account>  
     <!--User Create-->
-    <page-create-account *ngIf="currentActiveMenu == 'user-create'"
-    (toLogin)="openUserCategory()"></page-create-account>
+    <create-account *ngIf="currentActiveMenu == 'user-create'"(toLogin)="openUserCategory()"></create-account>
     <!--User Tokens-->
     <token-selector *ngIf="currentActiveMenu == 'user-tokens'"></token-selector>
     <!--User Ranking-->
