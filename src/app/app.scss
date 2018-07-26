@@ -23,6 +23,15 @@
     border: none;
 }
 
+.invalid-tip{
+    color: map-get($colors, danger );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding-top: 2%;
+}
+
 .invalid{
     background-color: map-get($colors, danger ); 
 }

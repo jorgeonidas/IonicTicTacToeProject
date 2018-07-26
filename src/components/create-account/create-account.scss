@@ -43,12 +43,5 @@ create-account {
         height: 20%;
     }
 
-    .invalid-tip{
-        color: map-get($colors, danger );
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        padding-top: 2%;
-    }
+
 }

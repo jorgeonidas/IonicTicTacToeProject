@@ -36,9 +36,15 @@ export class CreateAccountPage implements OnInit  {
 
   public initializeForm(){
     this.createUserForm = new FormGroup({
-      'name': new FormControl('jorgeonidas', Validators.required),
-      'password': new FormControl('123456', Validators.required),
-      'email': new FormControl('maitest@mail.com', Validators.required),
+      'name': new FormControl('jorgeonidas', Validators.compose([Validators.minLength(4),Validators.maxLength(30),Validators.required])),
+      'password': new FormControl('123456', Validators.compose([Validators.minLength(4),Validators.maxLength(8),Validators.required])),
+      'email': new FormControl('maitest@mail.com', 
+      Validators.compose([
+        Validators.minLength(4),
+        Validators.maxLength(60), 
+        Validators.pattern('^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$'),
+        Validators.required
+      ])),
       /*
       'day': new FormControl(null, Validators.required),
       'month': new FormControl(null, Validators.required),
