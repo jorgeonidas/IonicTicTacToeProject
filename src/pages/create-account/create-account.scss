@@ -26,7 +26,6 @@ page-create-account {
         font-weight: bold;
         font-size: 6vw;
         padding-top: 5%;
-
     }
 
     .borderSkip{
@@ -34,7 +33,7 @@ page-create-account {
         height: 55%;
         width: 30%;
     }
-
+    
     .borderCreate{
         border: 3px solid map-get($colors, createBorder);
         height: 75%;

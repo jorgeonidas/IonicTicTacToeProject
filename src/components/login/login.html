@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid class="login-grid">
   <ion-row style="height: 12%;">
     <ion-col class="flex-col" style="height: 100%;">
       <div class="title-wrapper">
@@ -6,54 +6,85 @@
       </div>
     </ion-col>
   </ion-row>
+  <form style="width:100%;height: 88%" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin($event)">
+  <ion-row class="input-label-row">
+    <ion-label no-margin>
+      Username:
+    </ion-label>
+  </ion-row>
+  <ion-row class="input-label-row">
+    <input class="ion-item-input" style="width: 100%" type="text" formControlName="username" />
+  </ion-row>
+  <ion-row class="input-label-row">
+    <ion-label no-margin>
+      Password:
+    </ion-label>
+  </ion-row>
+  <ion-row class="input-label-row">
+    <input class="ion-item-input" style="width: 100%" type="password" formControlName="password" />
+  </ion-row>
+  <ion-row style="height: 5%;">
 
+  </ion-row>
+  <ion-row class="btn-row">
+    <ion-col class="login-grid flex-col">
+      <button ion-button type="submit" class="borderLogin" style="height: 80%; width: 60%;" round [disabled]="!loginForm.valid" (click)="openUserAccount()">Login</button>
+    </ion-col>
+  </ion-row>
+  <ion-row style="height: 8%;">
+    <ion-col class="login-grid flex-col">
+      <p>
+        Don't Have a Virtual Robot Account?
+      </p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="btn-row">
+    <ion-col class="login-grid flex-col"g>
+      <button style="height: 80%; width: 60%;" ion-button round color="gold" class="borderCreate" (click)="openCreateUserView()">Create Account</button>
+    </ion-col>
+  </ion-row>
+  <ion-row></ion-row>
+</form>
+<!--
   <ion-row>
 
     <ion-col align-self-start>
-      <!--spacing-->
+
     </ion-col>
     <ion-col align-self-center col-11>
 
 
-      <!--formulario aca-->
+
       <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin($event)">
         <ion-row>
-          <!--<ion-item>-->
-          <ion-label>
+          <ion-label no-margin>
             Username:
           </ion-label>
-          <!--</ion-item>-->
         </ion-row>
         <ion-row>
-          <ion-item no-lines>
-            <ion-input class="ion-item-input" type="text" formControlName="username"></ion-input>
-          </ion-item>
+          <input class="ion-item-input" type="text" formControlName="username" />
         </ion-row>
 
-        <!--password-->
+
         <ion-row>
-          <!--<ion-item>-->
-          <ion-label>
+
+          <ion-label no-margin>
             Password:
           </ion-label>
-          <!--</ion-item>-->
-        </ion-row>
 
+        </ion-row>
         <ion-row>
-          <ion-item no-lines>
-            <ion-input class="ion-item-input" type="password" formControlName="password"></ion-input>
-          </ion-item>
+          <input class="ion-item-input" type="password" formControlName="password" />
         </ion-row>
-
         <ion-row align-items-center>
           <p align="center">The username can only numbers & letters</p>
         </ion-row>
-        <!--botones-->
+
         <ion-row justify-content-center>
           <button ion-button type="submit" round [disabled]="!loginForm.valid" (click)="openUserAccount()">Login</button>
         </ion-row>
       </form>
-      <!--info-->
+
       <ion-row>
         <h6 align="center">
           Don't Have a Virtual Robot Account?
@@ -62,14 +93,14 @@
       <ion-row justify-content-center>
         <button ion-button round color="gold" class="borderCreate" (click)="openCreateUserView()">Create Account</button>
       </ion-row>
-      <!---->
+
 
     </ion-col>
     <ion-col align-self-end>
-      <!--spacing-->
+
     </ion-col>
 
   </ion-row>
-
+-->
 
 </ion-grid>
