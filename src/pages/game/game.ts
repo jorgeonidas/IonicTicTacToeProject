@@ -15,6 +15,7 @@ export class GamePage {
   gameData: any;
   gametype: string;
   rounds: number = 3;
+  pointsToWin : number;
   currentRound: number = 1;
   difficulty: string = 'easy';
 
@@ -24,6 +25,7 @@ export class GamePage {
 
   playerOneScore: number;
   playerTwoOrAIScore: number;
+  isGameOver: boolean;
   //scoreboard comp data
   playerOneHealth: number;
   playerTwoOrBothealth: number;
@@ -53,6 +55,7 @@ export class GamePage {
     private popover: PopoverController) {
     this.playerOneScore = 0;
     this.playerTwoOrAIScore = 0;
+    
     this.winner = false;
     this.playerOneWinsRound = false;
     //barras de vida
@@ -73,7 +76,8 @@ export class GamePage {
     this.portraitOne = this.navParams.get('portraitOne');
     this.portraitTwo = this.navParams.get('portraitTwo');
     console.log(this.portraitOne, this.portraitTwo);
-
+    this.isGameOver = false;
+    this.setMaxPointsToWin();
 
     switch (this.difficulty) {
       case 'easy':
@@ -101,6 +105,26 @@ export class GamePage {
 
   ionViewDidLoad() {
     
+    
+  }
+
+  setMaxPointsToWin(){
+    switch (this.rounds) {
+      case 1:
+        this.pointsToWin = 1;
+        break;
+      case 3:
+        this.pointsToWin = 2;
+        break;
+      case 5:
+        this.pointsToWin = 3;
+        break;
+      
+      default:
+        break;
+    }
+
+    console.log("Points to win", this.pointsToWin);
     
   }
 
@@ -229,8 +253,9 @@ export class GamePage {
     this.currentRound++;
     //Asigno quien va a comenzar siguiente ronda
     //this.setNextRound(this.playerOneWinsRound); //////////////////////////////////////////////////////////////////Ojo!
-    //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador
-    if(this.currentRound > this.rounds){
+    //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador //UPDATE: Si alguno de los dos jugadores alcanzaron la maxima puntuacion
+    if(this.currentRound > this.rounds || (this.playerOneScore == this.pointsToWin || this.playerTwoOrAIScore == this.pointsToWin)){
+      this.isGameOver = true; //El juegos e termino esto le avisara al PopUp
       //victoria o empate
       if(this.playerOneScore > this.playerTwoOrAIScore){
         console.log("Player One Wins the game!");
@@ -268,7 +293,8 @@ export class GamePage {
     {
       'message': alertMsj,
       'currentRound':this.currentRound,
-      'totalRounds': this.rounds
+      'totalRounds': this.rounds,
+      'gameOver' : this.isGameOver
     },{ enableBackdropDismiss: false });
 
     alertPop.onDidDismiss((data)=>{

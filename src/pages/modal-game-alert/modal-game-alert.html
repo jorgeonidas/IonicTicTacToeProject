@@ -8,7 +8,7 @@
     <ion-row align-items-end>
       <ion-col text-center><h1>{{message}}</h1></ion-col>
     </ion-row>
-    <ion-row align-items-end *ngIf="currentRound <= totalRounds; else endgame">
+    <ion-row align-items-end *ngIf="!gameOver; else endgame">
       <ion-col align-self-center col-6>
         <button block ion-button color="danger" (click)="leaveGame(false)">Retire</button>
       </ion-col>

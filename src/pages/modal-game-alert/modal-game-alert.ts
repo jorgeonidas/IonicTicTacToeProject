@@ -11,6 +11,7 @@ export class ModalGameAlertPage {
   message: string;
   totalRounds: number;
   currentRound: number;
+  gameOver: boolean;
 
   constructor(public navCtrl: NavController, 
     private navParams: NavParams, 
@@ -25,6 +26,7 @@ export class ModalGameAlertPage {
     
     this.totalRounds = this.navParams.get('totalRounds');
     this.currentRound = this.navParams.get('currentRound');
+    this.gameOver = this.navParams.get('gameOver');
   }
 
   nextRound(nextRound: boolean){
