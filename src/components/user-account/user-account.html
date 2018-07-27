@@ -28,7 +28,7 @@
   <ion-row>
     <ion-col col-12>
       <ion-item no-lines class="ion-item-input">
-        <ion-input class="username-input" disabled="{{userNameInputDisable}}" type="text" [(ngModel)]="profileName"></ion-input>
+        <input class="username-input ion-item-input" [class.disabled-input]="userNameInputDisable" disabled="{{userNameInputDisable}}" type="text" [(ngModel)]="profileName"/>
         <button ion-button item-right icon-only clear (click)="toggleEdit()" color="input-inner-btn">
           <ion-icon name="create"></ion-icon>
         </button>
