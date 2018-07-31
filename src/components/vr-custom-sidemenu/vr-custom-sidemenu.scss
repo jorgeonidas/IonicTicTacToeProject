@@ -1,6 +1,6 @@
 vr-custom-sidemenu {
     .customSidebar{
-        position: absolute;
+        position: fixed;
         right: 0;
         top: 0;
         margin-right:0;
@@ -10,6 +10,7 @@ vr-custom-sidemenu {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        z-index: 999;
     }
 
     .customSidebarButtons{
@@ -37,6 +38,7 @@ vr-custom-sidemenu {
         overflow-x: hidden;
         background-color: cornsilk;
         transition: 0.3s;
+        z-index: 999;
     }
 
     .active-sidebtn{
