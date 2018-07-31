@@ -3,6 +3,7 @@ information-bar {
         background-color: map-get($colors, fuxia);
         width: 100%;
         height: 10vh;
+        z-index: 1;
     }
 
     .regular-padding{

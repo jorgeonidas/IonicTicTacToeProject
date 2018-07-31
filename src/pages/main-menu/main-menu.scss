@@ -1,5 +1,8 @@
 page-main-menu {
-
+    .info-header{
+        z-index: 1;
+        position: fixed;
+    }
     .bg-main-menu-page{
         background-color: #ffcc00;
         height: 100%;
