@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
+
 @Component({
   selector: 'information-bar',
   templateUrl: 'information-bar.html'
@@ -17,8 +18,9 @@ export class InformationBarComponent {
   iphonex: boolean;
   isIos: boolean;
   model: string;
+  activePage :string;
 
-  constructor( platform: Platform, private device: Device) {
+  constructor( platform: Platform, private device: Device, public navCtrl:NavController) {
     console.log('Hello InformationBarComponent Component');
     this.nickname = 'human';
     this.coins = 9999;
@@ -41,6 +43,8 @@ export class InformationBarComponent {
     this.isIos = platform.is('ios');
     //this.iphonex = this.deviceHeight > 800;
     console.log("iphonex", this.iphonex);
+    console.log(this.getActivePage());
+    this.activePage = this.getActivePage();
     
   }
 
@@ -51,6 +55,10 @@ export class InformationBarComponent {
     }
 
     return isX;
+  }
+
+  getActivePage(): string {
+    return this.navCtrl.getActive().name;
   }
 
 }
