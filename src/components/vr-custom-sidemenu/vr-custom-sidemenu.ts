@@ -28,6 +28,7 @@ export class VrCustomSidemenuComponent {
   transparent = "transparent";
   //Variable para hacer property binding
   sidebarOpacity: string;
+  sidebarWidth: number;
   timeout: any;
   fullyOpen: boolean;
   constructor() 
@@ -36,7 +37,7 @@ export class VrCustomSidemenuComponent {
     //[0:'settings', 1:'settings-info', 2:'user-login' - 'user-create' y 'user-account', 3:'user-tokens', 4:'user-rankings'];
     this.activeButtons =  [true, false, true, false, false];//solo hay 5 pestañas ya que user y create comparten la misma
     console.log(this.activeButtons);
-    
+    this.sidebarWidth = 0;
     this.navWidth = 0;
     this.sidePos = 0;
     this.isOpen = false;
@@ -55,16 +56,18 @@ export class VrCustomSidemenuComponent {
   openNav() {
     this.navWidth = 85;
     this.sidePos = 85;
+    this.sidebarWidth = 15;
     this.toggleOpen();
 
     this.timeout = setTimeout(() => {
-      this.fullyOpen = true;
+      this.fullyOpen = true; 
     }, 300);
   }
 
   closeNav() {
     this.navWidth = 0;
     this.sidePos = 0;
+    this.sidebarWidth = 0;
     this.enableAllCategories();
     this.disableAllSubCategories();
     this.toggleOpen();

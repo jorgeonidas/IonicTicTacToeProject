@@ -2,9 +2,10 @@ vr-custom-sidemenu {
     .customSidebar{
         position: fixed;
         right: 0;
+        transition: 0.3s;
         top: 0;
         margin-right:0;
-        width: 15%;
+        width: 0%;
         height: 100%;
         background-color: transparent;
         display: flex;
@@ -42,12 +43,10 @@ vr-custom-sidemenu {
     }
 
     .active-sidebtn{
-
         opacity: 1;
     }
 
     .unactive-sidebtn{
-
         opacity: 0.6;
     }
 

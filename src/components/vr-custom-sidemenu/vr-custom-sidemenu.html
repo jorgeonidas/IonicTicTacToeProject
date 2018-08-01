@@ -1,4 +1,4 @@
-<div id="custom-sidenav" class="customSidebar" [style.right]="sidePos + '%'" [style.background-color]="sidebarOpacity" (click)="clickOnNav($event)">
+<div id="custom-sidenav" class="customSidebar" [style.right]="sidePos + '%'" [style.width]="sidebarWidth + '%'" [style.background-color]="sidebarOpacity" (click)="clickOnNav($event)">
   <div class="customSidebarButtons">
     <div style="height: 100%"></div>
     <button class="side-btn" *ngIf="isOpen" color="skipBorder" block ion-button (click)="closeNav()" icon-only>
