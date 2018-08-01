@@ -21,9 +21,9 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  toMainMenuPage(){
+  toMainMenuPage(){  
+    //this.navCtrl.push(this.mainMenuPage, {}, {animate: false});
     this.navCtrl.setRoot(MainMenuPage, {}, {animate: false});
-    this.navCtrl.push(this.mainMenuPage, {}, {animate: false});
   }
 
   toCreateAccountPage(){

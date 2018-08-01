@@ -102,6 +102,6 @@ export class CreateAccountPage implements OnInit  {
 
   toMainMenuPage(){
     this.navCtrl.setRoot(this.mainMenuPage,{},{animate: false});
-    this.navCtrl.push(this.mainMenuPage, {}, {animate: false})
+    //this.navCtrl.push(this.mainMenuPage, {}, {animate: false})
   }
 }
