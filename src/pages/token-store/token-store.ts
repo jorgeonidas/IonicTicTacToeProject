@@ -22,7 +22,7 @@ export class TokenStorePage {
   constructor(platform: Platform,public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService) {
     //obtener altura del telefono
     this.deviceHeight = platform.height();
-    this.isIphoneX(platform.height(),platform.width(),platform.is('ios'));
+    this.iphonex = this.isIphoneX(platform.height(), platform.width(), platform.is('ios'));
 
     //maximo de paginacion dependiendo del la altura del dispositivo
     if(this.iphonex || platform.height() >= 800){
