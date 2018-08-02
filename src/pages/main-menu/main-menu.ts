@@ -17,6 +17,7 @@ export class MainMenuPage {
   activeMenu: string; //menu a activar
   isSettingsActive: boolean = false;
   isLoginActive: boolean = false;
+  sideMenuOpen: boolean;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -31,6 +32,7 @@ export class MainMenuPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainMenuPage');
+    this.sideMenuOpen = false;
   }
 
   onLoadSettingsMenu(){
@@ -81,4 +83,8 @@ export class MainMenuPage {
     this.navCtrl.push(TokenStorePage,{},{animate: false});
   }
   
+  toggleFade(open: boolean){
+    this.sideMenuOpen = open;
+  }
+
 }

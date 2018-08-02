@@ -3,6 +3,16 @@ page-main-menu {
         z-index: 1;
         position: fixed;
     }
+    .fade{
+        opacity: 0.5;
+        background-color: #000;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        position: fixed;
+    }
     .bg-main-menu-page{
         background-color: #ffcc00;
         height: 100%;

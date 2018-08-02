@@ -1,17 +1,7 @@
-<!--<ion-header class="info-header">
-  <information-bar></information-bar>
-</ion-header>-->
-
 <ion-content class="bg-main-menu-page" no-bounce>
+  <div *ngIf="sideMenuOpen" class="fade"></div><!--fade dive para tapar todo cuando se despliegue sidemenu-->
   <information-bar></information-bar>
   <ion-grid class="mm-grid" no-padding>
-<!--
-    <ion-row>
-      <ion-col>
-       <information-bar></information-bar>
-      </ion-col>
-    </ion-row>
-    -->
     <ion-row style="height: 15%;"></ion-row>
     <ion-row class="title-row">
       <ion-col class="flex-col">
@@ -59,5 +49,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <vr-custom-sidemenu></vr-custom-sidemenu>
+  <vr-custom-sidemenu (sideMenuOpenEmmiter)="toggleFade($event)"></vr-custom-sidemenu>
 </ion-content>
