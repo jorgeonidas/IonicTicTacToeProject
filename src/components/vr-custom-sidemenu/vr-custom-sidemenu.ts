@@ -24,11 +24,11 @@ export class VrCustomSidemenuComponent {
   activeButtons: boolean[];
 
   //Color del Sidebar al abrir y cerrar el sideNav
-  opaque = "rgba(0,0,0,0.4)"
-  transparent = "transparent";
+  //opaque = "rgba(0,0,0,0.4)"
+  //transparent = "transparent";
   //Variable para hacer property binding
-  sidebarOpacity: string;
-  //sidebarWidth: number;
+  //sidebarOpacity: string;
+  sidebarWidth: number;
   timeout: any;
   fullyOpen: boolean;
   constructor() 
@@ -37,11 +37,11 @@ export class VrCustomSidemenuComponent {
     //[0:'settings', 1:'settings-info', 2:'user-login' - 'user-create' y 'user-account', 3:'user-tokens', 4:'user-rankings'];
     this.activeButtons =  [true, false, true, false, false];//solo hay 5 pestañas ya que user y create comparten la misma
     console.log(this.activeButtons);
-    //this.sidebarWidth = 0;
+    this.sidebarWidth = 0;
     this.navWidth = 0;
     this.sidePos = 0;
     this.isOpen = false;
-    this.sidebarOpacity = this.transparent;
+    //this.sidebarOpacity = this.transparent;
     //Settings and subcat
     this.settingsBtnActive = true;
     this.settingSubActive = false;
@@ -56,7 +56,7 @@ export class VrCustomSidemenuComponent {
   openNav() {
     this.navWidth = 85;
     this.sidePos = 85;
-    //this.sidebarWidth = 15;
+    this.sidebarWidth = 15;
     this.toggleOpen();
     
     this.timeout = setTimeout(() => {
@@ -67,7 +67,7 @@ export class VrCustomSidemenuComponent {
   closeNav() {
     this.navWidth = 0;
     this.sidePos = 0;
-    //this.sidebarWidth = 0;
+    this.sidebarWidth = 0;
     this.enableAllCategories();
     this.disableAllSubCategories();
     this.toggleOpen();
@@ -77,11 +77,11 @@ export class VrCustomSidemenuComponent {
 
   toggleOpen() {
     this.isOpen = !this.isOpen;
-    if (this.isOpen) {
+    /*if (this.isOpen) {
       this.sidebarOpacity = this.opaque;
     } else {
       this.sidebarOpacity = this.transparent;
-    }
+    }*/
 
     this.sideMenuOpenEmmiter.emit(this.isOpen);
   }
