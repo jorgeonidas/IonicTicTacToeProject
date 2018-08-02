@@ -17,7 +17,7 @@
     <!--some bar?-->
     <ion-row style="height: 10%">
       <ion-col style="padding-top: 2%; padding-bottom: 2%;" col-12>
-          <timer-bar [currentRound]="currentRound > rounds ? rounds : currentRound " [value]="toltalTurnBar" (pausedEmmiter)="pauseOrResume($event)" (continueGameEmmiter)="leaveGame()"></timer-bar>
+          <timer-bar [currentRound]="currentRound > rounds ? rounds : currentRound " [value]="toltalTurnBar" [gameDidStart]="gameDidStart" (pausedEmmiter)="pauseOrResume($event)" (continueGameEmmiter)="leaveGame()"></timer-bar>
       </ion-col>
     </ion-row>
     

@@ -12,6 +12,7 @@ export class TimerBarComponent {
   @Input() currentRound: number;
   @Input() timer: number;
   @Input() value = 100;
+  @Input() gameDidStart: boolean;
 
   gamePaused : boolean;
   @Output() pausedEmmiter = new EventEmitter<boolean>();
@@ -21,10 +22,30 @@ export class TimerBarComponent {
     console.log('Hello TimerBarComponent Component');
     this.currentRound = 1;
     this.gamePaused = false;
+    this.gameDidStart = false;
   }
 
 
   onOptionsMenu(){
+
+    if(this.gameDidStart){
+      this.gamePaused = true;
+      this.pausedEmmiter.emit(this.gamePaused);
+      const popover = this.popoverCtrl.create(SettingsComponent, { fromTimebar: true }, { enableBackdropDismiss: false });
+
+      popover.onDidDismiss((data) => {
+        if (data) {
+          this.gamePaused = false;
+          this.pausedEmmiter.emit(this.gamePaused);
+        } else {
+          this.continueGameEmmiter.emit(false);
+        }
+
+      });
+
+      popover.present({ animate: false });
+    }
+    /*
     this.gamePaused = true;
     this.pausedEmmiter.emit(this.gamePaused);
     const popover = this.popoverCtrl.create(SettingsComponent,{fromTimebar:true},{enableBackdropDismiss: false});
@@ -39,7 +60,7 @@ export class TimerBarComponent {
       
     });
 
-    popover.present({animate: false});
+    popover.present({animate: false});*/
 
   }
 
