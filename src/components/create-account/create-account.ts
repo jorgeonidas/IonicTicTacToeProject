@@ -1,7 +1,7 @@
 import { Component, Injectable, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/authService';
 import { AlertController, LoadingController } from 'ionic-angular';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 @Injectable()
 @Component({
@@ -33,7 +33,7 @@ export class CreateAccountComponent {
         Validators.required
       ])),
       'dob': new FormControl(null, Validators.required),
-      'useragre': new FormControl(true, Validators.required),
+      'useragre': new FormControl(true, CreateAccountComponent.UserAgreValidator),
     });
   }
 
@@ -100,6 +100,14 @@ export class CreateAccountComponent {
 
   backToLoginPage(){
     this.toLogin.emit();
+  }
+
+  static UserAgreValidator(c: AbstractControl): { [key: string]: boolean } {
+    let rv: { [key: string]: boolean } = {};
+    if (!c.value) {
+      rv['notChecked'] = true;
+    }
+    return rv;
   }
 
 }

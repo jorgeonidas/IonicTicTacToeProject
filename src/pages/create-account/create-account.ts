@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/authService';
 
@@ -51,7 +51,7 @@ export class CreateAccountPage implements OnInit  {
       'year': new FormControl(null, Validators.required),
       */
       'dob': new FormControl(null, Validators.required),
-      'useragre': new FormControl(true, Validators.required),
+      'useragre': new FormControl(false, CreateAccountPage.UserAgreValidator),
     });
   }
 
@@ -103,5 +103,14 @@ export class CreateAccountPage implements OnInit  {
   toMainMenuPage(){
     this.navCtrl.setRoot(this.mainMenuPage,{},{animate: false});
     //this.navCtrl.push(this.mainMenuPage, {}, {animate: false})
+  }
+  
+  //Custom Validator para checkbox
+  static UserAgreValidator(c: AbstractControl): { [key: string]: boolean } {
+    let rv: { [key: string]: boolean } = {};
+    if (!c.value) {
+      rv['notChecked'] = true;
+    }
+    return rv;
   }
 }
