@@ -49,6 +49,7 @@ import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
 import { ContactComponent } from '../components/contact/contact';
 import { Device } from '@ionic-native/device';
+import { RewardPage } from '../pages/reward/reward';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { Device } from '@ionic-native/device';
     PreGamePage,
     ContactsPage,
     TokenStorePage,
+    RewardPage,
     //componentes
     GridSelectorComponent,
     ScoreboardComponent,
@@ -117,6 +119,7 @@ import { Device } from '@ionic-native/device';
     PreGamePage,
     ContactsPage,
     TokenStorePage,
+    RewardPage,
     //test
     SettingsComponent
   ],

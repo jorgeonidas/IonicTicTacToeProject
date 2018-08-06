@@ -10,6 +10,7 @@ import { ConfigurationModel } from '../models/configuration';
 import { ConfigurationPage } from '../pages/settings-menu/configuration/configuration';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
+import { RewardPage } from '../pages/reward/reward';
 
 
 
@@ -22,8 +23,9 @@ export class MyApp {
   cfgPageText= ConfigurationPage;
   contactsPage = ContactsPage;
   storePage = TokenStorePage;
+  rewardPage = RewardPage;
   //pagina root
-  rootPage: any = this.loginPage;
+  rootPage: any = this.rewardPage;
   
   constructor(platform: Platform,
     statusBar: StatusBar,
