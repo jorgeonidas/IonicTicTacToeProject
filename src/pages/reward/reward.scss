@@ -10,8 +10,12 @@ page-reward {
         margin: auto;
         border-radius: 15px;
         border: solid black thin;
-        padding-top: 0.5vh;
-        padding-left: 2vw; 
+    }
+
+    .comp-col{
+        padding-left: 10%;
+        padding-top: 3.8%;
+        padding-bottom: 5%;
     }
 
     .spinnerContainer{
@@ -22,4 +26,35 @@ page-reward {
         border: solid black thin;
         margin: auto;
     }
+
+    .spin-container{
+        width: 100%;
+        height: 100%;
+    }
+
+    .ruleta-img{
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+  .tyl-text{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 3rem;
+    padding: 2%;
+  }
+
+  .spin-btn{
+      margin: auto;
+      height: 90%;
+      width: 40%;
+      font-size: 3rem;
+  }
+
 }

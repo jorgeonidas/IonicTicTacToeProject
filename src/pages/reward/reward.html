@@ -3,14 +3,32 @@
     <ion-row style="height: 5%;"></ion-row>
     <ion-row style="height: 10%">
         <div class="wrapper">
-            <coin-eola-container [currencyIcon]="coinIconUrl" [currencyAmmnt]="999"></coin-eola-container>
+          <ion-row no-padding style="height: 100%;">
+            <ion-col class="comp-col" style="height: 100%;">
+              <coin-eola-container style="height: 100%;" [currencyIcon]="coinIconUrl" [currencyAmmnt]="999"></coin-eola-container>
+            </ion-col>
+          </ion-row>
+            
         </div>
     </ion-row>
     <ion-row style="height: 5%;">
     </ion-row>
     <ion-row style="height: 70%;">
       <div class="spinnerContainer">
-
+        <ion-row style="height: 70%;">
+          <ion-col col-12 style="height: 100%; padding: 5%">
+              <div class="spin-container">
+                  <img class="ruleta-img" src="{{hardSpinnerUri}}" alt="">
+                </div>
+          </ion-col>
+          
+        </ion-row>
+        <ion-row style="height: 15%;">
+          <h2 class="tyl-text">Try your luck!</h2>
+        </ion-row>
+        <ion-row style="height: 15%">
+          <button class="spin-btn" color="secondary" round block ion-button (click)="startRoulette()">Spin</button>
+        </ion-row>
       </div>
     </ion-row>
     <ion-row></ion-row>
