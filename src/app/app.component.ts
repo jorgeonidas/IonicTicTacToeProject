@@ -11,6 +11,7 @@ import { ConfigurationPage } from '../pages/settings-menu/configuration/configur
 import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
 import { RewardPage } from '../pages/reward/reward';
+import { GamePage } from '../pages/game/game';
 
 
 
@@ -24,8 +25,9 @@ export class MyApp {
   contactsPage = ContactsPage;
   storePage = TokenStorePage;
   rewardPage = RewardPage;
+  gamePage = GamePage;
   //pagina root
-  rootPage: any = this.rewardPage;
+  rootPage: any = this.loginPage;
   
   constructor(platform: Platform,
     statusBar: StatusBar,

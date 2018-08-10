@@ -67,7 +67,12 @@ export class AIService{
 
     easyIA(origBoard){
         let aviableSpots = this.emptyIndexies(origBoard);
-        let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
+        //problema al generar la semilla
+        let max = aviableSpots.length;
+        let min = 0;
+        let randSpot = Math.floor(Math.random() * (max - min + 1)) + min;
+        //let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
+        let randIndex = aviableSpots[randSpot];
         console.log(randIndex);                            
         //la IA pone su ficha en el lugar escogido anteriormente
         origBoard[randIndex] = this.xChar;
