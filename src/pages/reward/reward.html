@@ -14,41 +14,27 @@
     </ion-row>
     <ion-row style="height: 5%;">
     </ion-row>
-    <!--
-    <ion-row style="height: 70%;">
-      <div class="spinnerContainer">
-        <ion-row style>
-          <ion-col col-12 style="height: 100%; padding: 0%">
-              <div class="spin-container">
-
+    <ion-row>
+      <ion-col>
+          <ion-grid class="spinnerContainer">
+              <ion-row>
+                  <ion-col col-12 class="roulette-container">
+                    <canvas #canvas id="canvas"></canvas>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="height: 10vh;">
+                  <ion-col col-12 class="flex-col">
+                    <h2 class="tyl-text">Try your luck!</h2>
+                  </ion-col>
                   
-                </div>
-          </ion-col>
-          
-        </ion-row>
-        <ion-row style="height: 15%;">
-          <h2 class="tyl-text">Try your luck!</h2>
-        </ion-row>
-        <ion-row style="height: 15%">
-          <button class="spin-btn" color="secondary" round block ion-button (click)="spin()">Spin</button>
-        </ion-row>
-      </div>
+                </ion-row>
+                <ion-row style="height: 10vh">
+                  <button class="spin-btn" color="secondary"  ion-button (click)="spin()">Spin</button>
+                </ion-row>
+          </ion-grid>
+      </ion-col>
     </ion-row>
-    <ion-row></ion-row>
-    -->
-    <ion-grid class="spinnerContainer">
-        <ion-row>
-            <ion-col col-12 class="roulette-container">
-              <canvas #canvas id="canvas"></canvas>
-            </ion-col>
-          </ion-row>
-          <ion-row style="height: 10vh;">
-            <h2 class="tyl-text">Try your luck!</h2>
-          </ion-row>
-          <ion-row style="height: 10vh">
-            <button class="spin-btn" color="secondary" round block ion-button (click)="spin()">Spin</button>
-          </ion-row>
-    </ion-grid>
+    
     
     
   </ion-grid>
