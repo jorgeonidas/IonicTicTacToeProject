@@ -1,4 +1,5 @@
 <ion-content class="rewardPage no-scroll" padding>
+  
   <ion-grid no-padding style="height: 100%; width: 100%; display: block">
     <ion-row style="height: 5%;"></ion-row>
     <ion-row style="height: 10%">
@@ -13,13 +14,14 @@
     </ion-row>
     <ion-row style="height: 5%;">
     </ion-row>
+    <!--
     <ion-row style="height: 70%;">
       <div class="spinnerContainer">
-        <ion-row style="height: 70%;">
-          <ion-col col-12 style="height: 100%; padding: 5%">
+        <ion-row style>
+          <ion-col col-12 style="height: 100%; padding: 0%">
               <div class="spin-container">
-                  <!--<img class="ruleta-img" src="{{hardSpinnerUri}}" alt="">-->
-                  <canvas #canvas width="500" height="500"></canvas>
+
+                  
                 </div>
           </ion-col>
           
@@ -33,5 +35,21 @@
       </div>
     </ion-row>
     <ion-row></ion-row>
+    -->
+    <ion-row>
+      <ion-col col-12 class="roulette-container">
+        <canvas #canvas id="canvas"></canvas>
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 15%;">
+      <h2 class="tyl-text">Try your luck!</h2>
+    </ion-row>
+    <ion-row style="height: 15%">
+      <button class="spin-btn" color="secondary" round block ion-button (click)="spin()">Spin</button>
+    </ion-row>
+    
   </ion-grid>
+
 </ion-content>
+                 <!-- <img class="ruleta-img" src="{{hardSpinnerUri}}" alt="">-->
+                  <!--<canvas #canvas width="500" height="500"></canvas>-->

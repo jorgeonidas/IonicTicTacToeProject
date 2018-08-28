@@ -71,6 +71,12 @@ export class RewardPage {
 
   ionViewDidLoad() {
     this._CANVAS = this.ctx.nativeElement;
+    //elimina efecto pixelado del canvas al ajustarse a una pantalla
+    let s = getComputedStyle(this._CANVAS);
+    let w = s.width;
+    let h = s.height;
+    this._CANVAS.width = w.split('px')[0];
+    this._CANVAS.height = h.split('px')[0];
     this.initialiseCanvas();
     this.drawRouletteWheel();
   }
@@ -111,14 +117,11 @@ export class RewardPage {
     var spinAngle = this.spinAngleStart - this.easeOut(this.spinTime, 0, this.spinAngleStart, this.spinTimeTotal);
     
     for (var i = 0; i < this.cantPremios; i++){
-      this.startAngles[i] = this.startAngles[i] + spinAngle;
-      //console.log(startAngles[i]);
-      
+      this.startAngles[i] = this.startAngles[i] + spinAngle;  
     }
   
-   // startAngle += (spinAngle * Math.PI / 180);
+
    this.drawRouletteWheel();
-    //this.spinTimeout = setTimeout('rotateWheel()', 30);
     this.spinTimeout = setTimeout(() => {this.rotateWheel();}, 30);
   }
 
@@ -130,18 +133,15 @@ export class RewardPage {
 
   stopRotateWheel() {
     clearTimeout(this.spinTimeout);
-    //var degrees = startAngle * 180 / Math.PI + 90;
+
     var degrees = this.startAngles[0] * 180 / Math.PI + 90;
     console.log("grados", degrees); 
-   /* var arcd = arco * 180 / Math.PI;//lo esta haciendo en base a que todas las secciones son de 30°
-    console.log("arcd",arcd);*/
-    //console.log(Math.floor(360 - degrees % 360));//base de 360°
+
     //grado en que cayo
     let iDeg = Math.floor(360 - degrees % 360);
     console.log("grados base 360",iDeg);
     var index = this.getIndex(iDeg);
-  
-    //var index = Math.floor((360 - degrees % 360) / arcd);
+
     console.log("index", index);
     
     this._CONTEXT.save();
@@ -184,29 +184,30 @@ export class RewardPage {
   */
 
   drawRouletteWheel() {
-    //var canvas = document.getElementById("canvas");
 
-      let outsideRadius = 200;
-      let textRadius = 160;
+      let outsideRadius = this._CANVAS.width/3; //radio externo
+      let textRadius = outsideRadius-20;  //radio del texto
       var insideRadius = 0;
 
-      //ctx = canvas.getContext("2d");
-      this._CONTEXT.clearRect(0, 0, 500, 500);
-
+      this._CONTEXT.clearRect(0, 0, this._CANVAS.width, this._CANVAS.height); //limpia el canvas
 
       this._CONTEXT.strokeStyle = "black";
       this._CONTEXT.lineWidth = 2;
 
       this._CONTEXT.font = 'bold 12px Helvetica, Arial';
-
+      //punto de origen del circulo
+      let originX = this._CANVAS.width/2;
+      let originY = this._CANVAS.height/2;
+      //console.log(originX,originY);
+      
       for (var i = 0; i < this.cantPremios; i++) {
 
         let angle = this.startAngles[i];
         this._CONTEXT.fillStyle = this.colors[i];
 
         this._CONTEXT.beginPath();
-        this._CONTEXT.arc(250, 250, outsideRadius, angle, angle + this.arc[i], false);
-        this._CONTEXT.arc(250, 250, insideRadius, angle + this.arc[i], angle, true);
+        this._CONTEXT.arc(originX, originY, outsideRadius, angle, angle + this.arc[i], false);
+        this._CONTEXT.arc(originX, originY, insideRadius, angle + this.arc[i], angle, true);
         this._CONTEXT.stroke();
         this._CONTEXT.fill();
 
@@ -217,28 +218,27 @@ export class RewardPage {
         this._CONTEXT.shadowColor = "rgb(220,220,220)";
         this._CONTEXT.fillStyle = "black";
         this._CONTEXT.translate(
-          250 + Math.cos(angle + this.arc[i] / 2) * textRadius,
-          250 + Math.sin(angle + this.arc[i] / 2) * textRadius
+          originX + Math.cos(angle + this.arc[i] / 2) * textRadius,
+          originY + Math.sin(angle + this.arc[i] / 2) * textRadius
         );
         this._CONTEXT.rotate(angle + this.arc[i] / 2 + Math.PI / 2);
         let text = this.restaraunts[i];
         this._CONTEXT.fillText(text, -this._CONTEXT.measureText(text).width / 2, 0);
         this._CONTEXT.restore();
-        //startAngle = angle;
 
       }
 
       //Arrow
       this._CONTEXT.fillStyle = "black";
       this._CONTEXT.beginPath();
-      this._CONTEXT.moveTo(250 - 4, 250 - (outsideRadius + 5));
-      this._CONTEXT.lineTo(250 + 4, 250 - (outsideRadius + 5));
-      this._CONTEXT.lineTo(250 + 4, 250 - (outsideRadius - 5));
-      this._CONTEXT.lineTo(250 + 9, 250 - (outsideRadius - 5));
-      this._CONTEXT.lineTo(250 + 0, 250 - (outsideRadius - 13));
-      this._CONTEXT.lineTo(250 - 9, 250 - (outsideRadius - 5));
-      this._CONTEXT.lineTo(250 - 4, 250 - (outsideRadius - 5));
-      this._CONTEXT.lineTo(250 - 4, 250 - (outsideRadius + 5));
+      this._CONTEXT.moveTo(originX - 4, originY - (outsideRadius + 5));
+      this._CONTEXT.lineTo(originX + 4, originY - (outsideRadius + 5));
+      this._CONTEXT.lineTo(originX + 4, originY - (outsideRadius - 5));
+      this._CONTEXT.lineTo(originX + 9, originY - (outsideRadius - 5));
+      this._CONTEXT.lineTo(originX + 0, originY - (outsideRadius - 13));
+      this._CONTEXT.lineTo(originX - 9, originY - (outsideRadius - 5));
+      this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius - 5));
+      this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius + 5));
       this._CONTEXT.fill();
   }
 
