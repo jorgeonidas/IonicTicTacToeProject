@@ -36,17 +36,20 @@
     </ion-row>
     <ion-row></ion-row>
     -->
-    <ion-row>
-      <ion-col col-12 class="roulette-container">
-        <canvas #canvas id="canvas"></canvas>
-      </ion-col>
-    </ion-row>
-    <ion-row style="height: 15%;">
-      <h2 class="tyl-text">Try your luck!</h2>
-    </ion-row>
-    <ion-row style="height: 15%">
-      <button class="spin-btn" color="secondary" round block ion-button (click)="spin()">Spin</button>
-    </ion-row>
+    <ion-grid class="spinnerContainer">
+        <ion-row>
+            <ion-col col-12 class="roulette-container">
+              <canvas #canvas id="canvas"></canvas>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 10vh;">
+            <h2 class="tyl-text">Try your luck!</h2>
+          </ion-row>
+          <ion-row style="height: 10vh">
+            <button class="spin-btn" color="secondary" round block ion-button (click)="spin()">Spin</button>
+          </ion-row>
+    </ion-grid>
+    
     
   </ion-grid>
 
