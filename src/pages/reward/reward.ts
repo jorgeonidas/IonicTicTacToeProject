@@ -187,15 +187,19 @@ export class RewardPage {
 
   drawRouletteWheel() {
 
-      //devicewidth
-      let difference = 20;
+      //devicewidth para saber sacar diferencia con el radio externo
+      let arrowScaler = 1;
+      let difference = 25;
       if(this.deviceWidth >= 768){
-        difference = 30;
+        difference = 45;
+        arrowScaler = 2;
       }
       if (this.deviceWidth >= 1024){
-        difference = 45;
+        difference = 80;
+        arrowScaler = 4;
       }
-
+      console.log(difference);
+      
       let outsideRadius = this._CANVAS.width/3; //radio externo
       let textRadius = outsideRadius-difference;  //radio del texto
       var insideRadius = 0;
@@ -240,6 +244,7 @@ export class RewardPage {
       }
 
       //Arrow
+      /*
       this._CONTEXT.fillStyle = "black";
       this._CONTEXT.beginPath();
       this._CONTEXT.moveTo(originX - 4, originY - (outsideRadius + 5));
@@ -250,6 +255,18 @@ export class RewardPage {
       this._CONTEXT.lineTo(originX - 9, originY - (outsideRadius - 5));
       this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius - 5));
       this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius + 5));
+      this._CONTEXT.fill();*/
+
+      this._CONTEXT.fillStyle = "black";
+      this._CONTEXT.beginPath();
+      this._CONTEXT.moveTo(originX - 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 4*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 9*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 0, originY - (outsideRadius - 13*arrowScaler));
+      this._CONTEXT.lineTo(originX - 9*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX - 4*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX - 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
       this._CONTEXT.fill();
   }
 

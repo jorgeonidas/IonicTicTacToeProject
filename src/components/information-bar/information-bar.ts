@@ -43,9 +43,13 @@ export class InformationBarComponent {
     this.isIos = platform.is('ios');
     //this.iphonex = this.deviceHeight > 800;
     console.log("iphonex", this.iphonex);
-    console.log(this.getActivePage());
-    this.activePage = this.getActivePage();
+
     
+    
+  }
+  ionViewDidLoad(){
+    this.activePage = this.getActivePage();
+    //console.log(this.getActivePage());
   }
 
   isIphoneX(h : number, w: number,p: boolean): boolean{
@@ -59,6 +63,7 @@ export class InformationBarComponent {
 
   getActivePage(): string {
     return this.navCtrl.getActive().name;
+    
   }
 
 }
