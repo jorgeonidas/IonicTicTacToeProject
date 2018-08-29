@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -62,14 +62,16 @@ export class RewardPage {
   //startAngle: number = 0;
   coinIconUrl: string;
   //hardSpinnerUri: string;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  deviceWidth : number;
+  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
     this.coinIconUrl = "assets/imgs/coins.png";
     //this.hardSpinnerUri = "assets/imgs/RuletaBG.png"
-    
+
   }
 
   ionViewDidLoad() {
+    this.deviceWidth = this.platform.width();
+    console.log(this.deviceWidth);
     this._CANVAS = this.ctx.nativeElement;
     //elimina efecto pixelado del canvas al ajustarse a una pantalla
     let s = getComputedStyle(this._CANVAS);
@@ -185,8 +187,17 @@ export class RewardPage {
 
   drawRouletteWheel() {
 
+      //devicewidth
+      let difference = 20;
+      if(this.deviceWidth >= 768){
+        difference = 30;
+      }
+      if (this.deviceWidth >= 1024){
+        difference = 45;
+      }
+
       let outsideRadius = this._CANVAS.width/3; //radio externo
-      let textRadius = outsideRadius-20;  //radio del texto
+      let textRadius = outsideRadius-difference;  //radio del texto
       var insideRadius = 0;
 
       this._CONTEXT.clearRect(0, 0, this._CANVAS.width, this._CANVAS.height); //limpia el canvas
@@ -194,7 +205,7 @@ export class RewardPage {
       this._CONTEXT.strokeStyle = "black";
       this._CONTEXT.lineWidth = 2;
 
-      this._CONTEXT.font = 'bold 12px Helvetica, Arial';
+      this._CONTEXT.font = 'bold 4vw Helvetica, Arial';
       //punto de origen del circulo
       let originX = this._CANVAS.width/2;
       let originY = this._CANVAS.height/2;
