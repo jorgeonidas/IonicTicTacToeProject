@@ -12,6 +12,7 @@ import { ContactsPage } from '../pages/contacts/contacts';
 import { TokenStorePage } from '../pages/token-store/token-store';
 import { RewardPage } from '../pages/reward/reward';
 import { GamePage } from '../pages/game/game';
+import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 
 
 
@@ -19,6 +20,7 @@ import { GamePage } from '../pages/game/game';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  withdrawRedPage = WithdraRewardPage;
   loginPage = LoginPage;
   mainMenuPage = MainMenuPage;
   cfgPageText= ConfigurationPage;
@@ -27,7 +29,7 @@ export class MyApp {
   rewardPage = RewardPage;
   gamePage = GamePage;
   //pagina root
-  rootPage: any = this.rewardPage;
+  rootPage: any = this.withdrawRedPage;
   
   constructor(platform: Platform,
     statusBar: StatusBar,

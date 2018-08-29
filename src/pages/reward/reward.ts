@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { WithdraRewardPage } from '../withdra-reward/withdra-reward';
 
 @IonicPage()
 @Component({
@@ -160,6 +161,11 @@ export class RewardPage {
     this._CONTEXT.restore();
 
     console.log("congratulations you win: ",this.prices[index]);
+    
+    this.navCtrl.push(WithdraRewardPage,
+      {reward : this.prices[index]},
+      {animate: false}
+    );
   }
 
   getIndex(d){
@@ -177,23 +183,6 @@ export class RewardPage {
     return index;
   
   }
-
-/*
-  generateIndex(){
-    var num = Math.random(),
-        s = 0,
-        lastIndex = this.weights.length - 1;
-
-    for (var i = 0; i < lastIndex; ++i) {
-        s += this.weights[i];
-        if (num < s) {
-            return this.results[i];
-        }
-    }
-
-    return this.results[lastIndex];
-  }
-  */
 
   drawRouletteWheel() {
 
@@ -253,6 +242,19 @@ export class RewardPage {
 
       }
 
+      this._CONTEXT.fillStyle = "black";
+      this._CONTEXT.beginPath();
+      this._CONTEXT.moveTo(originX - 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 4*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 9*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX + 0, originY - (outsideRadius - 13*arrowScaler));
+      this._CONTEXT.lineTo(originX - 9*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX - 4*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
+      this._CONTEXT.lineTo(originX - 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
+      this._CONTEXT.fill();
+
+      
       //Arrow
       /*
       this._CONTEXT.fillStyle = "black";
@@ -266,18 +268,24 @@ export class RewardPage {
       this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius - 5));
       this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius + 5));
       this._CONTEXT.fill();*/
-
-      this._CONTEXT.fillStyle = "black";
-      this._CONTEXT.beginPath();
-      this._CONTEXT.moveTo(originX - 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
-      this._CONTEXT.lineTo(originX + 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
-      this._CONTEXT.lineTo(originX + 4*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
-      this._CONTEXT.lineTo(originX + 9*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
-      this._CONTEXT.lineTo(originX + 0, originY - (outsideRadius - 13*arrowScaler));
-      this._CONTEXT.lineTo(originX - 9*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
-      this._CONTEXT.lineTo(originX - 4*arrowScaler, originY - (outsideRadius - 5*arrowScaler));
-      this._CONTEXT.lineTo(originX - 4*arrowScaler, originY - (outsideRadius + 5*arrowScaler));
-      this._CONTEXT.fill();
   }
+
+  /*
+  generateIndex(){
+    var num = Math.random(),
+        s = 0,
+        lastIndex = this.weights.length - 1;
+
+    for (var i = 0; i < lastIndex; ++i) {
+        s += this.weights[i];
+        if (num < s) {
+            return this.results[i];
+        }
+    }
+
+    return this.results[lastIndex];
+  }
+  */
+
 
 }

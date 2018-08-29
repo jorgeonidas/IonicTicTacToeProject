@@ -50,6 +50,7 @@ import { TokenStorePage } from '../pages/token-store/token-store';
 import { ContactComponent } from '../components/contact/contact';
 import { Device } from '@ionic-native/device';
 import { RewardPage } from '../pages/reward/reward';
+import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { RewardPage } from '../pages/reward/reward';
     ContactsPage,
     TokenStorePage,
     RewardPage,
+    WithdraRewardPage,
     //componentes
     GridSelectorComponent,
     ScoreboardComponent,
@@ -120,6 +122,7 @@ import { RewardPage } from '../pages/reward/reward';
     ContactsPage,
     TokenStorePage,
     RewardPage,
+    WithdraRewardPage,
     //test
     SettingsComponent
   ],
