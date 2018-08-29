@@ -35,7 +35,7 @@
                   
                 </ion-row>
                 <ion-row style="height: 10vh">
-                  <button class="spin-btn" color="secondary"  ion-button (click)="spin()">Spin</button>
+                  <button class="spin-btn" color="secondary"  ion-button (click)="spin()" [disabled]="isSpining">Spin</button>
                 </ion-row>
           </ion-grid>
       </ion-col>

@@ -63,6 +63,8 @@ export class RewardPage {
   coinIconUrl: string;
   //hardSpinnerUri: string;
   deviceWidth : number;
+  //la ruleta solo puede girar una vez
+  isSpining : boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
     this.coinIconUrl = "assets/imgs/coins.png";
     //this.hardSpinnerUri = "assets/imgs/RuletaBG.png"
@@ -70,6 +72,7 @@ export class RewardPage {
   }
 
   ionViewDidLoad() {
+    this.isSpining = false;
     this.deviceWidth = this.platform.width();
     console.log(this.deviceWidth);
     this._CANVAS = this.ctx.nativeElement;
@@ -101,6 +104,7 @@ export class RewardPage {
   //private results = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; //valores a retornar
   
   spin(){
+    this.isSpining = true;
     //let index = this.generateIndex();
     //console.log(index);
     this.spinAngleStart = Math.random() * 10 + 10;
@@ -198,7 +202,7 @@ export class RewardPage {
         difference = 80;
         arrowScaler = 4;
       }
-      console.log(difference);
+      //console.log(difference);
       
       let outsideRadius = this._CANVAS.width/3; //radio externo
       let textRadius = outsideRadius-difference;  //radio del texto
