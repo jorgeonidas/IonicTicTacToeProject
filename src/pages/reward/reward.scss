@@ -69,4 +69,19 @@ page-reward {
       margin: auto;
   }
 
+  /*iphone x en adelante*/
+  @media (min-height: 812px) {
+    .amm-wrapper{
+        padding-top: 3%;
+   }
+  }
+
+  @media (min-height: 1024px){
+    .amm-wrapper{
+        height: 7vh;
+        padding-top: 1%;
+    }
+    
+  } 
+
 }
