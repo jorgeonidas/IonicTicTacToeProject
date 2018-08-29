@@ -28,7 +28,11 @@ export class RewardPage {
     "#2E2C75", "#673A7E", "#CC0071", "#F80120",
     "#F35B20", "#FB9A00", "#FFCC00", "#FEF200"];
 
-  restaraunts = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  pricesIndex = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  prices = [
+    "5 Eolas", "5 Cristales", "10 cristales", "5 Cristales", "1 Eola",
+    "5 Cristales", "20 Cristales", "5 Cristales", "1 Eola", "5 Cristales"
+  ];
   orgStartAngles = [0, 10, 56, 96, 142, 167, 213, 243, 289, 314];
 
   arc = [
@@ -154,6 +158,8 @@ export class RewardPage {
     this._CONTEXT.font = 'bold 30px Helvetica, Arial';
   
     this._CONTEXT.restore();
+
+    console.log("congratulations you win: ",this.prices[index]);
   }
 
   getIndex(d){
@@ -241,7 +247,7 @@ export class RewardPage {
           originY + Math.sin(angle + this.arc[i] / 2) * textRadius
         );
         this._CONTEXT.rotate(angle + this.arc[i] / 2 + Math.PI / 2);
-        let text = this.restaraunts[i];
+        let text = this.pricesIndex[i];
         this._CONTEXT.fillText(text, -this._CONTEXT.measureText(text).width / 2, 0);
         this._CONTEXT.restore();
 
