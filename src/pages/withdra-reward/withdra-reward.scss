@@ -2,4 +2,18 @@ page-withdra-reward {
     .withdraw-reward-page{
         background-color: aquamarine;
     }
+    .reward-text{
+        color: #ffffff;
+        text-align: center;
+        margin: 0;
+        font-size: 9vh;
+    }
+
+    .spin-btn{
+        margin: auto;
+        height: 90%;
+        width: 90%;
+        font-size: 5vh;
+        border-radius: 60px;
+    }
 }

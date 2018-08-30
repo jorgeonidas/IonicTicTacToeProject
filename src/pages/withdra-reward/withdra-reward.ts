@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the WithdraRewardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { MainMenuPage } from '../main-menu/main-menu';
 
 @IonicPage()
 @Component({
@@ -16,6 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class WithdraRewardPage {
 
   reward: string;
+  gitImgUri : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -23,7 +18,17 @@ export class WithdraRewardPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WithdraRewardPage');
     //this.reward = this.navParams.get('reward');
-    console.log("recieved",this.reward)
+    console.log("recieved",this.reward);
+    this.gitImgUri = 'assets/imgs/reward-img.png';
+
+    //for testing
+    this.reward = "YOU WON A MILLION EOLAS!!!";
   }
 
+  toMainMenu(){
+    console.log("pop to main menu");
+    
+    //this.navCtrl.push(MainMenuPage);//despues lo haremos solo con pop por ahora es de manera demostrativa
+    //this.navCtrl.pop(); pop to main menu!
+  }
 }
