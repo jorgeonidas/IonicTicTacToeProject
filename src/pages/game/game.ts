@@ -36,6 +36,7 @@ export class GamePage {
   winner: boolean;
   playerOneWinsRound: boolean;
   alertMsj: string; //quien gana y quien pierde
+  playerOneWinGame : boolean;
   //countDown
   turnInterval: number;
   timeleft: number;
@@ -59,6 +60,7 @@ export class GamePage {
     
     this.winner = false;
     this.playerOneWinsRound = false;
+    this.playerOneWinGame = false;
     //barras de vida
     this.playerOneHealth = 100;
     this.playerTwoOrBothealth = 100;
@@ -260,7 +262,8 @@ export class GamePage {
       //victoria o empate
       if(this.playerOneScore > this.playerTwoOrAIScore){
         console.log("Player One Wins the game!");
-        this.alertMsj = "Player One Wins the game!";       
+        this.alertMsj = "Player One Wins the game!";
+        this.playerOneWinGame = true; //para saber si entra a la ruleta      
       }else if(this.playerOneScore == this.playerTwoOrAIScore){
         console.log("ITS A TIE!!!");
         this.alertMsj = "Its A Draw!!!";       
@@ -410,10 +413,18 @@ export class GamePage {
     //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-1),{animate: false});//hacemos 2 niveles pop ()
     console.log("leaving");
     //this.navCtrl.pop({animate:false});
-    let currentIndex = this.navCtrl.getActive().index;
-    this.navCtrl.push(RewardPage,{},{animate:false}).then(()=>{
-      this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
-    });
+    //si es singleplayer y gano el juego, pasa a la pagina de la ruleta
+    if (this.gametype == "singleplayer" && this.playerOneWinGame) {
+      let currentIndex = this.navCtrl.getActive().index;
+      this.navCtrl.push(RewardPage, {}, { animate: false }).then(() => {
+        this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
+      });
+    }else{
+      this.navCtrl.pop({animate:false});//voy al main menu
+    }
+
+    //TODO: SOLO FALTARIA EL CASO PARA MULTIPLAYER ONLINE
+
   }
 
   setNextRound(poneWins: boolean) {
