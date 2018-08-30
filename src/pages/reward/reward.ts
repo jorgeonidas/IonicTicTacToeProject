@@ -31,8 +31,8 @@ export class RewardPage {
 
   pricesIndex = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   prices = [
-    "5 Eolas", "5 Cristales", "10 cristales", "5 Cristales", "1 Eola",
-    "5 Cristales", "20 Cristales", "5 Cristales", "1 Eola", "5 Cristales"
+    "5 Eolas", "5 Crystals", "10 Crystals", "5 Crystals", "1 Eola",
+    "5 Crystals", "20 Crystals", "5 Crystals", "1 Eola", "5 Crystals"
   ];
   orgStartAngles = [0, 10, 56, 96, 142, 167, 213, 243, 289, 314];
 
@@ -162,10 +162,13 @@ export class RewardPage {
 
     console.log("congratulations you win: ",this.prices[index]);
     
-    this.navCtrl.push(WithdraRewardPage,
-      {reward : this.prices[index]},
-      {animate: false}
-    );
+    let timeoutToWithdraw = setTimeout(() => {
+      this.navCtrl.push(WithdraRewardPage,
+        {reward : this.prices[index]},
+        {animate: false}
+      );
+    }, 2000);
+    
   }
 
   getIndex(d){

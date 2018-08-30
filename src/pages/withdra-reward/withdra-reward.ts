@@ -17,10 +17,11 @@ export class WithdraRewardPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WithdraRewardPage');
-    //this.reward = this.navParams.get('reward');
-    console.log("recieved",this.reward);
+    this.reward = this.navParams.get('reward');
+    //console.log("recieved",this.reward);
+    this.reward = "YOU WON "+this.reward.toUpperCase()+"!!!";
     this.gitImgUri = 'assets/imgs/reward-img.png';
-
+    
     //for testing
     this.reward = "YOU WON A MILLION EOLAS!!!";
   }
