@@ -30,6 +30,6 @@ export class WithdraRewardPage {
     console.log("pop to main menu");
     
     //this.navCtrl.push(MainMenuPage);//despues lo haremos solo con pop por ahora es de manera demostrativa
-    //this.navCtrl.pop(); pop to main menu!
+    this.navCtrl.pop({animate : false}); //pop to main menu!
   }
 }

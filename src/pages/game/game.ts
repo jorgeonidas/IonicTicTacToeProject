@@ -4,6 +4,7 @@ import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
 import { Title } from '@angular/platform-browser';
+import { RewardPage } from '../reward/reward';
 
 @IonicPage()
 @Component({
@@ -408,7 +409,11 @@ export class GamePage {
     //this.navCtrl.popToRoot({animate:false}); //TODO No elimina transicion
     //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-1),{animate: false});//hacemos 2 niveles pop ()
     console.log("leaving");
-    this.navCtrl.pop({animate:false});
+    //this.navCtrl.pop({animate:false});
+    let currentIndex = this.navCtrl.getActive().index;
+    this.navCtrl.push(RewardPage,{},{animate:false}).then(()=>{
+      this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
+    });
   }
 
   setNextRound(poneWins: boolean) {

@@ -162,13 +162,27 @@ export class RewardPage {
 
     console.log("congratulations you win: ",this.prices[index]);
     
+    this.toWithDrawRewardPage(this.prices[index]);
+    /*
     let timeoutToWithdraw = setTimeout(() => {
       this.navCtrl.push(WithdraRewardPage,
         {reward : this.prices[index]},
         {animate: false}
       );
-    }, 2000);
+    }, 2000);*/
     
+  }
+
+  toWithDrawRewardPage(price: string){
+    let timeoutToWithdraw = setTimeout(() => {
+      let currentIndex = this.navCtrl.getActive().index;
+      this.navCtrl.push(WithdraRewardPage,
+        {reward :price },
+        {animate: false}
+      ).then(()=>{
+        this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
+      });
+    }, 2000);
   }
 
   getIndex(d){
