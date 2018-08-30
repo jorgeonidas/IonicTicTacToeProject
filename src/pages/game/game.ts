@@ -141,7 +141,7 @@ export class GamePage {
 
     return this.playerOneCurrentTurn;
   }
-
+  //Decidir quien salie primero
   gameInitializer(){
     //1.-Are you good enough?
     this.timeout = setTimeout(() => {
@@ -153,7 +153,8 @@ export class GamePage {
         if(this.gametype=='local-multiplayer')
           msj='Player Two Starts Game';
         else if(this.gametype=='singleplayer')
-          msj = 'Robot Starts The Game'
+          msj = 'Robot Starts The Game';
+          this.IA.setIaTinking(true);
       }
       this.initialAlert = this.alertCtrl.create({
         title: msj,
