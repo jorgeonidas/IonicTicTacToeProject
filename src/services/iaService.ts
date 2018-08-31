@@ -59,21 +59,24 @@ export class AIService{
             }
             //JUGAR Y REVISAR SI GANO O PERDIO DE UNA VEZ!
             this.setIaTinking(false);
-            console.log(board);
+            console.log("Tablero luego de IA",board);
             console.log("IA SERVICE PIENSA: " + this.isIaTinking());
         }, this.getDelay());
         
     }
-
+    //ACA ESTA EL PROBLEMA POR QUE IA ESCOGE MAL A VECES ESCOGE INDICES QUE YA NO EXISTEN!
     easyIA(origBoard){
+        console.log("tablero original IA facil",origBoard);    
         let aviableSpots = this.emptyIndexies(origBoard);
+        console.log("casillas disponibles", aviableSpots);
         //problema al generar la semilla
-        let max = aviableSpots.length;
+        let max = aviableSpots.length-1;
         let min = 0;
         let randSpot = Math.floor(Math.random() * (max - min + 1)) + min;
+        console.log("randSpot:",randSpot);
         //let randIndex = aviableSpots[Math.floor(Math.random())*aviableSpots.length];
         let randIndex = aviableSpots[randSpot];
-        console.log(randIndex);                            
+        console.log("IA Facil escoge:",randIndex);                            
         //la IA pone su ficha en el lugar escogido anteriormente
         origBoard[randIndex] = this.xChar;
     }

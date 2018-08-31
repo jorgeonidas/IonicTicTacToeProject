@@ -419,7 +419,7 @@ export class GameBoardComponent{
       }
 
       public IATurn(){
-
+        //OJO ACA NO ESTOY LLAMANDO AL IA SERVICE PARA QUE PIENSE
         let delay = Math.floor(Math.random() * (2000 - 500 + 1) + 500); //0.5 y 2 s
         console.log(delay);
         let alertMsj: string;
