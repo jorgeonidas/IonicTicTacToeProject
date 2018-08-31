@@ -185,6 +185,7 @@ export class GamePage {
       this.playerOneCurrentTurn = true;
     }else{
       this.playerOneCurrentTurn = false;
+      this.IA.setIaTinking(true);
     }
 
     return this.playerOneCurrentTurn;
@@ -202,7 +203,7 @@ export class GamePage {
           msj='Player Two Starts Game';
         else if(this.gametype=='singleplayer')
           msj = 'Robot Starts The Game';
-          this.IA.setIaTinking(true);
+          //this.IA.setIaTinking(true); //evitar que el jugador juege de primero cuando en realidad le toca a la IA
       }
       this.initialAlert = this.alertCtrl.create({
         title: msj,
@@ -487,8 +488,10 @@ export class GamePage {
 
       if (this.gametype == 'local-multiplayer')
         msj = 'Player Two Starts Game';
-      else if (this.gametype == 'singleplayer')
+      else if (this.gametype == 'singleplayer'){
         msj = 'Robot Starts The Game'
+        this.IA.setIaTinking(true);//evitar que el jugador marque primero en el turno de la IA
+      }
 
     } else if(!poneWins && this.winner) {//player 2 o bot gano
       
