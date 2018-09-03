@@ -7,6 +7,7 @@ export class AuthService{
     paisRes = "Costa Rica";
     timezone= "Costa Rica";
     private _url = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
+    private regService = '/register';
     //private _localurl = 'http://localhost:53029/api/jugadores'; //cambiara cada vez que haga pruebas 
     
     constructor(private http: HttpClient){}
@@ -15,7 +16,7 @@ export class AuthService{
 
         let headers = new HttpHeaders({'Content-type' : 'application/json'});
 
-        return this.http.post(this._url+"/register", JSON.stringify({
+        return this.http.post(this._url + this.regService, JSON.stringify({
             email: email, 
             nickName: nickName, 
             password: password, 

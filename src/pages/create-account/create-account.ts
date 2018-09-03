@@ -58,7 +58,7 @@ export class CreateAccountPage implements OnInit  {
   }
 
   onSubmit(event: any){
-    console.log(event);
+    //console.log(event);
     //si el formulario no es valido o no presiono el boton crear account 
     //por alguna razon si creo un boton dentro de un form hace el submit de todos modos
     if(!this.createUserForm.valid || !this.isSubmintAction){
@@ -81,9 +81,17 @@ export class CreateAccountPage implements OnInit  {
       this.currentDate.toISOString().split('.')[0]+" " ,
       "N")
       .subscribe((resutl)=>{//caso exitoso
-        loading.dismiss();
         console.log(resutl);
-        this.navCtrl.push(LoginPage,{},{animate: false});
+        let alert = this.alertCtrl.create({
+          title: 'Succes!',
+          message: 'Account Created Sucessfully',
+          buttons: [{text:'Ok',
+          role: 'dissmiss'}]
+        });
+        alert.onDidDismiss(()=>this.backToLogin());
+        loading.dismiss();
+        alert.present();    
+        //this.navCtrl.push(MainMenuPage,{},{animate: false});
       },
       error=>{//caso error
         loading.dismiss();
