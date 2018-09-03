@@ -56,4 +56,9 @@ page-create-account {
         width: 25%;
     }
 
+    @media (min-width: 768px){
+        ion-label{
+            padding-top: 0;
+        }
+    }
 }
