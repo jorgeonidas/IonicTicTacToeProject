@@ -21,6 +21,21 @@ page-create-account {
         background-color: #e9ead0;
     }
 
+    .checkbox-col{
+        height: 100%; 
+        padding: 0; 
+        display: flex; 
+        flex-direction: row;
+        vertical-align: middle; 
+        justify-content: space-around; 
+    }
+
+    .user-agree-text{
+        padding: 0;
+        font-size: 2vh;
+        padding-left: 5%;
+    }
+    
     ion-label{
         height: 100%;
         font-weight: bold;
@@ -54,11 +69,41 @@ page-create-account {
     .bsk-btn{
         height: 80%;
         width: 25%;
+        font-size: 3vh;
+    }
+
+    .spacer-row{
+        height: 3%;
+    }
+
+    @media (max-width: 320px){
+        ion-checkbox{
+            transform: scale(0.8);
+        }
     }
 
     @media (min-width: 768px){
         ion-label{
             padding-top: 0;
         }
+        
+        .user-agree-text{
+            padding-left: 0%;  
+        }
+        
+        .spacer-row{
+            height: 1.5;
+        }
+
+        ion-checkbox{
+            transform: scale(1.5);
+        }
     }
+
+    @media (min-width: 1024px){
+        ion-checkbox{
+            transform: scale(2);
+        }
+    }
+
 }
