@@ -17,6 +17,7 @@ export class CreateAccountPage implements OnInit  {
   mainMenuPage = MainMenuPage;
   currentDate;
   dateOfBirth;
+  isSubmintAction: boolean;
 
   ngOnInit(){
     this.initializeForm();
@@ -32,6 +33,7 @@ export class CreateAccountPage implements OnInit  {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateAccountPage');
+    this.isSubmintAction = true;
   }
 
   public initializeForm(){
@@ -57,7 +59,12 @@ export class CreateAccountPage implements OnInit  {
 
   onSubmit(event: any){
     console.log(event);
- 
+    //si el formulario no es valido o no presiono el boton crear account 
+    //por alguna razon si creo un boton dentro de un form hace el submit de todos modos
+    if(!this.createUserForm.valid || !this.isSubmintAction){
+      return;
+    }
+
     const loading = this.loadingCtrl.create({content: 'Please Waint...'});
     loading.present();
     const value = this.createUserForm.value;
@@ -101,6 +108,7 @@ export class CreateAccountPage implements OnInit  {
   }
 
   toMainMenuPage(){
+    this.isSubmintAction = false;
     this.navCtrl.setRoot(this.mainMenuPage,{},{animate: false});
     //this.navCtrl.push(this.mainMenuPage, {}, {animate: false})
   }
@@ -112,5 +120,10 @@ export class CreateAccountPage implements OnInit  {
       rv['notChecked'] = true;
     }
     return rv;
+  }
+
+  backToLogin(){
+    this.isSubmintAction = false;
+    this.navCtrl.pop({animate:false});
   }
 }

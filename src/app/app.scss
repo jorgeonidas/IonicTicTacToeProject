@@ -46,6 +46,10 @@
     border: 3px solid map-get($colors, loginBorder);
 }
 
+.borderDanger{
+    border: 3px solid map-get($colors, borderDanger);
+}
+
 .invalid{
     background-color: map-get($colors, danger ); 
 }

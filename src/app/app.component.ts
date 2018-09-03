@@ -13,6 +13,7 @@ import { TokenStorePage } from '../pages/token-store/token-store';
 import { RewardPage } from '../pages/reward/reward';
 import { GamePage } from '../pages/game/game';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
+import { CreateAccountPage } from '../pages/create-account/create-account';
 
 
 
@@ -20,6 +21,7 @@ import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  createAccPage = CreateAccountPage;
   withdrawRedPage = WithdraRewardPage;
   loginPage = LoginPage;
   mainMenuPage = MainMenuPage;
@@ -29,7 +31,7 @@ export class MyApp {
   rewardPage = RewardPage;
   gamePage = GamePage;
   //pagina root
-  rootPage: any = this.mainMenuPage;
+  rootPage: any = this.loginPage;
   
   constructor(platform: Platform,
     statusBar: StatusBar,

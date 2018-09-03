@@ -43,4 +43,17 @@ page-create-account {
     ion-col h5{
         padding-top: 2%
     }
+
+    .back-skip-col{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .bsk-btn{
+        height: 80%;
+        width: 25%;
+    }
+
 }
