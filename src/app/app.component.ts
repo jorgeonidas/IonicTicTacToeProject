@@ -31,7 +31,7 @@ export class MyApp {
   rewardPage = RewardPage;
   gamePage = GamePage;
   //pagina root
-  rootPage: any = this.createAccPage;
+  rootPage: any = this.loginPage;
   
   constructor(platform: Platform,
     statusBar: StatusBar,

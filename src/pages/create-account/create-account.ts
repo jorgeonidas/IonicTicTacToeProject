@@ -28,7 +28,7 @@ export class CreateAccountPage implements OnInit  {
     private authService: AuthService, 
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController) {
-    authService.testingApi();
+    //authService.testingApi();
   }
 
   ionViewDidLoad() {
@@ -80,12 +80,12 @@ export class CreateAccountPage implements OnInit  {
       this.dateOfBirth.toISOString().split('.')[0]+" " ,
       this.currentDate.toISOString().split('.')[0]+" " ,
       "N")
-      .subscribe((resutl)=>{
+      .subscribe((resutl)=>{//caso exitoso
         loading.dismiss();
         console.log(resutl);
-        this.navCtrl.push(LoginPage);
+        this.navCtrl.push(LoginPage,{},{animate: false});
       },
-      error=>{
+      error=>{//caso error
         loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Error!',
@@ -102,8 +102,8 @@ export class CreateAccountPage implements OnInit  {
        /*console.log(error);
         console.log(error.name);
         console.log(error.message);
-        console.log(error.status);*/}
-      );
+        console.log(error.status);*/
+      });
     //this.navCtrl.push(LoginPage);
   }
 
