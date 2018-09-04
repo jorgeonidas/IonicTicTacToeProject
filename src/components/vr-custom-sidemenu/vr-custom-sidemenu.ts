@@ -1,4 +1,5 @@
 import { Component, Injectable, Output, EventEmitter } from '@angular/core';
+import { AuthService } from '../../services/authService';
 
 @Component({
   selector: 'vr-custom-sidemenu',
@@ -31,7 +32,7 @@ export class VrCustomSidemenuComponent {
   sidebarWidth: number;
   timeout: any;
   fullyOpen: boolean;
-  constructor() 
+  constructor(private auth: AuthService) 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
     //[0:'settings', 1:'settings-info', 2:'user-login' - 'user-create' y 'user-account', 3:'user-tokens', 4:'user-rankings'];
@@ -112,7 +113,10 @@ export class VrCustomSidemenuComponent {
       this.userSubActive = true;
     }
     this.setToOriginalState();
-    this.setCurrentActiveMenu('user-login');
+    if(this.auth.getCurrentToken() == null)
+      this.setCurrentActiveMenu('user-login');
+    else
+      this.setCurrentActiveMenu('user-account');
   }
   
   openCreateUserView(value: string){

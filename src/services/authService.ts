@@ -13,6 +13,12 @@ export class AuthService{
     //private _localurl = 'http://localhost:53029/api/jugadores'; //cambiara cada vez que haga pruebas 
     private headers: HttpHeaders;
 
+    //user data
+    currUserId: number;
+    currentUserName: string;
+    currentUserEmail: string;
+    currentUserToken: string;
+
     constructor(private http: HttpClient){
         this.headers = new HttpHeaders({'Content-type' : 'application/json'});
     }
@@ -54,4 +60,23 @@ export class AuthService{
             console.log(data);     
         });
     }
+
+    setUserLoginData(id:number, userName: string, userEmail: string, token: string){
+        this.currUserId = id;
+        this.currentUserName = userName;
+        this.currentUserEmail = userEmail;
+        this.currentUserToken = token;
+    }
+
+    getCurrentToken(){
+        return this.currentUserToken;
+    }
+
+    logOut(){
+        this.currUserId = null;
+        this.currentUserName = "none";
+        this.currentUserEmail = "none";
+        this.currentUserToken = "none";
+    }
+
 }
