@@ -8,13 +8,19 @@ export class AuthService{
     timezone= "Costa Rica";
     private _url = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
     private regService = '/register';
+    private authService = '/authenticate';
+    private authToken : string;
     //private _localurl = 'http://localhost:53029/api/jugadores'; //cambiara cada vez que haga pruebas 
+    private headers: HttpHeaders;
+
+    constructor(private http: HttpClient){
+        this.headers = new HttpHeaders({'Content-type' : 'application/json'});
+    }
     
-    constructor(private http: HttpClient){}
-    
+    //create
     signup(email: string, nickName: string, password: string, fechaNac: string, fechaUi:string, genero: string){
 
-        let headers = new HttpHeaders({'Content-type' : 'application/json'});
+        //let headers = new HttpHeaders({'Content-type' : 'application/json'});
 
         return this.http.post(this._url + this.regService, JSON.stringify({
             email: email, 
@@ -26,8 +32,20 @@ export class AuthService{
             timeZone: this.timezone,
             genero: genero
         }),
-    {headers: headers});
+    {headers: this.headers});
     }
+
+    //login
+    signin(nickname:string, password: string){
+        
+        return this.http.post(this._url + this.authService,JSON.stringify({
+            nickName: nickname,
+            password: password
+        }),
+        {headers: this.headers});
+        
+    }
+
     //hago un get para probar el api
     testingApi(){
         let headers = new HttpHeaders({'Content-type' : 'application/json'});

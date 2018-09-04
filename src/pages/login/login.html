@@ -2,6 +2,7 @@
   <div class="up-spacer"></div>
   <ion-grid class="loginContainer">
     <ion-row id="up-spacer-row"></ion-row>
+    <form [formGroup]="loginForm" style="height: 100%;" (ngSubmit)="onSubmitLogin($event)">
     <ion-row class="form-row">
       <ion-col class="label-col">
         <ion-label no-margin>
@@ -10,7 +11,7 @@
       </ion-col>
     </ion-row>
     <ion-row class="form-row">
-      <input style="width: 100%" class="ion-item-input" type="text" value=""/>
+      <input style="width: 100%" class="ion-item-input" type="text" formControlName="username" value=""/>
     </ion-row>
     <ion-row style="height: 5%;"></ion-row>
     <ion-row class="form-row">
@@ -21,7 +22,7 @@
       </ion-col>
     </ion-row>
     <ion-row class="form-row">
-      <input style="width: 100%" class="ion-item-input" type="password" value=""/>
+      <input style="width: 100%" class="ion-item-input" type="password" formControlName="password" value=""/>
     </ion-row>
     <ion-row style="height: 5%;"></ion-row>
     <ion-row style="height: 5%; justify-content: center">
@@ -51,9 +52,10 @@
           round 
           color="gold"
           class="borderCreate" 
-          (click)="toCreateAccountPage()">Create Account</button>
+          (click)="toCreateAccountPage()" [disabled]="!loginForm.valid">Create Account</button>
         </ion-col>
       </ion-row>
+    </form>
     <ion-row></ion-row>
   </ion-grid>
 </ion-content>
