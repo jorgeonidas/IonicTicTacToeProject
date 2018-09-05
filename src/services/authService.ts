@@ -9,7 +9,6 @@ export class AuthService{
     private _url = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
     private regService = '/register';
     private authService = '/authenticate';
-    private authToken : string;
     
     //private _localurl = 'http://localhost:53029/api/jugadores'; //cambiara cada vez que haga pruebas 
     private headers: HttpHeaders;
@@ -66,6 +65,7 @@ export class AuthService{
     }
 
     //hago un get para probar el api
+    /*
     testingApi(){
         let headers = new HttpHeaders({'Content-type' : 'application/json'});
 
@@ -73,14 +73,14 @@ export class AuthService{
             console.log(data);     
         });
     }
-
+    */
     //GET BY ID
     getUserByID(id: number, token: string){
         let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
         this.http.get(this._url+id,{headers:headersToken}).subscribe((data)=>{
             console.log("user data",data);
             this.setUserObject(data);
-            //this.setCurrentUserNickname(data['nickName']);
+            //ACTUALIZAREMOS LA ULTIMA FECHA DE CONEXION!
             console.log("updating las connection date..");
             this.updateUserData(this.USER_OBJ,token);
         },error=>{console.log(error);}
@@ -97,6 +97,21 @@ export class AuthService{
             },
             (error)=>{console.log(error);
         })
+    }
+
+    updateNickName(nickName: string){
+        this.USER_OBJ['nickName'] = nickName;
+        this.updateUserData(this.USER_OBJ,this.currentUserToken);
+    }
+
+    //DELETE USER (PELIGRO!!!!!)
+    deleteUser(id: number, token){
+        let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
+        this.http.delete(this._url+id,{headers:headersToken}).subscribe(()=>{
+            console.log("user deleted succesfully");
+        },error=>{
+            console.log(error);
+        });
     }
 
     //LOGOUT
@@ -126,7 +141,6 @@ export class AuthService{
 
         //ultimo dia de conexion
         let currentDate = new Date();
-        //console.log(currentDate.toISOString().split('.')[0]+" " );
 
         this.USER_OBJ['fecUltimoIngreso'] = currentDate.toISOString().split('.')[0]+" " ;
         this.USER_OBJ['timeZone'] = userObjc['timeZone'];
@@ -138,6 +152,10 @@ export class AuthService{
 
     getCurrentToken(){
         return this.currentUserToken;
+    }
+
+    getCurrentUserId() : number{
+        return this.USER_OBJ['id'];
     }
 
     getCurrentUserNickname(){

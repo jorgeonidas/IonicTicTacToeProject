@@ -11,6 +11,7 @@ export class UserAccountComponent {
 
   profileImgUlr: string;
   nickName: string;
+  lastNickName: string;
   coins: number;
   eolas: number;
 
@@ -31,7 +32,7 @@ export class UserAccountComponent {
     this.coinIconUrl = "assets/imgs/coins.png";
     this.eolaIconUrl = "assets/imgs/eolas.png";
 
-    this.nickName = this.aut.getCurrentUserNickname();
+    this.lastNickName = this.nickName = this.aut.getCurrentUserNickname();
 
     this.userNameInputDisable = true;
 
@@ -41,6 +42,16 @@ export class UserAccountComponent {
 
   toggleEdit(){
     this.userNameInputDisable = !this.userNameInputDisable;
+    console.log("toggle: ",this.userNameInputDisable);
+    if(this.userNameInputDisable){
+      console.log(this.nickName);
+      if(this.nickName != this.lastNickName){
+        console.log("cambio de nombre");
+        //actualizo el nick tanto desde cliente como en el api
+        this.aut.updateNickName(this.nickName);
+      }
+    }
+
   }
 
 }
