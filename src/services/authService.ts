@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { SecureStorage, SecureStorageObject } from "@ionic-native/secure-storage";
 
 @Injectable()
 export class AuthService{
@@ -31,7 +32,7 @@ export class AuthService{
         "genero": null
     }
 
-    constructor(private http: HttpClient){
+    constructor(private http: HttpClient, private secureStorage: SecureStorage){
         this.headers = new HttpHeaders({'Content-type' : 'application/json'});
     }
     
@@ -160,6 +161,34 @@ export class AuthService{
 
     getCurrentUserNickname(){
         return this.USER_OBJ['nickName'];
+    }
+
+    //guardando la sesion
+    saveLogin(){
+        
+        this.secureStorage.create('sesion')
+            .then((storage: SecureStorageObject)=>{
+                storage.set('id',this.USER_OBJ['id'].toString()).then((data)=>{console.log(data)},error => console.log("error set",error));
+                storage.set('token',this.currentUserToken).then((data)=>{console.log(data)},error => console.log("error set",error));
+            },
+            error=>{
+                console.log("error create",error);
+            }
+            
+        );
+    }
+
+    getSessionData(){
+        this.secureStorage.create('sesion')
+            .then((storage: SecureStorageObject)=>{
+                storage.get('id').then((data)=>{console.log(data)},error => console.log("error set",error));
+                storage.get('token').then((data)=>{console.log(data)},error => console.log("error set",error));
+            },
+            error=>{
+                console.log("error create",error);
+            }
+            
+        );
     }
 
 }

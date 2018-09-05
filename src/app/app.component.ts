@@ -51,8 +51,6 @@ export class MyApp {
     
     //statusBar.hide(); //probando si funciona en startup
     this.getSettingsFromDB();
-
-  
     }
 
     getSettingsFromDB(){

@@ -75,7 +75,8 @@ export class LoginPage {
         this.auth.setUserLoginData(result['id'], result["username"], result['email'], result["token"]);
         //testing get by id
         this.auth.getUserByID(result['id'],result["token"]);
-
+        //GUARDAR EL ID Y TOKEN EN LA BD PARA LUEGO CONSULTAR SI EXISTEN EN UNA PROXIMA SESION
+        this.auth.saveLogin();//testeando SecureStorage
         let alert = this.alertCtrl.create({
           title: 'Succes!',
           message: 'Loggin Sucessfull',
@@ -84,7 +85,7 @@ export class LoginPage {
             role: 'dissmiss'
           }]
         });
-        alert.onDidDismiss(() => this.toMainMenuPage());
+        alert.onDidDismiss(() => {this.toMainMenuPage(); this.auth.getSessionData();});
         loading.dismiss();
         alert.present();
 

@@ -52,6 +52,8 @@ import { Device } from '@ionic-native/device';
 import { RewardPage } from '../pages/reward/reward';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 
+import { SecureStorage, SecureStorageObject} from '@ionic-native/secure-storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -102,7 +104,7 @@ import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
     }),
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    DragulaModule
+    DragulaModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -137,7 +139,8 @@ import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
     PlayerSelectorService,
     TokenService,
     Device,
-    Keyboard 
+    Keyboard,
+    SecureStorage
   ]
 })
 export class AppModule {}
