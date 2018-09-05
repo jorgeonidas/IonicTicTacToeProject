@@ -81,12 +81,23 @@ export class AuthService{
             console.log("user data",data);
             this.setUserObject(data);
             //this.setCurrentUserNickname(data['nickName']);
+            console.log("updating las connection date..");
+            this.updateUserData(this.USER_OBJ,token);
         },error=>{console.log(error);}
         );
     }
 
-    //ACTUALIZAR
-
+    
+    //UPDATE
+    updateUserData(userObjc: any, token){
+        let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
+        this.http.put(this._url + userObjc['id'], userObjc, {headers:headersToken}).subscribe(
+            ()=>{
+                console.log("ACTUALIZADO CON EXITO!");
+            },
+            (error)=>{console.log(error);
+        })
+    }
 
     //LOGOUT
     logOut(){
@@ -125,14 +136,6 @@ export class AuthService{
         
     }
 
-    //UPDATE
-
-
-    /*
-    setCurrentUserNickname(nickname : string){
-        this.currentUserNickName = nickname;
-    }*/
-    //getters
     getCurrentToken(){
         return this.currentUserToken;
     }
