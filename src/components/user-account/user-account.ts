@@ -1,5 +1,6 @@
 import { Component, Injectable } from '@angular/core';
 import { TokenService } from '../../services/tokenService';
+import { AuthService } from '../../services/authService';
 
 @Component({
   selector: 'user-account',
@@ -9,7 +10,7 @@ import { TokenService } from '../../services/tokenService';
 export class UserAccountComponent {
 
   profileImgUlr: string;
-  profileName: string;
+  nickName: string;
   coins: number;
   eolas: number;
 
@@ -21,7 +22,7 @@ export class UserAccountComponent {
   currTokenUrl: string;
   rankingUri: string = 'assets/imgs/medal-icon.png';
 
-  constructor(private tokenServ : TokenService) {
+  constructor(private tokenServ : TokenService, private aut: AuthService) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
     this.coins = 9999;
@@ -30,7 +31,7 @@ export class UserAccountComponent {
     this.coinIconUrl = "assets/imgs/coins.png";
     this.eolaIconUrl = "assets/imgs/eolas.png";
 
-    this.profileName = 'Human';
+    this.nickName = this.aut.getCurrentUserNickname();
 
     this.userNameInputDisable = true;
 

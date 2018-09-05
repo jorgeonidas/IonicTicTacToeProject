@@ -46,7 +46,7 @@ export class LoginComponent {
      
         //guardo la data del usuario
         this.auth.setUserLoginData(result['id'], result["username"], result['email'], result["token"]);
-
+        this.auth.getUserByID(result['id'],result["token"]);
         let alert = this.alertCtrl.create({
           title: 'Succes!',
           message: 'Loggin Sucessfull',

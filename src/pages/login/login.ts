@@ -70,14 +70,11 @@ export class LoginPage {
 
       this.auth.signin(nickname, password).subscribe((result) => {
         console.log(result);
-       /*
-        console.log(result['id']);
-        console.log(result['email']);
-        console.log(result["token"]);
-*/
+
         //guardo la data del usuario
         this.auth.setUserLoginData(result['id'], result["username"], result['email'], result["token"]);
-        //console.log(this.auth.getCurrentToken());
+        //testing get by id
+        this.auth.getUserByID(result['id'],result["token"]);
 
         let alert = this.alertCtrl.create({
           title: 'Succes!',
