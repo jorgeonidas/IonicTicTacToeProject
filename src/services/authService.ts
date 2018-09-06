@@ -224,4 +224,8 @@ export class AuthService{
         });
     }
 
+    removeSession(){
+        
+    }
+
 }
