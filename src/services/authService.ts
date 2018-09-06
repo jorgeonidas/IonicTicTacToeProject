@@ -119,10 +119,12 @@ export class AuthService{
 
     //LOGOUT
     logOut(){
-        /*this.currUserId = null;
-        this.currentUserNickName = null;
-        this.currentUserEmail = null
-        this.currentUserToken = null;*/
+        this.currentUserToken = null;
+        for(const prop in this.USER_OBJ){
+            this.USER_OBJ[prop] = null;
+        }
+
+        this.removeDataSession();
     }
     //setters
     setUserLoginData(id:number, nickName: string, userEmail: string, token: string){
@@ -189,12 +191,13 @@ export class AuthService{
     getSessionData() {
         console.log("recuperando sesion");
         this.db.get('token').then((data) => {
+            console.log("token", data);
             if (data != null) {
                 this.currentUserToken = data;
                 console.log(data);
 
                 this.db.get('id').then((data) => {
-                    console.log(data);
+                    console.log("id",data);
                     
                     if (data != null) {
                         this.USER_OBJ.id = data;
@@ -214,18 +217,37 @@ export class AuthService{
                     }
 
                 },
-                    error => {
+                    (error) => {
                         console.log(error);
                     }
                 );
             }
-        }, error => {
+        }, (error) => {
             console.log(error);
         });
     }
 
-    removeSession(){
-        
+    removeDataSession(){
+        this.db.remove('token').then(()=>{
+            let alert = this.alertCtrl.create({
+                title: 'Succes!',
+                message: 'You Just Logged Out!',
+                buttons: [{
+                    text: 'Ok',
+                    role: 'dissmiss'
+                }]
+            });
+            alert.onDidDismiss(() => {
+                this.events.publish('logOut : done');
+            });//testing
+            alert.present();
+        },
+            (error) =>{
+                console.log(error);
+                
+            }
+        );
+        this.db.remove('id');
     }
 
 }

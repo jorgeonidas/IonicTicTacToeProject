@@ -54,4 +54,8 @@ export class UserAccountComponent {
 
   }
 
+  logOut(){
+    this.aut.logOut();
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component, Injectable, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../services/authService';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'vr-custom-sidemenu',
@@ -32,7 +33,7 @@ export class VrCustomSidemenuComponent {
   sidebarWidth: number;
   timeout: any;
   fullyOpen: boolean;
-  constructor(private auth: AuthService) 
+  constructor(private auth: AuthService, private events: Events) 
     {
     console.log('Hello VrCustomSidemenuComponent Component');
     //[0:'settings', 1:'settings-info', 2:'user-login' - 'user-create' y 'user-account', 3:'user-tokens', 4:'user-rankings'];
@@ -52,6 +53,12 @@ export class VrCustomSidemenuComponent {
     //Menu actualmente activo
     this.currentActiveMenu = 'settings'
     this.fullyOpen = false;
+
+    //chequear evento logout
+    this.events.subscribe(('logOut : done'),() => {
+      console.log("Event catched by VR-Sidenav-component");
+      this.closeNav();
+    } );
   }
 
   openNav() {
@@ -78,12 +85,6 @@ export class VrCustomSidemenuComponent {
 
   toggleOpen() {
     this.isOpen = !this.isOpen;
-    /*if (this.isOpen) {
-      this.sidebarOpacity = this.opaque;
-    } else {
-      this.sidebarOpacity = this.transparent;
-    }*/
-
     this.sideMenuOpenEmmiter.emit(this.isOpen);
   }
   //Settings view Deployment
