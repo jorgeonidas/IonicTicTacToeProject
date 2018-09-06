@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { CreateAccountPage } from '../create-account/create-account';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -23,13 +23,22 @@ export class LoginPage {
     private platform: Platform, 
     public auth: AuthService, 
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private events: Events) {
     this.initializeLoginForm();
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    //pido los datos de secure storage
+    this.auth.getSessionData();
+    //a la espera de si estos datos son retirados con exito!
+    this.events.subscribe(('authenticate : done'),() => {
+      console.log("Event catched by LoginPage");
+      //this.auth.getUserByID(this.auth.getCurrentUserId(),this.auth.getCurrentToken());
+      this.toMainMenuPage();
+    } );
     this.skipping = false;
   }
 
@@ -85,7 +94,7 @@ export class LoginPage {
             role: 'dissmiss'
           }]
         });
-        alert.onDidDismiss(() => {this.toMainMenuPage(); this.auth.getSessionData();});
+        alert.onDidDismiss(() => {this.toMainMenuPage(); /*this.auth.getSessionData();*/});//testing
         loading.dismiss();
         alert.present();
 

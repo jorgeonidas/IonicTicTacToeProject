@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { SecureStorage, SecureStorageObject } from "@ionic-native/secure-storage";
+import { LoadingController, AlertController, Events } from "ionic-angular";
 
 @Injectable()
 export class AuthService{
@@ -15,9 +16,6 @@ export class AuthService{
     private headers: HttpHeaders;
 
     //user data
-    private currUserId: number;
-    private currentUserNickName: string;
-    private currentUserEmail: string;
     private currentUserToken: string;
     
     private USER_OBJ ={
@@ -32,7 +30,11 @@ export class AuthService{
         "genero": null
     }
 
-    constructor(private http: HttpClient, private secureStorage: SecureStorage){
+    constructor(private http: HttpClient, 
+                private secureStorage: SecureStorage,
+                private loadCtrl: LoadingController,
+                private alertCtrl: AlertController,
+                private events: Events){
         this.headers = new HttpHeaders({'Content-type' : 'application/json'});
     }
     
@@ -117,10 +119,10 @@ export class AuthService{
 
     //LOGOUT
     logOut(){
-        this.currUserId = null;
+        /*this.currUserId = null;
         this.currentUserNickName = null;
         this.currentUserEmail = null
-        this.currentUserToken = null;
+        this.currentUserToken = null;*/
     }
     //setters
     setUserLoginData(id:number, nickName: string, userEmail: string, token: string){
@@ -168,7 +170,7 @@ export class AuthService{
         
         this.secureStorage.create('sesion')
             .then((storage: SecureStorageObject)=>{
-                storage.set('id',this.USER_OBJ['id'].toString()).then((data)=>{console.log(data)},error => console.log("error set",error));
+                storage.set('id',this.USER_OBJ.id.toString()).then((data)=>{console.log(data)},error => console.log("error set",error));
                 storage.set('token',this.currentUserToken).then((data)=>{console.log(data)},error => console.log("error set",error));
             },
             error=>{
@@ -177,15 +179,57 @@ export class AuthService{
             
         );
     }
-
+    //recueprar la ultima sesion
     getSessionData(){
+
+        const loading = this.loadCtrl.create({ content: 'Please wait.....' });
+        loading.present();
+
         this.secureStorage.create('sesion')
             .then((storage: SecureStorageObject)=>{
-                storage.get('id').then((data)=>{console.log(data)},error => console.log("error set",error));
-                storage.get('token').then((data)=>{console.log(data)},error => console.log("error set",error));
+                //pedir token
+                storage.get('token').then((data)=>{
+                    console.log(data);
+                    this.currentUserToken = data;
+                    //pedir id
+                    storage.get('id').then((data)=>{
+                        console.log(data);
+                        this.USER_OBJ.id = data;
+                        loading.dismiss();
+                        //alerta avisando que se recupero la ultima sesion con exito!
+                        let alert = this.alertCtrl.create({
+                            title: 'Succes!',
+                            message: 'Loggin Sucessfull',
+                            buttons: [{
+                              text: 'Ok',
+                              role: 'dissmiss'
+                            }]
+                          });
+                          alert.onDidDismiss(() => {
+                            this.getUserByID(this.getCurrentUserId(),this.getCurrentToken());
+                            this.events.publish('authenticate : done');});//testing
+                          alert.present();
+                        
+                    },
+                        error => {//no pudo retirar id
+                            loading.dismiss();
+                            console.log("error get id",error);
+                            return false;
+                        }
+                    );
+                },
+                error => {
+                    //no pudo retirar token
+                    loading.dismiss();
+                    console.log("error get token",error);
+                    return false;
+                }
+            );
             },
             error=>{
-                console.log("error create",error);
+                loading.dismiss();
+                console.log("error retreving data",error);
+                return false;
             }
             
         );
