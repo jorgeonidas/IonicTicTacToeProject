@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { SecureStorage, SecureStorageObject } from "@ionic-native/secure-storage";
 import { LoadingController, AlertController, Events } from "ionic-angular";
+import { ConfigurationServiceDB } from "./configurationdb.service";
 
 @Injectable()
 export class AuthService{
@@ -31,10 +31,10 @@ export class AuthService{
     }
 
     constructor(private http: HttpClient, 
-                private secureStorage: SecureStorage,
                 private loadCtrl: LoadingController,
                 private alertCtrl: AlertController,
-                private events: Events){
+                private events: Events,
+                private db : ConfigurationServiceDB){
         this.headers = new HttpHeaders({'Content-type' : 'application/json'});
     }
     
@@ -166,73 +166,62 @@ export class AuthService{
     }
 
     //guardando la sesion
-    saveLogin(){
-        
-        this.secureStorage.create('sesion')
-            .then((storage: SecureStorageObject)=>{
-                storage.set('id',this.USER_OBJ.id.toString()).then((data)=>{console.log(data)},error => console.log("error set",error));
-                storage.set('token',this.currentUserToken).then((data)=>{console.log(data)},error => console.log("error set",error));
+    saveLogin() {
+
+        this.db.set('id', this.USER_OBJ.id).then(
+            (data) => {
+                console.log("saved",data);
             },
-            error=>{
-                console.log("error create",error);
+            (error) => {
+                console.log(error);
+            });
+        this.db.set('token', this.currentUserToken).then(
+            (data) => {
+                console.log("saved",data);
+            },
+            (error) => {
+                console.log(error);
             }
-            
         );
+
     }
     //recueprar la ultima sesion
-    getSessionData(){
+    getSessionData() {
+        console.log("recuperando sesion");
+        this.db.get('token').then((data) => {
+            if (data != null) {
+                this.currentUserToken = data;
+                console.log(data);
 
-        const loading = this.loadCtrl.create({ content: 'Please wait.....' });
-        loading.present();
-
-        this.secureStorage.create('sesion')
-            .then((storage: SecureStorageObject)=>{
-                //pedir token
-                storage.get('token').then((data)=>{
+                this.db.get('id').then((data) => {
                     console.log(data);
-                    this.currentUserToken = data;
-                    //pedir id
-                    storage.get('id').then((data)=>{
-                        console.log(data);
+                    
+                    if (data != null) {
                         this.USER_OBJ.id = data;
-                        loading.dismiss();
-                        //alerta avisando que se recupero la ultima sesion con exito!
                         let alert = this.alertCtrl.create({
                             title: 'Succes!',
                             message: 'Loggin Sucessfull',
                             buttons: [{
-                              text: 'Ok',
-                              role: 'dissmiss'
+                                text: 'Ok',
+                                role: 'dissmiss'
                             }]
-                          });
-                          alert.onDidDismiss(() => {
-                            this.getUserByID(this.getCurrentUserId(),this.getCurrentToken());
-                            this.events.publish('authenticate : done');});//testing
-                          alert.present();
-                        
-                    },
-                        error => {//no pudo retirar id
-                            loading.dismiss();
-                            console.log("error get id",error);
-                            return false;
-                        }
-                    );
+                        });
+                        alert.onDidDismiss(() => {
+                            this.getUserByID(this.getCurrentUserId(), this.getCurrentToken());
+                            this.events.publish('authenticate : done');
+                        });//testing
+                        alert.present();
+                    }
+
                 },
-                error => {
-                    //no pudo retirar token
-                    loading.dismiss();
-                    console.log("error get token",error);
-                    return false;
-                }
-            );
-            },
-            error=>{
-                loading.dismiss();
-                console.log("error retreving data",error);
-                return false;
+                    error => {
+                        console.log(error);
+                    }
+                );
             }
-            
-        );
+        }, error => {
+            console.log(error);
+        });
     }
 
 }

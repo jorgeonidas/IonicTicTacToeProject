@@ -52,8 +52,6 @@ import { Device } from '@ionic-native/device';
 import { RewardPage } from '../pages/reward/reward';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 
-import { SecureStorage, SecureStorageObject} from '@ionic-native/secure-storage';
-
 @NgModule({
   declarations: [
     MyApp,
@@ -140,7 +138,6 @@ import { SecureStorage, SecureStorageObject} from '@ionic-native/secure-storage'
     TokenService,
     Device,
     Keyboard,
-    SecureStorage
   ]
 })
 export class AppModule {}

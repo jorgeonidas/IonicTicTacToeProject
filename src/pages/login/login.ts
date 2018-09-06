@@ -36,7 +36,6 @@ export class LoginPage {
     //a la espera de si estos datos son retirados con exito!
     this.events.subscribe(('authenticate : done'),() => {
       console.log("Event catched by LoginPage");
-      //this.auth.getUserByID(this.auth.getCurrentUserId(),this.auth.getCurrentToken());
       this.toMainMenuPage();
     } );
     this.skipping = false;
