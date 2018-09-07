@@ -5,6 +5,7 @@ import { AIService } from '../../services/iaService';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
 import { Title } from '@angular/platform-browser';
 import { RewardPage } from '../reward/reward';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
 @Component({
@@ -54,7 +55,8 @@ export class GamePage {
     private alertCtrl: AlertController, 
     private IA : AIService, 
     private cfgService: ConfigurationServiceDB,
-    private popover: PopoverController) {
+    private popover: PopoverController,
+    private admob: AdmobServiceProvider) {
     /*  
     this.playerOneScore = 0;
     this.playerTwoOrAIScore = 0;
@@ -471,7 +473,18 @@ export class GamePage {
         this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
       });
     }else{
-      this.navCtrl.pop({animate:false});//voy al main menu
+      this.admob.setAdProb();
+      if(this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable){
+        this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
+          this.navCtrl.pop({animate : false});
+        },error => {
+          console.log(error);
+          this.navCtrl.pop({animate : false});;
+        }
+      );
+      }else{//volver a main menu
+        this.navCtrl.pop({animate : false});
+      }
     }
 
     //TODO: SOLO FALTARIA EL CASO PARA MULTIPLAYER ONLINE

@@ -15,7 +15,7 @@
         <ion-row style="height: 12%;margin-top: 15%">
             <ion-col></ion-col>
             <ion-col col-7>
-                <button class="spin-btn" color="secondary" block large  ion-button (click)="toMainMenu()">Continue</button>
+                <button class="spin-btn" color="secondary" block large  ion-button (click)="toMainMenu()" [disabled]="pressed">Continue</button>
             </ion-col>
             <ion-col></ion-col>
         </ion-row>
