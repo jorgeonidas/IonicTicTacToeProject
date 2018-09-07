@@ -34,8 +34,20 @@ export class MainMenuPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainMenuPage');
-    this.sideMenuOpen = false;
-    //this.admob.showInterstitialAdd();
+    this.sideMenuOpen = false;    
+  }
+
+  ionViewWillEnter(){
+    console.log("FTL:",this.admob.firstTimeLaunched);
+    if (!this.admob.firstTimeLaunched) {
+      this.admob.setAdProb();
+      //ver publicidad
+      if (this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable) {
+        this.admob.showInterstitialAdd();
+      } else {//volver a main menu
+        this.navCtrl.pop({ animate: false });
+      }
+    }
   }
 
   onLoadSettingsMenu(){
@@ -48,7 +60,8 @@ export class MainMenuPage {
     
     if(selected == 'singleplayer')
       this.playerSelService.setSinglePlayer(true);
-
+    //le aviso al servicio que ya no es la primera vez que despliego el main menu
+    this.admob.firstTimeLaunched = false;
     this.navCtrl.push(CharacterSelectionPage, {selection: selected}, {animate: false});
   }
   //activar menuSettings
@@ -79,10 +92,14 @@ export class MainMenuPage {
   }
 
   openContacsPage(){
+    //le aviso al servicio que ya no es la primera vez que despliego el main menu
+    this.admob.firstTimeLaunched = false;
     this.navCtrl.push(ContactsPage,{},{animate: false});
   }
 
   openStorePage(){
+    //le aviso al servicio que ya no es la primera vez que despliego el main menu
+    this.admob.firstTimeLaunched = false;
     this.navCtrl.push(TokenStorePage,{},{animate: false});
   }
   

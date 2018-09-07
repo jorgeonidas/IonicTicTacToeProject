@@ -15,8 +15,11 @@ export class AdmobServiceProvider {
 
   adProb : number;
   public cordovaAviable: boolean;
+  public firstTimeLaunched: boolean;
+
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform,
     public loadingCtrl: LoadingController) {
+    this.firstTimeLaunched = true;
     //si las funciones de cordova estan disponibles
     if(this.platform.is('cordova')){
       this.cordovaAviable= true;
@@ -50,7 +53,7 @@ export class AdmobServiceProvider {
       autoShow: true
     };
     this.admob.prepareInterstitial(interstitialopt);
-    return this.admob;
+    //return this.admob;
   }
 
   showVideoAdd(){
