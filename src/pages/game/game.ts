@@ -185,7 +185,8 @@ export class GamePage {
       this.playerOneCurrentTurn = true;
     }else{
       this.playerOneCurrentTurn = false;
-      this.IA.setIaTinking(true);
+      if(this.gametype == 'singleplayer')
+        this.IA.setIaTinking(true);
     }
 
     return this.playerOneCurrentTurn;

@@ -12,6 +12,9 @@ export class AdmobServiceProvider {
 
   private iosVid = 'ca-app-pub-2497464044902615/1296151797';
   private androidVid='ca-app-pub-2497464044902615/2902970831';
+
+  adProb : number;
+
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform) {
     //android o ios
       if(this.platform.is('android')) {
@@ -22,6 +25,14 @@ export class AdmobServiceProvider {
         this.adIdVideo = this.iosVid;
       }
 
+  }
+
+  setAdProb(){
+    this.adProb = Math.random();
+  }
+
+  getAdProb(){
+    return this.adProb;
   }
 
   showInterstitialAdd(){

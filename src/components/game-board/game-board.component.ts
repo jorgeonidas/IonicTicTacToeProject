@@ -124,7 +124,7 @@ export class GameBoardComponent{
 
     //jugada
     onCellClickled(index: number){
-        console.log(this.gameType);
+        console.log(this.gameType,this.origBoard[index],this.origBoard[index],this.IA.isIaTinking() );
         
         if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.IA.isIaTinking() && this.gameStart/*&& !this.winner) || this.roundMoves <= 7*/){
             
