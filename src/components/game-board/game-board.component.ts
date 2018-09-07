@@ -110,6 +110,7 @@ export class GameBoardComponent{
     @Input() difficulty: string;
     @Input() playerOne: boolean = true;
     @Input() turnInterval: number;
+    @Input() isGameOver: boolean;
     isIAthinking: boolean;
     @Input() winner: boolean = false;
     @Output() isPlayerOneEvent = new EventEmitter<boolean>();
@@ -119,14 +120,15 @@ export class GameBoardComponent{
     @Input() gameStart: boolean = false;
     
     constructor(private alertCtrl: AlertController, private IA : AIService){  
-        this.isIAthinking = false;    
+        this.isIAthinking = false;
+        this.isGameOver = false;    
     }
 
     //jugada
     onCellClickled(index: number){
         console.log(this.gameType,this.origBoard[index],this.origBoard[index],this.IA.isIaTinking() );
         
-        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.IA.isIaTinking() && this.gameStart/*&& !this.winner) || this.roundMoves <= 7*/){
+        if(this.origBoard[index]!='X' && this.origBoard[index] != 'O' && !this.IA.isIaTinking() && this.gameStart && !this.isGameOver/*&& !this.winner) || this.roundMoves <= 7*/){
             
             switch(this.gameType){
                
