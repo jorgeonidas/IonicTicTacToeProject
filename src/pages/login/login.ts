@@ -4,6 +4,7 @@ import { MainMenuPage } from '../main-menu/main-menu';
 import { CreateAccountPage } from '../create-account/create-account';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/authService';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
 @Component({
@@ -24,12 +25,14 @@ export class LoginPage {
     public auth: AuthService, 
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    private events: Events) {
+    private events: Events,
+    private adSercice: AdmobServiceProvider) {
     this.initializeLoginForm();
   }
 
 
   ionViewDidLoad() {
+    this.adSercice.showBanner();
     console.log('ionViewDidLoad LoginPage');
     //pido los datos de secure storage
     this.auth.getSessionData();

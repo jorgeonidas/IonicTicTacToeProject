@@ -51,6 +51,8 @@ import { ContactComponent } from '../components/contact/contact';
 import { Device } from '@ionic-native/device';
 import { RewardPage } from '../pages/reward/reward';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
+import { AdMobPro} from '@ionic-native/admob-pro'
+import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
 
 @NgModule({
   declarations: [
@@ -138,6 +140,8 @@ import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
     TokenService,
     Device,
     Keyboard,
+    AdMobPro,
+    AdmobServiceProvider
   ]
 })
 export class AppModule {}

@@ -21,6 +21,7 @@
     "@angular/http": "5.2.10",
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
+    "@ionic-native/admob-pro": "^4.12.2",
     "@ionic-native/core": "4.7.0",
     "@ionic-native/device": "^4.10.0",
     "@ionic-native/secure-storage": "^4.12.2",
@@ -30,7 +31,9 @@
     "cordova-android": "7.0.0",
     "cordova-browser": "5.0.4",
     "cordova-ios": "4.5.4",
+    "cordova-plugin-admobpro": "^2.31.6",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-extension": "^1.5.4",
     "cordova-plugin-fullscreen": "^1.2.0",
     "cordova-plugin-ionic-keyboard": "^2.1.2",
     "cordova-plugin-ionic-webview": "^1.2.1",
@@ -63,7 +66,8 @@
       "cordova-sqlite-storage": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-fullscreen": {},
-      "cordova-plugin-secure-storage": {}
+      "cordova-plugin-secure-storage": {},
+      "cordova-plugin-admobpro": {}
     },
     "platforms": [
       "ios",
