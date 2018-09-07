@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
 @Component({
@@ -71,13 +72,15 @@ export class ContactsPage {
     action: 3
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private admob: AdmobServiceProvider) {
     //console.log(this.contactTest2);
     //this.contactTest2.msjNot.msj=this.GameIvnPending;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactsPage');
+    //this.admob.hidddeBanner();
+    
   }
 
   backToMainMenu(){

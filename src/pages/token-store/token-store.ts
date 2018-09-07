@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TokenService } from '../../services/tokenService';
 import { Platform } from 'ionic-angular';
 import { platformCoreDynamic } from '@angular/platform-browser-dynamic/src/platform_core_dynamic';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
 @Component({
@@ -19,7 +20,8 @@ export class TokenStorePage {
   deviceHeight: number;
   isIos: boolean;
 
-  constructor(platform: Platform,public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService) {
+  constructor(platform: Platform,public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService, 
+    private admob:AdmobServiceProvider) {
     //obtener altura del telefono
     this.deviceHeight = platform.height();
     this.iphonex = this.isIphoneX(platform.height(), platform.width(), platform.is('ios'));
@@ -41,7 +43,8 @@ export class TokenStorePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TokenStorePage');
+    console.log('ionViewDidLoad');
+    //this.admob.hidddeBanner();
   }
 
   backToMainMenu(){

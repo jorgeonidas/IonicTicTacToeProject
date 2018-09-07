@@ -1,28 +1,72 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdMobPro, AdMobOptions } from '@ionic-native/admob-pro';
+import { Platform} from 'ionic-angular';
 
-/*
-  Generated class for the AdmobServiceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class AdmobServiceProvider {
+  adIdinterstetial : string;
+  adIdVideo: string;
+  private iosInter = 'ca-app-pub-2497464044902615/8130698049';
+  private androidInter = 'ca-app-pub-2497464044902615/3469398308';
 
-  constructor(public http: HttpClient, private admob: AdMobPro) {
-    console.log('Hello AdmobServiceProvider Provider');
+  private iosVid = 'ca-app-pub-2497464044902615/1296151797';
+  private androidVid='ca-app-pub-2497464044902615/2902970831';
+  constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform) {
+    //android o ios
+      if(this.platform.is('android')) {
+        this.adIdinterstetial  = this.androidInter;
+        this.adIdVideo =this.androidVid;
+      } else if (this.platform.is('ios')) {
+        this.adIdinterstetial = this.iosInter;
+        this.adIdVideo = this.iosVid;
+      }
+
   }
 
+  showInterstitialAdd(){
+    const interstitialopt : AdMobOptions = {
+      //adId: this.adIdinterstetial;
+      isTesting : true,
+      autoShow: true
+    };
+    this.admob.prepareInterstitial(interstitialopt);
+    return this.admob;
+  }
 
+  showVideoAdd(){
+    const videopt: AdMobOptions = {
+      //adId: this.adIdVideo,
+      isTesting: true,
+      autoShow: true
+    };
+    this.admob.prepareRewardVideoAd(videopt).then(()=>{},
+      error=>{
+        console.log(error);
+    });
+    return this.admob;
+  }
+
+ 
+
+}
+
+
+
+
+/*
+  hidddeBanner(){
+    this.admob.hideBanner();
+  }
+*/
+/*
   async showBanner(){
     const options : AdMobOptions = {
-      //adId: xxxxxxxxx
+      //adId: this.adId;
       isTesting: true,
       autoShow: true,
 
     }
     this.admob.createBanner(options);
   }
-}
+*/

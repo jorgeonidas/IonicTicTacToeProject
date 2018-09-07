@@ -14,6 +14,7 @@ import { RewardPage } from '../pages/reward/reward';
 import { GamePage } from '../pages/game/game';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 import { CreateAccountPage } from '../pages/create-account/create-account';
+import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
 
 
 
@@ -48,7 +49,6 @@ export class MyApp {
       //statusBar.styleDefault();
 
     });
-    
     //statusBar.hide(); //probando si funciona en startup
     this.getSettingsFromDB();
     }

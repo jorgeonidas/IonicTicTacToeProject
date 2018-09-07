@@ -5,6 +5,7 @@ import { CharacterSelectionPage } from '../character-selection/character-selecti
 import { PlayerSelectorService } from '../../services/playerSelService';
 import { ContactsPage } from '../contacts/contacts';
 import { TokenStorePage } from '../token-store/token-store';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 
 @IonicPage()
@@ -24,6 +25,7 @@ export class MainMenuPage {
               private popoverCtrl: PopoverController,
               private menuCtrl: MenuController,
               private playerSelService: PlayerSelectorService,
+              private admob: AdmobServiceProvider
               ) {
 
                
@@ -33,6 +35,7 @@ export class MainMenuPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainMenuPage');
     this.sideMenuOpen = false;
+    //this.admob.showInterstitialAdd();
   }
 
   onLoadSettingsMenu(){

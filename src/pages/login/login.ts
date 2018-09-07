@@ -32,7 +32,7 @@ export class LoginPage {
 
 
   ionViewDidLoad() {
-    this.adSercice.showBanner();
+    //this.adSercice.showBanner();
     console.log('ionViewDidLoad LoginPage');
     //pido los datos de secure storage
     this.auth.getSessionData();
