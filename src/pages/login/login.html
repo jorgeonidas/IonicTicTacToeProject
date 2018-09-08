@@ -39,7 +39,7 @@
         style="font-size: 3vh;"
         round 
         ion-button
-        class="borderLogin">Login</button>
+        class="borderLogin" [disabled]="!loginForm.valid">Login</button>
       </ion-col>
     </ion-row>
     <ion-row style="height: 5%; justify-content: center">
@@ -52,7 +52,7 @@
           round 
           color="gold"
           class="borderCreate" 
-          (click)="toCreateAccountPage()" [disabled]="!loginForm.valid">Create Account</button>
+          (click)="toCreateAccountPage()" >Create Account</button>
         </ion-col>
       </ion-row>
     </form>
