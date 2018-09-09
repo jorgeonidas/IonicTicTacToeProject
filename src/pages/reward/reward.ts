@@ -128,7 +128,7 @@ export class RewardPage {
     var spinAngle = this.spinAngleStart - this.easeOut(this.spinTime, 0, this.spinAngleStart, this.spinTimeTotal);
     
     for (var i = 0; i < this.cantPremios; i++){
-      this.startAngles[i] = this.startAngles[i] + spinAngle;  
+      this.startAngles[i] = this.startAngles[i] + this.gradosARadianes(spinAngle);  
     }
   
 

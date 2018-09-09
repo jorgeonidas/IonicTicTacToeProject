@@ -48,7 +48,7 @@ export class AdmobServiceProvider {
 
   showInterstitialAdd(){
     const interstitialopt : AdMobOptions = {
-      //adId: this.adIdinterstetial;
+      //adId: this.adIdinterstetial,
       isTesting : true,
       autoShow: true
     };
