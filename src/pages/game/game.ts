@@ -482,7 +482,7 @@ export class GamePage {
           this.navCtrl.pop({animate : false});;
         }
       );
-      }else{//volver a main menu
+      }else{//volver a main menu    
         this.navCtrl.pop({animate : false});
       }
     }

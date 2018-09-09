@@ -44,8 +44,6 @@ export class MainMenuPage {
       //ver publicidad
       if (this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable) {
         this.admob.showInterstitialAdd();
-      } else {//volver a main menu
-        this.navCtrl.pop({ animate: false });
       }
     }
   }
