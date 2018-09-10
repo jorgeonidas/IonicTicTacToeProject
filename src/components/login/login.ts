@@ -73,7 +73,7 @@ export class LoginComponent {
         loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Error!',
-          message: error.message,
+          message: error.error.message,
           buttons: [{
             text: 'Ok',
             role: 'dissmiss'

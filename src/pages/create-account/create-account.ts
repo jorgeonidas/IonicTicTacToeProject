@@ -94,10 +94,12 @@ export class CreateAccountPage implements OnInit  {
         //this.navCtrl.push(MainMenuPage,{},{animate: false});
       },
       error=>{//caso error
+        console.log(error);
+        
         loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Error!',
-          message: error.name,
+          message: error.error.message,
           buttons: 
           [
             {

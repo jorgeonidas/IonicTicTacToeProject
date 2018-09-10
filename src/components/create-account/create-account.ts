@@ -74,9 +74,10 @@ export class CreateAccountComponent {
           alert.present();
         },
           error => {
+            console.log(error);
             let alert = this.alertCtrl.create({
               title: 'Error!',
-              message: error.name,
+              message: error.error.message,
               buttons:
                 [
                   {
