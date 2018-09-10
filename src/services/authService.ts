@@ -189,11 +189,10 @@ export class AuthService{
         );
 
     }
-    //recueprar la ultima sesion
+    //recueprar la ultima sesion revisando si el id y el token estan almacenados en la memoria interna
+    //de ser asi 
     getSessionData() {
         
-        const loading = this.loadCtrl.create({ content: 'Please Waint...' });
-        loading.present();
 
         console.log("recuperando sesion");
         this.db.get('token').then((data) => {
@@ -204,7 +203,8 @@ export class AuthService{
 
                 this.db.get('id').then((data) => {
                     console.log("id",data);
-                    
+                    const loading = this.loadCtrl.create({ content: 'Please Waint...' });
+                    loading.present();
                     if (data != null) {
                         this.USER_OBJ.id = data;
                         //pido y guardo la data del usuario en el servicio para que ya este disponible en el resto del app
@@ -237,7 +237,6 @@ export class AuthService{
 
                 },
                     (error) => {
-                        loading.dismiss();
                         console.log(error);
                     }
                 );
