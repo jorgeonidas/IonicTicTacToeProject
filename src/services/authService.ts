@@ -242,7 +242,6 @@ export class AuthService{
                 );
             }
         }, (error) => {
-            loading.dismiss();
             console.log(error);
         });
     }
