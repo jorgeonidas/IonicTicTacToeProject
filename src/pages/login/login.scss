@@ -57,6 +57,24 @@ page-login {
         padding: 0;
     }
 
+    .error-msj-row{
+        height: 10%; 
+        justify-content: center;
+    }
+
+    .error-msj{
+        margin: 0;
+        color: red;
+        font-size: 4.5vw;
+        font-weight: bold;
+    }
+
+    .ma-link{
+        color: red;
+        text-decoration: underline;
+    }
+    
+
     .button-coll{
         margin: 0;
         padding-left: 5%;
