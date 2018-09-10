@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
+import { AuthService } from '../../services/authService';
 
 @Component({
   selector: 'information-bar',
@@ -20,9 +21,15 @@ export class InformationBarComponent {
   model: string;
   activePage :string;
 
-  constructor( platform: Platform, private device: Device, public navCtrl:NavController) {
+  constructor( platform: Platform, private device: Device, public navCtrl:NavController, public auth: AuthService) {
     console.log('Hello InformationBarComponent Component');
-    this.nickname = 'human';
+    if (this.auth.getCurrentToken() != null) {
+      console.log(this.auth.getCurrentUserNickname());
+      
+      this.nickname = this.auth.getCurrentUserNickname()
+    } else {
+      this.nickname = 'human';
+    }
     this.coins = 9999;
     this.eolas = 9999;
     

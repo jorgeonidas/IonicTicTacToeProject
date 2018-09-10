@@ -80,14 +80,15 @@ export class AuthService{
     //GET BY ID
     getUserByID(id: number, token: string){
         let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
-        this.http.get(this._url+id,{headers:headersToken}).subscribe((data)=>{
+       /* this.http.get(this._url+id,{headers:headersToken}).subscribe((data)=>{
             console.log("user data",data);
             this.setUserObject(data);
             //ACTUALIZAREMOS LA ULTIMA FECHA DE CONEXION!
             console.log("updating las connection date..");
             this.updateUserData(this.USER_OBJ,token);
         },error=>{console.log(error);}
-        );
+        );*/
+        return this.http.get(this._url+id,{headers:headersToken});
     }
 
     
@@ -164,6 +165,7 @@ export class AuthService{
     }
 
     getCurrentUserNickname(){
+        console.log('nick to provide', this.USER_OBJ['nickName']);       
         return this.USER_OBJ['nickName'];
     }
 
@@ -172,7 +174,7 @@ export class AuthService{
 
         this.db.set('id', this.USER_OBJ.id).then(
             (data) => {
-                console.log("saved",data);
+                console.log("saved",data);//
             },
             (error) => {
                 console.log(error);
@@ -189,6 +191,10 @@ export class AuthService{
     }
     //recueprar la ultima sesion
     getSessionData() {
+        
+        const loading = this.loadCtrl.create({ content: 'Please Waint...' });
+        loading.present();
+
         console.log("recuperando sesion");
         this.db.get('token').then((data) => {
             console.log("token", data);
@@ -201,28 +207,43 @@ export class AuthService{
                     
                     if (data != null) {
                         this.USER_OBJ.id = data;
-                        let alert = this.alertCtrl.create({
-                            title: 'Succes!',
-                            message: 'Loggin Sucessfull',
-                            buttons: [{
-                                text: 'Ok',
-                                role: 'dissmiss'
-                            }]
-                        });
-                        alert.onDidDismiss(() => {
-                            this.getUserByID(this.getCurrentUserId(), this.getCurrentToken());
-                            this.events.publish('authenticate : done');
-                        });//testing
-                        alert.present();
+                        //pido y guardo la data del usuario en el servicio para que ya este disponible en el resto del app
+                        this.getUserByID(this.getCurrentUserId(), this.getCurrentToken())
+                            .subscribe((user_data)=>{ //recupero el usuario por id
+                                //actualizo los datos tanto en este service como en el api
+                                this.setUserObject(user_data);
+                                console.log("updating las connection date..");
+                                this.updateUserData(user_data,  this.currentUserToken);
+                                
+                                let alert = this.alertCtrl.create({
+                                    title: 'Succes!',
+                                    message: 'Welcome Back '+this.USER_OBJ.nickName+'!',
+                                    buttons: [{
+                                        text: 'Ok',
+                                        role: 'dissmiss'
+                                    }]
+                                });
+                                alert.onDidDismiss(() => {
+                                    this.events.publish('authenticate : done');
+                                });//testing
+                                loading.dismiss();
+                                alert.present();
+                            },
+                            error=>{
+                                loading.dismiss();
+                                console.log(error);
+                            });
                     }
 
                 },
                     (error) => {
+                        loading.dismiss();
                         console.log(error);
                     }
                 );
             }
         }, (error) => {
+            loading.dismiss();
             console.log(error);
         });
     }
