@@ -59,6 +59,7 @@ export class LoginPage {
   }
 
   toCreateAccountPage(){
+    this.skipping = true;
     this.navCtrl.push(this.createAccPage, {}, {animate: false});
   }
 
@@ -104,6 +105,7 @@ export class LoginPage {
 
       }, error => {
         console.log(error);
+        console.log(error.status);
         loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Error!',
