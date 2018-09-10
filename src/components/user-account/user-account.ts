@@ -1,6 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { TokenService } from '../../services/tokenService';
 import { AuthService } from '../../services/authService';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'user-account',
@@ -23,7 +24,7 @@ export class UserAccountComponent {
   currTokenUrl: string;
   rankingUri: string = 'assets/imgs/medal-icon.png';
 
-  constructor(private tokenServ : TokenService, private aut: AuthService) {
+  constructor(private tokenServ : TokenService, private aut: AuthService, private events: Events) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
     this.coins = 9999;
@@ -56,6 +57,7 @@ export class UserAccountComponent {
 
   logOut(){
     this.aut.logOut();
+    this.events.publish('updateNick : done');
   }
 
 }

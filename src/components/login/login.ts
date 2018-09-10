@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/authService';
-import { LoadingController, AlertController } from 'ionic-angular';
+import { LoadingController, AlertController, Events } from 'ionic-angular';
 @Component({
   selector: 'login',
   templateUrl: 'login.html'
@@ -12,7 +12,10 @@ export class LoginComponent {
   @Output() toCreateUserComp: EventEmitter<string> = new EventEmitter<string>();
   @Output() toUserAccount: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private auth: AuthService, private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+  constructor(private auth: AuthService, 
+    private loadingCtrl: LoadingController, 
+    private alertCtrl: AlertController,
+    private events : Events) {
     console.log('Hello LoginComponent Component');
     this.initializeLoginForm();
   }
@@ -56,7 +59,12 @@ export class LoginComponent {
             role: 'dissmiss'
           }]
         });
-        alert.onDidDismiss(() => this.openUserAccount());
+        alert.onDidDismiss(
+          () => {this.openUserAccount();
+                this.events.publish('updateNick : done');
+          }
+          
+        );
         loading.dismiss();
         alert.present();
 

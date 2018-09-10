@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform, NavController } from 'ionic-angular';
+import { Platform, NavController, Events } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { AuthService } from '../../services/authService';
 
@@ -21,15 +21,12 @@ export class InformationBarComponent {
   model: string;
   activePage :string;
 
-  constructor( platform: Platform, private device: Device, public navCtrl:NavController, public auth: AuthService) {
+  private defaultNickName = 'human';
+
+  constructor( platform: Platform, private device: Device, public navCtrl:NavController, public auth: AuthService, private events: Events) {
     console.log('Hello InformationBarComponent Component');
-    if (this.auth.getCurrentToken() != null) {
-      console.log(this.auth.getCurrentUserNickname());
-      
-      this.nickname = this.auth.getCurrentUserNickname()
-    } else {
-      this.nickname = 'human';
-    }
+    
+    //las monedas tambien tienen que cargar de un servicio
     this.coins = 9999;
     this.eolas = 9999;
     
@@ -51,8 +48,13 @@ export class InformationBarComponent {
     //this.iphonex = this.deviceHeight > 800;
     console.log("iphonex", this.iphonex);
 
-    
-    
+    //chequear evento logout
+    this.events.subscribe(('updateNick : done'),() => {
+      console.log("Event catched by Information Bar Component");
+      this.loadNickName();
+    } );
+
+    this.loadNickName();
   }
   ionViewDidLoad(){
     this.activePage = this.getActivePage();
@@ -71,6 +73,15 @@ export class InformationBarComponent {
   getActivePage(): string {
     return this.navCtrl.getActive().name;
     
+  }
+
+  loadNickName(){
+    
+    if (this.auth.getCurrentToken() != null) {
+      this.nickname = this.auth.getCurrentUserNickname()
+    } else {
+      this.nickname = this.defaultNickName;
+    }
   }
 
 }

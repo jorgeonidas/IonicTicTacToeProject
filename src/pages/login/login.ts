@@ -96,7 +96,9 @@ export class LoginPage {
             role: 'dissmiss'
           }]
         });
-        alert.onDidDismiss(() => {this.toMainMenuPage(); /*this.auth.getSessionData();*/});//testing
+        alert.onDidDismiss(() => {
+          this.toMainMenuPage(); 
+        });//testing
         loading.dismiss();
         alert.present();
 
