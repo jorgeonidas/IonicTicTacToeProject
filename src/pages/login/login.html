@@ -15,8 +15,8 @@
       <input style="width: 100%" class="ion-item-input" type="text" formControlName="username" value=""/>
     </ion-row>
     <ion-row class="error-msj-row">
-      <p class="error-msj" text-center>Username or password is wrong!</p>
-      <p class="error-msj" text-center>Having troubles? <a class="ma-link">MANAGE ACCOUT</a></p>
+      <p *ngIf="falToLogin" class="error-msj" text-center>Username or password is wrong!</p>
+      <p  *ngIf="falToLogin" class="error-msj" text-center>Having troubles? <a class="ma-link">MANAGE ACCOUT</a></p>
     </ion-row>
     <ion-row class="form-row">
       <ion-col class="label-col">
@@ -28,7 +28,7 @@
     <ion-row class="form-row">
       <input style="width: 100%" class="ion-item-input" type="password" formControlName="password" value=""/>
     </ion-row>
-    <ion-row class="error-msj-row"><p class="error-msj" text-center>wrong password</p></ion-row>
+    <ion-row class="error-msj-row"><p *ngIf="falToLogin" class="error-msj" text-center>wrong password</p></ion-row>
     <ion-row class="buttons-row">
       <ion-col class="button-coll">
         <button round ion-button

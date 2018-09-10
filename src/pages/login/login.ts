@@ -17,7 +17,7 @@ export class LoginPage {
   createAccPage = CreateAccountPage;
   loginForm: FormGroup;
   skipping: boolean;
-
+  falToLogin : boolean;
   constructor(public navCtrl: 
     NavController, 
     public navParams: NavParams, 
@@ -28,10 +28,12 @@ export class LoginPage {
     private events: Events,
     private adSercice: AdmobServiceProvider) {
     this.initializeLoginForm();
+    
   }
 
 
   ionViewDidLoad() {
+    this.falToLogin = false;
     //this.adSercice.showBanner();
     console.log('ionViewDidLoad LoginPage');
     //pido los datos de secure storage
@@ -115,6 +117,7 @@ export class LoginPage {
             role: 'dissmiss'
           }]
         });
+        this.falToLogin = true;
         alert.present();
       }
       );
