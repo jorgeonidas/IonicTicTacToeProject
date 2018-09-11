@@ -2,7 +2,7 @@
   <!--<div style="width: 100%; height: 2%; margin: 0"></div>-->
   <ion-grid id="loginContainer">
     <form style="height: 100%" [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
-    <ion-row style="height: 4%;"></ion-row>
+    <ion-row style="height: 2%;"></ion-row>
 
     <ion-row style="height: 8%;padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
       <ion-col style="height: 100%; padding: 0">
@@ -18,7 +18,11 @@
     </ion-row>
     <ion-row style="height: 2%">
       <ion-col *ngIf="!this.createUserForm.get('name').valid" col-12 no-padding class="invalid-tip">
-        <h5 style="font-size: 3vw; text-align: center" no-margin>Name Must Have Between 4 an 30 characters</h5>
+        <h5 class="error-tip" no-margin>Name Must Have Between 4 an 30 characters</h5>
+      </ion-col>
+      <!--400-->
+      <ion-col *ngIf="true" col-12 no-padding class="invalid-tip">
+        <h5 class="error-tip" no-margin>The username is already in use! Choose another one</h5>
       </ion-col>
     </ion-row>
 
@@ -34,11 +38,15 @@
           <input [class.invalid]="!this.createUserForm.get('password').valid" style="width: 100%;  height: 100%" class="ion-item-input" type="password" formControlName="password"/>
       </ion-col>
     </ion-row>
-    <ion-row style="height: 2%;" >
-        <ion-col *ngIf="!this.createUserForm.get('password').valid" col-12 no-padding class="invalid-tip" >
-          <h5 style="font-size: 3vw; text-align: center" no-margin>Password Must Have Between 4 a 8 Characters</h5>
-        </ion-col>
-      </ion-row>
+    <ion-row style="height: 2%;">
+      <ion-col *ngIf="!this.createUserForm.get('password').valid" col-12 no-padding class="invalid-tip">
+        <h5 class="error-tip" no-margin>Password Must Have Between 4 a 8 Characters</h5>
+      </ion-col>
+      <!--400-->
+      <ion-col *ngIf="true" col-12 no-padding class="invalid-tip">
+        <h5 class="error-tip" no-margin>Wrong password</h5>
+      </ion-col>
+    </ion-row>
 
     <ion-row style="height: 8%; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
       <ion-col style="height: 100%; padding: 0">
@@ -53,10 +61,14 @@
       </ion-col>
     </ion-row>
     <ion-row style="height: 2%;">
-        <ion-col  *ngIf="!this.createUserForm.get('email').valid" col-12 no-padding col-6 class="invalid-tip" >
-          <h5 style="font-size: 3vw; text-align: center" no-margin>Invalid Address</h5>
-        </ion-col>
-      </ion-row>
+      <ion-col *ngIf="!this.createUserForm.get('email').valid" col-12 no-padding col-6 class="invalid-tip">
+        <h5 class="error-tip" no-margin>Invalid Address</h5>
+      </ion-col>
+      <!--400-->
+      <ion-col *ngIf="true" col-12 no-padding class="invalid-tip">
+        <h5 class="error-tip" no-margin>Email does not fit</h5>
+      </ion-col>
+    </ion-row>
 
     <ion-row style="height: 8; padding-top: 0;padding-bottom: 0; padding-left: 5%; padding-right: 5%">
       <ion-col style="height: 100%; padding: 0">
