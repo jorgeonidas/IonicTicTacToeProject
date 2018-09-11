@@ -18,6 +18,7 @@ export class CreateAccountPage implements OnInit  {
   currentDate;
   dateOfBirth;
   isSubmintAction: boolean;
+  failTocreate: boolean;
 
   ngOnInit(){
     this.initializeForm();
@@ -34,6 +35,7 @@ export class CreateAccountPage implements OnInit  {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateAccountPage');
     this.isSubmintAction = true;
+    this.failTocreate = false;
   }
 
   public initializeForm(){
@@ -94,9 +96,10 @@ export class CreateAccountPage implements OnInit  {
         //this.navCtrl.push(MainMenuPage,{},{animate: false});
       },
       error=>{//caso error
-        console.log(error);
-        
+        console.log(error.error.message);
+        this.failTocreate = true;
         loading.dismiss();
+        /*
         let alert = this.alertCtrl.create({
           title: 'Error!',
           message: error.error.message,
@@ -109,6 +112,7 @@ export class CreateAccountPage implements OnInit  {
           ]
         });
         alert.present();
+        */
        /*console.log(error);
         console.log(error.name);
         console.log(error.message);

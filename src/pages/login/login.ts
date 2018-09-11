@@ -109,7 +109,7 @@ export class LoginPage {
         console.log(error);
         console.log(error.status);
         loading.dismiss();
-        let alert = this.alertCtrl.create({
+        /*let alert = this.alertCtrl.create({
           title: 'Error!',
           message: error.error.message,
           buttons: [{
@@ -117,8 +117,9 @@ export class LoginPage {
             role: 'dissmiss'
           }]
         });
-        this.falToLogin = true;
         alert.present();
+        */
+        this.falToLogin = true;  
       }
       );
 
