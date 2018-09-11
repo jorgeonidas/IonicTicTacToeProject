@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdMobPro, AdMobOptions } from '@ionic-native/admob-pro';
-import { Platform, LoadingController} from 'ionic-angular';
+import { Platform, LoadingController, Events} from 'ionic-angular';
 
 @Injectable()
 export class AdmobServiceProvider {
@@ -18,7 +18,7 @@ export class AdmobServiceProvider {
   public firstTimeLaunched: boolean;
 
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, private events : Events) {
     this.firstTimeLaunched = true;
     //si las funciones de cordova estan disponibles
     if(this.platform.is('cordova')){
@@ -35,7 +35,8 @@ export class AdmobServiceProvider {
         this.adIdinterstetial = this.iosInter;
         this.adIdVideo = this.iosVid;
       }
-
+    
+    
   }
 
   setAdProb(){
@@ -47,9 +48,14 @@ export class AdmobServiceProvider {
   }
 
   showInterstitialAdd(){
+
+    this.admob.onAdFailLoad().subscribe((data)=>{
+      console.log('Fail to load AD',data); 
+    });
+
     const interstitialopt : AdMobOptions = {
-      //adId: this.adIdinterstetial,
-      isTesting : true,
+      adId: this.adIdinterstetial,
+      isTesting : false,
       autoShow: true
     };
     this.admob.prepareInterstitial(interstitialopt);
@@ -57,11 +63,18 @@ export class AdmobServiceProvider {
   }
 
   showVideoAdd(){
+    //listener para cuando la publicidad falla
+    this.admob.onAdFailLoad().subscribe((data)=>{
+      console.log('Fail To Load ADD', data);
+      //aviso que fallo para que haga pop a main, desde reward y game
+      this.events.publish('videoAdFail: true');
+    });
+
     const loading = this.loadingCtrl.create({ content: 'Please Waint...' });
     loading.present();
     const videopt: AdMobOptions = {
-      //adId: this.adIdVideo,
-      isTesting: true,
+      adId: this.adIdVideo,
+      isTesting: false,
       autoShow: true
     };
     this.admob.prepareRewardVideoAd(videopt).then(()=>{ loading.dismiss(); },

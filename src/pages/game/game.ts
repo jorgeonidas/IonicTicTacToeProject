@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert, Events } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
@@ -56,57 +56,12 @@ export class GamePage {
     private IA : AIService, 
     private cfgService: ConfigurationServiceDB,
     private popover: PopoverController,
-    private admob: AdmobServiceProvider) {
-    /*  
-    this.playerOneScore = 0;
-    this.playerTwoOrAIScore = 0;
-    
-    this.winner = false;
-    this.playerOneWinsRound = false;
-    this.playerOneWinGame = false;
-    //barras de vida
-    this.playerOneHealth = 100;
-    this.playerTwoOrBothealth = 100;
-    //turno actual
-    //this.gametype= 'local-multiplayer';
-    this.playerOneCurrentTurn = true;         //OJO!
-    //no estoy dejando el juego
-    this.cfgService.setLeavingCurrentGame(false);
-
-
-    this.gameData = this.navParams.data;
-    console.log(this.gameData);
-    this.gametype = this.navParams.get('gameType');
-    this.rounds = this.navParams.get('rounds');
-    this.difficulty = this.navParams.get('difficulty');
-    this.portraitOne = this.navParams.get('portraitOne');
-    this.portraitTwo = this.navParams.get('portraitTwo');
-    console.log(this.portraitOne, this.portraitTwo);
-    this.isGameOver = false;
-    this.setMaxPointsToWin();
-
-    switch (this.difficulty) {
-      case 'easy':
-        this.turnInterval = 6;
-        break;
-
-      case 'medium':
-        this.turnInterval = 4;
-        break;
-
-      case 'hard':
-        this.turnInterval = 2;
-        break;
-
-      default:
-        break;
-    }
-    console.log("turn interval: " + this.turnInterval);
-    this.gameDidStart = false;
-    //ACA IMPLEMENTO TIME PRE JUEGO
-    this.gameInitializer();
-    this.toltalTurnBar = 100;
-    */
+    private admob: AdmobServiceProvider,
+    private events : Events) {
+   
+      this.events.subscribe('videoAdFail: true',()=>{
+        this.navCtrl.pop({animate : false});
+      });
   }
 
   ionViewDidLoad() {

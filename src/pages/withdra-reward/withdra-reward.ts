@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
@@ -15,8 +15,13 @@ export class WithdraRewardPage {
   pressed: boolean;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private admob: AdmobServiceProvider
+              private admob: AdmobServiceProvider,
+              private events : Events
               ) {
+
+                this.events.subscribe('videoAdFail: true',()=>{
+                  this.navCtrl.pop({animate : false});
+                });
   }
 
   ionViewDidLoad() {
@@ -44,7 +49,7 @@ export class WithdraRewardPage {
         this.navCtrl.pop({animate : false});
       },error => {
         console.log(error);
-        this.navCtrl.pop({animate : false});;
+        this.navCtrl.pop({animate : false});
       }
     );
     }else{//volver a main menu
