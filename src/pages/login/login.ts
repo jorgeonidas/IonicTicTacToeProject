@@ -5,6 +5,7 @@ import { CreateAccountPage } from '../create-account/create-account';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/authService';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class LoginPage {
   createAccPage = CreateAccountPage;
   loginForm: FormGroup;
   skipping: boolean;
-  falToLogin : boolean;
+  //falToLogin : boolean;
   constructor(public navCtrl: 
     NavController, 
     public navParams: NavParams, 
@@ -26,15 +27,14 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     private events: Events,
-    private adSercice: AdmobServiceProvider) {
+    private errorHandlerServ: ErrorHandlerProvider) {
     this.initializeLoginForm();
     
   }
 
 
   ionViewDidLoad() {
-    this.falToLogin = false;
-    //this.adSercice.showBanner();
+    //this.falToLogin = false;
     console.log('ionViewDidLoad LoginPage');
     //pido los datos de secure storage
     this.auth.getSessionData();
@@ -108,6 +108,9 @@ export class LoginPage {
       }, error => {
         console.log(error);
         console.log(error.status);
+        this.errorHandlerServ.processLoginError(error.error.message);
+        //this.errorHandlerServ.logInErrorObj.errorPassword;
+        //this.errorHandlerServ.logInErrorObj.errorUser;
         loading.dismiss();
         /*let alert = this.alertCtrl.create({
           title: 'Error!',
@@ -119,7 +122,7 @@ export class LoginPage {
         });
         alert.present();
         */
-        this.falToLogin = true;  
+        //this.falToLogin = true;  
       }
       );
 

@@ -53,6 +53,7 @@ import { RewardPage } from '../pages/reward/reward';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 import { AdMobPro} from '@ionic-native/admob-pro'
 import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
+import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 
 @NgModule({
   declarations: [
@@ -141,7 +142,8 @@ import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
     Device,
     Keyboard,
     AdMobPro,
-    AdmobServiceProvider
+    AdmobServiceProvider,
+    ErrorHandlerProvider
   ]
 })
 export class AppModule {}
