@@ -1,5 +1,5 @@
-<ion-content no-padding class="bg-page" padding>
-  <div style="width: 100%; height: 5%; margin: 0"></div>
+<ion-content no-padding class="bg-page no-scroll" padding>
+  <!--<div style="width: 100%; height: 2%; margin: 0"></div>-->
   <ion-grid id="loginContainer">
     <form style="height: 100%" [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
     <ion-row style="height: 4%;"></ion-row>
@@ -72,7 +72,8 @@
 
       </ion-col>
     </ion-row>
-    <ion-row style="margin-top: 5%; height: 5%; padding-bottom: 0; padding-left: 5%; padding-right: 5%">
+    <ion-row style="height: 2.5%"></ion-row>
+    <ion-row style="margin-top: 2.5%; height: 5%; padding-bottom: 0; padding-left: 5%; padding-right: 5%">
       <ion-col style="height: 100%;" col-1 no-padding class="flex-col">
           <ion-checkbox formControlName="useragre"></ion-checkbox>
       </ion-col>
@@ -80,6 +81,7 @@
           <h5 class="user-agree-text" no-margin>I have read and accpet the Terms of Use and Privacy Policy</h5>
       </ion-col>
     </ion-row>
+    <ion-row style="height: 2.5%"></ion-row>
     <!--buttons-->
     <ion-row style="height: 10%">
       <ion-col class="back-skip-col">
@@ -88,7 +90,7 @@
       </ion-col>
     </ion-row>
     <ion-row style="height: 12%">
-      <ion-col class="flex-col">
+      <ion-col style="padding: 0 5%" class="flex-col">
         <button ion-button style="font-size: 3vh" type="submit" large round class="borderCreate" color="gold" [disabled]="!createUserForm.valid">Create</button>
       </ion-col>
     </ion-row>
