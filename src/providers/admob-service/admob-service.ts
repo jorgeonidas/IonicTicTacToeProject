@@ -50,7 +50,9 @@ export class AdmobServiceProvider {
   showInterstitialAdd(){
 
     this.admob.onAdFailLoad().subscribe((data)=>{
-      console.log('Fail to load AD',data); 
+      console.log('Fail to load Interstitial');
+      
+      console.log(data); 
     });
 
     const interstitialopt : AdMobOptions = {
@@ -65,7 +67,8 @@ export class AdmobServiceProvider {
   showVideoAdd(){
     //listener para cuando la publicidad falla
     this.admob.onAdFailLoad().subscribe((data)=>{
-      console.log('Fail To Load ADD', data);
+      console.log('Fail to load Video');
+      console.log(data);
       //aviso que fallo para que haga pop a main, desde reward y game
       this.events.publish('videoAdFail: true');
     });
@@ -75,9 +78,12 @@ export class AdmobServiceProvider {
     const videopt: AdMobOptions = {
       adId: this.adIdVideo,
       isTesting: false,
-      autoShow: true
+      autoShow: false
     };
-    this.admob.prepareRewardVideoAd(videopt).then(()=>{ loading.dismiss(); },
+    this.admob.prepareRewardVideoAd(videopt).then(()=>{ 
+      loading.dismiss(); 
+      this.admob.showRewardVideoAd();
+    },
       error=>{
         loading.dismiss();
         console.log(error);

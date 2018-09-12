@@ -8,12 +8,30 @@ page-withdra-reward {
         margin: 0;
         font-size: 9vh;
     }
-
-    .spin-btn{
-        margin: auto;
-        height: 90%;
-        width: 90%;
-        font-size: 5vh;
-        border-radius: 60px;
+    
+    .continue-btn{
+        border-radius: 30px;
     }
+
+    .double-reward-btn{
+        height: 80%;
+        width: 50%;
+        color: #ffffff;
+        font-size: 6vw;
+        border-radius: 30px;
+    }
+
+    .button-coll{
+        margin: 0;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
 }

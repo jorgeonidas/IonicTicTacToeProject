@@ -13,11 +13,17 @@
             </ion-col>
         </ion-row>
         <ion-row style="height: 12%;margin-top: 15%">
+            <!--
             <ion-col></ion-col>
             <ion-col col-7>
                 <button class="spin-btn" color="secondary" block large  ion-button (click)="toMainMenu()" [disabled]="pressed">Continue</button>
             </ion-col>
             <ion-col></ion-col>
+            -->
+            <ion-col class="button-coll">
+                <button ion-button  color="secondary"  class="continue-btn"  ion-button (click)="toMainMenu()" [disabled]="pressed">Continue</button>
+                <button ion-button class="double-reward-btn" color="createBorder">x2 Rewards</button>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
