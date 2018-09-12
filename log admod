@@ -1,0 +1,7 @@
+repareRewardVideoAd
+2018-09-12 11:39:41.008539-0600 Ollie-TicTacToe[1976:61464] CDVWKWebViewEngine: handleStopScroll
+2018-09-12 11:39:42.401283-0600 Ollie-TicTacToe[1976:61844] WF: === Starting WebFilter logging for process Ollie-TicTacToe
+2018-09-12 11:39:42.401487-0600 Ollie-TicTacToe[1976:61844] WF: _userSettingsForUser : (null)
+2018-09-12 11:39:42.401725-0600 Ollie-TicTacToe[1976:61844] WF: _WebFilterIsActive returning: NO
+2018-09-12 11:39:43.370136-0600 Ollie-TicTacToe[1976:61464] AdMob, onAdFailLoad, {'adNetwork':'AdMob','adType':'rewardvideo','adEvent':'onAdFailLoad','error':1,'reason':'Request Error: No ad to show.'}
+2018-09-12 11:39:43.380196-0600 Ollie-TicTacToe[1976:61464] Fail To Load ADD [object Event]
