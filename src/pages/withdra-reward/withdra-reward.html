@@ -22,7 +22,7 @@
             -->
             <ion-col class="button-coll">
                 <button ion-button  color="secondary"  class="continue-btn"  ion-button (click)="toMainMenu()" [disabled]="pressed">Continue</button>
-                <button ion-button class="double-reward-btn" color="createBorder">x2 Rewards</button>
+                <button ion-button class="double-reward-btn" color="createBorder" (click)="doubleReward()" [disabled]="pressed">x2 Rewards</button>
             </ion-col>
         </ion-row>
     </ion-grid>

@@ -59,4 +59,23 @@ export class WithdraRewardPage {
     //this.navCtrl.push(MainMenuPage);//despues lo haremos solo con pop por ahora es de manera demostrativa
     //this.navCtrl.pop({animate : false}); //pop to main menu!
   }
+
+  doubleReward(){
+    this.pressed = true;
+    console.log("cordova aviale?",this.admob.cordovaAviable);
+    
+    if(this.admob.cordovaAviable){
+      this.admob.showVideoAdd().onAdDismiss().subscribe((data) => {
+        console.log("reward dissmiss");
+        console.log(data);
+        this.navCtrl.pop({ animate: false });
+      }, error => {
+        console.log(error);
+        this.navCtrl.pop({ animate: false });
+      }
+      );
+    }else{
+      this.navCtrl.pop({ animate: false });
+    }  
+  }
 }
