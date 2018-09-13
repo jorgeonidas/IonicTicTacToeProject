@@ -78,17 +78,19 @@ export class AdmobServiceProvider {
     const videopt: AdMobOptions = {
       adId: this.adIdVideo,
       isTesting: false,
-      autoShow: false
+      autoShow: true
     };
-    this.admob.prepareRewardVideoAd(videopt).then(()=>{ 
+    this.admob.prepareRewardVideoAd(videopt).then((data)=>{
+      console.log(data);
       loading.dismiss(); 
-      this.admob.showRewardVideoAd();
     },
       error=>{
         loading.dismiss();
+        this.events.publish('videoAdFail: true');
         console.log(error);
     });
     return this.admob;
+    
   }
 
  
