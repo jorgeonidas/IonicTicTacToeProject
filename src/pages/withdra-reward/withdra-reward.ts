@@ -16,7 +16,8 @@ export class WithdraRewardPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
-              private events : Events
+              private events : Events,
+              private loadingCtrl : LoadingController
               ) {
 
                 this.events.subscribe('videoAdFail: true',()=>{
@@ -38,12 +39,9 @@ export class WithdraRewardPage {
   toMainMenu(){
     console.log("pop to main menu");
     this.pressed = true;
-    //Mostrar pantalla completa luego de reclamar la recompensa
-    /*this.admob.showInterstitialAdd().onAdDismiss().subscribe(()=>{
-      this.navCtrl.pop({animate : false});
-    });*/
-    this.admob.setAdProb();
-    //ver publicidad
+  
+    //this.admob.setAdProb();
+    /*
     if(this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable){
       this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
         this.navCtrl.pop({animate : false});
@@ -52,25 +50,30 @@ export class WithdraRewardPage {
         this.navCtrl.pop({animate : false});
       }
     );
-    }else{//volver a main menu
+    }else{
       this.navCtrl.pop({animate : false});
-    }
-
+    }*/
+    this.admob.videoRewardShowed = false;
+    this.navCtrl.pop({animate : false});
     //this.navCtrl.push(MainMenuPage);//despues lo haremos solo con pop por ahora es de manera demostrativa
     //this.navCtrl.pop({animate : false}); //pop to main menu!
   }
 
   doubleReward(){
     this.pressed = true;
-    console.log("cordova aviale?",this.admob.cordovaAviable);
+    console.log("cordova aviable?",this.admob.cordovaAviable);
     
     if(this.admob.cordovaAviable){
       this.admob.showVideoAdd().onAdDismiss().subscribe((data) => {
         console.log("reward dissmiss");
         console.log(data);
+        this.admob.dismissLoader();
+        this.admob.videoRewardShowed = true;
         this.navCtrl.pop({ animate: false });
       }, error => {
         console.log(error);
+        this.admob.dismissLoader();
+        this.admob.videoRewardShowed = false;
         this.navCtrl.pop({ animate: false });
       }
       );

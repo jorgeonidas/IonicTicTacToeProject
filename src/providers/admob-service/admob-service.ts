@@ -16,10 +16,13 @@ export class AdmobServiceProvider {
   adProb : number;
   public cordovaAviable: boolean;
   public firstTimeLaunched: boolean;
+  public videoRewardShowed : boolean;
+  private loading : any;
 
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform,
     public loadingCtrl: LoadingController, private events : Events) {
     this.firstTimeLaunched = true;
+    this.videoRewardShowed = false;
     //si las funciones de cordova estan disponibles
     if(this.platform.is('cordova')){
       this.cordovaAviable= true;
@@ -73,26 +76,38 @@ export class AdmobServiceProvider {
       this.events.publish('videoAdFail: true');
     });
 
-    const loading = this.loadingCtrl.create({ content: 'Please Waint...' });
-    loading.present();
+    //const loading = this.loadingCtrl.create({ content: 'Please Waint...' });
+    //loading.present();
     const videopt: AdMobOptions = {
       adId: this.adIdVideo,
       isTesting: false,
       autoShow: true
     };
+
+    this.presentLoaderSpinner();
+
     this.admob.prepareRewardVideoAd(videopt).then((data)=>{
       console.log(data);
-      loading.dismiss(); 
+      //loading.dismiss(); 
     },
       error=>{
-        loading.dismiss();
+        //loading.dismiss();
         this.events.publish('videoAdFail: true');
         console.log(error);
+        this.dismissLoader();
     });
     return this.admob;
     
   }
 
+  presentLoaderSpinner(){
+    this.loading = this.loadingCtrl.create({ content: 'Please Waint...' });
+    this.loading.present();
+  }
+
+  dismissLoader(){
+    this.loading.dismiss();
+  }
  
 
 }

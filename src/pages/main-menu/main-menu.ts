@@ -40,11 +40,16 @@ export class MainMenuPage {
   ionViewWillEnter(){
     console.log("FTL:",this.admob.firstTimeLaunched);
     if (!this.admob.firstTimeLaunched) {
-      this.admob.setAdProb();
-      //ver publicidad
-      if (this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable) {
-        this.admob.showInterstitialAdd();
+      if(this.admob.videoRewardShowed == false){ //si no vio video reward muestra 
+        this.admob.setAdProb();
+        //ver publicidad
+        if (this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable) {
+          this.admob.showInterstitialAdd();
+        }
+      }else{//si vio video reward setear a false para mostrar interstitial la proxima vez
+        this.admob.videoRewardShowed = false;
       }
+      
     }
   }
 

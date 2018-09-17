@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert, Events, LoadingController } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
@@ -57,6 +57,7 @@ export class GamePage {
     private cfgService: ConfigurationServiceDB,
     private popover: PopoverController,
     private admob: AdmobServiceProvider,
+    private loadingCtrl : LoadingController,
     private events : Events) {
    
       this.events.subscribe('videoAdFail: true',()=>{
@@ -422,6 +423,8 @@ export class GamePage {
     console.log("leaving");
     //this.navCtrl.pop({animate:false});
     //si es singleplayer y gano el juego, pasa a la pagina de la ruleta
+
+    /*
     if (this.gametype == "singleplayer" && this.playerOneWinGame) {
       let currentIndex = this.navCtrl.getActive().index;
       this.navCtrl.push(RewardPage, {}, { animate: false }).then(() => {
@@ -440,7 +443,39 @@ export class GamePage {
       }else{//volver a main menu    
         this.navCtrl.pop({animate : false});
       }
+    }*/
+    switch (this.gametype) {
+      case 'singleplayer':
+
+        if (this.playerOneWinGame) {
+          let currentIndex = this.navCtrl.getActive().index;
+          this.navCtrl.push(RewardPage, {}, { animate: false }).then(() => {
+            this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
+          });
+        } else {
+          this.admob.setAdProb();
+          if (this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable) {
+            this.admob.showVideoAdd().onAdDismiss().subscribe(() => {
+              this.admob.dismissLoader();
+              this.admob.videoRewardShowed = true;//para avisar que ya vio reward y no lanzar interstitial al volver a mainMenu
+              this.navCtrl.pop({ animate: false });         
+            }, error => {
+              console.log(error);
+              this.admob.videoRewardShowed = false;
+              this.navCtrl.pop({ animate: false });;
+            }
+            );
+          }
+        }
+        break;
+    
+      case 'local-multiplayer':
+        this.navCtrl.pop({animate : false});
+        break;
+      default:
+        break;
     }
+
 
     //TODO: SOLO FALTARIA EL CASO PARA MULTIPLAYER ONLINE
 
