@@ -460,6 +460,7 @@ export class GamePage {
               this.admob.videoRewardShowed = true;//para avisar que ya vio reward y no lanzar interstitial al volver a mainMenu
               this.navCtrl.pop({ animate: false });         
             }, error => {
+              this.admob.dismissLoader();
               console.log(error);
               this.admob.videoRewardShowed = false;
               this.navCtrl.pop({ animate: false });;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, Events, Platform } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
@@ -17,7 +17,8 @@ export class WithdraRewardPage {
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
               private events : Events,
-              private loadingCtrl : LoadingController
+              private loadingCtrl : LoadingController,
+              private platform : Platform
               ) {
 
                 this.events.subscribe('videoAdFail: true',()=>{
@@ -39,24 +40,9 @@ export class WithdraRewardPage {
   toMainMenu(){
     console.log("pop to main menu");
     this.pressed = true;
-  
-    //this.admob.setAdProb();
-    /*
-    if(this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable){
-      this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
-        this.navCtrl.pop({animate : false});
-      },error => {
-        console.log(error);
-        this.navCtrl.pop({animate : false});
-      }
-    );
-    }else{
-      this.navCtrl.pop({animate : false});
-    }*/
     this.admob.videoRewardShowed = false;
     this.navCtrl.pop({animate : false});
-    //this.navCtrl.push(MainMenuPage);//despues lo haremos solo con pop por ahora es de manera demostrativa
-    //this.navCtrl.pop({animate : false}); //pop to main menu!
+
   }
 
   doubleReward(){
@@ -64,20 +50,23 @@ export class WithdraRewardPage {
     console.log("cordova aviable?",this.admob.cordovaAviable);
     
     if(this.admob.cordovaAviable){
-      this.admob.showVideoAdd().onAdDismiss().subscribe((data) => {
-        console.log("reward dissmiss");
-        console.log(data);
-        this.admob.dismissLoader();
-        this.admob.videoRewardShowed = true;
-        this.navCtrl.pop({ animate: false });
-      }, error => {
-        console.log(error);
-        this.admob.dismissLoader();
-        this.admob.videoRewardShowed = false;
-        this.navCtrl.pop({ animate: false });
-      }
-      );
-    }else{
+      //No es IOS
+
+        this.admob.showVideoAdd().onAdDismiss().subscribe((data) => {
+          console.log("reward dissmiss");
+          console.log(data);
+          this.admob.dismissLoader();
+          this.admob.videoRewardShowed = true;
+          this.navCtrl.pop({ animate: false });
+        }, error => {
+          console.log(error);
+          this.admob.dismissLoader();
+          this.admob.videoRewardShowed = false;
+          this.navCtrl.pop({ animate: false });
+        }
+        );
+      
+      }else{
       this.navCtrl.pop({ animate: false });
     }  
   }

@@ -63,39 +63,47 @@ export class AdmobServiceProvider {
       isTesting : false,
       autoShow: true
     };
-    this.admob.prepareInterstitial(interstitialopt);
-    //return this.admob;
+    this.admob.prepareInterstitial(interstitialopt).then(()=>{},error=>{
+      if(this.platform.is('ios')){
+        //WORKAROUND IOS?
+        this.events.publish('videoAdFail: true');
+      }
+    });
+    return this.admob;
   }
 
   showVideoAdd(){
-    //listener para cuando la publicidad falla
-    this.admob.onAdFailLoad().subscribe((data)=>{
-      console.log('Fail to load Video');
-      console.log(data);
-      //aviso que fallo para que haga pop a main, desde reward y game
-      this.events.publish('videoAdFail: true');
-    });
-
-    //const loading = this.loadingCtrl.create({ content: 'Please Waint...' });
-    //loading.present();
-    const videopt: AdMobOptions = {
-      adId: this.adIdVideo,
-      isTesting: false,
-      autoShow: true
-    };
-
+    //Si no es IOS
     this.presentLoaderSpinner();
-
-    this.admob.prepareRewardVideoAd(videopt).then((data)=>{
-      console.log(data);
-      //loading.dismiss(); 
-    },
-      error=>{
-        //loading.dismiss();
+    if (!this.platform.is('ios')) {
+      //listener para cuando la publicidad falla
+      this.admob.onAdFailLoad().subscribe((data) => {
+        console.log('Fail to load Video');
+        console.log(data);
+        //aviso que fallo para que haga pop a main, desde reward y game
         this.events.publish('videoAdFail: true');
-        console.log(error);
-        this.dismissLoader();
-    });
+      });
+
+      const videopt: AdMobOptions = {
+        adId: this.adIdVideo,
+        isTesting: false,
+        autoShow: true
+      };
+
+      this.admob.prepareRewardVideoAd(videopt).then((data) => {
+        console.log(data);
+        //loading.dismiss(); 
+      },
+        error => {
+          //loading.dismiss();
+          this.events.publish('videoAdFail: true');
+          console.log(error);
+          this.dismissLoader();
+        });
+    }else{ //WORK AROUND IOS
+      this.showInterstitialAdd();
+    }
+    
     return this.admob;
     
   }

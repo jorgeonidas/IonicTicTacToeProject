@@ -25,7 +25,8 @@ export class MainMenuPage {
               private popoverCtrl: PopoverController,
               private menuCtrl: MenuController,
               private playerSelService: PlayerSelectorService,
-              private admob: AdmobServiceProvider
+              private admob: AdmobServiceProvider, 
+              private platfom : Platform
               ) {
 
                
@@ -38,8 +39,9 @@ export class MainMenuPage {
   }
 
   ionViewWillEnter(){
+    
     console.log("FTL:",this.admob.firstTimeLaunched);
-    if (!this.admob.firstTimeLaunched) {
+    if (!this.admob.firstTimeLaunched && !this.platfom.is('ios')) {
       if(this.admob.videoRewardShowed == false){ //si no vio video reward muestra 
         this.admob.setAdProb();
         //ver publicidad
