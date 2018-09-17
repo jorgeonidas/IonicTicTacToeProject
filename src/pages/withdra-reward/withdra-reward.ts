@@ -50,8 +50,6 @@ export class WithdraRewardPage {
     console.log("cordova aviable?",this.admob.cordovaAviable);
     
     if(this.admob.cordovaAviable){
-      //No es IOS
-
         this.admob.showVideoAdd().onAdDismiss().subscribe((data) => {
           console.log("reward dissmiss");
           console.log(data);

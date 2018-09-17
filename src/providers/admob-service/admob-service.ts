@@ -75,11 +75,12 @@ export class AdmobServiceProvider {
   showVideoAdd(){
     //Si no es IOS
     this.presentLoaderSpinner();
-    if (!this.platform.is('ios')) {
+
       //listener para cuando la publicidad falla
       this.admob.onAdFailLoad().subscribe((data) => {
         console.log('Fail to load Video');
         console.log(data);
+        this.dismissLoader();
         //aviso que fallo para que haga pop a main, desde reward y game
         this.events.publish('videoAdFail: true');
       });
@@ -100,9 +101,7 @@ export class AdmobServiceProvider {
           console.log(error);
           this.dismissLoader();
         });
-    }else{ //WORK AROUND IOS
-      this.showInterstitialAdd();
-    }
+
     
     return this.admob;
     
