@@ -59,8 +59,8 @@ export class AdmobServiceProvider {
     });
 
     const interstitialopt : AdMobOptions = {
-      adId: this.adIdinterstetial,
-      isTesting : false,
+      //adId: this.adIdinterstetial,
+      isTesting : true,
       autoShow: true
     };
     this.admob.prepareInterstitial(interstitialopt).then(()=>{},error=>{
@@ -86,8 +86,8 @@ export class AdmobServiceProvider {
       });
 
       const videopt: AdMobOptions = {
-        adId: this.adIdVideo,
-        isTesting: false,
+        //adId: this.adIdVideo,
+        isTesting: true,
         autoShow: true
       };
 
@@ -97,9 +97,9 @@ export class AdmobServiceProvider {
       },
         error => {
           //loading.dismiss();
-          this.events.publish('videoAdFail: true');
+          //this.events.publish('videoAdFail: true');
           console.log(error);
-          this.dismissLoader();
+          //this.dismissLoader();
         });
 
     
