@@ -21,8 +21,8 @@
         <h5 class="error-tip" no-margin>Name Must Have Between 4 an 30 characters</h5>
       </ion-col>
       <!--400-->
-      <ion-col *ngIf="failTocreate" col-12 no-padding class="invalid-tip">
-        <h5 class="error-tip" no-margin>The username is already in use! Choose another one</h5>
+      <ion-col *ngIf="errorHandlerServ.createAccErrorsObject.userExist" col-12 no-padding class="invalid-tip">
+        <h5 class="error-tip" no-margin>{{errMsj}}</h5>
       </ion-col>
     </ion-row>
 
@@ -65,8 +65,8 @@
         <h5 class="error-tip" no-margin>Invalid Address</h5>
       </ion-col>
       <!--400-->
-      <ion-col *ngIf="failTocreate" col-12 no-padding class="invalid-tip">
-        <h5 class="error-tip" no-margin>Email does not fit</h5>
+      <ion-col *ngIf="errorHandlerServ.createAccErrorsObject.emailExist" col-12 no-padding class="invalid-tip">
+        <h5 class="error-tip" no-margin>{{errMsj}}</h5>
       </ion-col>
     </ion-row>
 

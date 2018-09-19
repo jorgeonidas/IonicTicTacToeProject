@@ -4,6 +4,7 @@ import { MainMenuPage } from '../main-menu/main-menu';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/authService';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 
 @IonicPage()
 @Component({
@@ -19,6 +20,7 @@ export class CreateAccountPage implements OnInit  {
   dateOfBirth;
   isSubmintAction: boolean;
   failTocreate: boolean;
+  errMsj: string;
 
   ngOnInit(){
     this.initializeForm();
@@ -28,7 +30,8 @@ export class CreateAccountPage implements OnInit  {
     public navParams: NavParams, 
     private authService: AuthService, 
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingController,
+    private errorHandlerServ: ErrorHandlerProvider) {
     //authService.testingApi();
   }
 
@@ -60,6 +63,7 @@ export class CreateAccountPage implements OnInit  {
   }
 
   onSubmit(event: any){
+    this.errorHandlerServ.resetCreateAccErrors();
     //console.log(event);
     //si el formulario no es valido o no presiono el boton crear account 
     //por alguna razon si creo un boton dentro de un form hace el submit de todos modos
@@ -96,8 +100,14 @@ export class CreateAccountPage implements OnInit  {
         //this.navCtrl.push(MainMenuPage,{},{animate: false});
       },
       error=>{//caso error
-        console.log(error.error.message);
-        this.failTocreate = true;
+        console.log(error);
+        
+        //this.failTocreate = true;
+        this.errMsj = error.error.message;
+        console.log(this.errMsj);
+        this.errorHandlerServ.processCreateAccError(this.errMsj);
+       /* this.errorHandlerServ.createAccErrorsObject.emailExist
+        this.errorHandlerServ.createAccErrorsObject.userExist*/
         loading.dismiss();
         /*
         let alert = this.alertCtrl.create({
