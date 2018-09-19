@@ -41,7 +41,7 @@ export class MainMenuPage {
   ionViewWillEnter(){
     
     console.log("FTL:",this.admob.firstTimeLaunched);
-    if (!this.admob.firstTimeLaunched && !this.platfom.is('ios')) {
+    if (!this.admob.firstTimeLaunched) {
       if(this.admob.videoRewardShowed == false){ //si no vio video reward muestra 
         this.admob.setAdProb();
         //ver publicidad
