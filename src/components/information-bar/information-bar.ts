@@ -27,8 +27,8 @@ export class InformationBarComponent {
     console.log('Hello InformationBarComponent Component');
     
     //las monedas tambien tienen que cargar de un servicio
-    this.coins = 9999;
-    this.eolas = 9999;
+    this.coins = this.auth.getCoins();
+    this.eolas = this.auth.getEolas();
     
     platform.ready().then((readySrc) => {
       console.log('Width: ' + platform.width());

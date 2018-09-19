@@ -27,7 +27,8 @@ export class AuthService{
         "paisResidencia": null,
         "fecUltimoIngreso": null,
         "timeZone": null,
-        "genero": null
+        "genero": null,
+        currnecies : {"coins" : 0, "eolas": 0}
     }
 
     constructor(private http: HttpClient, 
@@ -267,6 +268,14 @@ export class AuthService{
             }
         );
         this.db.remove('id');
+    }
+
+    getCoins() : number {
+        return this.USER_OBJ.currnecies.coins;
+    }
+
+    getEolas() : number{
+        return this.USER_OBJ.currnecies.eolas;
     }
 
 }

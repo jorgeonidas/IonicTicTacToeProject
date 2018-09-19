@@ -27,8 +27,8 @@ export class UserAccountComponent {
   constructor(private tokenServ : TokenService, private aut: AuthService, private events: Events) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
-    this.coins = 9999;
-    this.eolas = 9999;
+    this.coins = this.aut.getCoins();
+    this.eolas = this.aut.getEolas();
 
     this.coinIconUrl = "assets/imgs/coins.png";
     this.eolaIconUrl = "assets/imgs/eolas.png";

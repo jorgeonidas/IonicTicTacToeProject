@@ -112,4 +112,15 @@ export class MainMenuPage {
     this.sideMenuOpen = open;
   }
 
+  getFreeEnergy(){
+    this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
+      this.admob.dismissLoader();
+      console.log("you win free energy");
+      
+    }, error=>{
+      this.admob.dismissLoader();
+      console.log(error);
+    });
+  }
+
 }
