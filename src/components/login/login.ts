@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/authService';
-import { LoadingController, AlertController, Events } from 'ionic-angular';
+import { LoadingController, AlertController, Events, Keyboard } from 'ionic-angular';
 @Component({
   selector: 'login',
   templateUrl: 'login.html'
@@ -15,7 +15,8 @@ export class LoginComponent {
   constructor(private auth: AuthService, 
     private loadingCtrl: LoadingController, 
     private alertCtrl: AlertController,
-    private events : Events) {
+    private events : Events,
+    private keyboard: Keyboard) {
     console.log('Hello LoginComponent Component');
     this.initializeLoginForm();
   }
@@ -92,6 +93,14 @@ export class LoginComponent {
 
   openUserAccount(){
     this.toUserAccount.emit('user-account');
+  }
+
+  //cerrar teclado
+  handleEnter(event: Event){
+    this.keyboard.close();
+    if(this.loginForm.valid){
+      this.onSubmitLogin(event)
+    }
   }
 
 }

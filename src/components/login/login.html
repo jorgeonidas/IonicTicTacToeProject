@@ -13,7 +13,7 @@
     </ion-label>
   </ion-row>
   <ion-row class="input-label-row">
-    <input class="ion-item-input" style="width: 100%" type="text" formControlName="username" />
+    <input class="ion-item-input" style="width: 100%" type="text" formControlName="username" (keyup.enter)="handleEnter($event)" />
   </ion-row>
   <ion-row class="input-label-row">
     <ion-label no-margin>
@@ -21,7 +21,7 @@
     </ion-label>
   </ion-row>
   <ion-row class="input-label-row">
-    <input class="ion-item-input" style="width: 100%" type="password" formControlName="password" />
+    <input class="ion-item-input" style="width: 100%" type="password" formControlName="password" (keyup.enter)="handleEnter($event)"/>
   </ion-row>
   <ion-row style="height: 5%;">
 

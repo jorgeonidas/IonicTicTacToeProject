@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, AlertController, LoadingController, Events } from 'ionic-angular';
+import { Component/*, ViewChild*/ } from '@angular/core';
+import { IonicPage, NavController, NavParams, Platform, AlertController, LoadingController, Events/*, TextInput*/, Keyboard } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { CreateAccountPage } from '../create-account/create-account';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -19,6 +19,10 @@ export class LoginPage {
   loginForm: FormGroup;
   skipping: boolean;
   //falToLogin : boolean;
+  /*
+  @ViewChild('usernameInput') userInput : TextInput;
+  @ViewChild('passwordInput') passwordInput : TextInput;
+*/
   constructor(public navCtrl: 
     NavController, 
     public navParams: NavParams, 
@@ -27,7 +31,8 @@ export class LoginPage {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     private events: Events,
-    private errorHandlerServ: ErrorHandlerProvider) {
+    private errorHandlerServ: ErrorHandlerProvider,
+    private keyboard : Keyboard) {
     this.initializeLoginForm();
     
   }
@@ -44,6 +49,11 @@ export class LoginPage {
       this.toMainMenuPage();
     } );
     this.skipping = false;
+
+   // setTimeout(() => {
+      //Keyboard.show() // for android
+      //this.myInput.setFocus();
+   // },150); //a least 150ms.
   }
 
   //Login Form Functions
@@ -56,6 +66,7 @@ export class LoginPage {
 
   toMainMenuPage(){  
     //this.navCtrl.push(this.mainMenuPage, {}, {animate: false});
+
     this.skipping = true;
     this.navCtrl.setRoot(MainMenuPage, {}, {animate: false});
   }
@@ -128,4 +139,19 @@ export class LoginPage {
 
     }
   }
+
+  testEnter(event: Event){
+    console.log(event);
+    //this.myInput.setFocus();
+    event.preventDefault();
+    console.log("ENTER PRESSED!");
+  }
+  //cerrar teclado
+  handleEnter(event: Event){
+    this.keyboard.close();
+    if(this.loginForm.valid){
+      this.onSubmitLogin(event)
+    }
+  }
+
 }

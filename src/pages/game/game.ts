@@ -453,26 +453,14 @@ export class GamePage {
             this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
           });
         } else {
-          this.admob.setAdProb();
-          if (this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable) {
-            this.admob.showVideoAdd().onAdDismiss().subscribe(() => {
-              this.admob.dismissLoader();
-              this.admob.videoRewardShowed = true;//para avisar que ya vio reward y no lanzar interstitial al volver a mainMenu
-              this.navCtrl.pop({ animate: false });         
-            }, error => {
-              this.admob.dismissLoader();
-              console.log(error);
-              this.admob.videoRewardShowed = false;
-              this.navCtrl.pop({ animate: false });;
-            }
-            );
-          }
+          this.navCtrl.pop({ animate: false });
         }
         break;
     
       case 'local-multiplayer':
         this.navCtrl.pop({animate : false});
         break;
+      
       default:
         break;
     }
