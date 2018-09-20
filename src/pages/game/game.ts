@@ -38,6 +38,7 @@ export class GamePage {
   playerOneWinsRound: boolean;
   alertMsj: string; //quien gana y quien pierde
   playerOneWinGame : boolean;
+  playerStartsGame : boolean; 
   //countDown
   turnInterval: number;
   timeleft: number;
@@ -63,6 +64,8 @@ export class GamePage {
       this.events.subscribe('videoAdFail: true',()=>{
         this.navCtrl.pop({animate : false});
       });
+
+      this.playerStartsGame = false; 
   }
 
   ionViewDidLoad() {
@@ -141,6 +144,7 @@ export class GamePage {
     let moneda = Math.random();
     if(moneda <= 0.5){
       this.playerOneCurrentTurn = true;
+      this.playerStartsGame = true;
     }else{
       this.playerOneCurrentTurn = false;
       if(this.gametype == 'singleplayer')
@@ -350,7 +354,7 @@ export class GamePage {
       //console.log(this.toltalTurnBar);
       
       //CASO ESPECIAL:SI LA IA COMIENZA EL JUEGO?
-      if(this.timeleft == this.turnInterval && (!this.playerOneCurrentTurn && this.IA.emptyIndexies(this.gameboard).length == 9 ) && this.gametype == 'singleplayer' ){
+      if(this.timeleft == this.turnInterval && (!this.playerStartsGame && this.IA.emptyIndexies(this.gameboard).length == 9 ) && this.gametype == 'singleplayer' ){
         console.log('IA Plays First!');
         this.IAplaying();
       }
@@ -418,32 +422,9 @@ export class GamePage {
   }
 
   leaveGame(){
-    //this.navCtrl.popToRoot({animate:false}); //TODO No elimina transicion
-    //this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-1),{animate: false});//hacemos 2 niveles pop ()
-    console.log("leaving");
-    //this.navCtrl.pop({animate:false});
-    //si es singleplayer y gano el juego, pasa a la pagina de la ruleta
 
-    /*
-    if (this.gametype == "singleplayer" && this.playerOneWinGame) {
-      let currentIndex = this.navCtrl.getActive().index;
-      this.navCtrl.push(RewardPage, {}, { animate: false }).then(() => {
-        this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
-      });
-    }else{
-      this.admob.setAdProb();
-      if(this.admob.getAdProb() <= 0.85 && this.admob.cordovaAviable){
-        this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
-          this.navCtrl.pop({animate : false});
-        },error => {
-          console.log(error);
-          this.navCtrl.pop({animate : false});;
-        }
-      );
-      }else{//volver a main menu    
-        this.navCtrl.pop({animate : false});
-      }
-    }*/
+    console.log("leaving");
+ 
     switch (this.gametype) {
       case 'singleplayer':
 
