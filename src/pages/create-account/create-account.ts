@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController, Keyboard } from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LoginPage } from '../login/login';
@@ -31,7 +31,8 @@ export class CreateAccountPage implements OnInit  {
     private authService: AuthService, 
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private errorHandlerServ: ErrorHandlerProvider) {
+    private errorHandlerServ: ErrorHandlerProvider,
+    private keyboard : Keyboard) {
     //authService.testingApi();
   }
 
@@ -149,5 +150,13 @@ export class CreateAccountPage implements OnInit  {
   backToLogin(){
     this.isSubmintAction = false;
     this.navCtrl.pop({animate:false});
+  }
+
+  //cerrar teclado
+  handleEnter(event: Event){
+    this.keyboard.close();
+    if(this.createUserForm.valid){
+      this.onSubmit(event)
+    }
   }
 }
