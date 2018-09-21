@@ -41,8 +41,8 @@
     </ng-template>
     <!--seleccion de personaje-->
     <ion-row class="char-picker-row">
-      <ion-col class="flex-col">
-          <grid-selector-component 
+      <ion-col style="width: 100%; height: 100%;" class="flex-col">
+          <grid-selector-component style="width: 100%; height: 90%;"
           (pOneEmmiter)="updatePlayerOnePortrati($event)" 
           (pTwoOrBotEmmiter)="updatePlayerTwoOrBotProtrait($event)" 
           (isOverOneEmmiter)="setOverOnePortrait($event)"
@@ -82,44 +82,49 @@
     <!--Seleccion de rondas-->
     <ion-row class="rounds-row" >
       <ion-col col-6 class="flex-col">
-        <h2 no-margin text-center>Rounds</h2>
+        <h2 style="font-size: 5vw" no-margin text-center>Rounds</h2>
       </ion-col>
       <ion-col col-6 class="round-sel-col">
         <button 
         color="emerald" 
         ion-button 
         small
+        class="round-btn"
         (click)="onRoundSelection(1)" [ngClass]="{active: rounds==1, unactive: rounds!=1}">x1</button>
 
         <button 
         color="emerald" 
         ion-button 
         small
+        class="round-btn"
         (click)="onRoundSelection(3)" [ngClass]="{active: rounds==3, unactive: rounds!=3}">x3</button>
         
         <button 
         color="emerald" 
         ion-button 
         small
+        class="round-btn"
         (click)="onRoundSelection(5)" [ngClass]="{active: rounds==5, unactive: rounds!=5}">x5</button>
       </ion-col>
     </ion-row>
     <ion-row class="action-row">
-        <ion-col align-self-center>
+        <ion-col class="flex-col" style="height: 100%;" align-self-center>
           <button ion-button 
           round 
           block
           color="danger"
           class="borderBack"
+          id="back-btn"
           (click)="onClickBack()">Back</button>
         </ion-col>
-        <ion-col align-self-center>
+        <ion-col style="height: 100%;" align-self-center>
             <button ion-button 
             large
             block 
             color="gold"
             class="borderPlay"
             round
+            id="play-btn"
             [disabled]="portraitOne[0] == null || portraitTwo[0] == null"
             (click)="onClickPlay()">Play</button>
         </ion-col>

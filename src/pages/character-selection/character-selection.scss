@@ -58,6 +58,7 @@ page-character-selection {
     .difficulty-btn{
         height: 60%;
         width: 90%;
+        font-size: 3vw;
     }
 
     .action-row{
@@ -69,6 +70,12 @@ page-character-selection {
     .rounds-row{
         height: 8%;
         width: 100%;
+    }
+
+    .round-btn{
+        width: 20%;
+        height: 60%;
+        font-size: 3vw;
     }
 
     .round-sel-col{
@@ -112,4 +119,15 @@ page-character-selection {
         font-weight: bold;
         font-size: 10vw;
     }
+
+    #back-btn{
+        width: 100%;
+        height: 50%;
+        font-size: 5vw;
+    }
+
+    #play-btn{
+        width: 100%;
+        height: 90%;
+        font-size: 5vw;    }
 }

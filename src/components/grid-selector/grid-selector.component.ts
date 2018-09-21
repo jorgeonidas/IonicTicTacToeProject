@@ -10,6 +10,8 @@ import { PlayerSelectorService } from "../../services/playerSelService";
         .borderGrid {
             border: 4px solid #0de5da;
             border-radius: 12px;
+            width: 100%;
+            height: 100%;
         }
         /*##############Cell Borders################*/
         #oo{
@@ -42,6 +44,8 @@ import { PlayerSelectorService } from "../../services/playerSelService";
         /*#########selector indicators############*/
         .ollie-character-wrapper {
             position: relative;
+            width: 25%;
+            height: 100%;
         }
 
         .player-indicator-wrapper {
@@ -64,11 +68,19 @@ import { PlayerSelectorService } from "../../services/playerSelService";
             background: #c7d1e0;
             right: 0;
         }
-        /*#################images##############################*/
-        img{
-            max-height: 8rem;
-        }
 
+        /*####################CELLS######################*/
+
+
+
+        /*#################images##############################*/
+        /*img{
+            max-height: 8rem;
+        }*/
+        ion-thumbnail{
+            width: 100%;
+            height: 100%;
+        }
         ion-thumbnail img{
             width: 100%;
             height: 100%;
