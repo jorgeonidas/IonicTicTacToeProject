@@ -90,14 +90,14 @@ export class LoginPage {
 
       console.log("antes del login: ", this.auth.getCurrentToken());
       //loading spinner
-      const loading = this.loadingCtrl.create({ content: 'Please Waint...' });
+      const loading = this.loadingCtrl.create({ content: 'Please Wait...' });
       loading.present();
 
       this.auth.signin(nickname, password).subscribe((result) => {
         console.log(result);
 
         //guardo la data del usuario
-        this.auth.setUserLoginData(result['id'], result["username"], result['email'], result["token"]);
+        this.auth.setUserLoginData(result['id'], result["nickName"], result['email'], result["token"]);
         //testing get by id
         this.auth.getUserByID(result['id'],result["token"]);
         //GUARDAR EL ID Y TOKEN EN LA BD PARA LUEGO CONSULTAR SI EXISTEN EN UNA PROXIMA SESION

@@ -19,15 +19,17 @@ export class AuthService{
     private currentUserToken: string;
     
     private USER_OBJ ={
-        "id": null,
-        "email": null,
-        "nickName": null,
-        //"password": null,
-        "fecNacimiento": null,
-        "paisResidencia": null,
-        "fecUltimoIngreso": null,
-        "timeZone": null,
-        "genero": null,
+        player:{
+            "id": null,
+            "email": null,
+            "nickName": null,
+            //"password": null,
+            "fecNacimiento": null,
+            "paisResidencia": null,
+            "fecUltimoIngreso": null,
+            "timeZone": null,
+            "genero": null,
+        },
         currnecies : {"coins" : 0, "eolas": 0}
     }
 
@@ -96,17 +98,17 @@ export class AuthService{
     //UPDATE
     updateUserData(userObjc: any, token){
         let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
-        this.http.put(this._url + userObjc['id'], userObjc, {headers:headersToken}).subscribe(
+        return this.http.put(this._url + userObjc['id'], userObjc, {headers:headersToken});/*.subscribe(
             ()=>{
                 console.log("ACTUALIZADO CON EXITO!");
             },
             (error)=>{console.log(error);
-        })
+        })*/
     }
 
     updateNickName(nickName: string){
-        this.USER_OBJ['nickName'] = nickName;
-        this.updateUserData(this.USER_OBJ,this.currentUserToken);
+        this.USER_OBJ.player['nickName'] = nickName;
+        return this.updateUserData(this.USER_OBJ.player,this.currentUserToken);
     }
 
     //DELETE USER (PELIGRO!!!!!)
@@ -122,36 +124,37 @@ export class AuthService{
     //LOGOUT
     logOut(){
         this.currentUserToken = null;
-        for(const prop in this.USER_OBJ){
-            this.USER_OBJ[prop] = null;
+        for(const prop in this.USER_OBJ.player){
+            this.USER_OBJ.player[prop] = null;
         }
-
+        this.USER_OBJ.currnecies.coins = 0;
+        this.USER_OBJ.currnecies.eolas = 0;
         this.removeDataSession();
     }
     //setters
     setUserLoginData(id:number, nickName: string, userEmail: string, token: string){
  
-        this.USER_OBJ['id'] = id;
-        this.USER_OBJ['nickName'] = nickName
-        this.USER_OBJ['email'] = userEmail;
+        this.USER_OBJ.player['id'] = id;
+        this.USER_OBJ.player['nickName'] = nickName
+        this.USER_OBJ.player['email'] = userEmail;
         this.currentUserToken = token;
 
     }
 
     setUserObject(userObjc: any){
-        this.USER_OBJ['id'] = userObjc['id'];
-        this.USER_OBJ['email'] = userObjc['email'];
-        this.USER_OBJ['nickName'] = userObjc['nickName'];
+        this.USER_OBJ.player['id'] = userObjc['player']['id'];
+        this.USER_OBJ.player['email'] = userObjc['player']['email'];
+        this.USER_OBJ.player['nickName'] = userObjc['player']['nickName'];
         //this.USER_OBJ['password'] = userObjc['password'];
-        this.USER_OBJ['fecNacimiento'] = userObjc['fecNacimiento'];
-        this.USER_OBJ['paisResidencia'] = userObjc['paisResidencia'];
+        this.USER_OBJ.player['fecNacimiento'] = userObjc['player']['fecNacimiento'];
+        this.USER_OBJ.player['paisResidencia'] = userObjc['player']['paisResidencia'];
 
         //ultimo dia de conexion
         let currentDate = new Date();
 
-        this.USER_OBJ['fecUltimoIngreso'] = currentDate.toISOString().split('.')[0]+" " ;
-        this.USER_OBJ['timeZone'] = userObjc['timeZone'];
-        this.USER_OBJ['genero'] = userObjc['genero'];
+        this.USER_OBJ.player['fecUltimoIngreso'] = currentDate.toISOString().split('.')[0]+" " ;
+        this.USER_OBJ.player['timeZone'] = userObjc['player']['timeZone'];
+        this.USER_OBJ.player['genero'] = userObjc['player']['genero'];
 
         console.log("AuthService USSER_OBJ:",this.USER_OBJ);
         
@@ -162,18 +165,18 @@ export class AuthService{
     }
 
     getCurrentUserId() : number{
-        return this.USER_OBJ['id'];
+        return this.USER_OBJ.player['id'];
     }
 
     getCurrentUserNickname(){
-        console.log('nick to provide', this.USER_OBJ['nickName']);       
-        return this.USER_OBJ['nickName'];
+        console.log('nick to provide', this.USER_OBJ.player['nickName']);       
+        return this.USER_OBJ.player['nickName'];
     }
 
     //guardando la sesion
     saveLogin() {
 
-        this.db.set('id', this.USER_OBJ.id).then(
+        this.db.set('id', this.USER_OBJ.player.id).then(
             (data) => {
                 console.log("saved",data);//
             },
@@ -204,21 +207,23 @@ export class AuthService{
 
                 this.db.get('id').then((data) => {
                     console.log("id",data);
-                    const loading = this.loadCtrl.create({ content: 'Please Waint...' });
+                    const loading = this.loadCtrl.create({ content: 'Please Wait...' });
                     loading.present();
                     if (data != null) {
-                        this.USER_OBJ.id = data;
+                        this.USER_OBJ.player.id = data;
                         //pido y guardo la data del usuario en el servicio para que ya este disponible en el resto del app
                         this.getUserByID(this.getCurrentUserId(), this.getCurrentToken())
                             .subscribe((user_data)=>{ //recupero el usuario por id
                                 //actualizo los datos tanto en este service como en el api
+                                console.log("Recovered user data",user_data);
+                                
                                 this.setUserObject(user_data);
                                 console.log("updating las connection date..");
-                                this.updateUserData(user_data,  this.currentUserToken);
+                                this.updateUserData(this.USER_OBJ.player,  this.currentUserToken);
                                 
                                 let alert = this.alertCtrl.create({
                                     title: 'Succes!',
-                                    message: 'Welcome Back '+this.USER_OBJ.nickName+'!',
+                                    message: 'Welcome Back '+this.USER_OBJ.player.nickName+'!',
                                     buttons: [{
                                         text: 'Ok',
                                         role: 'dissmiss'

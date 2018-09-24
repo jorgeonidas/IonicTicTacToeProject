@@ -1,7 +1,7 @@
 import { Component, Injectable } from '@angular/core';
 import { TokenService } from '../../services/tokenService';
 import { AuthService } from '../../services/authService';
-import { Events } from 'ionic-angular';
+import { Events, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'user-account',
@@ -24,7 +24,8 @@ export class UserAccountComponent {
   currTokenUrl: string;
   rankingUri: string = 'assets/imgs/medal-icon.png';
 
-  constructor(private tokenServ : TokenService, private aut: AuthService, private events: Events) {
+  constructor(private tokenServ : TokenService, private aut: AuthService, private events: Events,
+    public loadingCtrl: LoadingController) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
     this.coins = this.aut.getCoins();
@@ -47,9 +48,19 @@ export class UserAccountComponent {
     if(this.userNameInputDisable){
       console.log(this.nickName);
       if(this.nickName != this.lastNickName){
+        const loading = this.loadingCtrl.create({ content: 'Please Wait...' });
+        loading.present();
         console.log("cambio de nombre");
         //actualizo el nick tanto desde cliente como en el api
-        this.aut.updateNickName(this.nickName);
+        this.aut.updateNickName(this.nickName).subscribe(()=>{
+          loading.dismiss();
+          this.events.publish('updateNick : done'); //avisar el cambio de nickname en la information bar
+        },
+          error =>{
+            console.log(error);
+            
+          }
+        );
       }
     }
 

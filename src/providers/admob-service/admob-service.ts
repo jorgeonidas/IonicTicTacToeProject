@@ -18,6 +18,8 @@ export class AdmobServiceProvider {
   public firstTimeLaunched: boolean;
   public videoRewardShowed : boolean;
   private loading : any;
+  private adInterstitialOpt : AdMobOptions;
+  private adVideoRewardOpt: AdMobOptions;
 
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform,
     public loadingCtrl: LoadingController, private events : Events) {
@@ -29,8 +31,9 @@ export class AdmobServiceProvider {
     }else{
       this.cordovaAviable = false;
     }
-
-    //android o ios
+    
+    platform.ready().then(()=>{
+      //android o ios
       if(this.platform.is('android')) {
         this.adIdinterstetial  = this.androidInter;
         this.adIdVideo =this.androidVid;
@@ -38,7 +41,21 @@ export class AdmobServiceProvider {
         this.adIdinterstetial = this.iosInter;
         this.adIdVideo = this.iosVid;
       }
-    
+
+      this.adInterstitialOpt = {
+        //adId : this.adIdinterstetial
+        isTesting: true,
+        autoShow : true
+      };
+
+      this.adVideoRewardOpt = {
+        //adId: this.adIdVideo,
+        isTesting: true,
+        autoShow: true
+      }
+      
+
+    });  
     
   }
 
@@ -57,13 +74,13 @@ export class AdmobServiceProvider {
       
       console.log(data); 
     });
-
+    /*
     const interstitialopt : AdMobOptions = {
       //adId: this.adIdinterstetial,
       isTesting : true,
       autoShow: true
-    };
-    this.admob.prepareInterstitial(interstitialopt).then(()=>{},error=>{
+    };*/
+    this.admob.prepareInterstitial(this.adInterstitialOpt).then(()=>{},error=>{
       if(this.platform.is('ios')){
         //WORKAROUND IOS?
         this.events.publish('videoAdFail: true');
@@ -80,18 +97,17 @@ export class AdmobServiceProvider {
       this.admob.onAdFailLoad().subscribe((data) => {
         console.log('Fail to load Video');
         console.log(data);
-        this.dismissLoader();
-        //aviso que fallo para que haga pop a main, desde reward y game
+        this.dismissLoader(); 
         this.events.publish('videoAdFail: true');
       });
-
+      /*
       const videopt: AdMobOptions = {
         //adId: this.adIdVideo,
         isTesting: true,
         autoShow: true
       };
-
-      this.admob.prepareRewardVideoAd(videopt).then((data) => {
+      */
+      this.admob.prepareRewardVideoAd(this.adVideoRewardOpt).then((data) => {
         console.log(data);
         //loading.dismiss(); 
       },

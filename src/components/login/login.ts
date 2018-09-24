@@ -49,7 +49,7 @@ export class LoginComponent {
         console.log(result);
      
         //guardo la data del usuario
-        this.auth.setUserLoginData(result['id'], result["username"], result['email'], result["token"]);
+        this.auth.setUserLoginData(result['id'], result["nickName"], result['email'], result["token"]);
         this.auth.getUserByID(result['id'],result["token"]);
         this.auth.saveLogin();//Guardando en la db
         let alert = this.alertCtrl.create({
