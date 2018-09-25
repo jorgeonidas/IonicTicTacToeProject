@@ -20,6 +20,8 @@ export class MainMenuPage {
   isLoginActive: boolean = false;
   sideMenuOpen: boolean;
 
+  //for testing
+  platFormReadyOnce;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private popoverCtrl: PopoverController,
@@ -28,7 +30,13 @@ export class MainMenuPage {
               private admob: AdmobServiceProvider, 
               private platfom : Platform
               ) {
+                this.platFormReadyOnce = false;
+                platfom.ready().then(()=>{
+                  //prepara y muestra add
+                  this.platFormReadyOnce = true;
+                  this.admob.prepareVideoAdd();
               
+                });
   }
 
   ionViewDidLoad() {
@@ -111,6 +119,7 @@ export class MainMenuPage {
   }
 
   getFreeEnergy(){
+      this.admob.showVideRewardAdd();
     /*this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
       this.admob.dismissLoader();
       console.log("you win free energy");

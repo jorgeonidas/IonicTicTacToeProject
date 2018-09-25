@@ -80,7 +80,7 @@ export class ContactsPage {
       //prepara y muestra add
       this.admob.prepareInterstitialAd();
   
-    })
+    });
 
   }
 

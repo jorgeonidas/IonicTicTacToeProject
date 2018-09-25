@@ -61,9 +61,9 @@ export class AdmobServiceProvider {
     };
 
     this.adVideoRewardOpt = {
-      //adId: this.adIdVideo,
+      adId: this.adIdVideo,
       isTesting: true,
-      autoShow: true
+      autoShow: false
     }
   }
 
@@ -89,9 +89,38 @@ export class AdmobServiceProvider {
 
   }
 
+  prepareVideoAdd(){
+    this.setAdmobOptions();
+
+    this.admob.onAdFailLoad().subscribe((data)=>{
+      console.log('Fail to load Video Add');
+      
+      console.log(data); 
+    });
+
+    this.admob.prepareRewardVideoAd(this.adVideoRewardOpt).then((data) => {
+      console.log("exito al cargar video add", data);
+      //loading.dismiss(); 
+    },
+      error => {
+        //loading.dismiss();
+        //this.events.publish('videoAdFail: true');
+        console.log(error);
+        //this.dismissLoader();
+      });
+
+  }
+
+  //show add functions
   showInterstitialAd(){
     if (AdMobPro) {
       this.admob.showInterstitial();
+    }
+  }
+
+  showVideRewardAdd(){
+    if (AdMobPro) {
+      this.admob.showRewardVideoAd();
     }
   }
 
