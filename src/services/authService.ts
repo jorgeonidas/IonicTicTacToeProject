@@ -95,7 +95,7 @@ export class AuthService{
     }
 
     
-    //UPDATE
+    //UPDATE //OBJETO player por ahora
     updateUserData(userObjc: any, token){
         let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
         return this.http.put(this._url + userObjc['id'], userObjc, {headers:headersToken});/*.subscribe(
@@ -103,7 +103,7 @@ export class AuthService{
                 console.log("ACTUALIZADO CON EXITO!");
             },
             (error)=>{console.log(error);
-        })*/
+        });*/
     }
 
     updateNickName(nickName: string){
@@ -157,7 +157,15 @@ export class AuthService{
         this.USER_OBJ.player['genero'] = userObjc['player']['genero'];
 
         console.log("AuthService USSER_OBJ:",this.USER_OBJ);
-        
+
+        //currencies //basandonos en la estructura de que devuelve la cuenta con id = 4 en el api
+        if(userObjc['currencies'].length > 0){
+            this.USER_OBJ.currnecies.coins = userObjc['currencies']['0']['cantMonedas'];
+            this.USER_OBJ.currnecies.eolas = userObjc['currencies']['1']['cantMonedas'];
+        }
+        console.log("coins: ",this.USER_OBJ.currnecies.coins);
+        console.log("coins: ",this.USER_OBJ.currnecies.eolas);
+    
     }
 
     getCurrentToken(){

@@ -124,7 +124,7 @@ export class AdmobServiceProvider {
   }
 
   presentLoaderSpinner(){
-    this.loading = this.loadingCtrl.create({ content: 'Please Waint...' });
+    this.loading = this.loadingCtrl.create({ content: 'Please Wait...' });
     this.loading.present();
   }
 
@@ -134,23 +134,3 @@ export class AdmobServiceProvider {
  
 
 }
-
-
-
-
-/*
-  hidddeBanner(){
-    this.admob.hideBanner();
-  }
-*/
-/*
-  async showBanner(){
-    const options : AdMobOptions = {
-      //adId: this.adId;
-      isTesting: true,
-      autoShow: true,
-
-    }
-    this.admob.createBanner(options);
-  }
-*/

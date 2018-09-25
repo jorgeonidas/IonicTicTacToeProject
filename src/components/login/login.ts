@@ -50,7 +50,16 @@ export class LoginComponent {
      
         //guardo la data del usuario
         this.auth.setUserLoginData(result['id'], result["nickName"], result['email'], result["token"]);
-        this.auth.getUserByID(result['id'],result["token"]);
+        this.auth.getUserByID(result['id'],result["token"]).subscribe((userData)=>{
+            console.log("get user by id: login page", userData);
+            this.auth.setUserObject(userData);
+            this.auth.updateUserData(userData["player"],this.auth.getCurrentToken()).subscribe(
+              (data)=>{
+                  console.log("EXITO AL ACTUALIZAR");
+              },
+              (error)=>{console.log(error);
+            });
+        });
         this.auth.saveLogin();//Guardando en la db
         let alert = this.alertCtrl.create({
           title: 'Succes!',

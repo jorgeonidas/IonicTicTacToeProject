@@ -99,7 +99,16 @@ export class LoginPage {
         //guardo la data del usuario
         this.auth.setUserLoginData(result['id'], result["nickName"], result['email'], result["token"]);
         //testing get by id
-        this.auth.getUserByID(result['id'],result["token"]);
+        this.auth.getUserByID(result['id'],result["token"]).subscribe((userData)=>{
+          console.log("get user by id: login page", userData);
+          this.auth.setUserObject(userData);
+          this.auth.updateUserData(userData["player"],this.auth.getCurrentToken()).subscribe(
+            (data)=>{
+                console.log("EXITO AL ACTUALIZAR");
+            },
+            (error)=>{console.log(error);
+          });
+        });
         //GUARDAR EL ID Y TOKEN EN LA BD PARA LUEGO CONSULTAR SI EXISTEN EN UNA PROXIMA SESION
         this.auth.saveLogin();//testeando SecureStorage
         let alert = this.alertCtrl.create({
