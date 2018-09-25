@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
@@ -72,9 +72,16 @@ export class ContactsPage {
     action: 3
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private admob: AdmobServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private admob: AdmobServiceProvider, private platfom: Platform) {
     //console.log(this.contactTest2);
     //this.contactTest2.msjNot.msj=this.GameIvnPending;
+
+    platfom.ready().then(()=>{
+      //prepara y muestra add
+      this.admob.prepareInterstitialAd();
+  
+    })
+
   }
 
   ionViewDidLoad() {
@@ -84,7 +91,8 @@ export class ContactsPage {
   }
 
   backToMainMenu(){
-    this.navCtrl.pop({animate:false});
+    this.admob.showInterstitialAd();
+    //this.navCtrl.pop({animate:false});
   }
 
 }

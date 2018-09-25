@@ -32,31 +32,6 @@ export class AdmobServiceProvider {
       this.cordovaAviable = false;
     }
     
-    platform.ready().then(()=>{
-      //android o ios
-      if(this.platform.is('android')) {
-        this.adIdinterstetial  = this.androidInter;
-        this.adIdVideo =this.androidVid;
-      } else if (this.platform.is('ios')) {
-        this.adIdinterstetial = this.iosInter;
-        this.adIdVideo = this.iosVid;
-      }
-
-      this.adInterstitialOpt = {
-        //adId : this.adIdinterstetial
-        isTesting: true,
-        autoShow : true
-      };
-
-      this.adVideoRewardOpt = {
-        //adId: this.adIdVideo,
-        isTesting: true,
-        autoShow: true
-      }
-      
-
-    });  
-    
   }
 
   setAdProb(){
@@ -66,7 +41,61 @@ export class AdmobServiceProvider {
   getAdProb(){
     return this.adProb;
   }
+  //CONFIGURO LAS OPCIONES DE CADA TIPO DE PUBLICIDAD DEPENDIENDO DE LA PLATAFORMA
+  setAdmobOptions(){
+    //android o ios}
+    console.log("Configurando dependiendo de la plataforma");
+    
+    if(this.platform.is('android')) {
+      this.adIdinterstetial  = this.androidInter;
+      this.adIdVideo =this.androidVid;
+    } else if (this.platform.is('ios')) {
+      this.adIdinterstetial = this.iosInter;
+      this.adIdVideo = this.iosVid;
+    }
 
+    this.adInterstitialOpt = {
+      adId : this.adIdinterstetial,
+      isTesting: true,
+      autoShow : false
+    };
+
+    this.adVideoRewardOpt = {
+      //adId: this.adIdVideo,
+      isTesting: true,
+      autoShow: true
+    }
+  }
+
+  //Pepare Ad Functions
+  prepareInterstitialAd(){
+
+    //seteo opciones
+    this.setAdmobOptions();
+    //evento en caso de que falle
+    this.admob.onAdFailLoad().subscribe((data)=>{
+      console.log('Fail to load Interstitial');    
+      console.log(data); 
+    });
+    //preparo 
+    this.admob.prepareInterstitial(this.adInterstitialOpt).then(()=>{
+      console.log("exito al preparar ad");
+      
+    },error=>{
+      //caso erroneo
+      console.log(error);
+      
+    });
+
+  }
+
+  showInterstitialAd(){
+    if (AdMobPro) {
+      this.admob.showInterstitial();
+    }
+  }
+
+  /*
   showInterstitialAdd(){
 
     this.admob.onAdFailLoad().subscribe((data)=>{
@@ -74,12 +103,7 @@ export class AdmobServiceProvider {
       
       console.log(data); 
     });
-    /*
-    const interstitialopt : AdMobOptions = {
-      //adId: this.adIdinterstetial,
-      isTesting : true,
-      autoShow: true
-    };*/
+
     this.admob.prepareInterstitial(this.adInterstitialOpt).then(()=>{},error=>{
       if(this.platform.is('ios')){
         //WORKAROUND IOS?
@@ -100,13 +124,7 @@ export class AdmobServiceProvider {
         this.dismissLoader(); 
         this.events.publish('videoAdFail: true');
       });
-      /*
-      const videopt: AdMobOptions = {
-        //adId: this.adIdVideo,
-        isTesting: true,
-        autoShow: true
-      };
-      */
+
       this.admob.prepareRewardVideoAd(this.adVideoRewardOpt).then((data) => {
         console.log(data);
         //loading.dismiss(); 
@@ -122,7 +140,7 @@ export class AdmobServiceProvider {
     return this.admob;
     
   }
-
+  */
   presentLoaderSpinner(){
     this.loading = this.loadingCtrl.create({ content: 'Please Wait...' });
     this.loading.present();
@@ -132,5 +150,6 @@ export class AdmobServiceProvider {
     this.loading.dismiss();
   }
  
+
 
 }

@@ -46,7 +46,7 @@ export class WithdraRewardPage {
   }
 
   doubleReward(){
-    this.pressed = true;
+   /* this.pressed = true;
     console.log("cordova aviable?",this.admob.cordovaAviable);
     
     if(this.admob.cordovaAviable){
@@ -66,6 +66,6 @@ export class WithdraRewardPage {
       
       }else{
       this.navCtrl.pop({ animate: false });
-    }  
+    }  */
   }
 }

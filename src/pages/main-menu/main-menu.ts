@@ -28,8 +28,6 @@ export class MainMenuPage {
               private admob: AdmobServiceProvider, 
               private platfom : Platform
               ) {
-
-               
               
   }
 
@@ -41,7 +39,7 @@ export class MainMenuPage {
   ionViewWillEnter(){
     
     console.log("FTL:",this.admob.firstTimeLaunched);
-    if (!this.admob.firstTimeLaunched) {
+   /* if (!this.admob.firstTimeLaunched) {
       if(this.admob.videoRewardShowed == false){ //si no vio video reward muestra 
         this.admob.setAdProb();
         //ver publicidad
@@ -52,7 +50,7 @@ export class MainMenuPage {
         this.admob.videoRewardShowed = false;
       }
       
-    }
+    }*/
   }
 
   onLoadSettingsMenu(){
@@ -113,14 +111,14 @@ export class MainMenuPage {
   }
 
   getFreeEnergy(){
-    this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
+    /*this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
       this.admob.dismissLoader();
       console.log("you win free energy");
       
     }, error=>{
       this.admob.dismissLoader();
       console.log(error);
-    });
+    });*/
   }
 
 }
