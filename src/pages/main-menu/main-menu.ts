@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController, MenuController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, MenuController, Platform, ViewController } from 'ionic-angular';
 import { SettingsMenuPage } from '../settings-menu/settings-menu';
 import { CharacterSelectionPage } from '../character-selection/character-selection';
 import { PlayerSelectorService } from '../../services/playerSelService';
@@ -23,6 +23,7 @@ export class MainMenuPage {
   //for testing
   platFormReadyOnce;
   constructor(public navCtrl: NavController, 
+              public viewCtrl: ViewController,
               public navParams: NavParams,
               private popoverCtrl: PopoverController,
               private menuCtrl: MenuController,
@@ -119,7 +120,7 @@ export class MainMenuPage {
   }
 
   getFreeEnergy(){
-      this.admob.showVideRewardAdd();
+      //this.admob.showVideRewardAdd();
     /*this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
       this.admob.dismissLoader();
       console.log("you win free energy");
@@ -128,6 +129,22 @@ export class MainMenuPage {
       this.admob.dismissLoader();
       console.log(error);
     });*/
+    if(this.admob.cordovaAviable){
+      this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
+        this.reloadAftherAdd();
+      },
+      e=>{
+        console.log(e);
+      });
+    }
+
+  }
+
+  reloadAftherAdd(){
+    let index = this.navCtrl.getActive().index;
+    this.navCtrl.push(this.navCtrl.getActive().component,{},{animate: false}).then(() => { 
+      this.navCtrl.remove(index);
+   })
   }
 
 }
