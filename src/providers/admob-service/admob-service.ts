@@ -135,6 +135,7 @@ export class AdmobServiceProvider {
     if (AdMobPro) {
       this.admob.showRewardVideoAd();
     }
+    return this.admob;
   }
 
   /*

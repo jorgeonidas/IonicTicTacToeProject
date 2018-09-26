@@ -71,7 +71,18 @@ export class WithdraRewardPage {
   doubleReward(){
     this.pressed = true;
     if(this.admob.cordovaAviable){
-      this.admob.showVideRewardAdd();
+
+      if(!this.admob.failToLoadVieoReward){
+        this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
+          this.navCtrl.pop({ animate: false });
+        },
+        e=>{
+          console.log(e);
+          this.navCtrl.pop({ animate: false });
+        });
+      }else{
+        this.navCtrl.pop({ animate: false });
+      }
     }else{
       this.navCtrl.pop({ animate: false });
     }
