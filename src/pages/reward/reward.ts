@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { WithdraRewardPage } from '../withdra-reward/withdra-reward';
+import { AuthService } from '../../services/authService';
 
 @IonicPage()
 @Component({
@@ -66,13 +67,20 @@ export class RewardPage {
 
   //startAngle: number = 0;
   coinIconUrl: string;
+  coinAmmount: number;
   //hardSpinnerUri: string;
   deviceWidth : number;
   //la ruleta solo puede girar una vez
   isSpining : boolean;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public platform: Platform,
+    private auth : AuthService) {
     this.coinIconUrl = "assets/imgs/coins.png";
     //this.hardSpinnerUri = "assets/imgs/RuletaBG.png"
+    this.coinAmmount = this.auth.getCoins();
+    console.log("coin ammount", this.coinAmmount);
+    
 
   }
 
