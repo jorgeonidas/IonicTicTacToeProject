@@ -31,7 +31,7 @@ export class MainMenuPage {
               private platfom : Platform
               ) {
                 this.platFormReadyOnce = false;
-                platfom.ready().then(()=>{
+                this.platfom.ready().then(()=>{
                   //prepara y muestra add
                   this.platFormReadyOnce = true;
                   this.admob.prepareVideoAdd();

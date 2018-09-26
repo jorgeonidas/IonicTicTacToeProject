@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MainMenuPage } from '../main-menu/main-menu';
+import { IonicPage, NavController, NavParams, Events, Platform } from 'ionic-angular';
 import { GamePage } from '../game/game';
 import { PreGamePage } from '../pre-game/pre-game';
 import { PlayerSelectorService } from '../../services/playerSelService';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
 @Component({
@@ -30,7 +30,19 @@ export class CharacterSelectionPage {
   portraitOne = new Array(1);
   portraitTwo = new Array(1);
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private playerSelService: PlayerSelectorService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private playerSelService: PlayerSelectorService,
+    private admob:AdmobServiceProvider,
+    //private events : Events,
+    private platform: Platform) {
+
+      //preparando ad
+    this.platform.ready().then(()=>{
+      //prepara y muestra add
+      this.admob.prepareInterstitialAd();
+  
+    });
     
   }
 
@@ -72,7 +84,22 @@ export class CharacterSelectionPage {
 
   onClickBack(){
     this.playerSelService.resetPicks();
-    this.navCtrl.pop({animate:false});
+    if(this.admob.cordovaAviable){
+      //si la publicidad no falla en cargar
+      if(!this.admob.failToLoadInterstitial){
+        this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{
+          this.navCtrl.pop({animate:false});
+        }, e =>{
+          console.log(e);
+          this.navCtrl.pop({animate:false});
+          
+        });
+      }else{
+        this.navCtrl.pop({animate:false});
+      }
+    }else{
+      this.navCtrl.pop({animate:false});
+    }
   }
 
   //eventos 

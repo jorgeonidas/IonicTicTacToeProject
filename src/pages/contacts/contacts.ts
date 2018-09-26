@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, Events } from 'ionic-angular';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
@@ -72,11 +72,21 @@ export class ContactsPage {
     action: 3
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private admob: AdmobServiceProvider, private platfom: Platform) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private admob: AdmobServiceProvider,
+     private platform: Platform,
+     private events : Events) {
     //console.log(this.contactTest2);
     //this.contactTest2.msjNot.msj=this.GameIvnPending;
+      /*
+    this.events.subscribe('interstitialFail: true',()=>{
+      this.navCtrl.pop({animate : false});
+    });
+    */
 
-    platfom.ready().then(()=>{
+
+    this.platform.ready().then(()=>{
       //prepara y muestra add
       this.admob.prepareInterstitialAd();
   
@@ -91,8 +101,22 @@ export class ContactsPage {
   }
 
   backToMainMenu(){
-    this.admob.showInterstitialAd();
-    //this.navCtrl.pop({animate:false});
+    if(this.admob.cordovaAviable){
+      if(!this.admob.failToLoadInterstitial){
+        this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{
+          this.navCtrl.pop({animate:false});
+        }, e =>{
+          console.log(e);
+          this.navCtrl.pop({animate:false});
+          
+        });
+      }else{
+        this.navCtrl.pop({animate:false});
+      }
+    }else{
+      this.navCtrl.pop({animate:false});
+    }
+    //
   }
 
 }

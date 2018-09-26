@@ -21,10 +21,18 @@ export class AdmobServiceProvider {
   private adInterstitialOpt : AdMobOptions;
   private adVideoRewardOpt: AdMobOptions;
 
+  //fail case 
+  failToLoadInterstitial : boolean;
+  failToLoadVieoReward : boolean;
+
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform,
     public loadingCtrl: LoadingController, private events : Events) {
     this.firstTimeLaunched = true;
     this.videoRewardShowed = false;
+
+    this.failToLoadInterstitial = false;
+    this.failToLoadVieoReward = false;
+
     //si las funciones de cordova estan disponibles
     if(this.platform.is('cordova')){
       this.cordovaAviable= true;
@@ -55,13 +63,13 @@ export class AdmobServiceProvider {
     }
 
     this.adInterstitialOpt = {
-      adId : this.adIdinterstetial,
+      //adId : this.adIdinterstetial,
       isTesting: true,
       autoShow : false
     };
 
     this.adVideoRewardOpt = {
-      adId: this.adIdVideo,
+      //adId: this.adIdVideo,
       isTesting: true,
       autoShow: false
     }
@@ -74,7 +82,9 @@ export class AdmobServiceProvider {
     this.setAdmobOptions();
     //evento en caso de que falle
     this.admob.onAdFailLoad().subscribe((data)=>{
-      console.log('Fail to load Interstitial');    
+      console.log('Fail to load Interstitial');
+      //this.events.publish('interstitialFail: true');
+      this.failToLoadInterstitial = true;    
       console.log(data); 
     });
     //preparo 
@@ -94,7 +104,8 @@ export class AdmobServiceProvider {
 
     this.admob.onAdFailLoad().subscribe((data)=>{
       console.log('Fail to load Video Add');
-      
+      //this.events.publish('videoAdFail: true');
+      this.failToLoadVieoReward = true;
       console.log(data); 
     });
 
@@ -116,6 +127,8 @@ export class AdmobServiceProvider {
     if (AdMobPro) {
       this.admob.showInterstitial();
     }
+
+    return this.admob;
   }
 
   showVideRewardAdd(){

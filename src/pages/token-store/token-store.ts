@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { TokenService } from '../../services/tokenService';
 import { Platform } from 'ionic-angular';
 import { platformCoreDynamic } from '@angular/platform-browser-dynamic/src/platform_core_dynamic';
@@ -20,8 +20,12 @@ export class TokenStorePage {
   deviceHeight: number;
   isIos: boolean;
 
-  constructor(platform: Platform,public navCtrl: NavController, public navParams: NavParams, private tokenService: TokenService, 
-    private admob:AdmobServiceProvider) {
+  constructor(platform: Platform,
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private tokenService: TokenService, 
+    private admob:AdmobServiceProvider,
+    private events : Events) {
     //obtener altura del telefono
     this.deviceHeight = platform.height();
     this.iphonex = this.isIphoneX(platform.height(), platform.width(), platform.is('ios'));
@@ -40,6 +44,18 @@ export class TokenStorePage {
       this.tokensUris[i] = tokenService.getTokens()[i];
     }
     console.log(this.tokensUris);
+
+    
+   /* this.events.subscribe('interstitialFail: true',()=>{
+      this.navCtrl.pop({animate : false});
+    });*/
+
+  //preparando ad
+    platform.ready().then(()=>{
+      //prepara y muestra add
+      this.admob.prepareInterstitialAd();
+  
+    });
   }
 
   ionViewDidLoad() {
@@ -48,7 +64,24 @@ export class TokenStorePage {
   }
 
   backToMainMenu(){
-    this.navCtrl.pop({animate:false});
+    //si no es un navegador
+    if(this.admob.cordovaAviable){
+      //si la publicidad no falla en cargar
+      if(!this.admob.failToLoadInterstitial){
+        this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{
+          this.navCtrl.pop({animate:false});
+        }, e =>{
+          console.log(e);
+          this.navCtrl.pop({animate:false});
+          
+        });
+      }else{
+        this.navCtrl.pop({animate:false});
+      }
+    }else{
+      this.navCtrl.pop({animate:false});
+    }
+    //
   }
 
   isIphoneX(h : number, w: number,p: boolean): boolean{

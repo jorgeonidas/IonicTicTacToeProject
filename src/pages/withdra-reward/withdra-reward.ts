@@ -20,10 +20,19 @@ export class WithdraRewardPage {
               private loadingCtrl : LoadingController,
               private platform : Platform
               ) {
+                this.platform.ready().then(()=>{
+                  //prepara los ads
+                  //this.platFormReadyOnce = true;
+                  this.admob.prepareVideoAdd();
+                  this.admob.prepareInterstitialAd();
+              
+                });
 
                 this.events.subscribe('videoAdFail: true',()=>{
                   this.navCtrl.pop({animate : false});
                 });
+
+                
   }
 
   ionViewDidLoad() {
@@ -41,11 +50,31 @@ export class WithdraRewardPage {
     console.log("pop to main menu");
     this.pressed = true;
     this.admob.videoRewardShowed = false;
-    this.navCtrl.pop({animate : false});
-
+    //this.navCtrl.pop({animate : false});
+    if(this.admob.cordovaAviable){
+      if(!this.admob.failToLoadInterstitial){
+        this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{
+          this.navCtrl.pop({animate:false});
+        }, e =>{
+          console.log(e);
+          this.navCtrl.pop({animate:false});
+          
+        });
+      }else{
+        this.navCtrl.pop({animate:false});
+      }
+    }else{
+      this.navCtrl.pop({animate:false});
+    }
   }
 
   doubleReward(){
+    this.pressed = true;
+    if(this.admob.cordovaAviable){
+      this.admob.showVideRewardAdd();
+    }else{
+      this.navCtrl.pop({ animate: false });
+    }
    /* this.pressed = true;
     console.log("cordova aviable?",this.admob.cordovaAviable);
     

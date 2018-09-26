@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert, Events, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert, Events, LoadingController, Platform } from 'ionic-angular';
 import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
@@ -59,10 +59,13 @@ export class GamePage {
     private popover: PopoverController,
     private admob: AdmobServiceProvider,
     private loadingCtrl : LoadingController,
+    private platform: Platform,
     private events : Events) {
    
-      this.events.subscribe('videoAdFail: true',()=>{
-        this.navCtrl.pop({animate : false});
+      platform.ready().then(()=>{
+        //prepara y muestra add
+        this.admob.prepareInterstitialAd();
+    
       });
 
       this.playerStartsGame = false; 
@@ -434,12 +437,44 @@ export class GamePage {
             this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
           });
         } else {
-          this.navCtrl.pop({ animate: false });
+          //si no es un navegador
+          if (this.admob.cordovaAviable) {
+            //si la publicidad no falla en cargar
+            if (!this.admob.failToLoadInterstitial) {
+              this.admob.showInterstitialAd().onAdDismiss().subscribe(() => {
+                this.navCtrl.pop({ animate: false });
+              }, e => {
+                console.log(e);
+                this.navCtrl.pop({ animate: false });
+
+              });
+            } else {
+              this.navCtrl.pop({ animate: false });
+            }
+          } else {
+            this.navCtrl.pop({ animate: false });
+          }
         }
         break;
     
       case 'local-multiplayer':
-        this.navCtrl.pop({animate : false});
+        //si no es un navegador
+        if (this.admob.cordovaAviable) {
+          //si la publicidad no falla en cargar
+          if (!this.admob.failToLoadInterstitial) {
+            this.admob.showInterstitialAd().onAdDismiss().subscribe(() => {
+              this.navCtrl.pop({ animate: false });
+            }, e => {
+              console.log(e);
+              this.navCtrl.pop({ animate: false });
+
+            });
+          } else {
+            this.navCtrl.pop({ animate: false });
+          }
+        } else {
+          this.navCtrl.pop({ animate: false });
+        }
         break;
       
       default:
