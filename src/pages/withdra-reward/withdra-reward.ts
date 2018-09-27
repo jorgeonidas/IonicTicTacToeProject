@@ -17,9 +17,10 @@ export class WithdraRewardPage {
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
               private events : Events,
-              private loadingCtrl : LoadingController,
+              //private loadingCtrl : LoadingController,
               private platform : Platform
               ) {
+                this.admob.isEnergyClaimPage = false; //para avisar que no lance el evento
                 this.platform.ready().then(()=>{
                   //prepara los ads
                   //this.platFormReadyOnce = true;
@@ -71,16 +72,19 @@ export class WithdraRewardPage {
   doubleReward(){
     this.pressed = true;
     if(this.admob.cordovaAviable){
-
+      this.admob.presentLoaderSpinner();
       if(!this.admob.failToLoadVieoReward){
         this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
+          this.admob.dismissLoader();
           this.navCtrl.pop({ animate: false });
         },
         e=>{
           console.log(e);
+          this.admob.dismissLoader();
           this.navCtrl.pop({ animate: false });
         });
       }else{
+        this.admob.dismissLoader();
         this.navCtrl.pop({ animate: false });
       }
     }else{

@@ -22,20 +22,23 @@ export class EnergyClaimPage {
             private platform : Platform,
             private events : Events,
             ) {
-            
+            admob.isEnergyClaimPage = true; //para avisar que lance en evento
             this.platform.ready().then(()=>{
+
               this.admob.prepareVideoAdd();
+              //console.log(true);
+              
             });
 
             this.events.subscribe(('vrloaded:true'),()=>{
               this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
-                this.admob.dismissLoader();
+                //this.admob.dismissLoader();
                 this.navCtrl.pop({animate:false});
                 
               },
             e=>{
                 console.log(e);
-                this.admob.dismissLoader();
+                //this.admob.dismissLoader();
                 this.navCtrl.pop({animate:false});
               
               })

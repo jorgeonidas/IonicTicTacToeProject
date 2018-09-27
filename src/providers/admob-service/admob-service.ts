@@ -17,6 +17,9 @@ export class AdmobServiceProvider {
   public cordovaAviable: boolean;
   public firstTimeLaunched: boolean;
   public videoRewardShowed : boolean;
+  public isEnergyClaimPage : boolean;
+
+
   private loading : any;
   private adInterstitialOpt : AdMobOptions;
   private adVideoRewardOpt: AdMobOptions;
@@ -32,7 +35,8 @@ export class AdmobServiceProvider {
 
     this.failToLoadInterstitial = false;
     this.failToLoadVieoReward = false;
-
+    
+    this.isEnergyClaimPage = false;
     //si las funciones de cordova estan disponibles
     if(this.platform.is('cordova')){
       this.cordovaAviable= true;
@@ -104,7 +108,11 @@ export class AdmobServiceProvider {
 
     this.admob.onAdLoaded().subscribe(()=>{
       console.log('videoReward cargado con exito ahora vamos a mostrarlo!');
-      this.events.publish('vrloaded:true');
+      console.log("current page");
+      console.log(this.isEnergyClaimPage);
+      
+      if(this.isEnergyClaimPage)
+        this.events.publish('vrloaded:true');
       
     });
 

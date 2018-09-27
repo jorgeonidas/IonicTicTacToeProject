@@ -130,8 +130,7 @@ export class MainMenuPage {
       });*/
       this.navCtrl.push("EnergyClaimPage",{},{animate: false});
     }
-    //test
-    //this.reloadAftherAdd();
+
   }
 
   reloadAftherAdd(){
