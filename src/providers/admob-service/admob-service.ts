@@ -110,7 +110,7 @@ export class AdmobServiceProvider {
       console.log('videoReward cargado con exito ahora vamos a mostrarlo!');
       console.log("current page");
       console.log(this.isEnergyClaimPage);
-      
+      //CASO ESPECIAL PAGINA QUE MUESTRA ADD PARA RECLAMAR ENERGIA
       if(this.isEnergyClaimPage)
         this.events.publish('vrloaded:true');
       
@@ -120,9 +120,12 @@ export class AdmobServiceProvider {
       console.log('Fail to load Video Add');
       //this.events.publish('videoAdFail: true');
       this.failToLoadVieoReward = true;
-      console.log(data); 
+      console.log(data);
+      
+      if(this.isEnergyClaimPage)
+        this.events.publish('vrFailLoad:true'); 
     });
-
+    //CASO ESPECIAL PAGINA QUE MUESTRA ADD PARA RECLAMAR ENERGIA
     this.admob.prepareRewardVideoAd(this.adVideoRewardOpt).then((data) => {
       console.log("exito al cargar video add", data);
       //loading.dismiss(); 

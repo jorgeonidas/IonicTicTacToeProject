@@ -21,6 +21,7 @@ export class EnergyClaimPage {
             private admob : AdmobServiceProvider,
             private platform : Platform,
             private events : Events,
+            private events2: Events
             ) {
             admob.isEnergyClaimPage = true; //para avisar que lance en evento
             this.platform.ready().then(()=>{
@@ -42,6 +43,10 @@ export class EnergyClaimPage {
                 this.navCtrl.pop({animate:false});
               
               })
+            })
+
+            this.events2.subscribe(('vrFailLoad:true'),()=>{
+              this.navCtrl.pop({animate:false});
             })
             
   }
