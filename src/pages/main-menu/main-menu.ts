@@ -32,12 +32,12 @@ export class MainMenuPage {
               private platfom : Platform
               ) {
                 this.platFormReadyOnce = false;
-                this.platfom.ready().then(()=>{
+               /* this.platfom.ready().then(()=>{
                   //prepara y muestra add
                   this.platFormReadyOnce = true;
                   this.admob.prepareVideoAdd();
               
-                });
+                });*/
   }
 
   ionViewDidLoad() {
@@ -120,29 +120,24 @@ export class MainMenuPage {
   }
 
   getFreeEnergy(){
-      //this.admob.showVideRewardAdd();
-    /*this.admob.showVideoAdd().onAdDismiss().subscribe(()=>{
-      this.admob.dismissLoader();
-      console.log("you win free energy");
-      
-    }, error=>{
-      this.admob.dismissLoader();
-      console.log(error);
-    });*/
     if(this.admob.cordovaAviable){
+      /*
       this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
         this.reloadAftherAdd();
       },
       e=>{
         console.log(e);
-      });
+      });*/
+      this.navCtrl.push("EnergyClaimPage",{},{animate: false});
     }
-
+    //test
+    //this.reloadAftherAdd();
   }
 
   reloadAftherAdd(){
-    let index = this.navCtrl.getActive().index;
-    this.navCtrl.push(this.navCtrl.getActive().component,{},{animate: false}).then(() => { 
+    //let index = this.navCtrl.getActive().index;
+    this.navCtrl.push(this.navCtrl.getActive().component,{},{animate: false}).then(() => {
+      let index = this.viewCtrl.index; 
       this.navCtrl.remove(index);
    })
   }

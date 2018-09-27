@@ -102,6 +102,12 @@ export class AdmobServiceProvider {
   prepareVideoAdd(){
     this.setAdmobOptions();
 
+    this.admob.onAdLoaded().subscribe(()=>{
+      console.log('videoReward cargado con exito ahora vamos a mostrarlo!');
+      this.events.publish('vrloaded:true');
+      
+    });
+
     this.admob.onAdFailLoad().subscribe((data)=>{
       console.log('Fail to load Video Add');
       //this.events.publish('videoAdFail: true');
