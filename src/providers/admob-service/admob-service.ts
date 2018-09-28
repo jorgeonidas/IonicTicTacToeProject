@@ -128,6 +128,7 @@ export class AdmobServiceProvider {
     //CASO ESPECIAL PAGINA QUE MUESTRA ADD PARA RECLAMAR ENERGIA
     this.admob.prepareRewardVideoAd(this.adVideoRewardOpt).then((data) => {
       console.log("exito al cargar video add", data);
+      this.failToLoadVieoReward = false;//no fallo al cargar el video reward
       //loading.dismiss(); 
     },
       error => {

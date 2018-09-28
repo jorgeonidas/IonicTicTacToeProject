@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, Events, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, /*LoadingController, Events, Platform*/} from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
@@ -16,10 +16,11 @@ export class WithdraRewardPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
-              private events : Events,
+              //private events : Events,
               //private loadingCtrl : LoadingController,
-              private platform : Platform
+              //private platform : Platform
               ) {
+                /*
                 this.admob.isEnergyClaimPage = false; //para avisar que no lance el evento
                 this.platform.ready().then(()=>{
                   //prepara los ads
@@ -28,10 +29,7 @@ export class WithdraRewardPage {
                   this.admob.prepareInterstitialAd();
               
                 });
-
-                this.events.subscribe('videoAdFail: true',()=>{
-                  this.navCtrl.pop({animate : false});
-                });
+                */
 
                 
   }
@@ -75,16 +73,16 @@ export class WithdraRewardPage {
       this.admob.presentLoaderSpinner();
       if(!this.admob.failToLoadVieoReward){
         this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
-          this.admob.dismissLoader();
+          //this.admob.dismissLoader();
           this.navCtrl.pop({ animate: false });
         },
         e=>{
           console.log(e);
-          this.admob.dismissLoader();
+          //this.admob.dismissLoader();
           this.navCtrl.pop({ animate: false });
         });
       }else{
-        this.admob.dismissLoader();
+        //this.admob.dismissLoader();
         this.navCtrl.pop({ animate: false });
       }
     }else{
@@ -111,5 +109,9 @@ export class WithdraRewardPage {
       }else{
       this.navCtrl.pop({ animate: false });
     }  */
+  }
+
+  ionViewWillLeave(){
+    this.admob.dismissLoader();
   }
 }

@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { WithdraRewardPage } from '../withdra-reward/withdra-reward';
 import { AuthService } from '../../services/authService';
+import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 @IonicPage()
 @Component({
@@ -75,12 +76,20 @@ export class RewardPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
-    private auth : AuthService) {
+    private auth : AuthService,
+    private admob : AdmobServiceProvider) {
     this.coinIconUrl = "assets/imgs/coins.png";
     //this.hardSpinnerUri = "assets/imgs/RuletaBG.png"
     this.coinAmmount = this.auth.getCoins();
     console.log("coin ammount", this.coinAmmount);
     
+    this.admob.isEnergyClaimPage = false; //para avisar que no lance el evento
+    this.platform.ready().then(()=>{
+      /*prepara los ads para que ya esten cargados 
+      al pasar a la siguente pagina o al menos avise que fallo*/   
+      this.admob.prepareVideoAdd();
+      this.admob.prepareInterstitialAd();
+    });
 
   }
 
