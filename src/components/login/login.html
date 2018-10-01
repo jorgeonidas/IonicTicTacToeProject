@@ -15,6 +15,9 @@
   <ion-row class="input-label-row">
     <input class="ion-item-input" style="width: 100%" type="text" formControlName="username" (keyup.enter)="handleEnter($event)" />
   </ion-row>
+  <ion-row class="error-msj-row">
+    <p *ngIf="errorHandlerServ.logInErrorObj.errorUser" class="error-msj" text-center>Username or password is wrong!</p>
+  </ion-row>
   <ion-row class="input-label-row">
     <ion-label no-margin>
       Password:
@@ -22,6 +25,9 @@
   </ion-row>
   <ion-row class="input-label-row">
     <input class="ion-item-input" style="width: 100%" type="password" formControlName="password" (keyup.enter)="handleEnter($event)"/>
+  </ion-row>
+  <ion-row class="error-msj-row">
+    <p *ngIf="errorHandlerServ.logInErrorObj.errorPassword" class="error-msj" text-center>wrong password</p>
   </ion-row>
   <ion-row style="height: 5%;">
 
@@ -33,7 +39,7 @@
   </ion-row>
   <ion-row style="height: 8%;">
     <ion-col class="login-grid flex-col">
-      <p>
+      <p style="font-size: 4vw; text-align: center">
         Don't Have a Virtual Robot Account?
       </p>
     </ion-col>

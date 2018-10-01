@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/authService';
 import { LoadingController, AlertController, Events, Keyboard } from 'ionic-angular';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 @Component({
   selector: 'login',
   templateUrl: 'login.html'
@@ -16,7 +17,8 @@ export class LoginComponent {
     private loadingCtrl: LoadingController, 
     private alertCtrl: AlertController,
     private events : Events,
-    private keyboard: Keyboard) {
+    private keyboard: Keyboard,
+    private errorHandlerServ: ErrorHandlerProvider) {
     console.log('Hello LoginComponent Component');
     this.initializeLoginForm();
   }
@@ -47,7 +49,8 @@ export class LoginComponent {
 
       this.auth.signin(nickname, password).subscribe((result) => {
         console.log(result);
-     
+        
+
         //guardo la data del usuario
         this.auth.setUserLoginData(result['id'], result["nickName"], result['email'], result["token"]);
         this.auth.getUserByID(result['id'],result["token"]).subscribe((userData)=>{
@@ -60,7 +63,10 @@ export class LoginComponent {
               (error)=>{console.log(error);
             });
         });
+        this.openUserAccount();
+        this.events.publish('updateNick : done');
         this.auth.saveLogin();//Guardando en la db
+        /*
         let alert = this.alertCtrl.create({
           title: 'Succes!',
           message: 'Loggin Sucessfull',
@@ -75,12 +81,15 @@ export class LoginComponent {
           }
           
         );
+        */
         loading.dismiss();
-        alert.present();
+        //alert.present();
 
       }, error => {
         console.log(error);
+        this.errorHandlerServ.processLoginError(error.error.message);
         loading.dismiss();
+        /*
         let alert = this.alertCtrl.create({
           title: 'Error!',
           message: error.error.message,
@@ -90,6 +99,7 @@ export class LoginComponent {
           }]
         });
         alert.present();
+        */
       }
       );
 

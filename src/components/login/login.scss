@@ -34,4 +34,26 @@ login {
         font-weight: bold;
         
     }
+
+    .error-msj-row{
+        height: 5%; 
+        justify-content: center;
+    }
+
+    .error-msj{
+        margin: 0;
+        color: red;
+        font-size: 4.5vw;
+        font-weight: bold;
+    }
+
+    .borderLogin, .borderCreate{
+        font-size: 5vw;
+    }
+
+    @media (min-width: 768px){
+        ion-label{
+            padding-top: 2%;
+        }
+    }
 }
