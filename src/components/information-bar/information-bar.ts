@@ -27,8 +27,7 @@ export class InformationBarComponent {
     console.log('Hello InformationBarComponent Component');
     
     //las monedas tambien tienen que cargar de un servicio
-    this.coins = this.auth.getCoins();
-    this.eolas = this.auth.getEolas();
+    this.loadCoins();
     
     platform.ready().then((readySrc) => {
       console.log('Width: ' + platform.width());
@@ -52,6 +51,7 @@ export class InformationBarComponent {
     this.events.subscribe(('updateNick : done'),() => {
       console.log("Event catched by Information Bar Component");
       this.loadNickName();
+      this.loadCoins();
     } );
 
     this.loadNickName();
@@ -82,6 +82,11 @@ export class InformationBarComponent {
     } else {
       this.nickname = this.defaultNickName;
     }
+  }
+
+  loadCoins(){
+    this.coins = this.auth.getCoins();
+    this.eolas = this.auth.getEolas();
   }
 
 }

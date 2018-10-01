@@ -112,6 +112,7 @@ export class WithdraRewardPage {
   }
 
   ionViewWillLeave(){
-    this.admob.dismissLoader();
+    if(this.admob.cordovaAviable)
+      this.admob.dismissLoader();
   }
 }
