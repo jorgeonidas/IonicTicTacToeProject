@@ -44,7 +44,7 @@ export class LoginComponent {
       nickname = values.username;
       password = values.password;
 
-      const loading = this.loadingCtrl.create({ content: 'Please Waint...' }); 
+      const loading = this.loadingCtrl.create({ content: 'Please Wait...' }); 
       loading.present();
 
       this.auth.signin(nickname, password).subscribe((result) => {
@@ -66,22 +66,6 @@ export class LoginComponent {
         this.openUserAccount();
         this.events.publish('updateNick : done');
         this.auth.saveLogin();//Guardando en la db
-        /*
-        let alert = this.alertCtrl.create({
-          title: 'Succes!',
-          message: 'Loggin Sucessfull',
-          buttons: [{
-            text: 'Ok',
-            role: 'dissmiss'
-          }]
-        });
-        alert.onDidDismiss(
-          () => {this.openUserAccount();
-                this.events.publish('updateNick : done');
-          }
-          
-        );
-        */
         loading.dismiss();
         //alert.present();
 
@@ -89,17 +73,7 @@ export class LoginComponent {
         console.log(error);
         this.errorHandlerServ.processLoginError(error.error.message);
         loading.dismiss();
-        /*
-        let alert = this.alertCtrl.create({
-          title: 'Error!',
-          message: error.error.message,
-          buttons: [{
-            text: 'Ok',
-            role: 'dissmiss'
-          }]
-        });
-        alert.present();
-        */
+
       }
       );
 

@@ -2,6 +2,7 @@ import { Component, Injectable, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../services/authService';
 import { AlertController, LoadingController } from 'ionic-angular';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { ErrorHandlerProvider } from '../../providers/error-handler/error-handler';
 
 @Injectable()
 @Component({
@@ -13,10 +14,14 @@ export class CreateAccountComponent {
   createUserForm: FormGroup;
   currentDate;
   dateOfBirth;
+  errMsj: string;
 
   @Output() toLogin: EventEmitter<any> = new EventEmitter<any>()
 
-  constructor(private authService: AuthService, private alertCtrl: AlertController,private loadingCtrl: LoadingController) {
+  constructor(private authService: AuthService, 
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,
+              private errorHandlerServ : ErrorHandlerProvider) {
     this.initializeCreateUserForm();
   }
 
@@ -75,20 +80,13 @@ export class CreateAccountComponent {
         },
           error => {
             console.log(error);
-            let alert = this.alertCtrl.create({
-              title: 'Error!',
-              message: error.error.message,
-              buttons:
-                [
-                  {
-                    text: 'Ok',
-                    role: 'cancel',
-                  }
-                ]
-            });
+
+            this.errMsj = error.error.message;
+            console.log(this.errMsj);
+            this.errorHandlerServ.processCreateAccError(this.errMsj);
+
             loading.dismiss();
-            alert.present();
-            console.log(error);
+
             console.log(error.name);
             console.log(error.message);
             console.log(error.status);}
