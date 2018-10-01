@@ -22,7 +22,7 @@ export class AuthService{
         player:{
             "id": null,
             "email": null,
-            "nickName": null,
+            "nickName": 'human',
             //"password": null,
             "fecNacimiento": null,
             "paisResidencia": null,
@@ -244,6 +244,8 @@ export class AuthService{
                                 alert.present();
                             },
                             error=>{
+                                //borro el token
+                                this.currentUserToken = null;
                                 loading.dismiss();
                                 console.log(error);
                             });
