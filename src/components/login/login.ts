@@ -64,7 +64,7 @@ export class LoginComponent {
             });
         });
         this.openUserAccount();
-        this.events.publish('updateNick : done');
+        
         this.auth.saveLogin();//Guardando en la db
         loading.dismiss();
         //alert.present();

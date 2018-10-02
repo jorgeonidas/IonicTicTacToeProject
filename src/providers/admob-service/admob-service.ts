@@ -67,13 +67,13 @@ export class AdmobServiceProvider {
     }
 
     this.adInterstitialOpt = {
-      //adId : this.adIdinterstetial,
+      adId : this.adIdinterstetial,
       isTesting: true,
       autoShow : false
     };
 
     this.adVideoRewardOpt = {
-      //adId: this.adIdVideo,
+      adId: this.adIdVideo,
       isTesting: true,
       autoShow: false
     }

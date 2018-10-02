@@ -164,8 +164,8 @@ export class AuthService{
             this.USER_OBJ.currnecies.eolas = userObjc['currencies']['1']['cantMonedas'];
         }
         console.log("coins: ",this.USER_OBJ.currnecies.coins);
-        console.log("coins: ",this.USER_OBJ.currnecies.eolas);
-    
+        console.log("eolas: ",this.USER_OBJ.currnecies.eolas);
+        this.events.publish('updateNick : done');
     }
 
     getCurrentToken(){
@@ -286,10 +286,13 @@ export class AuthService{
     }
 
     getCoins() : number {
+        console.log("coins to show", this.USER_OBJ.currnecies.coins);
+        
         return this.USER_OBJ.currnecies.coins;
     }
 
     getEolas() : number{
+        console.log("eolas to show", this.USER_OBJ.currnecies.coins);
         return this.USER_OBJ.currnecies.eolas;
     }
 

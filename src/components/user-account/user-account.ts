@@ -24,21 +24,27 @@ export class UserAccountComponent {
   currTokenUrl: string;
   rankingUri: string = 'assets/imgs/medal-icon.png';
 
-  constructor(private tokenServ : TokenService, private aut: AuthService, private events: Events,
+  constructor(private tokenServ : TokenService, private auth: AuthService, private events: Events,
     public loadingCtrl: LoadingController) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
-    this.coins = this.aut.getCoins();
-    this.eolas = this.aut.getEolas();
+    this.coins = this.auth.getCoins();
+    this.eolas = this.auth.getEolas();
 
     this.coinIconUrl = "assets/imgs/coins.png";
     this.eolaIconUrl = "assets/imgs/eolas.png";
 
-    this.lastNickName = this.nickName = this.aut.getCurrentUserNickname();
+    this.lastNickName = this.nickName = this.auth.getCurrentUserNickname();
 
     this.userNameInputDisable = true;
 
     this.currTokenUrl = tokenServ.getCurrentSelectionUrl();
+
+    this.events.subscribe(('updateNick : done'),() => {
+      console.log("Event catched by Information Bar UserAccont Component");
+      this.loadNickName();
+      this.loadCoins();
+    } );
 
   }
 
@@ -52,7 +58,7 @@ export class UserAccountComponent {
         loading.present();
         console.log("cambio de nombre");
         //actualizo el nick tanto desde cliente como en el api
-        this.aut.updateNickName(this.nickName).subscribe(()=>{
+        this.auth.updateNickName(this.nickName).subscribe(()=>{
           loading.dismiss();
           this.events.publish('updateNick : done'); //avisar el cambio de nickname en la information bar
         },
@@ -67,8 +73,22 @@ export class UserAccountComponent {
   }
 
   logOut(){
-    this.aut.logOut();
+    this.auth.logOut();
     this.events.publish('updateNick : done');
+  }
+
+  loadNickName(){
+    
+    if (this.auth.getCurrentToken() != null) {
+      this.nickName = this.auth.getCurrentUserNickname()
+    } else {
+      this.nickName = this.lastNickName;
+    }
+  }
+
+  loadCoins(){
+    this.coins = this.auth.getCoins();
+    this.eolas = this.auth.getEolas();
   }
 
 }
