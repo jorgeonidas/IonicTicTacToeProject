@@ -150,6 +150,7 @@ export class GamePage {
       this.playerStartsGame = true;
     }else{
       this.playerOneCurrentTurn = false;
+      this.playerStartsGame = false;
       if(this.gametype == 'singleplayer')
         this.IA.setIaTinking(true);
     }
@@ -245,7 +246,9 @@ export class GamePage {
   winOrTie(isAWin: boolean){
     console.log("is a win or tie?: "+isAWin);
     this.winner = isAWin;
-    
+    if(!this.winner)
+      this.playerOneWinsRound = false;
+      
     this.setScore();
   }
   //setea score y revisa si el juego termino
@@ -271,7 +274,6 @@ export class GamePage {
     //agrego una ronda
     this.currentRound++;
     //Asigno quien va a comenzar siguiente ronda
-    //this.setNextRound(this.playerOneWinsRound); //////////////////////////////////////////////////////////////////Ojo!
     //verificar si ya se pasaron el numero de rondas, de ser asi elegir un ganador //UPDATE: Si alguno de los dos jugadores alcanzaron la maxima puntuacion
     if(this.currentRound > this.rounds || (this.playerOneScore == this.pointsToWin || this.playerTwoOrAIScore == this.pointsToWin)){
       this.isGameOver = true; //El juegos e termino esto le avisara al PopUp
@@ -322,8 +324,8 @@ export class GamePage {
       if(data != null){
         if(data){
           this.resetBoard();
-          this.restRoundTimer();
-          this.startTimer();
+          //this.restRoundTimer();
+          //this.startTimer();
           this.setNextRound(this.playerOneWinsRound);//setear nuevo round
         }else{
           console.log('finishing game');
@@ -344,7 +346,7 @@ export class GamePage {
   resetBoard(){
     this.gameboard = ["0","1","2","3","4","5","6","7","8"];
     console.log("gameboard",this.gameboard);
-    this.winner = false;
+    //this.winner = false;
     this.playerOneCurrentTurn = true;
 
   }
@@ -492,24 +494,32 @@ export class GamePage {
     this.restRoundTimer()
     this.stopTimer();
     
+    console.log("El jugador 1 gano?" + poneWins);
+    console.log("hubo ganador?" + this.winner);
+    
     if (poneWins) {//player 1 gano
       this.playerOneCurrentTurn = false;
-
+      
       if (this.gametype == 'local-multiplayer')
         msj = 'Player Two Starts Game';
       else if (this.gametype == 'singleplayer'){
         msj = 'Robot Starts The Game'
+        this.playerStartsGame = false;
         this.IA.setIaTinking(true);//evitar que el jugador marque primero en el turno de la IA
       }
 
     } else if(!poneWins && this.winner) {//player 2 o bot gano
-      
+      this.playerStartsGame = true;
       this.playerOneCurrentTurn = true;
+      this.IA.setIaTinking(false);
+      //this.playerStartsGame = false;
       msj = 'Player One Starts Game';
 
     }else{//caso empate//comienza el que no comenzo de primero
       if(this.playerOneDidGoFirst){//si player uno arranco de primero/ el oponente comienza la segunda ronda
         this.playerOneCurrentTurn = false;
+        this.playerStartsGame = false;
+        this.IA.setIaTinking(true);
         if (this.gametype == 'local-multiplayer')
           msj = 'Player Two Starts Game';
         else if (this.gametype == 'singleplayer')
@@ -517,9 +527,12 @@ export class GamePage {
       }else{//
         this.playerOneCurrentTurn = true;
         msj = 'Player One Starts Game';
+        this.playerStartsGame = true;
+        this.IA.setIaTinking(false);
       }     
     }
-
+    //reseteamos si hubo ganador ya que preguntamos
+    this.winner = false;
     this.playerOneDidGoFirst = this.playerOneCurrentTurn;//guardo la variable de quien comenzo primero en caso de otro empate
 
     let alert = this.alertCtrl.create({
