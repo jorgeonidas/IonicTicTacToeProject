@@ -4,6 +4,7 @@ export class AIService{
     oChar = 'O';
     isIAthinking: boolean;
     delay : number;
+    commandedFromGame: boolean; //si la orden se le dio dsde el juego o gameboard
 
     setDelay(time: number){
         let maxDelay = (time*1000)/2;
@@ -11,6 +12,10 @@ export class AIService{
         this.delay = Math.floor(Math.random() * (maxDelay - minDelay + 1) + minDelay);
         console.log("delay "+ this.delay);
         
+    }
+
+    pauseTimer(){
+
     }
 
     getDelay(){
@@ -29,41 +34,47 @@ export class AIService{
         //let delay = Math.floor(Math.random() * (5000 - 2000 + 1) + 2000); //0.5 y 2 s
         //console.log(delay);
 
+        //ejecuta la desicion despues de un retraso de tiempo
+        //el retraso de tiempo es generado desde el game o el board component (pensante, reactivo)
         setTimeout(() => {
-            switch(difficulty){
-                case "easy":
-                    //this.singleplayerEasy(index);
-                    //this.easyIA()
-                    this.easyIA(board);
-                break;
-
-                case "medium":
-                    //mezclemos las dificultades "lanzando una moneda"
-                    let moneda = Math.random()
-                    console.log(moneda);
-                    if(moneda <= 0.5){
-                        //this.hardIa(this.origBoard, this.xChar);
-                        this.hardIa(board,this.xChar);
-                    }else{
-                        //this.easyIA();
-                        this.easyIA(board);
-                    }
-                break;
-            
-                case "hard":
-                    //this.hardIa(this.origBoard,this.xChar);
-                    this.hardIa(board,this.xChar);
-                break;
-
-                
-            }
-            //JUGAR Y REVISAR SI GANO O PERDIO DE UNA VEZ!
-            this.setIaTinking(false);
-            console.log("Tablero luego de IA",board);
-            console.log("IA SERVICE PIENSA: " + this.isIaTinking());
+          this.iaDesition(difficulty,board);
         }, this.getDelay());
         
     }
+
+  iaDesition(difficulty: string, board: any) {
+    switch (difficulty) {
+      case "easy":
+        //this.singleplayerEasy(index);
+        //this.easyIA()
+        this.easyIA(board);
+        break;
+
+      case "medium":
+        //mezclemos las dificultades "lanzando una moneda"
+        let moneda = Math.random()
+        console.log(moneda);
+        if (moneda <= 0.5) {
+          //this.hardIa(this.origBoard, this.xChar);
+          this.hardIa(board, this.xChar);
+        } else {
+          //this.easyIA();
+          this.easyIA(board);
+        }
+        break;
+
+      case "hard":
+        //this.hardIa(this.origBoard,this.xChar);
+        this.hardIa(board, this.xChar);
+        break;
+    }
+
+    //JUGAR Y REVISAR SI GANO O PERDIO DE UNA VEZ!
+    this.setIaTinking(false);
+    console.log("Tablero luego de IA",board);
+    console.log("IA SERVICE PIENSA: " + this.isIaTinking());
+    }
+
     //ACA ESTA EL PROBLEMA POR QUE IA ESCOGE MAL A VECES ESCOGE INDICES QUE YA NO EXISTEN!
     easyIA(origBoard){
         console.log("tablero original IA facil",origBoard);    

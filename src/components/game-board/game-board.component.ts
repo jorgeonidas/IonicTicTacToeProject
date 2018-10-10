@@ -167,66 +167,14 @@ export class GameBoardComponent{
                         //intervalo de delay entre 0.5 y  2s}
                         console.log("From board turn Interval: "+this.turnInterval);
                         this.IA.setDelay(this.turnInterval);
-                        let delay = this.IA.getDelay();
-                        console.log(delay);
-                        
+                        let checkDelay = this.IA.getDelay() + 100;
+                        //console.log(checkDelay);
+                        this.IA.IATurn(this.origBoard,this.difficulty);
                         //hilo para dar la sensacion de que la pc piensa
                         setTimeout(() => {
-                            switch(this.difficulty){
-                                case "easy":
-                                    //this.singleplayerEasy(index);
-                                    //this.easyIA()
-                                    this.IA.easyIA(this.origBoard);
-                                break;
+                            this.checkPostIAplay();
+                        }, checkDelay);
 
-                                case "medium":
-                                    let aviableSpots = this.emptyIndexies(this.origBoard);
-                                    //mezclemos las dificultades "lanzando una moneda"
-                                    let moneda = Math.random()
-                                    console.log(moneda);
-                                    if(moneda <= 0.5){
-                                        //this.hardIa(this.origBoard, this.xChar);
-                                        this.IA.hardIa(this.origBoard,this.xChar);
-                                    }else{
-                                        //this.easyIA();
-                                        this.IA.easyIA(this.origBoard);
-                                    }
-                                break;
-                            
-                                case "hard":
-                                    //this.hardIa(this.origBoard,this.xChar);
-                                    this.IA.hardIa(this.origBoard,this.xChar);
-                                break;
-                            }
-                            
-                            console.log(this.origBoard);
-                            //gana IA?
-                            if(this.winning(this.origBoard, this.xChar)){
-                                //IA avisa a gamepage
-                                this.winner = true;
-                                console.log("IA WINS!");
-                                this.alertMsj = "IA WINS!";
-                                //this.showAlert(alertMsj);
-                                this.isPlayerOneEvent.emit(this.playerOne);
-                                this.alertMsjEvent.emit(this.alertMsj);
-                                this.isaWinnerEvent.emit(this.winner);                
-                            }else if(this.IA.emptyIndexies(this.origBoard).length == 0){
-                                console.log("TIE!");
-                                this.alertMsj = "TIE!";
-                                this.winner = false;
-                                //this.showAlert(alertMsj);
-                                this.isPlayerOneEvent.emit(this.playerOne);
-                                this.alertMsjEvent.emit(this.alertMsj);
-                                this.isaWinnerEvent.emit(this.winner); 
-                            }
-
-                            this.isIAthinking = false;
-                            this.IA.setIaTinking(this.isIAthinking);
-                            this.currentTurnEvent.emit(this.IA.isIaTinking());
-                            //this.playerOne = true;
-                            
-                            //this.playerOne = true;//test
-                        }, delay);
                     //empato?  
                     }else{
                         console.log("TIE!");
@@ -300,6 +248,34 @@ export class GameBoardComponent{
             console.log("movimiento ilegal!");
         }      
     }
+    checkPostIAplay() {
+        console.log(this.origBoard);
+        //gana IA?
+        if (this.winning(this.origBoard, this.xChar)) {
+            //IA avisa a gamepage
+            this.winner = true;
+            console.log("IA WINS!");
+            this.alertMsj = "IA WINS!";
+            //this.showAlert(alertMsj);
+            this.isPlayerOneEvent.emit(this.playerOne);
+            this.alertMsjEvent.emit(this.alertMsj);
+            this.isaWinnerEvent.emit(this.winner);
+        } else if (this.IA.emptyIndexies(this.origBoard).length == 0) {
+            console.log("TIE!");
+            this.alertMsj = "TIE!";
+            this.winner = false;
+            //this.showAlert(alertMsj);
+            this.isPlayerOneEvent.emit(this.playerOne);
+            this.alertMsjEvent.emit(this.alertMsj);
+            this.isaWinnerEvent.emit(this.winner);
+        }
+
+        this.isIAthinking = false;
+        this.IA.setIaTinking(this.isIAthinking);
+        this.currentTurnEvent.emit(this.IA.isIaTinking());
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
 
       //filtra las casillas disponibles para la IA
     emptyIndexies(board){

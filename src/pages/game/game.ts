@@ -148,6 +148,8 @@ export class GamePage {
     if(moneda <= 0.5){
       this.playerOneCurrentTurn = true;
       this.playerStartsGame = true;
+      if(this.gametype == 'singleplayer')
+          this.IA.setIaTinking(false);
     }else{
       this.playerOneCurrentTurn = false;
       this.playerStartsGame = false;
@@ -170,7 +172,7 @@ export class GamePage {
           msj='Player Two Starts Game';
         else if(this.gametype=='singleplayer')
           msj = 'Robot Starts The Game';
-          //this.IA.setIaTinking(true); //evitar que el jugador juege de primero cuando en realidad le toca a la IA
+          this.IA.setIaTinking(true); //evitar que el jugador juege de primero cuando en realidad le toca a la IA
       }
       this.initialAlert = this.alertCtrl.create({
         title: msj,
@@ -248,7 +250,7 @@ export class GamePage {
     this.winner = isAWin;
     if(!this.winner)
       this.playerOneWinsRound = false;
-      
+
     this.setScore();
   }
   //setea score y revisa si el juego termino
@@ -354,6 +356,8 @@ export class GamePage {
   startTimer(){
     this.timeout = setInterval( () =>{
       this.timeleft--
+      //console.log("timeleft",this.timeleft);
+      
       //console.log(this.timeleft);
       this.toltalTurnBar -= Math.round(100/this.turnInterval); //testing luego le busco la proporcion
       //console.log(this.toltalTurnBar);
@@ -376,7 +380,7 @@ export class GamePage {
 
           case 'singleplayer':
                       
-            if (this.playerOneCurrentTurn /*|| (!this.playerOneCurrentTurn && this.IA.emptyIndexies(this.gameboard).length == 9 )*/) {
+            if (this.playerOneCurrentTurn) {
               this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
               this.IAplaying();    
             }              
@@ -388,29 +392,39 @@ export class GamePage {
   }
 
   IAplaying() {
-    this.IA.setDelay(this.turnInterval)
+    this.IA.setDelay(this.turnInterval);
+    let checkDelay = this.IA.getDelay()+100;
     //tenemos que decirle a la pc que ejecute su jugada
+
+    //TODO TENGO QUE DETENER EL HILO SI HACEN PAUSA
+
     this.IA.IATurn(this.gameboard, this.difficulty);//La jugada de La IA se ejecuta en paralelo
     //hilo para hacer el cambio de turno y reseteo del timer
+
+    //TODO: TENGO QUE DETENER ESTE HILO SI HACEN PAUSA
     setTimeout(() => {
-      console.log("board despuesd que IA juega: " + this.gameboard);
-      console.log("espacios disponibles: ", this.IA.emptyIndexies(this.gameboard).length);
+      this.checkIAPostPlay();
+    }, checkDelay); //para que lo ejecute justo despues del movimiento de la pc   
+  }
 
-      if (this.IA.winning(this.gameboard, 'X')) {//si gana 
-        console.log("IA WINS!");
-        //aca seteo score!!!!!!!!
-        this.setRoundWinner(false);
-        this.winOrTie(true);
-      } else if (this.IA.emptyIndexies(this.gameboard).length == 0) {//si empata
-        console.log("IA Puts a Draw");
-        this.setRoundWinner(false);
-        this.winOrTie(false);
-      } else { //caso contrario el juego continua
+  checkIAPostPlay() {
+    console.log("board despuesd que IA juega: " + this.gameboard);
+    console.log("espacios disponibles: ", this.IA.emptyIndexies(this.gameboard).length);
 
-        this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
-        this.restRoundTimer();
-      }
-    }, this.IA.getDelay() + 100); //para que lo ejecute justo despues del movimiento de la pc   
+    if (this.IA.winning(this.gameboard, 'X')) {//si gana 
+      console.log("IA WINS!");
+      //aca seteo score!!!!!!!!
+      this.setRoundWinner(false);
+      this.winOrTie(true);
+    } else if (this.IA.emptyIndexies(this.gameboard).length == 0) {//si empata
+      console.log("IA Puts a Draw");
+      this.setRoundWinner(false);
+      this.winOrTie(false);
+    } else { //caso contrario el juego continua
+
+      this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+      this.restRoundTimer();
+    }
   }
 
   stopTimer(){
@@ -420,7 +434,7 @@ export class GamePage {
   pauseOrResume(isPaused: boolean){
     console.log("paused: "+isPaused);
     if(isPaused){
-      this.stopTimer()
+      this.stopTimer();
     }else if(!this.cfgService.isLeavingCurrentGame() && ! isPaused){
       this.startTimer();
     }
