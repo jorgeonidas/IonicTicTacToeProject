@@ -17,56 +17,7 @@ export class AIService{
         console.log("IA delay "+ this.delay);
         
     }
-
-    setCmdFromGameOrBoard(cmdBool: boolean){
-      this.cmdFromGameOrBoard = cmdBool;
-    }
-
-    getCmdFromGameOrBoard():boolean{
-      return this.cmdFromGameOrBoard;
-    }
-    /*Tiempo transcurrido en el timer */
-    setTimeEpalsed(time: number){
-      this.timeEpalsed = time;
-      console.log("IA TIME ELAPSED",this.timeEpalsed);
-    }
-    
-    resetTimeElapsed(){
-      this.timeEpalsed = 0;
-    }
-    /*tiempo restante para "pensar" */
-    setTimeLeft(){
-      //milisegundos
-      console.log("epalsed", this.timeEpalsed*1000);
-      this.timeleft = this.getDelay() - this.timeEpalsed * 1000;
-      console.log("IA timeleft: ",this.timeleft);
-      //return this.timeleft;
-    }
-    
-    getTimeLeft(){
-      return this.timeleft;
-    }
-
-    pauseIaDelay(){
-      //comprobamos que de mayor a cero
-      if(this.getTimeLeft() > 0)
-        clearTimeout(this.iaTimerDelay);
-    }
-
-    resumeIaDelay(difficulty,board){
-        this.setIaTinking(true);
-        console.log("ia resumida le quedan "+this.timeleft+" ms");
-        
-        console.log("IA SERVICE PIENSA: " + this.isIaTinking());
-        console.log("la IA ha sido comandada desde, true:game, false:game-board",this.getCmdFromGameOrBoard());
-        
-        //ejecuta la desicion despues de un retraso de tiempo
-        //el retraso de tiempo es generado desde el game o el board component (pensante, reactivo)
-        this.iaTimerDelay = setTimeout(() => {
-          this.iaDesition(difficulty,board);
-        }, this.timeleft);
-    }
-
+   
     getDelay(){
         return this.delay;
     }
@@ -78,9 +29,7 @@ export class AIService{
 
     IATurn(board, difficulty){
         this.setIaTinking(true);
-        console.log("IA SERVICE PIENSA: " + this.isIaTinking());
-        console.log("la IA ha sido comandada desde, true:game, false:game-board",this.getCmdFromGameOrBoard());
-        
+        console.log("IA SERVICE PIENSA: " + this.isIaTinking());       
         //ejecuta la desicion despues de un retraso de tiempo
         //el retraso de tiempo es generado desde el game o el board component (pensante, reactivo)
         this.iaTimerDelay = setTimeout(() => {

@@ -125,26 +125,9 @@ export class GameBoardComponent{
     constructor(private alertCtrl: AlertController, private IA : AIService, private events: Events){  
         this.isIAthinking = false;
         this.isGameOver = false;
-        //aca sabre cuando pausan o no desde el juego
-        this.events.subscribe('pause-board : done',(data)=>{
-            if(data){
-                this.pauseCheckTimeout();
-            }else{
-                this.resumeCheckTimeout();
-            }
-        });
-    }
-    /*pausar  reanudar el hilo que checkea la jugada de la ia*/
-    pauseCheckTimeout(){
-        if(this.IA.getTimeLeft() > 0)
-            clearTimeout(this.checkoutTimeot);
+
     }
 
-    resumeCheckTimeout(){
-        this.checkoutTimeot = setTimeout(() => {
-            this.checkPostIAplay();
-        }, this.IA.getTimeLeft()+100);
-    }
 
     //jugada
     onCellClickled(index: number){
@@ -193,7 +176,6 @@ export class GameBoardComponent{
                         //console.log(checkDelay);
                         
                         //la ia ha sido comandada desde el componente game-board
-                        this.IA.setCmdFromGameOrBoard(false);
                         this.IA.IATurn(this.origBoard,this.difficulty);
                         
                         //hilo para dar la sensacion de que la pc piensa
