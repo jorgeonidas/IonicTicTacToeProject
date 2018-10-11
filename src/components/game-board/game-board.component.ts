@@ -164,11 +164,13 @@ export class GameBoardComponent{
                         this.IA.setIaTinking(this.isIAthinking);
                         this.currentTurnEvent.emit(this.IA.isIaTinking());
 
-                        //intervalo de delay entre 0.5 y  2s}
+                        //intervalo de delay entre 0.5 y  2s
                         console.log("From board turn Interval: "+this.turnInterval);
                         this.IA.setDelay(this.turnInterval);
                         let checkDelay = this.IA.getDelay() + 100;
                         //console.log(checkDelay);
+                        //la ia ha sido comandada desde el componente game-board
+                        this.IA.setCmdFromGameOrBoard(false);
                         this.IA.IATurn(this.origBoard,this.difficulty);
                         //hilo para dar la sensacion de que la pc piensa
                         setTimeout(() => {

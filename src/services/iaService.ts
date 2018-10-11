@@ -4,18 +4,66 @@ export class AIService{
     oChar = 'O';
     isIAthinking: boolean;
     delay : number;
-    commandedFromGame: boolean; //si la orden se le dio dsde el juego o gameboard
-
+    cmdFromGameOrBoard: boolean; //si la orden se le dio dsde el juego o gameboard (true: Game, false: Board)
+    //TIMERS Y TIEMPOS
+    iaTimerDelay : any ;
+    timeEpalsed : number;
+    timeleft: number;
+    
     setDelay(time: number){
         let maxDelay = (time*1000)/2;
         let minDelay = 1500;
         this.delay = Math.floor(Math.random() * (maxDelay - minDelay + 1) + minDelay);
-        console.log("delay "+ this.delay);
+        console.log("IA delay "+ this.delay);
         
     }
 
-    pauseTimer(){
+    setCmdFromGameOrBoard(cmdBool: boolean){
+      this.cmdFromGameOrBoard = cmdBool;
+    }
 
+    getCmdFromGameOrBoard():boolean{
+      return this.cmdFromGameOrBoard;
+    }
+    /*Tiempo transcurrido en el timer */
+    setTimeEpalsed(time: number){
+      this.timeEpalsed = time;
+      console.log("IA TIME ELAPSED",this.timeEpalsed);
+    }
+    
+    resetTimeElapsed(){
+      this.timeEpalsed = 0;
+    }
+    /*tiempo restante para "pensar" */
+    setTimeLeft(){
+      //milisegundos
+      this.timeleft = this.getDelay() - this.timeEpalsed * 1000;
+      console.log("IA timeleft: ",this.timeleft);
+      //return this.timeleft;
+    }
+    
+    getTimeLeft(){
+      return this.timeleft;
+    }
+
+    pauseIaDelay(){
+      //comprobamos que de mayor a cero
+      if(this.getTimeLeft() > 0)
+        clearTimeout(this.iaTimerDelay);
+    }
+
+    resumeIaDelay(difficulty,board){
+        this.setIaTinking(true);
+        console.log("ia resumida le quedan "+this.timeleft+" ms");
+        
+        console.log("IA SERVICE PIENSA: " + this.isIaTinking());
+        console.log("la IA ha sido comandada desde, true:game, false:game-board",this.getCmdFromGameOrBoard());
+        
+        //ejecuta la desicion despues de un retraso de tiempo
+        //el retraso de tiempo es generado desde el game o el board component (pensante, reactivo)
+        this.iaTimerDelay = setTimeout(() => {
+          this.iaDesition(difficulty,board);
+        }, this.timeleft);
     }
 
     getDelay(){
@@ -30,13 +78,11 @@ export class AIService{
     IATurn(board, difficulty){
         this.setIaTinking(true);
         console.log("IA SERVICE PIENSA: " + this.isIaTinking());
+        console.log("la IA ha sido comandada desde, true:game, false:game-board",this.getCmdFromGameOrBoard());
         
-        //let delay = Math.floor(Math.random() * (5000 - 2000 + 1) + 2000); //0.5 y 2 s
-        //console.log(delay);
-
         //ejecuta la desicion despues de un retraso de tiempo
         //el retraso de tiempo es generado desde el game o el board component (pensante, reactivo)
-        setTimeout(() => {
+        this.iaTimerDelay = setTimeout(() => {
           this.iaDesition(difficulty,board);
         }, this.getDelay());
         
@@ -71,9 +117,9 @@ export class AIService{
 
     //JUGAR Y REVISAR SI GANO O PERDIO DE UNA VEZ!
     this.setIaTinking(false);
-    console.log("Tablero luego de IA",board);
+    console.log("Tablero luego de IA", board);
     console.log("IA SERVICE PIENSA: " + this.isIaTinking());
-    }
+  }
 
     //ACA ESTA EL PROBLEMA POR QUE IA ESCOGE MAL A VECES ESCOGE INDICES QUE YA NO EXISTEN!
     easyIA(origBoard){

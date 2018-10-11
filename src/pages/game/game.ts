@@ -161,6 +161,8 @@ export class GamePage {
   }
   //Decidir quien salie primero
   gameInitializer(){
+    //this.IA.resetTimeElapsed();
+    this.IA.setCmdFromGameOrBoard(false);
     //1.-Are you good enough?
     this.timeout = setTimeout(() => {
       this.playerOneDidGoFirst = this.generateFirstTurn(); //SELECCIONAMOS QUIEN VA A COMENZAR EL JUEGO
@@ -173,6 +175,9 @@ export class GamePage {
         else if(this.gametype=='singleplayer')
           msj = 'Robot Starts The Game';
           this.IA.setIaTinking(true); //evitar que el jugador juege de primero cuando en realidad le toca a la IA
+          this.IA.setCmdFromGameOrBoard(true);
+          this.IA.resetTimeElapsed();
+          this.IA.setTimeEpalsed(0);
       }
       this.initialAlert = this.alertCtrl.create({
         title: msj,
@@ -356,6 +361,9 @@ export class GamePage {
   startTimer(){
     this.timeout = setInterval( () =>{
       this.timeleft--
+      //para evitar el cero (0)
+      this.IA.setTimeEpalsed((this.turnInterval-this.timeleft)+1);
+
       //console.log("timeleft",this.timeleft);
       
       //console.log(this.timeleft);
@@ -368,6 +376,7 @@ export class GamePage {
         this.IAplaying();
       }
       if(this.timeleft == 0){
+        //this.IA.resetTimeElapsed();
         //clearInterval(this.timeout);
         //ojo funciona para local multiplayer como haremos con singleplayer?
         this.restRoundTimer();
@@ -396,8 +405,9 @@ export class GamePage {
     let checkDelay = this.IA.getDelay()+100;
     //tenemos que decirle a la pc que ejecute su jugada
 
+    //la ia ha sido comandada desde la clase Game
+    this.IA.setCmdFromGameOrBoard(true);
     //TODO TENGO QUE DETENER EL HILO SI HACEN PAUSA
-
     this.IA.IATurn(this.gameboard, this.difficulty);//La jugada de La IA se ejecuta en paralelo
     //hilo para hacer el cambio de turno y reseteo del timer
 
@@ -434,9 +444,36 @@ export class GamePage {
   pauseOrResume(isPaused: boolean){
     console.log("paused: "+isPaused);
     if(isPaused){
+      //pauser
+      //TODO pause para el checkeador desde el gameboard component
+      console.log("pausada desde Game.ts?", this.IA.getCmdFromGameOrBoard());
+      
+
+      
+      console.log("DELAY DE LA IA EN ESTE MOMENTO",this.IA.getDelay());
+      //TODO CASO ESPECIAL EN QUE LA IA NI SIQUIERA HA COMENZADO A PENSAR!
+      if(!this.playerOneCurrentTurn && this.IA.getDelay() != null){
+        this.IA.setTimeLeft();//seteo el tiempo restante que le queda para pensar
+        this.IA.getTimeLeft();
+        this.IA.pauseIaDelay();
+
+        //tenemos que saber cual hilo comanda la ia para pausarlo
+        if (!this.IA.getCmdFromGameOrBoard()) {
+          
+        }
+      }
+      
       this.stopTimer();
     }else if(!this.cfgService.isLeavingCurrentGame() && ! isPaused){
+      console.log("DELAY DE LA IA EN ESTE MOMENTO Luego de pausar",this.IA.getDelay());
+      console.log("turno del player?",this.playerOneCurrentTurn);
+      
+      //si la ia ni siquiera comenzo a pensar es decir que no fue pausada por ende tampoco se tiene que reanudar.
+      if(!this.playerOneCurrentTurn && this.IA.getDelay() != null){
+        this.IA.resumeIaDelay(this.difficulty,this.gameboard);
+      }
       this.startTimer();
+      
     }
   }
 
