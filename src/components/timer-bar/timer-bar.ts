@@ -13,6 +13,7 @@ export class TimerBarComponent {
   @Input() timer: number;
   @Input() value = 100;
   @Input() gameDidStart: boolean;
+  @Input() pauseEnabled: boolean;
 
   gamePaused : boolean;
   @Output() pausedEmmiter = new EventEmitter<boolean>();
@@ -23,6 +24,8 @@ export class TimerBarComponent {
     this.currentRound = 1;
     this.gamePaused = false;
     this.gameDidStart = false;
+    //testing property bind
+    //this.pauseEnabled = false;
   }
 
 

@@ -50,6 +50,10 @@ export class GamePage {
   //
   initialAlert : Alert;
   gameDidStart: boolean;
+  //timer checkout 
+  checkoutTimeot: any;
+  //enable pause
+  pauseEnable: boolean;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -98,6 +102,9 @@ export class GamePage {
     console.log(this.portraitOne, this.portraitTwo);
     this.isGameOver = false;
     this.setMaxPointsToWin();
+
+    //habilitar pausa
+    this.pauseEnable = true;
 
     switch (this.difficulty) {
       case 'easy':
@@ -153,8 +160,10 @@ export class GamePage {
     }else{
       this.playerOneCurrentTurn = false;
       this.playerStartsGame = false;
-      if(this.gametype == 'singleplayer')
+      if(this.gametype == 'singleplayer'){
         this.IA.setIaTinking(true);
+        this.pauseEnable = false;
+      }
     }
 
     return this.playerOneCurrentTurn;
@@ -235,6 +244,12 @@ export class GamePage {
     this.restRoundTimer();
     if(this.gametype == "singleplayer"){
       this.playerOneCurrentTurn = !iaTinkingOrPlayeroneTurn; // si la NO! esta pesando la IA es el turno del Jugador
+      //habilito y desabilito boton de pausa dependiendo del turno en singleplayer solamente
+      if(this.playerOneCurrentTurn){
+        this.pauseEnable = true;
+      }else{
+        this.pauseEnable = false;
+      }
     }else{
       this.playerOneCurrentTurn = iaTinkingOrPlayeroneTurn;
     }
@@ -347,6 +362,8 @@ export class GamePage {
   restRoundTimer(){
     console.log("reset timer");    
     this.toltalTurnBar = 100;
+    //reseteo el tiempo pasado a 0
+    this.IA.setTimeEpalsed(0);
     this.timeleft = this.turnInterval + 1;  
   }
 
@@ -362,7 +379,12 @@ export class GamePage {
     this.timeout = setInterval( () =>{
       this.timeleft--
       //para evitar el cero (0)
-      this.IA.setTimeEpalsed((this.turnInterval-this.timeleft)+1);
+      let timeEpalsed = (this.turnInterval-this.timeleft)+1;
+      //si termino la cuenta para evitar valores negativos
+      if(timeEpalsed > this.turnInterval)
+        timeEpalsed = 0;
+
+      this.IA.setTimeEpalsed(timeEpalsed);
 
       //console.log("timeleft",this.timeleft);
       
@@ -399,7 +421,19 @@ export class GamePage {
     },
     1000); 
   }
+  /*pausar y reanudar el hilo que checkea la jugada de la IA*/
+  pauseCheckTioemout() {
+    if (this.IA.getTimeLeft() > 0)
+      clearTimeout(this.checkoutTimeot);
+  }
 
+  resumeCheckTimeout() {
+    this.checkoutTimeot = setTimeout(() => {
+      this.checkIAPostPlay();
+    }, this.IA.getTimeLeft() + 100);
+  }
+
+  /*jugada de la Ia comandada deste esta clase*/
   IAplaying() {
     this.IA.setDelay(this.turnInterval);
     let checkDelay = this.IA.getDelay()+100;
@@ -412,7 +446,7 @@ export class GamePage {
     //hilo para hacer el cambio de turno y reseteo del timer
 
     //TODO: TENGO QUE DETENER ESTE HILO SI HACEN PAUSA
-    setTimeout(() => {
+    this.checkoutTimeot = setTimeout(() => {   
       this.checkIAPostPlay();
     }, checkDelay); //para que lo ejecute justo despues del movimiento de la pc   
   }
@@ -420,7 +454,7 @@ export class GamePage {
   checkIAPostPlay() {
     console.log("board despuesd que IA juega: " + this.gameboard);
     console.log("espacios disponibles: ", this.IA.emptyIndexies(this.gameboard).length);
-
+    
     if (this.IA.winning(this.gameboard, 'X')) {//si gana 
       console.log("IA WINS!");
       //aca seteo score!!!!!!!!
@@ -433,45 +467,35 @@ export class GamePage {
     } else { //caso contrario el juego continua
 
       this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
+      
+      if(this.playerOneCurrentTurn)
+        this.pauseEnable = true;
+      
       this.restRoundTimer();
     }
+    //
   }
 
   stopTimer(){
     clearInterval(this.timeout);
   }
-
+  /*Pausar y resumir el juego, primero pausa la ia dada las condicones si ha empezado a pensar o no
+  luego pausa el hilo que lo esta chequeando en ese momento */
   pauseOrResume(isPaused: boolean){
     console.log("paused: "+isPaused);
     if(isPaused){
       //pauser
       //TODO pause para el checkeador desde el gameboard component
       console.log("pausada desde Game.ts?", this.IA.getCmdFromGameOrBoard());
-      
 
-      
       console.log("DELAY DE LA IA EN ESTE MOMENTO",this.IA.getDelay());
-      //TODO CASO ESPECIAL EN QUE LA IA NI SIQUIERA HA COMENZADO A PENSAR!
-      if(!this.playerOneCurrentTurn && this.IA.getDelay() != null){
-        this.IA.setTimeLeft();//seteo el tiempo restante que le queda para pensar
-        this.IA.getTimeLeft();
-        this.IA.pauseIaDelay();
 
-        //tenemos que saber cual hilo comanda la ia para pausarlo
-        if (!this.IA.getCmdFromGameOrBoard()) {
-          
-        }
-      }
-      
       this.stopTimer();
     }else if(!this.cfgService.isLeavingCurrentGame() && ! isPaused){
       console.log("DELAY DE LA IA EN ESTE MOMENTO Luego de pausar",this.IA.getDelay());
       console.log("turno del player?",this.playerOneCurrentTurn);
-      
-      //si la ia ni siquiera comenzo a pensar es decir que no fue pausada por ende tampoco se tiene que reanudar.
-      if(!this.playerOneCurrentTurn && this.IA.getDelay() != null){
-        this.IA.resumeIaDelay(this.difficulty,this.gameboard);
-      }
+ 
+      //reanudo el timer
       this.startTimer();
       
     }
@@ -556,12 +580,15 @@ export class GamePage {
       else if (this.gametype == 'singleplayer'){
         msj = 'Robot Starts The Game'
         this.playerStartsGame = false;
+        //ia piensa no puedo pausar ( caso especial que comienza de primero el round)
+        this.pauseEnable = false;
         this.IA.setIaTinking(true);//evitar que el jugador marque primero en el turno de la IA
       }
 
     } else if(!poneWins && this.winner) {//player 2 o bot gano
       this.playerStartsGame = true;
       this.playerOneCurrentTurn = true;
+      this.pauseEnable = true;
       this.IA.setIaTinking(false);
       //this.playerStartsGame = false;
       msj = 'Player One Starts Game';

@@ -37,6 +37,7 @@ export class AIService{
     /*tiempo restante para "pensar" */
     setTimeLeft(){
       //milisegundos
+      console.log("epalsed", this.timeEpalsed*1000);
       this.timeleft = this.getDelay() - this.timeEpalsed * 1000;
       console.log("IA timeleft: ",this.timeleft);
       //return this.timeleft;

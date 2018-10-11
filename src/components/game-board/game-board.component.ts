@@ -1,5 +1,5 @@
 import { Component, Input, Output, Injectable, EventEmitter } from "@angular/core";
-import { AlertController } from "ionic-angular";
+import { AlertController, Events } from "ionic-angular";
 import { isDifferent } from "@angular/core/src/render3/util";
 import { AIService } from '../../services/iaService';
 
@@ -119,9 +119,31 @@ export class GameBoardComponent{
 
     @Input() gameStart: boolean = false;
     
-    constructor(private alertCtrl: AlertController, private IA : AIService){  
+    //variable que guardara el timeout
+    checkoutTimeot: any;
+
+    constructor(private alertCtrl: AlertController, private IA : AIService, private events: Events){  
         this.isIAthinking = false;
-        this.isGameOver = false;    
+        this.isGameOver = false;
+        //aca sabre cuando pausan o no desde el juego
+        this.events.subscribe('pause-board : done',(data)=>{
+            if(data){
+                this.pauseCheckTimeout();
+            }else{
+                this.resumeCheckTimeout();
+            }
+        });
+    }
+    /*pausar  reanudar el hilo que checkea la jugada de la ia*/
+    pauseCheckTimeout(){
+        if(this.IA.getTimeLeft() > 0)
+            clearTimeout(this.checkoutTimeot);
+    }
+
+    resumeCheckTimeout(){
+        this.checkoutTimeot = setTimeout(() => {
+            this.checkPostIAplay();
+        }, this.IA.getTimeLeft()+100);
     }
 
     //jugada
@@ -158,7 +180,7 @@ export class GameBoardComponent{
                         this.isaWinnerEvent.emit(this.winner);
 
                     }else if(aviableSpots.length > 0 ){
-                         //dependiendo de la dificultad elegir algoritmo
+                        //dependiendo de la dificultad elegir algoritmo
                         this.playerOne = false;
                         this.isIAthinking = true; //IA esta pesando
                         this.IA.setIaTinking(this.isIAthinking);
@@ -169,11 +191,14 @@ export class GameBoardComponent{
                         this.IA.setDelay(this.turnInterval);
                         let checkDelay = this.IA.getDelay() + 100;
                         //console.log(checkDelay);
+                        
                         //la ia ha sido comandada desde el componente game-board
                         this.IA.setCmdFromGameOrBoard(false);
                         this.IA.IATurn(this.origBoard,this.difficulty);
+                        
                         //hilo para dar la sensacion de que la pc piensa
-                        setTimeout(() => {
+                        //TODO TENGO QUE PAUSAR ESTE HILO!
+                        this.checkoutTimeot = setTimeout(() => {
                             this.checkPostIAplay();
                         }, checkDelay);
 
