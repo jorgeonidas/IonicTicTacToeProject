@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform, NavController, Events } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { AuthService } from '../../services/authService';
-
+import * as Constants from '../../services/Constants'
 @Component({
   selector: 'information-bar',
   templateUrl: 'information-bar.html'
@@ -13,8 +13,8 @@ export class InformationBarComponent {
   coins: number;
   eolas: number;
 
-  coinIconUrl = "assets/imgs/coins.png";
-  eolaIconUrl = "assets/imgs/eolas.png";
+  coinIconUrl = Constants.COIN_URI;
+  eolaIconUrl = Constants.EOLA_URI;
   deviceHeight : number;
   iphonex: boolean;
   isIos: boolean;

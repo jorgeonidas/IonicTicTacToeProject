@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, Events } from 'ionic-angular';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
-
+import * as Constants from '../../services/Constants'
 @IonicPage()
 @Component({
   selector: 'page-contacts',
@@ -18,7 +18,7 @@ export class ContactsPage {
     nick: 'AveryLongNickname',
     msjNot: {type:'notification',
               msjReaded: true,
-              msj: "Game Invitation Pending"},
+              msj: Constants.GAME_INVITE_PENDING},
     action: 2
   }
 
@@ -68,7 +68,7 @@ export class ContactsPage {
     nick: 'Kalo',
     msjNot: {type:'notification',
               msjReaded: true,
-              msj: "Game Invitation Sent"},
+              msj: Constants.GAME_INVITE_SENT},
     action: 3
   }
 

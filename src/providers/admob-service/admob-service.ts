@@ -2,17 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AdMobPro, AdMobOptions } from '@ionic-native/admob-pro';
 import { Platform, LoadingController, Events} from 'ionic-angular';
+import * as Constants from '../../services/Constants';
 
 @Injectable()
 export class AdmobServiceProvider {
   adIdinterstetial : string;
   adIdVideo: string;
-  private iosInter = 'ca-app-pub-2497464044902615/8130698049';
+ /* private iosInter = 'ca-app-pub-2497464044902615/8130698049';
   private androidInter = 'ca-app-pub-2497464044902615/3469398308';
 
   private iosVid = 'ca-app-pub-2497464044902615/1296151797';
   private androidVid='ca-app-pub-2497464044902615/2902970831';
-
+  */
   adProb : number;
   public cordovaAviable: boolean;
   public firstTimeLaunched: boolean;
@@ -59,11 +60,11 @@ export class AdmobServiceProvider {
     console.log("Configurando dependiendo de la plataforma");
     
     if(this.platform.is('android')) {
-      this.adIdinterstetial  = this.androidInter;
-      this.adIdVideo =this.androidVid;
+      this.adIdinterstetial  = Constants.ANDROID_INTER_ID;
+      this.adIdVideo = Constants.ANDROID_VIDEO_ID;
     } else if (this.platform.is('ios')) {
-      this.adIdinterstetial = this.iosInter;
-      this.adIdVideo = this.iosVid;
+      this.adIdinterstetial = Constants.IOS_INTER_ID;
+      this.adIdVideo = Constants.IOS_VIDEO_ID;
     }
 
     this.adInterstitialOpt = {

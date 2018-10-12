@@ -2,7 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { TokenService } from '../../services/tokenService';
 import { AuthService } from '../../services/authService';
 import { Events, LoadingController } from 'ionic-angular';
-
+import * as Constants from '../../services/Constants';
 @Component({
   selector: 'user-account',
   templateUrl: 'user-account.html'
@@ -31,8 +31,8 @@ export class UserAccountComponent {
     this.coins = this.auth.getCoins();
     this.eolas = this.auth.getEolas();
 
-    this.coinIconUrl = "assets/imgs/coins.png";
-    this.eolaIconUrl = "assets/imgs/eolas.png";
+    this.coinIconUrl = Constants.COIN_URI;
+    this.eolaIconUrl = Constants.EOLA_URI;
 
     this.lastNickName = this.nickName = this.auth.getCurrentUserNickname();
 

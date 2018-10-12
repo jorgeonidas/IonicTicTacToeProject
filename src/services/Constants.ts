@@ -69,6 +69,10 @@ export const TOKENS_URIS =
   'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
   'assets/imgs/Tic-Tac-Toe-icon-mockup.ico'
 ];
+
+/*CURRENCIES ICONS */
+export const COIN_URI = 'assets/imgs/coins.png';
+export const EOLA_URI = 'assets/imgs/eolas.png';
 /*IA ODDS */
 
 export const MEDIUM_ODD = 0.5;
@@ -78,3 +82,14 @@ export const MEDIUM_ODD = 0.5;
 export const  API_VR_URI = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
 export const API_VR_URI_REGISTER = '/register';
 export const API_VR_URI_AUTH = '/authenticate';
+
+/*Contact state */
+export const GAME_INVITE_PENDING = 'Game Invitation Pending"';
+export const GAME_INVITE_SENT = 'Game Invitation Sent';
+
+/*AD MOB IDS */
+export const IOS_INTER_ID = 'ca-app-pub-2497464044902615/8130698049';
+export const ANDROID_INTER_ID = 'ca-app-pub-2497464044902615/3469398308';
+
+export const IOS_VIDEO_ID = 'ca-app-pub-2497464044902615/1296151797';
+export const ANDROID_VIDEO_ID='ca-app-pub-2497464044902615/2902970831';
