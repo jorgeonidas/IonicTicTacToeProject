@@ -1,3 +1,4 @@
+import * as Constants from '../services/Constants'
 export class AIService{
     //despues personalizaremos
     xChar = 'X';
@@ -40,13 +41,13 @@ export class AIService{
 
   iaDesition(difficulty: string, board: any) {
     switch (difficulty) {
-      case "easy":
+      case Constants.DIF_EASY:
         //this.singleplayerEasy(index);
         //this.easyIA()
         this.easyIA(board);
         break;
 
-      case "medium":
+      case Constants.DIF_MEDIUM:
         //mezclemos las dificultades "lanzando una moneda"
         let moneda = Math.random()
         console.log(moneda);
@@ -59,7 +60,7 @@ export class AIService{
         }
         break;
 
-      case "hard":
+      case Constants.DIF_HARD:
         //this.hardIa(this.origBoard,this.xChar);
         this.hardIa(board, this.xChar);
         break;

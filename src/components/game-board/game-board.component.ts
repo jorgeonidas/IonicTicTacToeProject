@@ -2,7 +2,7 @@ import { Component, Input, Output, Injectable, EventEmitter } from "@angular/cor
 import { AlertController, Events } from "ionic-angular";
 import { isDifferent } from "@angular/core/src/render3/util";
 import { AIService } from '../../services/iaService';
-
+import * as Constants from '../../services/Constants'
 @Component({
     selector: 'game-board',
     templateUrl: 'game-board.html',
@@ -137,7 +137,7 @@ export class GameBoardComponent{
             
             switch(this.gameType){
                
-                case "singleplayer":
+                case Constants.GT_SINGLEPLAYER:
 
                     let alertMsj: string;
                     //juega jugador
@@ -196,7 +196,7 @@ export class GameBoardComponent{
                     }                   
                 break;
 
-                case "local-multiplayer":
+                case Constants.GT_LOCAL_MULTYPLAYER:
                                        
                     let currentPlayer;
                     if(this.playerOne){
