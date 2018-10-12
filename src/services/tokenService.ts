@@ -1,24 +1,11 @@
+import * as Constants from '../services/Constants';
 export class TokenService{
     tokensUrls: string[];
     currentSelection: number;
 
     constructor(){
-        this.tokensUrls = 
-        [
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/tic_tac_toe-mockup-red.png',
-          'assets/imgs/tic-tac-toep-mouckup-3.png',
-          'assets/imgs/tic-tac-toe-mockup-4.png',
-          'assets/imgs/tic-tac-toe-mockyp-5.png',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico',
-          'assets/imgs/Tic-Tac-Toe-icon-mockup.ico'
-        ];
-
+        this.tokensUrls = Constants.TOKENS_URIS;
+       
         this.setCurrentSelection(0);
     }
 

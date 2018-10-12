@@ -154,8 +154,8 @@ export class GameBoardComponent{
                     if(this.winning(this.origBoard, this.oChar)){
                         //jugador gano avisar al GamePage
                         this.winner = true;
-                        console.log("Player wins round"); 
-                        this.alertMsj = "Player wins round";
+                        console.log(Constants.PlAYER_ONE_WR); 
+                        this.alertMsj = Constants.PlAYER_ONE_WR;
                         //this.showAlert(alertMsj);
                         //testing sending alerts from GamePage
                         this.isPlayerOneEvent.emit(this.playerOne);
@@ -216,11 +216,11 @@ export class GameBoardComponent{
                     
                     if( this.winner ){
                         if(this.playerOne){
-                            console.log("Player One Wins Round");
-                            this.alertMsj = "Player One Wins Round";     
+                            console.log(Constants.PlAYER_ONE_WR);
+                            this.alertMsj = Constants.PlAYER_ONE_WR;     
                         }else{
-                            console.log("Player Two Wins ");
-                            this.alertMsj = "Player Two Wins Round";
+                            console.log(Constants.PlAYER_TWO_WR);
+                            this.alertMsj = Constants.PlAYER_TWO_WR;
                         }
                         
                         //this.showAlert(this.alertMsj);
@@ -247,7 +247,7 @@ export class GameBoardComponent{
                     }
                 break;
 
-                case "online-multiplayer":
+                case Constants.GT_ONLINE:
                 break;
                 
             }

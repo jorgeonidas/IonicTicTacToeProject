@@ -1,16 +1,7 @@
+import * as Constants from '../services/Constants';
 export class PlayerSelectorService{
 
-    portraitUris :string[]  = 
-    [
-      'assets/imgs/enojado.png',
-      'assets/imgs/cansado.png',
-      'assets/imgs/enamorado.png',
-      'assets/imgs/escondido.png',
-      'assets/imgs/like.png',
-      'assets/imgs/upps.png',
-      'assets/imgs/sorprendido.png',
-      'assets/imgs/lol.png',
-    ];
+    portraitUris :string[]  = Constants.PORTRAIT_URIS;
 
     public pOnePick: boolean[];
     public pTwoOrBotPick: boolean[] ;

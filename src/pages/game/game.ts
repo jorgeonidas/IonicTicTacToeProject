@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, PopoverController, Popover, Alert, Events, LoadingController, Platform } from 'ionic-angular';
-import { timeInterval } from 'rxjs/operator/timeInterval';
 import { AIService } from '../../services/iaService';
 import { ConfigurationServiceDB } from '../../services/configurationdb.service';
-import { Title } from '@angular/platform-browser';
 import { RewardPage } from '../reward/reward';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
+
+import * as Constants from '../../services/Constants';
 
 @IonicPage()
 @Component({
@@ -107,16 +107,16 @@ export class GamePage {
     this.pauseEnable = true;
 
     switch (this.difficulty) {
-      case 'easy':
-        this.turnInterval = 6;
+      case Constants.DIF_EASY:
+        this.turnInterval = Constants.EASY_INTERVAL;
         break;
 
-      case 'medium':
-        this.turnInterval = 4;
+      case Constants.DIF_MEDIUM:
+        this.turnInterval = Constants.MEDIUM_INTERVAL;
         break;
 
-      case 'hard':
-        this.turnInterval = 2;
+      case Constants.DIF_HARD:
+        this.turnInterval = Constants.HARD_INTERVAL;
         break;
 
       default:
@@ -126,20 +126,20 @@ export class GamePage {
     this.gameDidStart = false;
     //ACA IMPLEMENTO TIME PRE JUEGO
     this.gameInitializer();
-    this.toltalTurnBar = 100;
+    this.toltalTurnBar = Constants.TOTAL_TURN_BAR;
     
   }
 
   setMaxPointsToWin(){
     switch (this.rounds) {
-      case 1:
-        this.pointsToWin = 1;
+      case Constants.SHORT_GAME:
+        this.pointsToWin = Constants.SHORT_GAME_WINS;
         break;
-      case 3:
-        this.pointsToWin = 2;
+      case Constants.NORMAL_GAME:
+        this.pointsToWin = Constants.NORMAL_GAME_WINS;
         break;
-      case 5:
-        this.pointsToWin = 3;
+      case Constants.LONG_GAME:
+        this.pointsToWin = Constants.LONG_GAME_WINS;
         break;
       
       default:
@@ -155,12 +155,12 @@ export class GamePage {
     if(moneda <= 0.5){
       this.playerOneCurrentTurn = true;
       this.playerStartsGame = true;
-      if(this.gametype == 'singleplayer')
+      if(this.gametype == Constants.GT_SINGLEPLAYER)
           this.IA.setIaTinking(false);
     }else{
       this.playerOneCurrentTurn = false;
       this.playerStartsGame = false;
-      if(this.gametype == 'singleplayer'){
+      if(this.gametype == Constants.GT_SINGLEPLAYER){
         this.IA.setIaTinking(true);
         this.pauseEnable = false;
       }
@@ -175,12 +175,12 @@ export class GamePage {
       this.playerOneDidGoFirst = this.generateFirstTurn(); //SELECCIONAMOS QUIEN VA A COMENZAR EL JUEGO
       let msj;
       if(this.playerOneCurrentTurn){//El mensaje dependiendo del tipo de juego
-        msj = 'Player One Starts Game'
+        msj = Constants.PLAYER_ONE_STARTS;
       }else{
-        if(this.gametype=='local-multiplayer')
-          msj='Player Two Starts Game';
-        else if(this.gametype=='singleplayer'){
-          msj = 'Robot Starts The Game';
+        if(this.gametype==Constants.GT_LOCAL_MULTYPLAYER)
+          msj= Constants.PLAYER_TWO_STARTS
+        else if(this.gametype==Constants.GT_SINGLEPLAYER){
+          msj = Constants.ROBOT_STARTS;
           this.IA.setIaTinking(true); //evitar que el jugador juege de primero cuando en realidad le toca a la IA
         }
       }
@@ -238,7 +238,7 @@ export class GamePage {
     
     //resetear timer
     this.restRoundTimer();
-    if(this.gametype == "singleplayer"){
+    if(this.gametype == Constants.GT_SINGLEPLAYER){
       this.playerOneCurrentTurn = !iaTinkingOrPlayeroneTurn; // si la NO! esta pesando la IA es el turno del Jugador
       //habilito y desabilito boton de pausa dependiendo del turno en singleplayer solamente
       if(this.playerOneCurrentTurn){
@@ -297,29 +297,29 @@ export class GamePage {
       this.isGameOver = true; //El juegos e termino esto le avisara al PopUp
       //victoria o empate
       if(this.playerOneScore > this.playerTwoOrAIScore){
-        console.log("Player One Wins the game!");
-        this.alertMsj = "Player One Wins the game!";
+        console.log(Constants.PlAYER_ONE_WG);
+        this.alertMsj = Constants.PlAYER_ONE_WG;
         this.playerOneWinGame = true; //para saber si entra a la ruleta      
       }else if(this.playerOneScore == this.playerTwoOrAIScore){
         console.log("ITS A TIE!!!");
-        this.alertMsj = "Its A Draw!!!";       
+        this.alertMsj = Constants.TIE;       
       }else{
         console.log("Player Two or Bot Wins!");
-        if(this.gametype=="singleplayer")
-          this.alertMsj = "Robot The Wins Game!";
+        if(this.gametype == Constants.GT_SINGLEPLAYER)
+          this.alertMsj = Constants.ROBOT_WG;
         else
-          this.alertMsj = "Player Two Wins The Game!"
+          this.alertMsj = Constants.PlAYER_TWO_WG;
       }
 
       this.showAlert(this.alertMsj);
     }else{ //Nueva ronda
       //testeando con el fin de hacer un nuevo alert que reinicie el round
-      if(this.gametype=='singleplayer' && !this.playerOneWinsRound){
+      if(this.gametype == Constants.GT_SINGLEPLAYER && !this.playerOneWinsRound){
         console.log("singleplayer result: "+this.winner+" | true: IA win, false: ITS A DRAW");       
         if(this.winner){
-          this.alertMsj = "Robot wins the round";
+          this.alertMsj = Constants.ROBOT_WR;
         }else{
-          this.alertMsj = "Round Draw!";
+          this.alertMsj = Constants.ROUND_TIE;
         }
       }
       this.showAlert(this.alertMsj);
@@ -397,11 +397,11 @@ export class GamePage {
 
         switch(this.gametype){
           
-          case 'local-multiplayer':          
+          case Constants.GT_LOCAL_MULTYPLAYER:          
             this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
           break;
 
-          case 'singleplayer':
+          case Constants.GT_SINGLEPLAYER:
                       
             if (this.playerOneCurrentTurn) {
               this.playerOneCurrentTurn = !this.playerOneCurrentTurn;
@@ -483,7 +483,7 @@ export class GamePage {
     console.log("leaving");
  
     switch (this.gametype) {
-      case 'singleplayer':
+      case Constants.GT_SINGLEPLAYER:
 
         if (this.playerOneWinGame) {
           let currentIndex = this.navCtrl.getActive().index;
@@ -511,7 +511,7 @@ export class GamePage {
         }
         break;
     
-      case 'local-multiplayer':
+      case Constants.GT_LOCAL_MULTYPLAYER:
         //si no es un navegador
         if (this.admob.cordovaAviable) {
           //si la publicidad no falla en cargar
@@ -552,10 +552,10 @@ export class GamePage {
     if (poneWins) {//player 1 gano
       this.playerOneCurrentTurn = false;
       
-      if (this.gametype == 'local-multiplayer')
-        msj = 'Player Two Starts Game';
-      else if (this.gametype == 'singleplayer'){
-        msj = 'Robot Starts The Game'
+      if (this.gametype == Constants.GT_LOCAL_MULTYPLAYER)
+        msj = Constants.PLAYER_TWO_STARTS;
+      else if (this.gametype == Constants.GT_SINGLEPLAYER){
+        msj = Constants.ROBOT_STARTS;
         this.playerStartsGame = false;
         //ia piensa no puedo pausar ( caso especial que comienza de primero el round)
         this.pauseEnable = false;
@@ -568,20 +568,20 @@ export class GamePage {
       this.pauseEnable = true;
       this.IA.setIaTinking(false);
       //this.playerStartsGame = false;
-      msj = 'Player One Starts Game';
+      msj = Constants.PLAYER_ONE_STARTS;
 
     }else{//caso empate//comienza el que no comenzo de primero
       if(this.playerOneDidGoFirst){//si player uno arranco de primero/ el oponente comienza la segunda ronda
         this.playerOneCurrentTurn = false;
-        this.playerStartsGame = false;
-        this.IA.setIaTinking(true);
-        if (this.gametype == 'local-multiplayer')
-          msj = 'Player Two Starts Game';
-        else if (this.gametype == 'singleplayer')
-          msj = 'Robot Starts The Game'
+        this.playerStartsGame = false; 
+        if (this.gametype == Constants.GT_LOCAL_MULTYPLAYER)
+          msj = Constants.PLAYER_TWO_STARTS;
+        else if (this.gametype == Constants.GT_SINGLEPLAYER)
+          msj = Constants.ROBOT_STARTS;
+          this.IA.setIaTinking(true);
       }else{//
         this.playerOneCurrentTurn = true;
-        msj = 'Player One Starts Game';
+        msj = Constants.PLAYER_ONE_STARTS;
         this.playerStartsGame = true;
         this.IA.setIaTinking(false);
       }     

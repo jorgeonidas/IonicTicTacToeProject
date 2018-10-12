@@ -7,6 +7,7 @@ import { ContactsPage } from '../contacts/contacts';
 import { TokenStorePage } from '../token-store/token-store';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
+import * as Constants from '../../services/Constants'
 
 @IonicPage()
 @Component({
@@ -26,7 +27,6 @@ export class MainMenuPage {
               public viewCtrl: ViewController,
               public navParams: NavParams,
               private popoverCtrl: PopoverController,
-              private menuCtrl: MenuController,
               private playerSelService: PlayerSelectorService,
               private admob: AdmobServiceProvider, 
               private platfom : Platform
@@ -70,39 +70,13 @@ export class MainMenuPage {
   onGameSelectio(selected: string){
     this.playerSelService.setSinglePlayer(false);
     
-    if(selected == 'singleplayer')
+    if(selected == Constants.GT_SINGLEPLAYER)
       this.playerSelService.setSinglePlayer(true);
     //le aviso al servicio que ya no es la primera vez que despliego el main menu
     this.admob.firstTimeLaunched = false;
     this.navCtrl.push(CharacterSelectionPage, {selection: selected}, {animate: false});
   }
-  //activar menuSettings
-  menuSettingsActive(){  
-    this.isSettingsActive = !this.isSettingsActive;
-    this.activeMenu = 'settings' //los ids de cada menu estan en app.html
-    this.menuCtrl.enable(true, 'settings');
-    this.menuCtrl.enable(false, 'login');
-    this.menuCtrl.enable(false,'importantInfo');
-    this.menuCtrl.open(this.activeMenu);
-  }
-
-  menuLoginActive(){
-    console.log("login clicked");
-    this.activeMenu = 'login'
-    this.menuCtrl.enable(true, 'login');
-    this.menuCtrl.enable(false, 'settings');
-    this.menuCtrl.enable(false,'importantInfo');
-    this.menuCtrl.open(this.activeMenu);
-  }
-
-  menuImportantInfo(){
-    this.activeMenu='importantInfo';
-    this.menuCtrl.enable(true,'importantInfo');
-    this.menuCtrl.enable(false, 'login');
-    this.menuCtrl.enable(false, 'settings');
-    this.menuCtrl.open(this.activeMenu);
-  }
-
+ 
   openContacsPage(){
     //le aviso al servicio que ya no es la primera vez que despliego el main menu
     this.admob.firstTimeLaunched = false;

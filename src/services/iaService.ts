@@ -51,7 +51,7 @@ export class AIService{
         //mezclemos las dificultades "lanzando una moneda"
         let moneda = Math.random()
         console.log(moneda);
-        if (moneda <= 0.5) {
+        if (moneda <= Constants.MEDIUM_ODD) {
           //this.hardIa(this.origBoard, this.xChar);
           this.hardIa(board, this.xChar);
         } else {
