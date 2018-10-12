@@ -74,8 +74,8 @@ export const TOKENS_URIS =
 export const COIN_URI = 'assets/imgs/coins.png';
 export const EOLA_URI = 'assets/imgs/eolas.png';
 /*IA ODDS */
-
 export const MEDIUM_ODD = 0.5;
+export const HARD_ODD = 0.85;
 
 /*API URIS*/
 

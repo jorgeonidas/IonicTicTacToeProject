@@ -40,6 +40,8 @@ export class AIService{
     }
 
   iaDesition(difficulty: string, board: any) {
+    let moneda = Math.random()
+    console.log(moneda);
     switch (difficulty) {
       case Constants.DIF_EASY:
         //this.singleplayerEasy(index);
@@ -49,8 +51,7 @@ export class AIService{
 
       case Constants.DIF_MEDIUM:
         //mezclemos las dificultades "lanzando una moneda"
-        let moneda = Math.random()
-        console.log(moneda);
+        
         if (moneda <= Constants.MEDIUM_ODD) {
           //this.hardIa(this.origBoard, this.xChar);
           this.hardIa(board, this.xChar);
@@ -62,7 +63,16 @@ export class AIService{
 
       case Constants.DIF_HARD:
         //this.hardIa(this.origBoard,this.xChar);
-        this.hardIa(board, this.xChar);
+        //this.hardIa(board, this.xChar);
+
+        if (moneda <= Constants.HARD_ODD) {
+          //this.hardIa(this.origBoard, this.xChar);
+          this.hardIa(board, this.xChar);
+        } else {
+          //this.easyIA();
+          this.easyIA(board);
+        }
+
         break;
     }
 
