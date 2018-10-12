@@ -2,15 +2,15 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { LoadingController, AlertController, Events } from "ionic-angular";
 import { ConfigurationServiceDB } from "./configurationdb.service";
-
+import * as Constants from '../services/Constants'
 @Injectable()
 export class AuthService{
     //Dummy data para poblar el api luego se buscara como otener lugar de residencia actual
     paisRes = "Costa Rica";
     timezone= "Costa Rica";
-    private _url = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
+    /*private _url = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
     private regService = '/register';
-    private authService = '/authenticate';
+    private authService = '/authenticate';*/
     
     //private _localurl = 'http://localhost:53029/api/jugadores'; //cambiara cada vez que haga pruebas 
     private headers: HttpHeaders;
@@ -46,7 +46,7 @@ export class AuthService{
 
         //let headers = new HttpHeaders({'Content-type' : 'application/json'});
 
-        return this.http.post(this._url + this.regService, JSON.stringify({
+        return this.http.post(Constants.API_VR_URI + Constants.API_VR_URI_REGISTER, JSON.stringify({
             email: email, 
             nickName: nickName, 
             password: password, 
@@ -62,7 +62,7 @@ export class AuthService{
     //login
     signin(nickname:string, password: string){
         
-        return this.http.post(this._url + this.authService,JSON.stringify({
+        return this.http.post(Constants.API_VR_URI + Constants.API_VR_URI_AUTH,JSON.stringify({
             nickName: nickname,
             password: password
         }),
@@ -91,14 +91,14 @@ export class AuthService{
             this.updateUserData(this.USER_OBJ,token);
         },error=>{console.log(error);}
         );*/
-        return this.http.get(this._url+id,{headers:headersToken});
+        return this.http.get(Constants.API_VR_URI + id,{headers:headersToken});
     }
 
     
     //UPDATE //OBJETO player por ahora
     updateUserData(userObjc: any, token){
         let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
-        return this.http.put(this._url + userObjc['id'], userObjc, {headers:headersToken});/*.subscribe(
+        return this.http.put(Constants.API_VR_URI + userObjc['id'], userObjc, {headers:headersToken});/*.subscribe(
             ()=>{
                 console.log("ACTUALIZADO CON EXITO!");
             },
@@ -114,7 +114,7 @@ export class AuthService{
     //DELETE USER (PELIGRO!!!!!)
     deleteUser(id: number, token){
         let headersToken = new HttpHeaders({'Content-type' : 'application/json','Authorization': 'Bearer ' + token});
-        this.http.delete(this._url+id,{headers:headersToken}).subscribe(()=>{
+        this.http.delete(Constants.API_VR_URI + id,{headers:headersToken}).subscribe(()=>{
             console.log("user deleted succesfully");
         },error=>{
             console.log(error);

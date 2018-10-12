@@ -193,7 +193,7 @@ export class GamePage {
     this.timeout = setTimeout(() => {
       this.initialAlert.dismiss();
       this.initialAlert = this.alertCtrl.create({
-        title: "Are you good enough?",
+        title: Constants.MSJ_1,
         enableBackdropDismiss: false
       });
       this.initialAlert.present();
@@ -203,7 +203,7 @@ export class GamePage {
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
       this.initialAlert = this.alertCtrl.create({
-        title: "Ready",
+        title: Constants.MSJ_2,
         enableBackdropDismiss: false
       })
       this.initialAlert.present();
@@ -212,7 +212,7 @@ export class GamePage {
     this.timeout = setTimeout(()=>{
       this.initialAlert.dismiss();
       this.initialAlert = this.alertCtrl.create({
-        title: "GO!",
+        title: Constants.MSJ_3,
         enableBackdropDismiss: false
       })
       this.initialAlert.present();

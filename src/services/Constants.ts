@@ -7,7 +7,10 @@ export const EASY_INTERVAL = 6;
 export const MEDIUM_INTERVAL = 4;
 export const HARD_INTERVAL = 2;
 export const TOTAL_TURN_BAR = 100;
-
+/*STARTING GAMES MSJS */
+export const MSJ_1 = 'Are you good enough?';
+export const MSJ_2 = 'Ready';
+export const MSJ_3 = 'GO!';
 /*ROUND COUNT */
 export const SHORT_GAME = 1;
 export const NORMAL_GAME = 3;
@@ -69,3 +72,9 @@ export const TOKENS_URIS =
 /*IA ODDS */
 
 export const MEDIUM_ODD = 0.5;
+
+/*API URIS*/
+
+export const  API_VR_URI = 'http://jugadorapi-dev.us-west-2.elasticbeanstalk.com/api/jugadores/';
+export const API_VR_URI_REGISTER = '/register';
+export const API_VR_URI_AUTH = '/authenticate';
