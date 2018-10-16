@@ -6,6 +6,7 @@ import { RewardPage } from '../reward/reward';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 
 import * as Constants from '../../services/Constants';
+import { OriginatorService } from '../../services/originatorService';
 
 @IonicPage()
 @Component({
@@ -64,7 +65,9 @@ export class GamePage {
     private admob: AdmobServiceProvider,
     private loadingCtrl : LoadingController,
     private platform: Platform,
-    private events : Events) {
+    private events : Events,
+    /*servicio para guardar estado*/
+    private originator : OriginatorService) {
    
       platform.ready().then(()=>{
         //prepara y muestra add
@@ -481,16 +484,26 @@ export class GamePage {
   leaveGame(){
 
     console.log("leaving");
- 
+    //Primero contar partidas jugadas en la dificultad actual y tipo de juego actual ('singleplayer' o 'local-multiplayer')
+    this.originator.increaseGamesPlayed(this.difficulty,this.gametype);
     switch (this.gametype) {
-      case Constants.GT_SINGLEPLAYER:
+      case Constants.GT_SINGLEPLAYER:       
 
         if (this.playerOneWinGame) {
+
+          //ya que el player one gano incremenetamos las partidas ganadas en la dificultad actual
+          this.originator.increaseWins(this.difficulty);
+
           let currentIndex = this.navCtrl.getActive().index;
           this.navCtrl.push(RewardPage, {}, { animate: false }).then(() => {
             this.navCtrl.remove(currentIndex); //remuevo esta pagina del stack
           });
         } else {
+
+          //ya que el player perdio incrementamos la cantidad de partidas perdidas
+          if(this.winner)
+            this.originator.increaseloses(this.difficulty);
+
           //si no es un navegador
           if (this.admob.cordovaAviable) {
             //si la publicidad no falla en cargar
@@ -601,5 +614,10 @@ export class GamePage {
       this.gameDidStart = true;
       this.startTimer();
     }, 1000);
+  }
+/*Se dispara cuando esta pagina deja de ser la activa
+solo queremos ver el estado actual de la applicacion */
+  ionViewDidLeave(){
+    console.log(this.originator.getState());
   }
 }

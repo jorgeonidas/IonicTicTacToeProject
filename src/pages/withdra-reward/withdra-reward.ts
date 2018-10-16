@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, /*LoadingController, Events, Platform*/} from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
+import { OriginatorService } from '../../services/originatorService';
+import * as Constants from '../../services/Constants';
 
 @IonicPage()
 @Component({
@@ -16,6 +18,7 @@ export class WithdraRewardPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
+              private originator : OriginatorService
               //private events : Events,
               //private loadingCtrl : LoadingController,
               //private platform : Platform
@@ -37,7 +40,7 @@ export class WithdraRewardPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad WithdraRewardPage');
     this.reward = this.navParams.get('reward');
-    //console.log("recieved",this.reward);
+    this.saveReward(this.reward);
     this.reward = "YOU WON "+this.reward.toUpperCase()+"!!";
     this.gitImgUri = 'assets/imgs/reward-img.png';
     this.pressed = false;
@@ -112,7 +115,33 @@ export class WithdraRewardPage {
   }
 
   ionViewWillLeave(){
+    console.log(this.originator.getState());
+    
     if(this.admob.cordovaAviable)
       this.admob.dismissLoader();
+  }
+
+  saveReward(price: string){
+    console.log("recieved",price);
+    let rewardString = price.split(" ");
+    console.log(rewardString);
+    
+    //separemos y casting a numeros
+    let ammount = Number(rewardString[0]);
+    let currency = rewardString[1];
+
+    switch (currency) {
+      case Constants.CRYSTALS:
+          this.originator.updateCristals(ammount);
+        break;
+      
+      case Constants.EOLA:
+          this.originator.updateEolas(ammount);
+        break;
+
+      default:
+        break;
+    }
+
   }
 }

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { WithdraRewardPage } from '../withdra-reward/withdra-reward';
 import { AuthService } from '../../services/authService';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
+import * as Constants from '../../services/Constants'
 
 @IonicPage()
 @Component({
@@ -31,12 +32,9 @@ export class RewardPage {
     "#2E2C75", "#673A7E", "#CC0071", "#F80120",
     "#F35B20", "#FB9A00", "#FFCC00", "#FEF200"];
 
-  pricesIndex = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  prices = [
-    "5 Eolas", "5 Crystals", "10 Crystals", "5 Crystals", "1 Eola",
-    "5 Crystals", "20 Crystals", "5 Crystals", "1 Eola", "5 Crystals"
-  ];
-  orgStartAngles = [0, 10, 56, 96, 142, 167, 213, 243, 289, 314];
+  pricesIndex = Constants.REWARD_INDEXES;
+  prices = Constants.ROULETTE_REWARDS;
+  orgStartAngles = Constants.ROULETE_STARTING_ANGLES;
 
   arc = [
     this.gradosARadianes(10), this.gradosARadianes(46),
@@ -303,23 +301,5 @@ export class RewardPage {
       this._CONTEXT.lineTo(originX - 4, originY - (outsideRadius + 5));
       this._CONTEXT.fill();*/
   }
-
-  /*
-  generateIndex(){
-    var num = Math.random(),
-        s = 0,
-        lastIndex = this.weights.length - 1;
-
-    for (var i = 0; i < lastIndex; ++i) {
-        s += this.weights[i];
-        if (num < s) {
-            return this.results[i];
-        }
-    }
-
-    return this.results[lastIndex];
-  }
-  */
-
 
 }

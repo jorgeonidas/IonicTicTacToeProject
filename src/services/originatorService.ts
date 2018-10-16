@@ -21,6 +21,7 @@ export class OriginatorService{
         },
         localMultiplayerPlayed: 0,
         cristals : 0,
+        eolas: 0,
         doublingReward : 0,
         unlocks: 0
     }
@@ -63,7 +64,11 @@ export class OriginatorService{
     }
 
     updateCristals(cistals:number){
-        this.state.cristals = cistals;
+        this.state.cristals += cistals;
+    }
+
+    updateEolas(eolas: number){
+        this.state.eolas += eolas;
     }
 
     increaseDoubleReward(){

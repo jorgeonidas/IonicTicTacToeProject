@@ -19,6 +19,7 @@ export class Memento{
         },
         localMultiplayerPlayed: 0,
         cristals : 0,
+        eolas: 0,
         doublingReward : 0,
         unlocks: 0
     }

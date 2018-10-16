@@ -93,3 +93,16 @@ export const ANDROID_INTER_ID = 'ca-app-pub-2497464044902615/3469398308';
 
 export const IOS_VIDEO_ID = 'ca-app-pub-2497464044902615/1296151797';
 export const ANDROID_VIDEO_ID='ca-app-pub-2497464044902615/2902970831';
+
+/*Premios Ruleta */
+export const REWARD_INDEXES = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
+export const ROULETTE_REWARDS = [
+  "5 Eolas", "5 Crystals", "10 Crystals", "5 Crystals", "1 Eola",
+  "5 Crystals", "20 Crystals", "5 Crystals", "1 Eola", "5 Crystals"
+];
+
+export const CRYSTALS = 'Crystals';
+export const EOLA = 'Eola';
+
+export const ROULETE_STARTING_ANGLES = [0, 10, 56, 96, 142, 167, 213, 243, 289, 314];
