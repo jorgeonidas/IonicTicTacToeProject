@@ -1,6 +1,14 @@
+/**
+ * El memento es un objeto plano
+ * que modela el estado actual de la aplicacion
+ * sera implementado por el Originator para mutar 
+ * el estado actual de la app y el CareTaker
+ * para guardar y restaurar el estado de la app
+ */
+
 export class Memento{
-    //EL MEMENTO LUEGO SERA UNA BD
-    private state  = {
+    
+    private state = {
         daysInRow : 0,
         easy: {
             played : 0,
@@ -21,10 +29,11 @@ export class Memento{
         cristals : 0,
         eolas: 0,
         doublingReward : 0,
-        unlocks: 0
-    }
-
-    constructor(state: any){
+        unlocks: 0,
+    };
+    
+    //OJO EN UN FUTURO EL MEMENTO SE REESTABLECERA DE UN CARETAKER
+    constructor(state :any){
         this.state = state;
     }
 

@@ -1,8 +1,11 @@
 import { Memento } from "../models/memento";
-
+/**
+ * El originator se encarga de cerar y mutar el 
+ * estado actual de la aplicacion
+ */
 export class OriginatorService{
     //just for test
-    private state  = {
+    private state = {
         daysInRow : 0,
         easy: {
             played : 0,
@@ -23,13 +26,15 @@ export class OriginatorService{
         cristals : 0,
         eolas: 0,
         doublingReward : 0,
-        unlocks: 0
+        unlocks: 0,
     }
 
     memento : Memento;
 
     constructor(){
-        this.memento = new Memento(this.state)
+        console.log("executing originator Constructor");
+        
+        this.memento = new Memento(this.state);
     }
 
     getState(){
@@ -43,6 +48,10 @@ export class OriginatorService{
     getStateFromMemento(){
         return this.state = this.memento.getState();
     }
+    //retorno memento
+    getMemento() : Memento{
+        return this.memento;
+    }
 
     //MUTADORES
     increaseGamesPlayed(difficult: string, gametype: string){
@@ -51,31 +60,38 @@ export class OriginatorService{
         else{
             this.state.localMultiplayerPlayed++;
         }
+        this.saveStateToMemento();
     }
 
 
 
     increaseWins(difficult: string){
         this.state[difficult].win++;
+        this.saveStateToMemento();
     }
 
     increaseloses(difficult: string){
         this.state[difficult].lose++;
+        this.saveStateToMemento();
     }
 
     updateCristals(cistals:number){
         this.state.cristals += cistals;
+        this.saveStateToMemento();
     }
 
     updateEolas(eolas: number){
         this.state.eolas += eolas;
+        this.saveStateToMemento();
     }
 
     increaseDoubleReward(){
         this.state.doublingReward++;
+        this.saveStateToMemento();
     }
 
     increaseUnlocks(){
         this.state.unlocks++;
+        this.saveStateToMemento();
     }
 }

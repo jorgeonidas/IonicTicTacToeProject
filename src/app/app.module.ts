@@ -55,6 +55,7 @@ import { AdMobPro} from '@ionic-native/admob-pro'
 import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
 import { ErrorHandlerProvider } from '../providers/error-handler/error-handler';
 import { OriginatorService } from '../services/originatorService';
+import { CareTakerService } from '../services/CareTakerService';
 
 @NgModule({
   declarations: [
@@ -145,7 +146,8 @@ import { OriginatorService } from '../services/originatorService';
     AdMobPro,
     AdmobServiceProvider,
     ErrorHandlerProvider,
-    OriginatorService
+    OriginatorService,
+    CareTakerService
   ]
 })
 export class AppModule {}

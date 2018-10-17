@@ -15,6 +15,8 @@ import { GamePage } from '../pages/game/game';
 import { WithdraRewardPage } from '../pages/withdra-reward/withdra-reward';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
+import { OriginatorService } from '../services/originatorService';
+import { CareTakerService } from '../services/CareTakerService';
 
 
 
@@ -39,7 +41,9 @@ export class MyApp {
     splashScreen: SplashScreen,
     private cfgServiceDB: ConfigurationServiceDB,
     private configModel: ConfigurationModel,
-    private events: Events) {
+    private events: Events,
+    private originator : OriginatorService, 
+    private careTaker: CareTakerService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -51,6 +55,13 @@ export class MyApp {
     });
     //statusBar.hide(); //probando si funciona en startup
     this.getSettingsFromDB();
+
+    //MEMENTO SIMPLE TESTING
+    //this.originator.getStateFromMemento();
+    //console.log("Current State: ", this.originator.getState());
+    this.careTaker.setState(this.originator.getMemento());
+    console.log("current game state", this.careTaker.getState().getState());
+    
     }
 
     getSettingsFromDB(){
