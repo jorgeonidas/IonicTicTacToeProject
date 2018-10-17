@@ -98,7 +98,7 @@ export const ANDROID_VIDEO_ID='ca-app-pub-2497464044902615/2902970831';
 export const REWARD_INDEXES = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
 export const ROULETTE_REWARDS = [
-  "5 Eolas", "5 Crystals", "10 Crystals", "5 Crystals", "1 Eola",
+  "5 Eola", "5 Crystals", "10 Crystals", "5 Crystals", "1 Eola",
   "5 Crystals", "20 Crystals", "5 Crystals", "1 Eola", "5 Crystals"
 ];
 

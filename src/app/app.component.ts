@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Platform, Events, IonicApp} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-//import {Keyboard} from '@ioni'
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { LoginPage } from '../pages/login/login';
 import { ConfigurationServiceDB } from '../services/configurationdb.service';
@@ -17,8 +16,6 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
 import { AdmobServiceProvider } from '../providers/admob-service/admob-service';
 import { OriginatorService } from '../services/originatorService';
 import { CareTakerService } from '../services/CareTakerService';
-
-
 
 @Component({
   templateUrl: 'app.html'
@@ -56,9 +53,7 @@ export class MyApp {
     //statusBar.hide(); //probando si funciona en startup
     this.getSettingsFromDB();
 
-    //MEMENTO SIMPLE TESTING
-    //this.originator.getStateFromMemento();
-    //console.log("Current State: ", this.originator.getState());
+    //Probando patron memento: guardando estado actual en el caretaker, provisto por el originator
     this.careTaker.setState(this.originator.getMemento());
     console.log("current game state", this.careTaker.getState().getState());
     

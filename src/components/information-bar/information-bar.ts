@@ -3,6 +3,7 @@ import { Platform, NavController, Events } from 'ionic-angular';
 import { Device } from '@ionic-native/device';
 import { AuthService } from '../../services/authService';
 import * as Constants from '../../services/Constants'
+import { OriginatorService } from '../../services/originatorService';
 @Component({
   selector: 'information-bar',
   templateUrl: 'information-bar.html'
@@ -23,7 +24,8 @@ export class InformationBarComponent {
 
   private defaultNickName = 'human';
 
-  constructor( platform: Platform, private device: Device, public navCtrl:NavController, public auth: AuthService, private events: Events) {
+  constructor( platform: Platform, private device: Device, public navCtrl:NavController, public auth: AuthService, private events: Events,
+    private originator: OriginatorService) {
     console.log('Hello InformationBarComponent Component');
     
     //las monedas tambien tienen que cargar de un servicio
@@ -85,8 +87,12 @@ export class InformationBarComponent {
   }
 
   loadCoins(){
+    /*
     this.coins = this.auth.getCoins();
     this.eolas = this.auth.getEolas();
+    */
+    this.coins = this.originator.getCristals();
+    this.eolas = this.originator.getEolas();
   }
 
 }

@@ -94,4 +94,12 @@ export class OriginatorService{
         this.state.unlocks++;
         this.saveStateToMemento();
     }
+
+    getCristals(){
+        return this.state.cristals;
+    }
+
+    getEolas(){
+        return this.state.eolas;
+    }
 }

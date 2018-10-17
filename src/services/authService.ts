@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { LoadingController, AlertController, Events } from "ionic-angular";
 import { ConfigurationServiceDB } from "./configurationdb.service";
 import * as Constants from '../services/Constants'
+import { OriginatorService } from "./originatorService";
+import { CareTakerService } from "./CareTakerService";
 @Injectable()
 export class AuthService{
     //Dummy data para poblar el api luego se buscara como otener lugar de residencia actual
@@ -37,7 +39,9 @@ export class AuthService{
                 private loadCtrl: LoadingController,
                 private alertCtrl: AlertController,
                 private events: Events,
-                private db : ConfigurationServiceDB){
+                private db : ConfigurationServiceDB,
+                private originator: OriginatorService,
+                private careTaker: CareTakerService){
         this.headers = new HttpHeaders({'Content-type' : 'application/json'});
     }
     
@@ -162,6 +166,14 @@ export class AuthService{
         if(userObjc['currencies'].length > 0){
             this.USER_OBJ.currnecies.coins = userObjc['currencies']['0']['cantMonedas'];
             this.USER_OBJ.currnecies.eolas = userObjc['currencies']['1']['cantMonedas'];
+            
+            //Aca Cargo las Monedas del backend
+            this.originator.updateCristals(this.USER_OBJ.currnecies.coins);
+            this.originator.updateEolas(this.USER_OBJ.currnecies.eolas);
+            //Actualizo el estado actual del juego
+            this.careTaker.setState(this.originator.getMemento());
+            //LOG
+            console.log("current game state", this.careTaker.getState().getState());
         }
         console.log("coins: ",this.USER_OBJ.currnecies.coins);
         console.log("eolas: ",this.USER_OBJ.currnecies.eolas);

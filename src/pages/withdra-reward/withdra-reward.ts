@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, /*LoadingController, Events, Platform*/} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, /*LoadingController, Events, Platform*/} from 'ionic-angular';
 import { MainMenuPage } from '../main-menu/main-menu';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 import { OriginatorService } from '../../services/originatorService';
 import * as Constants from '../../services/Constants';
+import { CareTakerService } from '../../services/CareTakerService';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,9 @@ export class WithdraRewardPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
-              private originator : OriginatorService
+              private originator : OriginatorService,
+              private careTaker : CareTakerService,
+              private events : Events//para actualizar la info bar
               //private events : Events,
               //private loadingCtrl : LoadingController,
               //private platform : Platform
@@ -142,6 +145,8 @@ export class WithdraRewardPage {
       default:
         break;
     }
+    this.careTaker.setState(this.originator.getMemento());
+    this.events.publish('updateNick : done');
 
   }
 }
