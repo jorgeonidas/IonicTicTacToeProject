@@ -4,6 +4,7 @@ import { WithdraRewardPage } from '../withdra-reward/withdra-reward';
 import { AuthService } from '../../services/authService';
 import { AdmobServiceProvider } from '../../providers/admob-service/admob-service';
 import * as Constants from '../../services/Constants'
+import { OriginatorService } from '../../services/originatorService';
 
 @IonicPage()
 @Component({
@@ -75,10 +76,12 @@ export class RewardPage {
     public navParams: NavParams,
     public platform: Platform,
     private auth : AuthService,
-    private admob : AdmobServiceProvider) {
+    private admob : AdmobServiceProvider,
+    private originator: OriginatorService) {
     this.coinIconUrl = "assets/imgs/coins.png";
     //this.hardSpinnerUri = "assets/imgs/RuletaBG.png"
-    this.coinAmmount = this.auth.getCoins();
+    //this.coinAmmount = this.auth.getCoins();
+    this.coinAmmount = this.originator.getCristals(); 
     console.log("coin ammount", this.coinAmmount);
     
     this.admob.isEnergyClaimPage = false; //para avisar que no lance el evento

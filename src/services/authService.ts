@@ -134,6 +134,8 @@ export class AuthService{
         this.USER_OBJ.currnecies.coins = 0;
         this.USER_OBJ.currnecies.eolas = 0;
         this.removeDataSession();
+        //reinicio el memento
+        this.originator.restartGameState();
     }
     //setters
     setUserLoginData(id:number, nickName: string, userEmail: string, token: string){

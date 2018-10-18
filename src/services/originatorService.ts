@@ -102,4 +102,32 @@ export class OriginatorService{
     getEolas(){
         return this.state.eolas;
     }
+
+    restartGameState(){
+        this.state = {
+            daysInRow : 0,
+            easy: {
+                played : 0,
+                win: 0,
+                lose: 0,
+            },
+            medium: {
+                played : 0,
+                win: 0,
+                lose: 0,
+            },
+            hard: {
+                played : 0,
+                win: 0,
+                lose: 0,
+            },
+            localMultiplayerPlayed: 0,
+            cristals : 0,
+            eolas: 0,
+            doublingReward : 0,
+            unlocks: 0,
+        }
+        this.saveStateToMemento();
+    }
+    
 }

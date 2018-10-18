@@ -128,7 +128,8 @@ export class WithdraRewardPage {
 
   ionViewWillLeave(){
     console.log(this.originator.getState());
-    
+    //Guardo mi recompensa al Memento
+    this.saveReward();
     if(this.admob.cordovaAviable)
       this.admob.dismissLoader();
   }
@@ -148,6 +149,7 @@ export class WithdraRewardPage {
         break;
     }
     this.careTaker.setState(this.originator.getMemento());
+    //evento que actualiza la data en la InforBar y en UserAccout
     this.events.publish('updateNick : done');
 
   }

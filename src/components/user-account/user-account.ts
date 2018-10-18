@@ -3,6 +3,7 @@ import { TokenService } from '../../services/tokenService';
 import { AuthService } from '../../services/authService';
 import { Events, LoadingController } from 'ionic-angular';
 import * as Constants from '../../services/Constants';
+import { OriginatorService } from '../../services/originatorService';
 @Component({
   selector: 'user-account',
   templateUrl: 'user-account.html'
@@ -25,11 +26,11 @@ export class UserAccountComponent {
   rankingUri: string = 'assets/imgs/medal-icon.png';
 
   constructor(private tokenServ : TokenService, private auth: AuthService, private events: Events,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController, public originator : OriginatorService) {
     console.log('Hello UserAccountComponent Component');
     this.profileImgUlr = 'assets/imgs/user.png'//Obviamente esto cargara luego de un servicio
-    this.coins = this.auth.getCoins();
-    this.eolas = this.auth.getEolas();
+    
+    this.loadCoins();
 
     this.coinIconUrl = Constants.COIN_URI;
     this.eolaIconUrl = Constants.EOLA_URI;
@@ -39,12 +40,12 @@ export class UserAccountComponent {
     this.userNameInputDisable = true;
 
     this.currTokenUrl = tokenServ.getCurrentSelectionUrl();
-
+      /*
     this.events.subscribe(('updateNick : done'),() => {
       console.log("Event catched by Information Bar UserAccont Component");
       this.loadNickName();
       this.loadCoins();
-    } );
+    } );*/
 
   }
 
@@ -87,8 +88,12 @@ export class UserAccountComponent {
   }
 
   loadCoins(){
+    /*
     this.coins = this.auth.getCoins();
     this.eolas = this.auth.getEolas();
+    */
+    this.coins = this.originator.getCristals();
+    this.eolas = this.originator.getEolas();
   }
 
 }
