@@ -53,7 +53,9 @@ export class TokenStorePage {
   //preparando ad
     platform.ready().then(()=>{
       //prepara y muestra add
-      this.admob.prepareInterstitialAd();
+      this.admob.setIsMustShowAdd();
+      if(this.admob.getIsMusShowAdd())
+        this.admob.prepareInterstitialAd();
   
     });
   }
@@ -65,7 +67,7 @@ export class TokenStorePage {
 
   backToMainMenu(){
     //si no es un navegador
-    if(this.admob.cordovaAviable){
+    if(this.admob.cordovaAviable && this.admob.getIsMusShowAdd()){
       //si la publicidad no falla en cargar
       if(!this.admob.failToLoadInterstitial){
         this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{

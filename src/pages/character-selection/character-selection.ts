@@ -40,7 +40,9 @@ export class CharacterSelectionPage {
       //preparando ad
     this.platform.ready().then(()=>{
       //prepara y muestra add
-      this.admob.prepareInterstitialAd();
+      this.admob.setIsMustShowAdd();
+      if(this.admob.getIsMusShowAdd())
+        this.admob.prepareInterstitialAd();
   
     });
     
@@ -84,7 +86,7 @@ export class CharacterSelectionPage {
 
   onClickBack(){
     this.playerSelService.resetPicks();
-    if(this.admob.cordovaAviable){
+    if(this.admob.cordovaAviable && this.admob.getIsMusShowAdd()){
       //si la publicidad no falla en cargar
       if(!this.admob.failToLoadInterstitial){
         this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{

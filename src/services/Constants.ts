@@ -94,6 +94,9 @@ export const ANDROID_INTER_ID = 'ca-app-pub-2497464044902615/3469398308';
 export const IOS_VIDEO_ID = 'ca-app-pub-2497464044902615/1296151797';
 export const ANDROID_VIDEO_ID='ca-app-pub-2497464044902615/2902970831';
 
+/*AD ODD*/
+export const AD_ODD = 0.80;
+
 /*Premios Ruleta */
 export const REWARD_INDEXES = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 

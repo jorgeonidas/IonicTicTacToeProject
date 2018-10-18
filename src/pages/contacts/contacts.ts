@@ -88,7 +88,9 @@ export class ContactsPage {
 
     this.platform.ready().then(()=>{
       //prepara y muestra add
-      this.admob.prepareInterstitialAd();
+      this.admob.setIsMustShowAdd();
+      if(this.admob.getIsMusShowAdd())
+        this.admob.prepareInterstitialAd();
   
     });
 
@@ -101,7 +103,7 @@ export class ContactsPage {
   }
 
   backToMainMenu(){
-    if(this.admob.cordovaAviable){
+    if(this.admob.cordovaAviable && this.admob.getIsMusShowAdd()){
       if(!this.admob.failToLoadInterstitial){
         this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{
           this.navCtrl.pop({animate:false});

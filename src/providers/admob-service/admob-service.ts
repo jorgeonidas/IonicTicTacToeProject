@@ -29,6 +29,9 @@ export class AdmobServiceProvider {
   failToLoadInterstitial : boolean;
   failToLoadVieoReward : boolean;
 
+  //Must show add?
+  isMusShowAdd: boolean;
+
   constructor(public http: HttpClient, private admob: AdMobPro, private platform: Platform,
     public loadingCtrl: LoadingController, private events : Events) {
     this.firstTimeLaunched = true;
@@ -37,6 +40,8 @@ export class AdmobServiceProvider {
     this.failToLoadInterstitial = false;
     this.failToLoadVieoReward = false;
     
+    this.isMusShowAdd = true;
+
     this.isEnergyClaimPage = false;
     //si las funciones de cordova estan disponibles
     if(this.platform.is('cordova')){
@@ -49,6 +54,22 @@ export class AdmobServiceProvider {
 
   setAdProb(){
     this.adProb = Math.random();
+  }
+
+  setIsMustShowAdd(){
+    this.setAdProb();
+
+    if(this.getAdProb() <= Constants.AD_ODD){
+      this.isMusShowAdd = true;
+    }else{
+      this.isMusShowAdd = false;
+    }
+    console.log("Must show add?");
+    console.log(this.isMusShowAdd);
+  }
+
+  getIsMusShowAdd(){
+    return this.isMusShowAdd;
   }
 
   getAdProb(){
@@ -92,15 +113,18 @@ export class AdmobServiceProvider {
       this.failToLoadInterstitial = true;    
       console.log(data); 
     });
-    //preparo 
-    this.admob.prepareInterstitial(this.adInterstitialOpt).then(()=>{
-      console.log("exito al preparar ad");
-      
-    },error=>{
-      //caso erroneo
-      console.log(error);
-      
-    });
+    //preparo
+
+      this.admob.prepareInterstitial(this.adInterstitialOpt).then(()=>{
+        console.log("exito al preparar ad");
+        
+      },error=>{
+        //caso erroneo
+        console.log(error);
+        
+      });
+
+    
 
   }
 
@@ -143,9 +167,9 @@ export class AdmobServiceProvider {
 
   //show add functions
   showInterstitialAd(){
-    if (AdMobPro) {
-      this.admob.showInterstitial();
-    }
+
+    this.admob.showInterstitial();
+
 
     return this.admob;
   }
@@ -157,52 +181,6 @@ export class AdmobServiceProvider {
     return this.admob;
   }
 
-  /*
-  showInterstitialAdd(){
-
-    this.admob.onAdFailLoad().subscribe((data)=>{
-      console.log('Fail to load Interstitial');
-      
-      console.log(data); 
-    });
-
-    this.admob.prepareInterstitial(this.adInterstitialOpt).then(()=>{},error=>{
-      if(this.platform.is('ios')){
-        //WORKAROUND IOS?
-        this.events.publish('videoAdFail: true');
-      }
-    });
-    return this.admob;
-  }
-
-  showVideoAdd(){
-    //Si no es IOS
-    this.presentLoaderSpinner();
-
-      //listener para cuando la publicidad falla
-      this.admob.onAdFailLoad().subscribe((data) => {
-        console.log('Fail to load Video');
-        console.log(data);
-        this.dismissLoader(); 
-        this.events.publish('videoAdFail: true');
-      });
-
-      this.admob.prepareRewardVideoAd(this.adVideoRewardOpt).then((data) => {
-        console.log(data);
-        //loading.dismiss(); 
-      },
-        error => {
-          //loading.dismiss();
-          //this.events.publish('videoAdFail: true');
-          console.log(error);
-          //this.dismissLoader();
-        });
-
-    
-    return this.admob;
-    
-  }
-  */
   presentLoaderSpinner(){
     this.loading = this.loadingCtrl.create({ content: 'Please Wait...' });
     this.loading.present();

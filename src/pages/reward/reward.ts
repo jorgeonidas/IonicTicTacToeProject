@@ -89,7 +89,10 @@ export class RewardPage {
       /*prepara los ads para que ya esten cargados 
       al pasar a la siguente pagina o al menos avise que fallo*/   
       this.admob.prepareVideoAdd();
-      this.admob.prepareInterstitialAd();
+      //decido si preprar o no el interstitial
+      this.admob.setIsMustShowAdd();
+      if(this.admob.getIsMusShowAdd())
+        this.admob.prepareInterstitialAd();
     });
 
   }

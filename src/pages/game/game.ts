@@ -65,17 +65,19 @@ export class GamePage {
     private admob: AdmobServiceProvider,
     private loadingCtrl : LoadingController,
     private platform: Platform,
-    private events : Events,
+    private events: Events,
     /*servicio para guardar estado*/
-    private originator : OriginatorService) {
-   
-      platform.ready().then(()=>{
-        //prepara y muestra add
-        this.admob.prepareInterstitialAd();
-    
-      });
+    private originator: OriginatorService) {
 
-      this.playerStartsGame = false; 
+    platform.ready().then(() => {
+      //prepara y muestra add
+      this.admob.setIsMustShowAdd();
+      if (this.admob.getIsMusShowAdd())
+        this.admob.prepareInterstitialAd();
+
+    });
+
+    this.playerStartsGame = false;
   }
 
   ionViewDidLoad() {
@@ -505,7 +507,7 @@ export class GamePage {
             this.originator.increaseloses(this.difficulty);
 
           //si no es un navegador
-          if (this.admob.cordovaAviable) {
+          if (this.admob.cordovaAviable && this.admob.getIsMusShowAdd()) {
             //si la publicidad no falla en cargar
             if (!this.admob.failToLoadInterstitial) {
               this.admob.showInterstitialAd().onAdDismiss().subscribe(() => {
@@ -526,7 +528,7 @@ export class GamePage {
     
       case Constants.GT_LOCAL_MULTYPLAYER:
         //si no es un navegador
-        if (this.admob.cordovaAviable) {
+        if (this.admob.cordovaAviable && this.admob.getIsMusShowAdd()) {
           //si la publicidad no falla en cargar
           if (!this.admob.failToLoadInterstitial) {
             this.admob.showInterstitialAd().onAdDismiss().subscribe(() => {

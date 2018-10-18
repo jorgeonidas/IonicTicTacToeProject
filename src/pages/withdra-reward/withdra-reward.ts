@@ -65,8 +65,8 @@ export class WithdraRewardPage {
     this.pressed = true;
     this.admob.videoRewardShowed = false;
     //this.navCtrl.pop({animate : false});
-    if(this.admob.cordovaAviable){
-      if(!this.admob.failToLoadInterstitial){
+    if(this.admob.cordovaAviable && this.admob.getIsMusShowAdd()){
+      if(!this.admob.failToLoadInterstitial ){
         this.admob.showInterstitialAd().onAdDismiss().subscribe(()=>{
           this.navCtrl.pop({animate:false});
         }, e =>{
@@ -88,42 +88,19 @@ export class WithdraRewardPage {
       this.admob.presentLoaderSpinner();
       if(!this.admob.failToLoadVieoReward){
         this.admob.showVideRewardAdd().onAdDismiss().subscribe(()=>{
-          //this.admob.dismissLoader();
+          this.doubleAmmout();
           this.navCtrl.pop({ animate: false });
         },
         e=>{
           console.log(e);
-          //this.admob.dismissLoader();
           this.navCtrl.pop({ animate: false });
         });
       }else{
-        //this.admob.dismissLoader();
         this.navCtrl.pop({ animate: false });
       }
     }else{
       this.navCtrl.pop({ animate: false });
     }
-   /* this.pressed = true;
-    console.log("cordova aviable?",this.admob.cordovaAviable);
-    
-    if(this.admob.cordovaAviable){
-        this.admob.showVideoAdd().onAdDismiss().subscribe((data) => {
-          console.log("reward dissmiss");
-          console.log(data);
-          this.admob.dismissLoader();
-          this.admob.videoRewardShowed = true;
-          this.navCtrl.pop({ animate: false });
-        }, error => {
-          console.log(error);
-          this.admob.dismissLoader();
-          this.admob.videoRewardShowed = false;
-          this.navCtrl.pop({ animate: false });
-        }
-        );
-      
-      }else{
-      this.navCtrl.pop({ animate: false });
-    }  */
   }
 
   ionViewWillLeave(){
@@ -168,6 +145,7 @@ export class WithdraRewardPage {
 
   doubleAmmout(){
     this.ammount = this.ammount*2;
+    this.originator.increaseDoubleReward();
     console.log("ganancia doblada", this.ammount +" "+ this.currency);
   }
 }
