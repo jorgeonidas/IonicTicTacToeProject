@@ -40,12 +40,12 @@ export class UserAccountComponent {
     this.userNameInputDisable = true;
 
     this.currTokenUrl = tokenServ.getCurrentSelectionUrl();
-      /*
+
     this.events.subscribe(('updateNick : done'),() => {
       console.log("Event catched by Information Bar UserAccont Component");
       this.loadNickName();
       this.loadCoins();
-    } );*/
+    } );
 
   }
 
