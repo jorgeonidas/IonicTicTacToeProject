@@ -13,9 +13,15 @@ import { CareTakerService } from '../../services/CareTakerService';
 })
 export class WithdraRewardPage {
 
-  reward: string;
+  rewardStr: string;
+  rewardMsj: string;
   gitImgUri : string;
   pressed: boolean;
+
+  //Cantidad y tipo de moneda
+  ammount: number;
+  currency: string;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private admob: AdmobServiceProvider,
@@ -42,9 +48,12 @@ export class WithdraRewardPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WithdraRewardPage');
-    this.reward = this.navParams.get('reward');
-    this.saveReward(this.reward);
-    this.reward = "YOU WON "+this.reward.toUpperCase()+"!!";
+    this.rewardStr = this.navParams.get('reward');
+    
+    //seteamos cantidad y tipo de moneda
+    this.setAmmoutAndCurrency(this.rewardStr);
+    
+    this.rewardMsj = "YOU WON "+this.rewardStr.toUpperCase()+"!!";
     this.gitImgUri = 'assets/imgs/reward-img.png';
     this.pressed = false;
     //for testing
@@ -124,22 +133,15 @@ export class WithdraRewardPage {
       this.admob.dismissLoader();
   }
 
-  saveReward(price: string){
-    console.log("recieved",price);
-    let rewardString = price.split(" ");
-    console.log(rewardString);
-    
-    //separemos y casting a numeros
-    let ammount = Number(rewardString[0]);
-    let currency = rewardString[1];
+  saveReward(){
 
-    switch (currency) {
+    switch (this.currency) {
       case Constants.CRYSTALS:
-          this.originator.updateCristals(ammount);
+          this.originator.updateCristals(this.ammount);
         break;
       
       case Constants.EOLA:
-          this.originator.updateEolas(ammount);
+          this.originator.updateEolas(this.ammount);
         break;
 
       default:
@@ -148,5 +150,22 @@ export class WithdraRewardPage {
     this.careTaker.setState(this.originator.getMemento());
     this.events.publish('updateNick : done');
 
+  }
+
+  setAmmoutAndCurrency(rewStr: string){
+    console.log("recieved",rewStr);
+    let rewardString = rewStr.split(" ");
+    console.log(rewardString);
+    
+    //separemos y casting a numeros
+    this.ammount = Number(rewardString[0]);
+    this.currency = rewardString[1];
+
+    console.log(this.ammount +" "+ this.currency);
+  }
+
+  doubleAmmout(){
+    this.ammount = this.ammount*2;
+    console.log("ganancia doblada", this.ammount +" "+ this.currency);
   }
 }
