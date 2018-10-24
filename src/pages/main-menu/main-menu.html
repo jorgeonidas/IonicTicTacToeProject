@@ -13,19 +13,22 @@
     <ion-row class="spacer-row"></ion-row>
     <ion-row class="gt-btn-row">
       <ion-col class="flex-col">
-        <button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('singleplayer')">1 Player</button>
+        <!--<button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('singleplayer')">1 Player</button>-->
+       <img [src]="singlePlayerBtnImg" class="svg-btn" (click)="onGameSelectio('singleplayer')">
       </ion-col>
     </ion-row>
     <ion-row class="row-gt-spacer"></ion-row>
     <ion-row class="gt-btn-row">
       <ion-col class="flex-col">
-        <button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('local-multiplayer')">2 Player</button>
+        <!--<button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('local-multiplayer')">2 Player</button>-->
+        <img [src]="localMultiplayerBtnImg" class="svg-btn" (click)="onGameSelectio('local-multiplayer')">
       </ion-col>
     </ion-row>
     <ion-row class="row-gt-spacer"></ion-row>
     <ion-row class="gt-btn-row">
       <ion-col class="flex-col">
-        <button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('online-multiplayer')">Multiplayer</button>
+        <!--<button ion-button round large no-margin class="gt-btn" (click)="onGameSelectio('online-multiplayer')">Multiplayer</button>-->
+        <img [src]="multiplauyerBtnImg" class="svg-btn"  (click)="onGameSelectio('online-multiplayer')">
       </ion-col>
     </ion-row>
     <ion-row style="height: 6%;"></ion-row>

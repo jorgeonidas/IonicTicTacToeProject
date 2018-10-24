@@ -109,3 +109,11 @@ export const CRYSTALS = 'Crystals';
 export const EOLA = 'Eola';
 
 export const ROULETE_STARTING_ANGLES = [0, 10, 56, 96, 142, 167, 213, 243, 289, 314];
+
+/*main menu svg resources*/
+export const BTN_1_PLAYER_NORMAL = 'assets/imgs/svg/MainMenuPage/Btn_1_Player_Normal.svg';
+export const BTN_1_PLAYER_PUSHED = 'assets/imgs/svg/MainMenuPage/Btn_1_Player_Pushed.svg';
+export const BTN_2_PLAYERS_NORMAL = 'assets/imgs/svg/MainMenuPage/Btn_2_Players_Normal.svg';
+export const BTN_2_PLAYERS_PUSHED = 'assets/imgs/svg/MainMenuPage/Btn_2_Players_Pushed.svg';
+export const BTN_MULTIPLAYER_NORMAL = 'assets/imgs/svg/MainMenuPage/Btn_Multiplayer_Normal.svg';
+export const BTN_MULTIPLAYERS_PUSHED = 'assets/imgs/svg/MainMenuPage/Btn_Multiplayer_Pushed.svg';

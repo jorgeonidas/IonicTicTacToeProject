@@ -1,0 +1,376 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 95.108 88.493">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #342c0d;
+        stroke: #342c0d;
+      }
+
+      .cls-1, .cls-5, .cls-6, .cls-7 {
+        stroke-width: 5px;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        opacity: 0.4;
+      }
+
+      .cls-4, .cls-5, .cls-6, .cls-7 {
+        fill: none;
+      }
+
+      .cls-4 {
+        stroke: #37715d;
+      }
+
+      .cls-5 {
+        stroke: #0d1c34;
+      }
+
+      .cls-6 {
+        stroke: #5c7295;
+      }
+
+      .cls-7 {
+        stroke: #374e71;
+      }
+
+      .cls-8 {
+        opacity: 0.5;
+      }
+
+      .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-10 {
+        filter: url(#BorderColor);
+      }
+
+      .cls-11 {
+        filter: url(#BorderShadow);
+      }
+
+      .cls-12 {
+        filter: url(#settings);
+      }
+
+      .cls-13 {
+        filter: url(#Path_305);
+      }
+
+      .cls-14 {
+        filter: url(#Path_304);
+      }
+
+      .cls-15 {
+        filter: url(#Path_303);
+      }
+
+      .cls-16 {
+        filter: url(#Path_302);
+      }
+
+      .cls-17 {
+        filter: url(#Path_301);
+      }
+
+      .cls-18 {
+        filter: url(#Path_300);
+      }
+
+      .cls-19 {
+        filter: url(#Path_299);
+      }
+
+      .cls-20 {
+        filter: url(#Path_298);
+      }
+
+      .cls-21 {
+        filter: url(#Path_297);
+      }
+
+      .cls-22 {
+        filter: url(#Path_314);
+      }
+
+      .cls-23 {
+        filter: url(#Path_313);
+      }
+
+      .cls-24 {
+        filter: url(#Path_312);
+      }
+
+      .cls-25 {
+        filter: url(#Path_311);
+      }
+
+      .cls-26 {
+        filter: url(#Path_310);
+      }
+
+      .cls-27 {
+        filter: url(#Path_309);
+      }
+
+      .cls-28 {
+        filter: url(#Path_308);
+      }
+
+      .cls-29 {
+        filter: url(#Path_307);
+      }
+
+      .cls-30 {
+        filter: url(#Path_306);
+      }
+
+      .cls-31 {
+        filter: url(#Path_296);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#eef53a"/>
+      <stop offset="1" stop-color="#119da3"/>
+    </linearGradient>
+    <filter id="Path_296" x="11.141" y="39.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_306" x="11.141" y="42.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_307" x="11.141" y="45.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_308" x="11.141" y="48.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_309" x="11.141" y="51.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_310" x="11.141" y="54.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-6"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-6"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_311" x="11.141" y="57.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-7"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-7"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_312" x="9.089" y="60.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-8"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-8"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_313" x="9.089" y="63.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-9"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-9"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_314" x="9.089" y="66.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-10"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-10"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_297" x="11.141" y="36.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-11"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-11"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_298" x="11.141" y="33.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-12"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-12"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_299" x="11.141" y="30.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-13"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-13"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_300" x="11.141" y="27.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-14"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-14"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_301" x="11.141" y="24.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-15"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-15"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_302" x="12.167" y="21.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-16"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-16"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_303" x="12.167" y="18.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-17"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-17"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_304" x="13.194" y="15.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-18"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-18"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_305" x="13.194" y="12.007" width="73.268" height="7" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-19"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-19"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="settings" x="25.409" y="20.5" width="44" height="44" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1" result="blur-20"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-20"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="BorderShadow" x="0" y="0" width="95.108" height="88.493" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-21"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-21"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="BorderColor" x="9" y="5" width="77.108" height="73.493" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-22"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-22"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Settings-2" data-name="Settings" transform="translate(-260.591 -503.5)">
+    <g id="ButtonBG" transform="translate(-3.936)">
+      <path id="BtnShadow" class="cls-1" d="M18.086,0H57.892A14.038,14.038,0,0,1,72.108,13.853L68.239,52.64A14.038,14.038,0,0,1,54.022,66.493H14.216A14.038,14.038,0,0,1,0,52.64L3.87,13.853A14.038,14.038,0,0,1,18.086,0Z" transform="translate(275 516)"/>
+      <path id="BG" class="cls-2" d="M17.578,0H56.265A13.835,13.835,0,0,1,70.082,13.853L66.321,52.64A13.835,13.835,0,0,1,52.5,66.493H13.817A13.835,13.835,0,0,1,0,52.64L3.761,13.853A13.835,13.835,0,0,1,17.578,0Z" transform="translate(277.026 511)"/>
+      <g id="Lines" class="cls-3" transform="translate(276.615 517.007)">
+        <g class="cls-31" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_296-2" data-name="Path 296" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -509.5)"/>
+        </g>
+        <g class="cls-30" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_306-2" data-name="Path 306" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -506.5)"/>
+        </g>
+        <g class="cls-29" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_307-2" data-name="Path 307" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -503.5)"/>
+        </g>
+        <g class="cls-28" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_308-2" data-name="Path 308" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -500.5)"/>
+        </g>
+        <g class="cls-27" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_309-2" data-name="Path 309" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -497.5)"/>
+        </g>
+        <g class="cls-26" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_310-2" data-name="Path 310" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -494.5)"/>
+        </g>
+        <g class="cls-25" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_311-2" data-name="Path 311" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -491.5)"/>
+        </g>
+        <g class="cls-24" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_312-2" data-name="Path 312" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-265.05 -488.5)"/>
+        </g>
+        <g class="cls-23" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_313-2" data-name="Path 313" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-265.05 -485.5)"/>
+        </g>
+        <g class="cls-22" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_314-2" data-name="Path 314" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-265.05 -482.5)"/>
+        </g>
+        <g class="cls-21" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_297-2" data-name="Path 297" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -512.5)"/>
+        </g>
+        <g class="cls-20" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_298-2" data-name="Path 298" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -515.5)"/>
+        </g>
+        <g class="cls-19" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_299-2" data-name="Path 299" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -518.5)"/>
+        </g>
+        <g class="cls-18" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_300-2" data-name="Path 300" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -521.5)"/>
+        </g>
+        <g class="cls-17" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_301-2" data-name="Path 301" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-263 -524.5)"/>
+        </g>
+        <g class="cls-16" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_302-2" data-name="Path 302" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-261.98 -527.5)"/>
+        </g>
+        <g class="cls-15" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_303-2" data-name="Path 303" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-261.98 -530.5)"/>
+        </g>
+        <g class="cls-14" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_304-2" data-name="Path 304" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-260.95 -533.5)"/>
+        </g>
+        <g class="cls-13" transform="matrix(1, 0, 0, 1, -12.09, -13.51)">
+          <path id="Path_305-2" data-name="Path 305" class="cls-4" d="M344.41,550.007H277.143" transform="translate(-260.95 -536.5)"/>
+        </g>
+      </g>
+      <g class="cls-12" transform="matrix(1, 0, 0, 1, 264.53, 503.5)">
+        <image id="settings-3" data-name="settings" width="38" height="38" transform="translate(28.41 21.5)" xlink:href="data:image/png;base64,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"/>
+      </g>
+      <g class="cls-11" transform="matrix(1, 0, 0, 1, 264.53, 503.5)">
+        <path id="BorderShadow-2" data-name="BorderShadow" class="cls-5" d="M18.086,0H57.892c7.851,0,14.216,6.109,14.216,13.644l-3.87,38.2c0,7.536-6.365,13.644-14.216,13.644H14.216C6.365,65.493,0,59.384,0,51.848l3.87-38.2C3.87,6.109,10.234,0,18.086,0Z" transform="translate(11.5 8.5)"/>
+      </g>
+      <path id="BorderLight" class="cls-6" d="M18.086,0H57.892A14.038,14.038,0,0,1,72.108,13.853L68.239,52.64A14.038,14.038,0,0,1,54.022,66.493H14.216A14.038,14.038,0,0,1,0,52.64L3.87,13.853A14.038,14.038,0,0,1,18.086,0Z" transform="translate(276.026 510)"/>
+      <g class="cls-10" transform="matrix(1, 0, 0, 1, 264.53, 503.5)">
+        <path id="BorderColor-2" data-name="BorderColor" class="cls-7" d="M18.086,0H57.892A14.038,14.038,0,0,1,72.108,13.853L68.239,52.64A14.038,14.038,0,0,1,54.022,66.493H14.216A14.038,14.038,0,0,1,0,52.64L3.87,13.853A14.038,14.038,0,0,1,18.086,0Z" transform="translate(11.5 7.5)"/>
+      </g>
+      <g id="Shine" class="cls-8" transform="translate(97.936 41.218)">
+        <ellipse id="Ellipse_106" data-name="Ellipse 106" class="cls-9" cx="10" cy="2" rx="10" ry="2" transform="translate(214 479.782)"/>
+        <ellipse id="Ellipse_107" data-name="Ellipse 107" class="cls-9" cx="3" cy="2" rx="3" ry="2" transform="translate(238 484.782)"/>
+        <ellipse id="Ellipse_108" data-name="Ellipse 108" class="cls-9" cx="8" cy="1.5" rx="8" ry="1.5" transform="translate(191 522.782)"/>
+      </g>
+    </g>
+  </g>
+</svg>

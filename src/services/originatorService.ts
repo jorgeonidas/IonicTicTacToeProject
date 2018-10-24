@@ -95,6 +95,16 @@ export class OriginatorService{
         this.saveStateToMemento();
     }
 
+    increaseDaysInRow(){
+        this.state.daysInRow++;
+        this.saveStateToMemento();
+    }
+
+    resetDaysInRow(){
+        this.state.daysInRow = 0;
+        this.saveStateToMemento();
+    }
+
     getCristals(){
         return this.state.cristals;
     }
@@ -126,6 +136,7 @@ export class OriginatorService{
             eolas: 0,
             doublingReward : 0,
             unlocks: 0,
+
         }
         this.saveStateToMemento();
     }

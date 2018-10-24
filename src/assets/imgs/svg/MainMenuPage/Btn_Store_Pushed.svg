@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 182.628 72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #681e2a;
+        stroke: #681e2a;
+        stroke-width: 5px;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-11, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke: #5a3654;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        stroke-width: 4px;
+      }
+
+      .cls-4 {
+        stroke: #ffd179;
+      }
+
+      .cls-5 {
+        stroke: #d38e0b;
+      }
+
+      .cls-6, .cls-7 {
+        fill: #fbfcdf;
+        stroke: #4bb0ce;
+      }
+
+      .cls-6 {
+        stroke-width: 0.7px;
+        font-size: 22px;
+        font-family: Montserrat-Bold, Montserrat;
+        font-weight: 700;
+      }
+
+      .cls-7 {
+        stroke-width: 0.5px;
+      }
+
+      .cls-8 {
+        opacity: 0.5;
+      }
+
+      .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-10 {
+        stroke: none;
+      }
+
+      .cls-12 {
+        filter: url(#Path_174);
+      }
+
+      .cls-13 {
+        filter: url(#Path_173);
+      }
+
+      .cls-14 {
+        filter: url(#Store);
+      }
+
+      .cls-15 {
+        filter: url(#BorderColor);
+      }
+
+      .cls-16 {
+        filter: url(#BorderShadow);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ea8942"/>
+      <stop offset="1" stop-color="#741143"/>
+    </linearGradient>
+    <filter id="BorderShadow" x="0" y="0" width="182.628" height="72" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="BorderColor" x="9" y="5" width="164.628" height="57" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Store" x="83.617" y="18.3" width="63.4" height="30.4" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_173" x="53.014" y="32.998" width="9.182" height="10.167" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_174" x="36.75" y="17.75" width="32.569" height="30.5" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Store-2" data-name="Store" transform="translate(-14 -518)">
+    <g id="ButtonBG">
+      <rect id="BtnShadow" class="cls-1" width="156.628" height="47" rx="20" transform="translate(27 535)"/>
+      <rect id="BG" class="cls-2" width="156.628" height="47" rx="20" transform="translate(27 527)"/>
+      <g class="cls-16" transform="matrix(1, 0, 0, 1, 14, 518)">
+        <g id="BorderShadow-2" data-name="BorderShadow" class="cls-3" transform="translate(13 10)">
+          <rect class="cls-10" width="156.628" height="46" rx="20"/>
+          <rect class="cls-11" x="-2" y="-2" width="160.628" height="50" rx="22"/>
+        </g>
+      </g>
+      <g id="BorderLight" class="cls-4" transform="translate(27 526)">
+        <rect class="cls-10" width="156.628" height="47" rx="20"/>
+        <rect class="cls-11" x="-2" y="-2" width="160.628" height="51" rx="22"/>
+      </g>
+      <g class="cls-15" transform="matrix(1, 0, 0, 1, 14, 518)">
+        <g id="BorderColor-2" data-name="BorderColor" class="cls-5" transform="translate(13 9)">
+          <rect class="cls-10" width="156.628" height="47" rx="20"/>
+          <rect class="cls-11" x="-2" y="-2" width="160.628" height="51" rx="22"/>
+        </g>
+      </g>
+      <g id="Info" transform="translate(3.317)">
+        <g class="cls-14" transform="matrix(1, 0, 0, 1, 10.68, 518)">
+          <text id="Store-3" data-name="Store" class="cls-6" transform="translate(115.32 40)"><tspan x="-30.261" y="0">Store</tspan></text>
+        </g>
+        <g id="Shop" transform="translate(47.683 536)">
+          <g class="cls-13" transform="matrix(1, 0, 0, 1, -37, -18)">
+            <path id="Path_173-2" data-name="Path 173" class="cls-7" d="M254.72,263.75h-4.358a2.165,2.165,0,0,0-2.162,2.162v3.342a2.165,2.165,0,0,0,2.162,2.162h4.358a2.165,2.165,0,0,0,2.162-2.162v-3.342A2.165,2.165,0,0,0,254.72,263.75Zm.59,5.5a.591.591,0,0,1-.59.59h-4.358a.591.591,0,0,1-.59-.59v-3.342a.591.591,0,0,1,.59-.59h4.358a.592.592,0,0,1,.59.59Z" transform="translate(-194.94 -230.5)"/>
+          </g>
+          <g class="cls-12" transform="matrix(1, 0, 0, 1, -37, -18)">
+            <path id="Path_174-2" data-name="Path 174" class="cls-7" d="M32.069,40.224a.73.73,0,0,0-.1-.387l-4.77-8.388a.791.791,0,0,0-.681-.4H5.55a.777.777,0,0,0-.681.4L.1,39.837a.8.8,0,0,0-.1.387,4.6,4.6,0,0,0,2.752,4.207V58.264a.789.789,0,0,0,.786.786H28.524a.789.789,0,0,0,.786-.786V44.529a.346.346,0,0,0-.007-.085A4.613,4.613,0,0,0,32.069,40.224ZM6.009,32.629H26.054l3.729,6.559H2.287Zm16.814,8.125a3.022,3.022,0,0,1-5.95,0Zm-7.621,0a3.026,3.026,0,0,1-5.956,0Zm-13.577,0H7.582a3.026,3.026,0,0,1-5.956,0ZM13.21,57.477H8.689V48.992A1.12,1.12,0,0,1,9.81,47.871H12.1a1.12,1.12,0,0,1,1.121,1.121v8.486Zm14.528,0H14.783V48.992A2.7,2.7,0,0,0,12.09,46.3H9.8A2.7,2.7,0,0,0,7.11,48.992v8.492H4.325V44.817c.092.007.183.007.275.007a4.594,4.594,0,0,0,3.814-2.031,4.6,4.6,0,0,0,7.627,0,4.583,4.583,0,0,0,7.614,0,4.594,4.594,0,0,0,3.814,2.031c.092,0,.177-.007.269-.007v12.66Zm-.269-14.226a3.021,3.021,0,0,1-2.975-2.49h5.956A3.039,3.039,0,0,1,27.469,43.251Z" transform="translate(37 -13.05)"/>
+          </g>
+        </g>
+      </g>
+      <g id="Shine" class="cls-8" transform="translate(-66 50.718)">
+        <ellipse id="Ellipse_106" data-name="Ellipse 106" class="cls-9" cx="10" cy="2" rx="10" ry="2" transform="translate(214 479.782)"/>
+        <ellipse id="Ellipse_107" data-name="Ellipse 107" class="cls-9" cx="3" cy="2" rx="3" ry="2" transform="translate(238 484.782)"/>
+        <ellipse id="Ellipse_108" data-name="Ellipse 108" class="cls-9" cx="8" cy="1.5" rx="8" ry="1.5" transform="translate(108 515.782)"/>
+      </g>
+    </g>
+  </g>
+</svg>

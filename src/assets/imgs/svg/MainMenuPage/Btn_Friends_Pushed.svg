@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 182.628 72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #601b27;
+        stroke: #651d29;
+        stroke-width: 5px;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-11, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke: #6c4165;
+      }
+
+      .cls-3, .cls-4, .cls-5 {
+        stroke-width: 4px;
+      }
+
+      .cls-4 {
+        stroke: #ffd179;
+      }
+
+      .cls-5 {
+        stroke: #d38e0b;
+      }
+
+      .cls-6, .cls-7 {
+        fill: #fbfcdf;
+        stroke: #4bb0ce;
+        stroke-width: 0.7px;
+      }
+
+      .cls-6 {
+        font-size: 22px;
+        font-family: Montserrat-Bold, Montserrat;
+        font-weight: 700;
+      }
+
+      .cls-8 {
+        opacity: 0.5;
+      }
+
+      .cls-9 {
+        fill: #fff;
+      }
+
+      .cls-10 {
+        stroke: none;
+      }
+
+      .cls-12 {
+        filter: url(#Friends-2);
+      }
+
+      .cls-13 {
+        filter: url(#Friends);
+      }
+
+      .cls-14 {
+        filter: url(#BorderColor);
+      }
+
+      .cls-15 {
+        filter: url(#BorderShadow);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ea8942"/>
+      <stop offset="1" stop-color="#741143"/>
+    </linearGradient>
+    <filter id="BorderShadow" x="0" y="0" width="182.628" height="72" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="BorderColor" x="9" y="5" width="164.628" height="57" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Friends" x="69.3" y="18.3" width="87.4" height="30.4" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Friends-2" x="27.65" y="18.65" width="31.641" height="28.718" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Contacts" transform="translate(-14 -518)">
+    <g id="ButtonBG">
+      <rect id="BtnShadow" class="cls-1" width="156.628" height="47" rx="20" transform="translate(27 535)"/>
+      <rect id="BG" class="cls-2" width="156.628" height="47" rx="20" transform="translate(27 527)"/>
+      <g class="cls-15" transform="matrix(1, 0, 0, 1, 14, 518)">
+        <g id="BorderShadow-2" data-name="BorderShadow" class="cls-3" transform="translate(13 10)">
+          <rect class="cls-10" width="156.628" height="46" rx="20"/>
+          <rect class="cls-11" x="-2" y="-2" width="160.628" height="50" rx="22"/>
+        </g>
+      </g>
+      <g id="BorderLight" class="cls-4" transform="translate(27 526)">
+        <rect class="cls-10" width="156.628" height="47" rx="20"/>
+        <rect class="cls-11" x="-2" y="-2" width="160.628" height="51" rx="22"/>
+      </g>
+      <g class="cls-14" transform="matrix(1, 0, 0, 1, 14, 518)">
+        <g id="BorderColor-2" data-name="BorderColor" class="cls-5" transform="translate(13 9)">
+          <rect class="cls-10" width="156.628" height="47" rx="20"/>
+          <rect class="cls-11" x="-2" y="-2" width="160.628" height="51" rx="22"/>
+        </g>
+      </g>
+      <g id="Info" transform="translate(1)">
+        <g class="cls-13" transform="matrix(1, 0, 0, 1, 13, 518)">
+          <text id="Friends-3" data-name="Friends" class="cls-6" transform="translate(113 40)"><tspan x="-42.141" y="0">Friends</tspan></text>
+        </g>
+        <g class="cls-12" transform="matrix(1, 0, 0, 1, 13, 518)">
+          <path id="Friends-4" data-name="Friends" class="cls-7" d="M18.671,4.466a5.618,5.618,0,0,1,2.616,4.174,4.532,4.532,0,1,0-2.616-4.174ZM15.7,13.75A4.534,4.534,0,1,0,11.16,9.216,4.536,4.536,0,0,0,15.7,13.75Zm1.925.309h-3.85a5.815,5.815,0,0,0-5.81,5.806V24.57l.012.074.324.1a26.467,26.467,0,0,0,7.9,1.273,16.228,16.228,0,0,0,6.9-1.294l.3-.153h.032V19.865A5.813,5.813,0,0,0,17.623,14.059Zm7.508-4.681H21.31a5.586,5.586,0,0,1-1.726,3.892,6.9,6.9,0,0,1,4.931,6.6v1.45a15.644,15.644,0,0,0,6.09-1.278l.3-.154h.032V15.183A5.814,5.814,0,0,0,25.131,9.378ZM7.736,9.069a4.51,4.51,0,0,0,2.413-.7A5.611,5.611,0,0,1,12.26,4.79c0-.085.013-.169.013-.255A4.537,4.537,0,1,0,7.736,9.069Zm4.075,4.2A5.589,5.589,0,0,1,10.087,9.4c-.142-.01-.282-.022-.426-.022H5.81A5.814,5.814,0,0,0,0,15.183v4.706l.012.073.324.1a27.264,27.264,0,0,0,6.543,1.229V19.872A6.9,6.9,0,0,1,11.811,13.27Z" transform="translate(28 19)"/>
+        </g>
+      </g>
+      <g id="Shine" class="cls-8" transform="translate(-66 50.718)">
+        <ellipse id="Ellipse_106" data-name="Ellipse 106" class="cls-9" cx="10" cy="2" rx="10" ry="2" transform="translate(214 479.782)"/>
+        <ellipse id="Ellipse_107" data-name="Ellipse 107" class="cls-9" cx="3" cy="2" rx="3" ry="2" transform="translate(238 484.782)"/>
+        <ellipse id="Ellipse_108" data-name="Ellipse 108" class="cls-9" cx="8" cy="1.5" rx="8" ry="1.5" transform="translate(108 515.782)"/>
+      </g>
+    </g>
+  </g>
+</svg>

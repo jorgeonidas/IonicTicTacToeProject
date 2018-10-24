@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 356.3 655.5" style="enable-background:new 0 0 356.3 655.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFBE8;}
+	.st1{fill:url(#BG_1_);}
+	.st2{fill:none;}
+	.st3{fill:none;stroke:#0D5B7E;stroke-width:5;}
+	.st4{fill:none;stroke:#1D90C3;stroke-width:5;}
+	.st5{fill:none;stroke:#155E7E;stroke-width:5;}
+	.st6{fill:url(#BackGround-7_1_);}
+	.st7{opacity:0.653;}
+	.st8{fill:none;stroke:#ACACAC;stroke-width:2;stroke-linecap:round;stroke-dasharray:2,10;}
+	.st9{fill:#FAE27F;}
+	.st10{font-family:'Montserrat-Bold';}
+	.st11{font-size:40px;}
+	.st12{fill:none;stroke:#62543A;stroke-width:0.5;}
+	.st13{fill:#FAEA8F;}
+	.st14{font-size:20px;}
+	.st15{font-size:23px;}
+</style>
+<g id="Back" transform="translate(-277.449 -11)">
+	<g id="BackGround-4" transform="translate(-1.551 -24.531)">
+		<g id="BBG" transform="translate(258.551 24.531)">
+			<g transform="matrix(1, 0, 0, 1, 20.45, 11)">
+				<path id="BackGround-5" class="st0" d="M100.6,3.5h256l0,0v645l0,0h-256c-8.3,0-15-6.7-15-15v-615C85.6,10.2,92.3,3.5,100.6,3.5
+					z"/>
+			</g>
+			<path id="BackGround-6" class="st0" d="M43,81.5h74l0,0v112l0,0H43c-11,0-20-9-20-20v-72C23,90.5,32,81.5,43,81.5z"/>
+		</g>
+		
+			<linearGradient id="BG_1_" gradientUnits="userSpaceOnUse" x1="-486.6551" y1="902.8195" x2="-486.6551" y2="901.8195" gradientTransform="matrix(78.924 0 0 -96.764 38736.2305 87474.9219)">
+			<stop  offset="0" style="stop-color:#2F5265"/>
+			<stop  offset="1" style="stop-color:#19303C"/>
+		</linearGradient>
+		<path id="BG" class="st1" d="M303,114.5h63.9l0,0v96.8l0,0H303c-8.3,0-15-6.7-15-15l0,0v-66.8C288,121.2,294.7,114.5,303,114.5z"
+			/>
+		<g transform="matrix(1, 0, 0, 1, 279, 35.53)">
+			<g id="BorderShadow-2" transform="translate(8 77.47)">
+				<path class="st2" d="M16,3.5h63.9l0,0v94.8l0,0H16c-8.3,0-15-6.7-15-15V18.5C1,10.2,7.7,3.5,16,3.5z"/>
+				<path class="st3" d="M16,1h63.9c1.4,0,2.5,1.1,2.5,2.5v94.8c0,1.4-1.1,2.5-2.5,2.5H16c-9.7,0-17.5-7.8-17.5-17.5V18.5
+					C-1.5,8.8,6.3,1,16,1z"/>
+			</g>
+		</g>
+		<g id="BorderLight" transform="translate(287 109)">
+			<path class="st2" d="M16,3.5h63.9l0,0v96.8l0,0H16c-8.3,0-15-6.7-15-15l0,0V18.5C1,10.2,7.7,3.5,16,3.5z"/>
+			<path class="st4" d="M16,1h63.9c1.4,0,2.5,1.1,2.5,2.5v96.8c0,1.4-1.1,2.5-2.5,2.5H16c-9.7,0-17.5-7.8-17.5-17.5V18.5
+				C-1.5,8.8,6.3,1,16,1z"/>
+		</g>
+		<g transform="matrix(1, 0, 0, 1, 279, 35.53)">
+			<g id="BorderColor-2" transform="translate(8 75.47)">
+				<path class="st2" d="M16,3.5h63.9l0,0v96.8l0,0H16c-8.3,0-15-6.7-15-15l0,0V18.5C1,10.2,7.7,3.5,16,3.5z"/>
+				<path class="st5" d="M16,1h63.9c1.4,0,2.5,1.1,2.5,2.5v96.8c0,1.4-1.1,2.5-2.5,2.5H16c-9.7,0-17.5-7.8-17.5-17.5V18.5
+					C-1.5,8.8,6.3,1,16,1z"/>
+			</g>
+		</g>
+	</g>
+	<g transform="matrix(1, 0, 0, 1, 277.45, 11)">
+		
+			<linearGradient id="BackGround-7_1_" gradientUnits="userSpaceOnUse" x1="-772.6017" y1="869.1661" x2="-772.6017" y2="868.1661" gradientTransform="matrix(268 0 0 -641 207278.8125 557141)">
+			<stop  offset="0" style="stop-color:#54779B"/>
+			<stop  offset="1" style="stop-color:#1C1A38"/>
+		</linearGradient>
+		<path id="BackGround-7" class="st6" d="M102.6,5.5h253l0,0v641l0,0h-253c-8.3,0-15-6.7-15-15c0,0,0,0,0,0v-611
+			C87.6,12.2,94.3,5.5,102.6,5.5z"/>
+	</g>
+	<g transform="matrix(1, 0, 0, 1, 277.45, 11)">
+		<g id="BackGround-8" transform="translate(95.55 10)" class="st7">
+			<path class="st2" d="M11,3.5h257l0,0v625l0,0H11c-5.5,0-10-4.5-10-10v-605C1,8,5.5,3.5,11,3.5z"/>
+			<path class="st8" d="M259.7,627.5h-6H4.7c-5,0-9-4-9-9v-605c0-5,4-9,9-9h249h6"/>
+		</g>
+	</g>
+	<g transform="matrix(1, 0, 0, 1, 277.45, 11)">
+		<text transform="matrix(1 0 0 1 144.05 54.5)" class="st9 st10 st11">Settings</text>
+		<text transform="matrix(1 0 0 1 144.05 54.5)" class="st12 st10 st11">Settings</text>
+	</g>
+	<g transform="matrix(1, 0, 0, 1, 277.45, 11)">
+		<text transform="matrix(1 0 0 1 136.55 192.5)" class="st13 st10 st14">Notifications</text>
+	</g>
+	<g transform="matrix(1, 0, 0, 1, 277.45, 11)">
+		<text transform="matrix(1 0 0 1 147.55 93.5)" class="st13 st10 st15">Music</text>
+	</g>
+	<g transform="matrix(1, 0, 0, 1, 277.45, 11)">
+		<text transform="matrix(1 0 0 1 266.55 93.5)" class="st13 st10 st15">FX</text>
+	</g>
+</g>
+</svg>

@@ -21,6 +21,11 @@ export class MainMenuPage {
   isLoginActive: boolean = false;
   sideMenuOpen: boolean;
 
+  /*SVG IMAGES RESOURCES*/
+  singlePlayerBtnImg = Constants.BTN_1_PLAYER_NORMAL;
+  localMultiplayerBtnImg = Constants.BTN_2_PLAYERS_NORMAL;
+  multiplauyerBtnImg = Constants.BTN_MULTIPLAYER_NORMAL;
+
   //for testing
   platFormReadyOnce;
   constructor(public navCtrl: NavController, 
