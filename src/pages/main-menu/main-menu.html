@@ -6,7 +6,7 @@
     <ion-row class="title-row">
       <ion-col class="flex-col">
         <div class="tittle-wrapper">
-          <h1 text-center no-margin no-padding class="menu-title">Tic Tac Toe Ollie</h1>
+          <h1 text-center no-margin no-padding class="menu-title">#OLLIE</h1>
         </div>
       </ion-col>
     </ion-row>
@@ -31,11 +31,32 @@
         <img [src]="multiplauyerBtnImg" class="svg-btn"  (click)="onGameSelectio('online-multiplayer')">
       </ion-col>
     </ion-row>
-    <ion-row style="height: 6%;"></ion-row>
+    <ion-row style="height: 2%;"></ion-row>
+    <ion-row style="height: 12%">
+      <ion-col class="flex-col">
+        <img [src]="btnUser" class="svg-btn">
+      </ion-col>
+      <ion-col col-5 class="flex-col">
+        <img [src]="btnVideoReward" class="svg-btn" (click)="getFreeEnergy()">
+      </ion-col>
+      <ion-col class="flex-col">
+        <img [src]="btnSettings" class="svg-btn">
+      </ion-col>
+    </ion-row>
+    <ion-row style="height: 2%;"></ion-row>
+    <ion-row style="height: 12%">
+      <ion-col class="flex-col">
+        <img [src]="btnFriends" class="svg-btn" (click)="openContacsPage()">
+      </ion-col>
+      <ion-col class="flex-col">
+        <img [src]="btnStore" class="svg-btn" (click)="openStorePage()">
+      </ion-col>
+    </ion-row>
+    <!--
     <ion-row style="height: 5%">
       <ion-col class="flex-col">
         <button ion-button icon-start round style="width: 35%; height: 80%;" color="fuxia" (click)="getFreeEnergy()">
-          <!--proporcional a su espacio local-->
+
           <ion-icon name="logo-bitcoin" color="gold"></ion-icon>Free Energy
         </button>
       </ion-col>
@@ -51,6 +72,7 @@
         </button>
       </ion-col>
     </ion-row>
+  -->
   </ion-grid>
   <vr-custom-sidemenu (sideMenuOpenEmmiter)="toggleFade($event)"></vr-custom-sidemenu>
 </ion-content>

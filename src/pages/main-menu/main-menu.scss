@@ -14,7 +14,7 @@ page-main-menu {
         position: fixed;
     }
     .bg-main-menu-page{
-        background-color: #ffcc00;
+        background: linear-gradient(to bottom, #232323 0%, #727272 100%);
         height: 100%;
         margin: 0;
     }
@@ -27,7 +27,7 @@ page-main-menu {
     }
 
     .gt-btn-row{
-        height: 10%;
+        height: 12%;
         margin: 0;
         padding: 0;
     }
@@ -41,13 +41,13 @@ page-main-menu {
     }
 
     .spacer-row{
-        height: 8%;
+        height: 4%;
         margin: 0;
         padding: 0;
     }
 
     .row-gt-spacer{
-        height: 2%;
+        height:0;
     }
 
     .tittle-wrapper{
@@ -73,9 +73,9 @@ page-main-menu {
 
     /*cosas viejas*/
     .menu-title{
-        color: red;
+        color: yellow;
         font-weight: bold;
-        font-size: 10vw;
+        font-size: 10vh;
     }
 
     .borderPlayer{

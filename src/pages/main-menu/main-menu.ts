@@ -25,6 +25,11 @@ export class MainMenuPage {
   singlePlayerBtnImg = Constants.BTN_1_PLAYER_NORMAL;
   localMultiplayerBtnImg = Constants.BTN_2_PLAYERS_NORMAL;
   multiplauyerBtnImg = Constants.BTN_MULTIPLAYER_NORMAL;
+  btnVideoReward = Constants.BTN_VIDEO_REWARDS_NORMAL;
+  btnSettings = Constants.BTN_SETTINGS_NORMAL;
+  btnUser= Constants.BTN_USER_NORMAL;
+  btnFriends= Constants.BTN_FRIENDS_NORMAL;
+  btnStore= Constants.BTN_STORE_NORMAL;
 
   //for testing
   platFormReadyOnce;
